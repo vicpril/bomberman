@@ -1,0 +1,6 @@
+/build
+/build-frontend
+node_modules
+.idea
+.vscode
+/storybook-static

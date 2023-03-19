@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  # nextjs:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-dev
+  #   container_name: nextjs
+  #   restart: always
+  #   volumes:
+  #     - ./:/app
+  #     - /app/node_modules
+  #     - /app/.next
+  #   ports:
+  #     - 3000:3000
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    container_name: storybook
+    restart: always
+    volumes:
+      - ./:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - /app/node_modules
+      # - /app/.next
+    ports:
+      - 6006:6006

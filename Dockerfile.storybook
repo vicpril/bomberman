@@ -1,0 +1,18 @@
+FROM node:16-alpine
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+# COPY package.json /app
+# COPY package-lock.json /app
+
+# RUN npm install
+
+# COPY . /app
+
+CMD docker -v
+
+EXPOSE 6006
+
+# CMD npm run storybook
