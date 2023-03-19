@@ -14,12 +14,13 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "stylelint \"**/*.scss\"",
     "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
+    "lint:fix": "yarn lint:ts:fix && yarn lint:scss:fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "test:ui:up": "npm run build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
-    "test:ui": "npm run build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
+    "test:ui:up": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
+    "test:ui": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
     "test:ui:ok": "loki approve",
     "test:ui:ci": "loki test --reactUri file:./storybook-static --config ./config/storybook",
-    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
+    "test:ui:report": "yarn test:ui:json && yarn test:ui:html",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
@@ -68,6 +69,7 @@
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "json-server": "^0.17.0",
     "loki": "^0.31.0",
     "mini-css-extract-plugin": "^2.5.3",
@@ -99,6 +101,9 @@
     "react-i18next": "^12.2.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1"
+  },
+  "resolutions": {
+    "@types/react": "^16 || ^17"
   },
   "loki": {
     "configurations": {

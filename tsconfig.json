@@ -15,7 +15,7 @@
     // Для абсолютного импорта
     "baseUrl": ".",
     "paths": {
-      "@": ["./src/frontend/*"]
+      "@/*": ["./src/frontend/*"]
     },
     "strict": true,
     "strictBindCallApply": true,
