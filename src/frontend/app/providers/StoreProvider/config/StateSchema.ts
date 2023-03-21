@@ -1,5 +1,5 @@
 import { EnhancedStore } from '@reduxjs/toolkit'
-import { AxiosInstance } from 'axios'
+// import { AxiosInstance } from 'axios'
 import { NavigateFunction } from 'react-router-dom'
 // import type { CounterSchema } from '@/entities/Counter'
 // import { ProfileSchema } from '@/entities/Profile'

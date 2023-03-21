@@ -4,15 +4,22 @@ import buildCssLoader from '../build/loaders/buildCssLoader'
 import { BuildPaths } from '../build/types'
 
 export default ({ config }: {config: webpack.Configuration}) => {
+  const rootDir = path.resolve(__dirname, '..', '..', '..')
+  const srcDir = path.resolve(rootDir, 'src')
+  const srcFrontendDir = path.resolve(srcDir, 'frontend')
+
   const paths: BuildPaths = {
     entry: '',
     html: '',
     output: '',
-    src: path.resolve(__dirname, '..', '..', 'src'),
+    src: srcFrontendDir,
   }
 
   config.resolve?.modules?.unshift(paths.src)
   config.resolve?.extensions?.push('.ts', '.tsx')
+  if (config.resolve?.alias) {
+    config.resolve.alias = { '@': srcFrontendDir, ...config.resolve.alias }
+  }
 
   if (config.module?.rules) {
     // eslint-disable-next-line no-param-reassign

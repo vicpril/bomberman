@@ -4,6 +4,9 @@ import { BuildOptions } from './types'
 export function buildResolvers(options: BuildOptions): ResolveOptions {
   return {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': options.paths.src,
+    },
     preferAbsolute: true,
     modules: [options.paths.src, 'node_modules'],
   }

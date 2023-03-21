@@ -7,7 +7,7 @@ export default {
   title: 'shared/Button',
   component: Button,
   args: {
-    children: 'Button',
+    children: 'Button123',
   },
 } as ComponentMeta<typeof Button>
 

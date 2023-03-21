@@ -16,15 +16,15 @@
     "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
     "lint:fix": "yarn lint:ts:fix && yarn lint:scss:fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "test:ui:up": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
-    "test:ui": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/storybook",
+    "test:ui:up": "yarn build-storybook && loki update --reactUri file:./storybook-static --config ./config/frontend/storybook",
+    "test:ui": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/frontend/storybook",
     "test:ui:ok": "loki approve",
-    "test:ui:ci": "loki test --reactUri file:./storybook-static --config ./config/storybook",
+    "test:ui:ci": "loki test --reactUri file:./storybook-static --config ./config/frontend/storybook",
     "test:ui:report": "yarn test:ui:json && yarn test:ui:html",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
-    "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "build-storybook": "build-storybook -c ./config/storybook",
+    "storybook": "start-storybook -p 6006 -c ./config/frontend/storybook",
+    "build-storybook": "build-storybook -c ./config/frontend/storybook",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -103,7 +103,8 @@
     "react-router-dom": "^6.2.1"
   },
   "resolutions": {
-    "@types/react": "^16 || ^17"
+    "@types/react": "^16 || ^17",
+    "@storybook/react-docgen-typescript-plugin": "1.0.6--canary.9.cd77847.0"
   },
   "loki": {
     "configurations": {
