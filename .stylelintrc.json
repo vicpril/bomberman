@@ -4,6 +4,7 @@
     "indentation": [4],
     "selector-class-pattern": null,
     "block-no-empty": null,
-    "scss/dollar-variable-pattern": null
+    "scss/dollar-variable-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": null
   }
 }
