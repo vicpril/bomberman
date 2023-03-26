@@ -1,5 +1,7 @@
 :root {
-    --font-family-main: consolas, "Times New Roman", serif;
+    // --font-family-main: '7X7PixelizedRegular';
+
+    --font-family-main: 'BarcadeBrawlRegular';
     --font-size-m: 16px;
     --font-line-m: 24px;
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
@@ -10,16 +12,11 @@
     --font-line-xl: 40px;
     --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
-    // Размеры
-    --navbar-height: 50px;
-    --sidebar-width: 300px;
-    --sidebar-width-collapsed: 80px;
-
-    // Z indexes
-    --modal-z-index: 10;
-
     // Цвета
     --overlay-color: rgba(0 0 0 / 60%);
     --red-light: #ff00;
     --red-dark: #ce0505;
+
+    $colorRed: #ce0505;
+
 }

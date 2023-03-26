@@ -7,6 +7,8 @@ function MainPage() {
     <h1>
       <BugButton />
       {t('Главная страница')}
+      {' '}
+      {'__ <>'}
     </h1>
   )
 }

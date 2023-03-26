@@ -1,13 +1,14 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button, ButtonTheme } from './Button'
+import { Button, ButtonSize, ButtonTheme } from './Button'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'shared/Button',
   component: Button,
   args: {
-    children: 'Button123',
+    children: 'Button',
+    size: ButtonSize.L,
   },
 } as ComponentMeta<typeof Button>
 
@@ -28,6 +29,11 @@ ClearInverted.args = {
 export const Outline = Template.bind({})
 Outline.args = {
   theme: ButtonTheme.Outline,
+}
+
+export const OutlineInverted = Template.bind({})
+OutlineInverted.args = {
+  theme: ButtonTheme.OutlineInverted,
 }
 
 export const Background = Template.bind({})

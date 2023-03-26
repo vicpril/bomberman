@@ -2,6 +2,17 @@
     cursor: pointer;
     color: var(--primary-color);
     padding: 6px 15px;
+    transition: all .2s;
+
+    &:hover {
+        color: var(--secondary-color);
+    }
+  
+    &:active {
+        color: var(--secondary-color-active);
+    }
+
+    --test-var: var(--secondary-color-active);
 }
 
 .clear,
@@ -10,28 +21,63 @@
     border: none;
     background: none;
     outline: none;
+
 }
 
-.clearInverted {
-    color: var(--inverted-primary-color);
+.clearInverted{
+    color: var(--primary-color-inverted);
+
+    &:hover {
+        color: var(--secondary-color-inverted);
+    }
+
+    &:active {
+        color: var(--secondary-color-inverted-active);
+    }
 }
 
 .outline {
-    border: 1px solid var(--primary-color);
+    border: $lineWidthM solid var(--primary-color);
     color: var(--primary-color);
-    background: none;
+    background: transparent;
+
+    &:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+    }
+  
+    &:active {
+        border-color: var(--secondary-color-active);
+        color: var(--secondary-color-active);
+    }
+}
+
+.outlineInverted {
+    border: $lineWidthM solid var(--primary-color-inverted);
+    color: var(--primary-color-inverted);
+    background: transparent;
+
+    &:hover {
+        border-color: var(--secondary-color-inverted);
+        color: var(--secondary-color-inverted);
+    }
+   
+    &:active {
+        border-color: var(--secondary-color-inverted-active);
+        color: var(--secondary-color-inverted-active);
+    }
 }
 
 .background {
     background: var(--bg-color);
     color: var(--primary-color);
-    border: none;
+    border: $lineWidthM solid transparent;
 }
 
 .backgroundInverted {
-    background: var(--inverted-bg-color);
-    color: var(--inverted-primary-color);
-    border: none;
+    background: var(--bg-color-inverted);
+    color: var(--primary-color-inverted);
+    border: $lineWidthM solid transparent;
 }
 
 .square {
@@ -63,9 +109,10 @@
 
 .size_xl {
     font: var(--font-xl);
+    border-width: $lineWidthL;
 }
 
 .disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+    pointer-events: none;
 }

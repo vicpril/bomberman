@@ -6,6 +6,7 @@ export enum ButtonTheme {
   Clear = 'clear',
   ClearInverted = 'clearInverted',
   Outline = 'outline',
+  OutlineInverted = 'outlineInverted',
   Background = 'background',
   BackgroundInverted = 'backgroundInverted'
 }
@@ -27,8 +28,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FC<ButtonProps> = (props) => {
   const {
     className,
-    theme = ButtonTheme.Background,
-    size = ButtonSize.M,
+    theme = ButtonTheme.Outline,
+    size = ButtonSize.L,
     square = false,
     children,
     disabled,

@@ -13,10 +13,10 @@ export const parameters = {
     },
   },
   themes: {
-    default: 'light',
+    default: 'dark',
     list: [
+      { name: 'dark', class: 'dark', color: '#000' },
       { name: 'light', class: 'light', color: '#e8e8ea' },
-      { name: 'dark', class: 'dark', color: '#090949' },
     ],
     Decorator: ThemeDecorator,
   },

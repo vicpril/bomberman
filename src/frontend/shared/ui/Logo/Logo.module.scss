@@ -1,0 +1,28 @@
+.Logo {
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+    min-width: fit-content;
+    color: var(--primary-color);
+    width: 100vw;
+}
+
+.image {
+    height: 1em;
+    margin-right: 12px;
+}
+
+.text {
+    white-space: nowrap;
+    line-height: 1em;
+}
+
+.textBig {
+    font-size: 100px;
+}
+
+.textSmall {
+    align-self: flex-end;
+    font-size: 50px;
+    margin-top: 24px;
+}

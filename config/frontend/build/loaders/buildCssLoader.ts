@@ -15,6 +15,13 @@ export default (isDev: boolean) => ({
         },
       },
     },
-    'sass-loader',
+    {
+      loader: 'sass-loader',
+      options: {
+        additionalData: `
+          @import "@/app/styles/variables/variables.scss";
+        `,
+      },
+    },
   ],
 })
