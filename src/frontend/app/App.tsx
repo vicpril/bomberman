@@ -3,10 +3,10 @@ import { Suspense } from 'react'
 import { useTheme } from '@/app/providers/ThemeProvider'
 // import { userActions } from '@/entities/User'
 import { classNames } from '@/shared/lib/classNames/classNames'
-// import { Navbar } from '@/widgets/Navbar'
+import { Navbar } from '@/widgets/Navbar'
 // import { Sidebar } from '@/widgets/Sidebar'
 import { AppRouter } from './providers/AppRouter'
-import './styles/index.scss'
+import './App.scss'
 
 function App() {
   const { theme } = useTheme()
@@ -17,8 +17,8 @@ function App() {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">
-        {/* <Navbar /> */}
-        <div className="content-page">
+        <Navbar />
+        <div className="contentPage">
           {/* <Sidebar /> */}
           <AppRouter />
         </div>

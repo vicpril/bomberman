@@ -1,0 +1,10 @@
+@mixin appContainer($padding: true) {
+  margin: 0 auto;
+  max-width: $appMaxWidth;
+  position: relative;
+
+  @if $padding {
+    padding-left: $appSidePaddingDesktop;
+    padding-right: $appSidePaddingDesktop;
+  }
+}

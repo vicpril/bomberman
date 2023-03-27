@@ -1,0 +1,65 @@
+%link {
+  text-decoration: none;
+  transition: all .4s;
+  position: relative;
+
+  &.primary {
+    color: var(--primary-color);
+  
+    &:hover {
+      color: var(--secondary-color);
+    }
+  
+    &:active {
+      color: var(--secondary-color-active);
+    }
+  }
+
+  &.inverted {
+    color: var(--primary-color-inverted);
+  
+    &:hover {
+      color: var(--secondary-color-inverted);
+    }
+  
+    &:active {
+      color: var(--secondary-color-inverted-active);
+    }
+
+    &::after {
+      background-color: var(--secondary-color-inverted);
+    }
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -2px;
+      left: 0;
+      height: $lineWidthS;
+      background-color: var(--secondary-color);
+      animation: blink 1s forwards infinite;
+    }
+  }
+
+}
+
+.AppLink {
+  @extend %link;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50%{
+    opacity: 1;
+  }
+
+  100%{
+    opacity: 0;
+  }
+}

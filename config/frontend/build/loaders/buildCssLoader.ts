@@ -18,9 +18,7 @@ export default (isDev: boolean) => ({
     {
       loader: 'sass-loader',
       options: {
-        additionalData: `
-          @import "@/app/styles/variables/variables.scss";
-        `,
+        additionalData: '@import "@/app/styles/globals-for-preprocessor.scss";',
       },
     },
   ],

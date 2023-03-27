@@ -1,5 +1,5 @@
-import 'app/styles/index.scss'
 import { FC } from 'react'
+import cls from '@/app/App.scss'
 
 interface Props {
   themeName: string
@@ -8,7 +8,6 @@ interface Props {
 export const ThemeDecorator: FC<Props> = ({ children, themeName }) => (
   <div
     className={`app ${themeName}`}
-    // style={{ padding: '10px' }}
   >
     {children}
   </div>

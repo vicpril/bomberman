@@ -15,7 +15,8 @@
     // Для абсолютного импорта
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/frontend/*"]
+      "@/*": ["./src/frontend/*"],
+      "*": ["./src/*"],
     },
     "strict": true,
     "strictBindCallApply": true,
@@ -35,7 +36,12 @@
     // import React from 'react';
    "allowSyntheticDefaultImports": true,
    "plugins": [
-      {"name": "typescript-plugin-css-modules"}
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "additionalData": "@import \"@/app/styles/globals-for-preprocessor.scss\";",
+        },
+      }
    ],
   },
   "ts-node": {
