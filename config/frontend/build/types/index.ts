@@ -5,6 +5,7 @@ export interface BuildPaths {
   output: string
   html: string
   src: string
+  public: string
 }
 
 export interface BuildOptions {

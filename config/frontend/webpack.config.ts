@@ -20,6 +20,7 @@ export default (env: BuildEnv) => {
     output: path.resolve(rootDir, 'build-frontend'),
     html: path.resolve(srcDir, 'public', 'index.html'),
     src: srcFrontendDir,
+    public: path.resolve(srcDir, 'public'),
   }
 
   const config: webpack.Configuration = buildWebpackConfig({

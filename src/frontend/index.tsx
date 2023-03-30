@@ -5,6 +5,8 @@ import { StoreProvider } from '@/app/providers/StoreProvider'
 import App from '@/app/App'
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary'
 
+import '@/shared/config/i18n'
+
 render(
   <BrowserRouter>
     <StoreProvider>
