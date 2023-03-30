@@ -7,5 +7,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: false,
     historyApiFallback: true,
     hot: true,
+    watchFiles: options.paths.public,
   }
 }
