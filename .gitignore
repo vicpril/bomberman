@@ -1,5 +1,6 @@
 /build
 /build-frontend
+/build-server
 node_modules
 .idea
 .vscode
