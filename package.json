@@ -125,7 +125,9 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.31.0",
     "sequelize-cli": "^6.6.0",
-    "sequelize-typescript": "^2.1.5"
+    "sequelize-typescript": "^2.1.5",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1"
   },
   "resolutions": {
     "@types/react": "^16 || ^17",

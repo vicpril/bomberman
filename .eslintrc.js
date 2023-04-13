@@ -25,7 +25,7 @@ module.exports = {
   rules: {
     'react/jsx-indent': [2, 2],
     'react/jsx-indent-props': [2, 2],
-    indent: [2, 2],
+    indent: [2, 2, { SwitchCase: 1 }],
     semi: ['error', 'never'],
     'react/jsx-filename-extension': [
       2,
@@ -67,6 +67,16 @@ module.exports = {
     'no-plusplus': 'off',
     'no-undef': 'off',
     'consistent-return': 'off',
+    'lines-between-class-members': 'off',
+    '@typescript-eslint/lines-between-class-members': ['error'],
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': ['error'],
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': ['error'],
+    'no-dupe-class-members': 'off',
+    '@typescript-eslint/no-dupe-class-members': ['error'],
+    'default-case-last': 'off',
+    'no-constructor-return': 'off',
   },
   globals: {
     __IS_DEV__: true,
@@ -81,4 +91,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['database/**/*'],
 }
