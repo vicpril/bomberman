@@ -1,7 +1,9 @@
 /build
 /build-frontend
 /build-server
+/database
 node_modules
 .idea
 .vscode
 /storybook-static
+*.env.*

@@ -66,7 +66,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-undef': 'off',
-    // 'consistent-return': 'off',
+    'consistent-return': 'off',
   },
   globals: {
     __IS_DEV__: true,

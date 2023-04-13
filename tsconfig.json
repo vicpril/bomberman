@@ -7,7 +7,7 @@
     "noImplicitAny": true,
     "module": "ESNext",
     // В какую спецификацию компилируем: для поддержки большинства браузеров
-    "target": "es5",
+    "target": "es6",
     "jsx": "react-jsx",
     // Компилятор будет обрабатывать не только TS файлы, но и JS файлы
     "allowJs": true,
@@ -35,6 +35,8 @@
     // можно писать такой
     // import React from 'react';
    "allowSyntheticDefaultImports": true,
+   "experimentalDecorators": true,
+   "emitDecoratorMetadata": true,
    "plugins": [
       {
         "name": "typescript-plugin-css-modules",

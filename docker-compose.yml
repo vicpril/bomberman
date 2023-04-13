@@ -1,28 +1,50 @@
 version: "3"
 
 services:
-  # nextjs:
+  # storybook:
   #   build:
   #     context: .
-  #     dockerfile: Dockerfile-dev
-  #   container_name: nextjs
+  #     dockerfile: Dockerfile.storybook
+  #   container_name: storybook
   #   restart: always
   #   volumes:
   #     - ./:/app
-  #     - /app/node_modules
-  #     - /app/.next
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     # - /app/node_modules
+  #     # - /app/.next
   #   ports:
-  #     - 3000:3000
-  storybook:
-    build:
-      context: .
-      dockerfile: Dockerfile.storybook
-    container_name: storybook
-    restart: always
-    volumes:
-      - ./:/app
-      - /var/run/docker.sock:/var/run/docker.sock
-      # - /app/node_modules
-      # - /app/.next
+  #     - 6006:6006
+
+  postgres:
+    container_name: postgres
+    image: postgres
     ports:
-      - 6006:6006
+      - "5432:5432"
+    volumes:
+      - ./database/postgresdata:/var/lib/postgresql/data
+      - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    restart: always
+    env_file:
+      ./.env
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    env_file:
+      ./.env
+    environment:
+      PGADMIN_LISTEN_PORT: 8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  pgadmin-data:
+
+networks:
+  default:
+    driver: bridge
