@@ -41,7 +41,7 @@ const server = http.createServer(app)
 
 export const { io } = createServerIo(server)
 
-const port = 3002
+const port = process.env.port || 3002
 
 export const startServer = async () => {
   server.listen(port, () => {
