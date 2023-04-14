@@ -5,6 +5,8 @@ export type BuildMode = Configuration['mode']
 export interface BuildEnv {
   mode?: BuildMode,
   port?: number,
-  apiUrl?: string,
   root?: string
+  url?: string
+  apiUrl?: string,
+  socketsUrl?: string
 }

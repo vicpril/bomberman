@@ -8,9 +8,9 @@ export type AbstractEntityOptions = {
 }
 
 export abstract class AbstractEntity {
-  abstract type: EntitiesTypes;
+  abstract type: EntitiesTypes
 
-  abstract alive = true;
+  alive = true
 
   public pos: Position
 

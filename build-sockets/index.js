@@ -1,0 +1,1 @@
+try{const{startServer:e}=require("./sockets");e()}catch{console.log("Сервер пока не собран")}

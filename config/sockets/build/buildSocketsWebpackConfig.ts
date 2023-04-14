@@ -5,17 +5,17 @@ import { buildLoaders } from './buildLoaders'
 import { buildResolvers } from './buildResolvers'
 import { buildPlugins } from './buildPlugins'
 
-export function buildApiWebpackConfig(options: BuildOptions): Configuration {
-  const { mode, paths, isDev } = options
+export function buildSocketsWebpackConfig(options: BuildOptions): Configuration {
+  const { mode, paths } = options
 
   return {
-    name: 'server',
+    name: 'sockets',
     mode,
     target: 'node',
     externalsPresets: { node: true },
     entry: paths.entry,
     output: {
-      filename: 'server.js',
+      filename: 'sockets.js',
       libraryTarget: 'commonjs',
       path: paths.output,
       clean: true,
@@ -24,9 +24,9 @@ export function buildApiWebpackConfig(options: BuildOptions): Configuration {
     plugins: buildPlugins(options),
 
     module: {
-      rules: buildLoaders(options),
+      rules: buildLoaders(),
     },
-    devtool: isDev ? 'source-map' : undefined,
     externals: [nodeExternals()],
+    watch: false,
   }
 }

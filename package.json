@@ -31,7 +31,10 @@
     "api:_watch:server": "nodemon ./build-server/server.js --watch ./build-server/",
     "api:_watch:webpack": "webpack --watch --env mode=development --config ./config/api/webpack.config.ts",
     "api:_watch": "yarn api:_watch:webpack & yarn api:_watch:server",
-    "api:serve": "yarn api:build:dev && yarn api:_watch"
+    "api:serve": "yarn api:build:dev && yarn api:_watch",
+    "sockets:start": "node ./build-sockets/index.js",
+    "sockets:build:dev": "rm -rf ./build-sockets/ && webpack --env mode=development --config ./config/sockets/webpack.config.ts",
+    "sockets:build:prod": "rm -rf ./build-sockets/ && webpack --env mode=production --config ./config/sockets/webpack.config.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -58,6 +61,7 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.3",
+    "@types/uuid": "^9.0.1",
     "@types/validator": "^13.7.14",
     "@types/webpack-bundle-analyzer": "^4.6.0",
     "@types/webpack-node-externals": "^3.0.0",
@@ -127,7 +131,8 @@
     "sequelize-cli": "^6.6.0",
     "sequelize-typescript": "^2.1.5",
     "socket.io": "^4.6.1",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "uuid": "^9.0.0"
   },
   "resolutions": {
     "@types/react": "^16 || ^17",
