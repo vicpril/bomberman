@@ -12,7 +12,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
     entry: '',
     html: '',
     output: '',
-    // public: '',
+    public: '',
     src: srcFrontendDir,
   }
 

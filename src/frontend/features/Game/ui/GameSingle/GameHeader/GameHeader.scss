@@ -1,0 +1,10 @@
+.game-header {
+  display: flex;
+  justify-content: space-around;
+  color: var(--primary-color);
+  margin: 15px 0;
+
+  & span {
+    font-size: 32px;
+  }
+}

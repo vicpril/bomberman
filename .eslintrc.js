@@ -77,6 +77,8 @@ module.exports = {
     '@typescript-eslint/no-dupe-class-members': ['error'],
     'default-case-last': 'off',
     'no-constructor-return': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
   },
   globals: {
     __IS_DEV__: true,

@@ -14,4 +14,8 @@ export const NavbarLinks: NavbarItemType[] = [
     path: RoutePaths.profile,
     text: 'Профиль',
   },
+  {
+    path: RoutePaths.game,
+    text: 'Игра',
+  },
 ]

@@ -20,6 +20,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.We
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
       __API__: JSON.stringify(apiUrl),
+      __SOCKETS_URL__: JSON.stringify(paths.socketsUrl),
     }),
     new ReactRefreshWebpackPlugin(),
     new CopyPlugin({

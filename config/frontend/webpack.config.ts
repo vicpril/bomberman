@@ -7,7 +7,8 @@ import { BuildEnv } from '../types'
 export default (env?: BuildEnv) => {
   const mode = env?.mode || 'development'
   const PORT = env?.port || 3000
-  const apiUrl = env?.apiUrl || 'http://localhost:8000'
+  const apiUrl = env?.apiUrl || 'http://localhost:3001'
+  const socketsUrl = env?.socketsUrl || 'http://localhost:3002'
 
   const isDev = mode === 'development'
 
@@ -21,6 +22,7 @@ export default (env?: BuildEnv) => {
     html: path.resolve(srcDir, 'public', 'index.html'),
     src: srcFrontendDir,
     public: path.resolve(srcDir, 'public'),
+    socketsUrl,
   }
 
   const config: webpack.Configuration = buildWebpackConfig({

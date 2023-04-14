@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useStore } from 'react-redux'
 import { ReduxStoreWithManager, StateSchemaKey } from '@/app/providers/StoreProvider/config/StateSchema'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
-import { useUnmountEffect } from '@/shared/lib/hooks/useMountEffect/useUnmountEffect'
+import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 export type ReducersList = {
