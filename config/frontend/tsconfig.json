@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "../../**/*.d.ts",
+    "../../config/jest/setupTests.ts",
+    "../../src/frontend/**/*.tsx",
+    "../../src/frontend/**/*.ts"
+  ],
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "additionalData": "@import \"@/app/styles/globals-for-preprocessor.scss\";",
+        },
+      }
+   ],
+  }
+}

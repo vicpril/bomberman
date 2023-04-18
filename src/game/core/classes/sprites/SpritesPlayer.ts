@@ -1,4 +1,4 @@
-import { Movements } from 'game/core/types/DirectionsType'
+import { Movements } from '@game/core/types/DirectionsType'
 import ImageSRC1 from '../../../assets/player1-sprite.png'
 import ImageSRC2 from '../../../assets/player2-sprite.png'
 import { ANIMATION_INTERVAL_EXPLOSION, GRID } from '../../config'

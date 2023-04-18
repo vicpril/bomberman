@@ -1,5 +1,5 @@
-import { PlayerExportData } from 'game/core/classes/entities/Player'
-import { ExportDataTitles } from 'game/core/config'
+import { PlayerExportData } from '@game/core/classes/entities/Player'
+import { ExportDataTitles } from '@game/core/config'
 import { SpritesPlayer } from '../../core/classes/sprites/SpritesPlayer'
 import { SpritesPlayerDefeat } from '../../core/classes/sprites/SpritesPlayerDefeat'
 import { SpritesPlayerVictory } from '../../core/classes/sprites/SpritesPlayerVictory'

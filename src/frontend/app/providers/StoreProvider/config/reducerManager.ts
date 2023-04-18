@@ -30,6 +30,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
       if (state && keysToRemove.length > 0) {
         state = { ...state }
         keysToRemove.forEach((key) => {
+          // @ts-ignore - удаляться будут только асинхронные - они помечены как необязательные в стейте
           delete state?.[key]
         })
         keysToRemove = []
@@ -62,6 +63,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
       }
 
       // Remove it from the reducer mapping
+      // @ts-ignore - удаляться будут только асинхронные - они помечены как необязательные в стейте
       delete reducers[key]
 
       // Add the key to the list of keys to clean up

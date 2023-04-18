@@ -44,7 +44,6 @@ export class TestAsyncThunk<Result, Args, RejectedValue> {
     const action = this.actionCreator(args)
 
     const result = await action(
-      // @ts-ignore
       this.dispatch,
       this.getState,
       { api: this.api, navigate: this.navigate },

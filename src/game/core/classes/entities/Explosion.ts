@@ -1,4 +1,4 @@
-import { ExportDataTitles } from 'game/core/config'
+import { ExportDataTitles } from '@game/core/config'
 import { EntitiesTypes } from '../../types/EntitiesTypes'
 import { FrameActions, FrameEntities } from '../../types/SpriteTypes'
 import { AbstractEntity, AbstractEntityOptions } from './AbstractEntity'

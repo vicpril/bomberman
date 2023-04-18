@@ -1,8 +1,8 @@
 import {
   BATTLEFIELD_TEMPLATE, GRID, NUM_COLS, NUM_ROWS,
-} from 'game/core/config'
-import { getDrawWalls } from 'game/core/helpers/getDrawWalls'
-import { EntitiesTypes } from 'game/core/types/EntitiesTypes'
+} from '@game/core/config'
+import { getDrawWalls } from '@game/core/helpers/getDrawWalls'
+import { EntitiesTypes } from '@game/core/types/EntitiesTypes'
 
 export const MapRenderer = (context: CanvasRenderingContext2D) => {
   const render = () => {

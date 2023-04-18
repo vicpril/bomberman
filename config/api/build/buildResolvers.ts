@@ -6,9 +6,9 @@ export const buildResolvers = (options: BuildOptions): ResolveOptions => {
   const { paths } = options
   return {
     modules: [paths.src, 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['*', '.js', '.jsx', '.json', '.ts'],
     plugins: [
-      new TsconfigPathsPlugin({ configFile: './tsconfig.json' }),
+      new TsconfigPathsPlugin({ configFile: 'config/api/tsconfig.json' }),
     ],
   }
 }

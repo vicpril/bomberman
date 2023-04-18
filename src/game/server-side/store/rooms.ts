@@ -1,5 +1,5 @@
-import { GameStatus } from 'game/core/classes/Game'
-import { io } from 'game/server-side/sockets'
+import { GameStatus } from '@game/core/classes/Game'
+import { io } from '@game/server-side/sockets'
 import { Room } from '../../core/classes/Room'
 
 export const RoomsController = () => {

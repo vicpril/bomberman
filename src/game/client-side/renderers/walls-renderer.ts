@@ -1,5 +1,5 @@
-import { GRID } from 'game/core/config'
-import { getDrawWalls } from 'game/core/helpers/getDrawWalls'
+import { GRID } from '@game/core/config'
+import { getDrawWalls } from '@game/core/helpers/getDrawWalls'
 
 export const WallsRenderer = (context: CanvasRenderingContext2D) => {
   const clear = () => {

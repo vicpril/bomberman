@@ -1,5 +1,5 @@
-import { Movements } from 'game/core/types/DirectionsType'
-import { io } from 'game/server-side/sockets'
+import { Movements } from '@game/core/types/DirectionsType'
+import { io } from '@game/server-side/sockets'
 import { Socket } from 'socket.io'
 import { store } from '../store'
 import { KeyTypes, PlayerAction } from './controlsTypes'

@@ -1,5 +1,5 @@
-import { EntitiesTypes } from 'game/core/types/EntitiesTypes'
-import { Position } from 'game/core/types/PositionType'
+import { EntitiesTypes } from '@game/core/types/EntitiesTypes'
+import { Position } from '@game/core/types/PositionType'
 import { BattleField } from '../BattleField'
 
 export type AbstractEntityOptions = {

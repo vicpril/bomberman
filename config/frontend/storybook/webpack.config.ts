@@ -13,13 +13,18 @@ export default ({ config }: {config: webpack.Configuration}) => {
     html: '',
     output: '',
     public: '',
+    socketsUrl: '',
     src: srcFrontendDir,
   }
 
   config.resolve?.modules?.unshift(paths.src)
   config.resolve?.extensions?.push('.ts', '.tsx')
   if (config.resolve?.alias) {
-    config.resolve.alias = { '@': srcFrontendDir, ...config.resolve.alias }
+    config.resolve.alias = {
+      '@': srcFrontendDir,
+      '@game': path.resolve(srcDir, 'game'),
+      ...config.resolve.alias,
+    }
   }
 
   if (config.module?.rules) {
@@ -33,13 +38,19 @@ export default ({ config }: {config: webpack.Configuration}) => {
     })
   }
 
+  // loaders
   config.module?.rules?.push({
     test: /\.svg$/,
     use: ['@svgr/webpack'],
   })
+  config.module?.rules?.push(...buildCssLoader(true, false))
+  config.module?.rules?.push({
+    test: /\.tsx?$/,
+    use: 'ts-loader',
+    exclude: /node_modules/,
+  })
 
-  config.module?.rules?.push(buildCssLoader(true))
-
+  // plugins
   config.plugins?.push(new DefinePlugin({
     __IS_DEV__: JSON.stringify(true),
     __API__: JSON.stringify(''),

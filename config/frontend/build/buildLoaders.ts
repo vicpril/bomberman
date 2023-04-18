@@ -46,7 +46,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const tsLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
+    use: 'ts-loader?configFile=config/frontend/tsconfig.json',
     exclude: /node_modules/,
   }
 
@@ -56,6 +56,6 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     fontLoader,
     babalLoader,
     tsLoader,
-    cssLoader,
+    ...cssLoader,
   ]
 }

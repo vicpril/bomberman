@@ -1,4 +1,4 @@
-import { RendererType } from 'game/core/types/RenderersTypes'
+import { RendererType } from '@game/core/types/RenderersTypes'
 import { SpritesBomb } from '../../core/classes/sprites/SpritesBomb'
 
 type BombsRenderer = RendererType<[number, number][]>

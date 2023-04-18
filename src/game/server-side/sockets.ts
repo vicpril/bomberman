@@ -1,4 +1,4 @@
-import { GameStatus } from 'game/core/classes/Game'
+import { GameStatus } from '@game/core/classes/Game'
 import http, { Server } from 'http'
 import { Server as ServerIO, Socket } from 'socket.io'
 import express from 'express'

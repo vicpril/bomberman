@@ -9,7 +9,7 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
       '@': options.paths.src,
     },
     plugins: [
-      new TsconfigPathsPlugin({ configFile: './tsconfig.json' }),
+      new TsconfigPathsPlugin({ configFile: 'config/frontend/tsconfig.json' }),
     ],
     preferAbsolute: true,
     modules: [options.paths.src, 'node_modules'],

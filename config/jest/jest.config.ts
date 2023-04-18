@@ -38,7 +38,7 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
-    axios: 'axios/dist/node/axios.cjs',
+    axios: '<rootDir>/node_modules/axios/dist/node/axios.cjs',
     '^@/(.*)$': '<rootDir>/src/frontend/$1', // aliases for frontend
   },
   setupFilesAfterEnv: [

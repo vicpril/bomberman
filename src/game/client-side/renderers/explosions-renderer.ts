@@ -1,6 +1,6 @@
-import { ExplosionExportData } from 'game/core/classes/entities/Explosion'
-import { ExportDataTitles } from 'game/core/config'
-import { RendererType } from 'game/core/types/RenderersTypes'
+import { ExplosionExportData } from '@game/core/classes/entities/Explosion'
+import { ExportDataTitles } from '@game/core/config'
+import { RendererType } from '@game/core/types/RenderersTypes'
 import { SpritesExplosion } from '../../core/classes/sprites/SpritesExplosion'
 
 type ExplosionRenderer = RendererType<ExplosionExportData[]>

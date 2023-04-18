@@ -6,7 +6,7 @@ const fileRegex = /^(?!.*\.inline).*\.(svg|jpe?g|png|gif|eot|woff2?|ttf)$/
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
   const tsLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
+    use: 'ts-loader?configFile=config/api/tsconfig.json',
     exclude: /node_modules/,
   }
 

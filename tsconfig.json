@@ -38,24 +38,19 @@
    "allowSyntheticDefaultImports": true,
    "experimentalDecorators": true,
    "emitDecoratorMetadata": true,
-   "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "additionalData": "@import \"@/app/styles/globals-for-preprocessor.scss\";",
-        },
-      }
-   ],
+  //  "plugins": [
+  //     {
+  //       "name": "typescript-plugin-css-modules",
+  //       "options": {
+  //         "additionalData": "@import \"@/app/styles/globals-for-preprocessor.scss\";",
+  //       },
+  //     }
+  //  ],
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",
     }
   },
-  "include": [
-    "./config/jest/setupTests.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.ts"
-  ]
-  
+  "exclude": ["node_modules"]
 }

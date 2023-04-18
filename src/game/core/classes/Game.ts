@@ -1,4 +1,4 @@
-import { io } from 'game/server-side/sockets'
+import { io } from '@game/server-side/sockets'
 import {
   START_POSITION_FIRST_PLAYER, START_POSITION_SECOND_PLAYER, ExportDataTitles, INCREASE_BOMBS_AFTER_SECONDS,
 } from '../config'
