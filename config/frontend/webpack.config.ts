@@ -7,7 +7,7 @@ import { BuildEnv } from '../types'
 export default (env?: BuildEnv) => {
   const mode = env?.mode || 'development'
   const PORT = env?.port || 3000
-  const apiUrl = env?.apiUrl || 'http://localhost:3001'
+  const apiUrl = env?.apiUrl || 'http://localhost:3001/api/v1'
   const socketsUrl = env?.socketsUrl || 'http://localhost:3002'
 
   const isDev = mode === 'development'

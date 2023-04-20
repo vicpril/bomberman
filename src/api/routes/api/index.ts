@@ -1,9 +1,12 @@
 import { UsersController } from 'api/controllers/UsersController'
-import usersRouter from 'api/routes/api/users'
 import { Router } from 'express'
+import usersRouter from './users'
+import authRoutes from './auth'
 
 export const initApiRoutes = (router: Router) => {
   const apiRouter: Router = Router()
+
+  apiRouter.use('/', authRoutes)
 
   apiRouter.use('/users', usersRouter)
 
