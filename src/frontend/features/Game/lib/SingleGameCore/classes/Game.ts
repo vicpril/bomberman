@@ -47,8 +47,8 @@ export class Game {
     this.context.clearRect(
       0,
       0,
-      (this.canvasRef.current as HTMLCanvasElement).width,
-      (this.canvasRef.current as HTMLCanvasElement).height,
+      (this.canvasRef.current as HTMLCanvasElement)?.width,
+      (this.canvasRef.current as HTMLCanvasElement)?.height,
     )
 
     // calc intervals

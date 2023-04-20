@@ -46,7 +46,8 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const tsLoader = {
     test: /\.tsx?$/,
-    use: 'ts-loader?configFile=config/frontend/tsconfig.json',
+    use: 'ts-loader?configFile=src/frontend/tsconfig.json',
+    // use: 'ts-loader',
     exclude: /node_modules/,
   }
 

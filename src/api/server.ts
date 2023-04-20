@@ -1,6 +1,7 @@
 import { initDB } from 'api/models'
 import express from 'express'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import bodyParser from 'body-parser'
 import router from 'api/routes'
 
@@ -15,6 +16,7 @@ export const startServer = async () => {
     app.use(bodyParser.json())
 
     app.use(cookieParser())
+    app.use(cors())
 
     app.use((req, res, next) => {
       console.log('🚀 ~ req.body', req.body)

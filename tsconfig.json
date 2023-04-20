@@ -17,6 +17,7 @@
     "paths": {
       "@/*": ["./src/frontend/*"],
       "@game/*": ["./src/game/*"],
+      "@api/*": ["./src/api/*"],
       "*": ["./src/*"],
     },
     "strict": true,
@@ -52,5 +53,15 @@
       "module": "CommonJS",
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    // "./src/game/server-side",
+    // "./src/api",
+  ],
+  // "include": [
+    // "./src/**/*.d.ts",
+  //   "./config/jest/setupTests.ts",
+  //   "./src/frontend/**/*.tsx",
+  //   "./src/frontend/**/*.ts"
+  // ],
 }

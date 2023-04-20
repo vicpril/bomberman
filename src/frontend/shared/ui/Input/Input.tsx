@@ -15,6 +15,7 @@ interface InputProps extends CustomInputAttributes {
   value?: string
   onChange?: (value: string) => void
   autofocus?: boolean
+  placeholder?: string
 }
 
 export const Input = (props: InputProps) => {

@@ -8,7 +8,7 @@ export const buildResolvers = (options: BuildOptions): ResolveOptions => {
     modules: [paths.src, 'node_modules'],
     extensions: ['*', '.js', '.jsx', '.json', '.ts'],
     plugins: [
-      new TsconfigPathsPlugin({ configFile: 'config/api/tsconfig.json' }),
+      new TsconfigPathsPlugin({ configFile: 'src/api/tsconfig.json' }),
     ],
   }
 }

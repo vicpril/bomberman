@@ -4,7 +4,7 @@ import { Navbar } from './Navbar'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/Navbar',
+  title: 'widgets/Navbar',
   component: Navbar,
   decorators: [
     (Story) => (
@@ -21,3 +21,4 @@ export default {
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />
 
 export const Default = Template.bind({})
+Default.args = {}

@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.json",
+  "exclude": [
+    "node_modules",
+  ],
   "include": [
-    "../../**/*.d.ts",
+    "../../src/**/*.d.ts",
     "../../config/jest/setupTests.ts",
     "../../src/frontend/**/*.tsx",
     "../../src/frontend/**/*.ts"
@@ -15,5 +18,6 @@
         },
       }
    ],
-  }
+  },
+
 }
