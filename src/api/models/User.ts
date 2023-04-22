@@ -22,4 +22,12 @@ export class User extends Model {
 
   @HasOne(() => UserMeta)
   public meta!: Awaited<UserMeta>
+
+  get profile() {
+    return {
+      ...this.meta.dataValues,
+      username: this.username,
+      id: this.id,
+    }
+  }
 }

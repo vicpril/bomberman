@@ -51,11 +51,11 @@ export class UsersController {
 
   public static getProfile = async (req: Request, res: Response) => {
     try {
-      const user = await UsersService.getById(1)
+      const user = await UsersService.getById(+req.params.id, { withMeta: true })
       if (!user) {
         res.status(404).send('User not found')
       } else {
-        res.send(user)
+        res.send(user.profile)
       }
     } catch (error) {
       res

@@ -10,4 +10,6 @@ usersRouter.get('/', UsersController.getAll)
 
 usersRouter.post('/', UsersController.create)
 
+usersRouter.get('/:id/', UsersController.getProfile)
+
 export default usersRouter
