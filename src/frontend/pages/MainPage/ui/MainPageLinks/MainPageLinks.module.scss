@@ -1,9 +1,10 @@
-.MainPage {
+.MainPageLinks{
   display: flex;
   flex-flow: column;
   align-items: center;
 
-  > .logo {
-    margin-bottom: 80px;
+  > * {
+    margin-bottom: 40px;
   }
+    
 }

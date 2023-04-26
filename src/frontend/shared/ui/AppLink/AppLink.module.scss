@@ -47,7 +47,70 @@
 }
 
 .AppLink {
-  @extend %link;
+  position: relative;
+
+  > .link {
+    @extend %link;
+  
+    position: relative;
+  }
+
+  > .bomb {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    animation: bomb .75s forwards infinite;
+    display: none;
+  }
+
+  > .bomb:last-child {
+    left: auto;
+    right: -50px;
+  }
+  
+  &._size_s {
+    font: var(--font-m);
+
+    > .bomb {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  &._size_m {
+    font: var(--font-l);
+
+    > .bomb {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  &._size_l {
+    font: var(--font-xl);
+
+    > .bomb {
+      width: 40px;
+      height: 40px;
+    }
+  
+    > .link:hover {
+      &::after {
+        bottom: -8px;
+        height: $lineWidthM;
+      }
+    }
+  }
+
+  &._bombed:hover {
+    > .bomb{
+      display: block;
+    }
+
+    > .link::after{
+      content: none;
+    }
+  }
 }
 
 @keyframes blink {
@@ -61,5 +124,19 @@
 
   100%{
     opacity: 0;
+  }
+}
+
+@keyframes bomb {
+  0% {
+    transform: scale(.9);
+  }
+  
+  50%{
+    transform: scale(1.15);
+  }
+  
+  100%{
+    transform: scale(.9);
   }
 }

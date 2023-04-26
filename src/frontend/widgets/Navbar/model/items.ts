@@ -11,11 +11,11 @@ export const NavbarLinks: NavbarItemType[] = [
     text: 'Главная',
   },
   {
-    path: RoutePaths.profile,
-    text: 'Профиль',
+    path: RoutePaths.game,
+    text: 'Играть',
   },
   {
-    path: RoutePaths.game,
-    text: 'Игра',
+    path: RoutePaths.profile,
+    text: 'Профиль',
   },
 ]

@@ -25,3 +25,22 @@ Secondary.args = {
   children: 'Link...',
   theme: 'inverted',
 }
+
+export const SizeS = Template.bind({})
+Secondary.args = {
+  children: 'Link...',
+  theme: 'primary',
+  size: 's',
+}
+export const SizeM = Template.bind({})
+Secondary.args = {
+  children: 'Link...',
+  theme: 'primary',
+  size: 'm',
+}
+export const SizeL = Template.bind({})
+Secondary.args = {
+  children: 'Link...',
+  theme: 'primary',
+  size: 'l',
+}
