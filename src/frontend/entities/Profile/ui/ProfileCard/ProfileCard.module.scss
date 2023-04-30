@@ -1,0 +1,52 @@
+.ProfileCard{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  > .avatarContainer {
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    outline: 3px solid var(--primary-color);
+    margin-bottom: 40px;
+
+    > .avatar {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  > .infoContainer {
+    display: grid;
+    grid-template-areas:
+      "username"
+      "firstname"
+      "lastname";
+    grid-template-rows: repeat(3, 1fr);
+    padding: 5%;
+    grid-gap: 40px;
+    font: var(--font-l);
+
+    > * {
+      margin: 0 auto;
+    }
+
+
+    > .username {
+      grid-area: username;
+    }
+
+    > .firstname {
+      grid-area: firstname;
+    }
+
+    > .lastname {
+      grid-area: lastname;
+    }
+  }
+}

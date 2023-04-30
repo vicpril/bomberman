@@ -1,0 +1,17 @@
+.ProfileField {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  > .label{
+    color: var(--primary-color);
+    white-space: nowrap;
+    margin-right: 20px;
+  }
+
+  > .value{
+    color: var(--secondary-color);
+  }
+}

@@ -7,14 +7,15 @@ import { NavigateFunction } from 'react-router-dom'
 import type { LoginSchema } from '@/features/AuthByUsername'
 import { createReducerManager } from './reducerManager'
 import { createReduxStore } from './store'
-import { UserSchema } from '@/entities/User/model/types/user'
+import { UserSchema } from '@/entities/User'
+import { ProfileSchema } from '@/entities/Profile'
 
 export interface StateSchema {
   user: UserSchema,
 
   // асинхронные
   loginForm?: LoginSchema
-  // profile?: ProfileSchema
+  profile?: ProfileSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
