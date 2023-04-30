@@ -1,4 +1,4 @@
-.ProfileCard{
+.ProfileView {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -28,7 +28,8 @@
       "firstname"
       "lastname";
     grid-template-rows: repeat(3, 1fr);
-    padding: 5%;
+
+    // padding: 5%;
     grid-gap: 40px;
     font: var(--font-l);
 
@@ -48,5 +49,18 @@
     > .lastname {
       grid-area: lastname;
     }
+  }
+
+  > .buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+  
+    > .editButton {
+      margin: 0 auto;
+    }
+    
   }
 }

@@ -1,0 +1,41 @@
+.ProfileEditForm {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+
+  > .error {
+    margin-bottom: 20px;
+  }
+  
+  
+  > .inputs {
+    > .firstname,
+    > .lastname {
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+  }
+
+  > .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    > .saveButton{
+      margin-right: 10px;
+    }
+    
+    > .cancelButton{
+      display: block;
+    }
+  }
+
+  > .loader{
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    z-index: 2;
+  }
+}
+
+

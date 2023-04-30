@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import cls from './ProfilePage.module.scss'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { RoutePaths } from '@/shared/config/routerConfig'
-import { ProfileCard, fetchProfileData, profileReducer } from '@/entities/Profile'
+import { fetchProfileData, profileReducer } from '@/entities/Profile'
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -13,6 +13,7 @@ import {
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { getUserAuthData } from '@/entities/User'
 import { Text, TextTheme } from '@/shared/ui/Text/Text'
+import { ProfileView } from '@/widgets/ProfileCard'
 
 const initialReducers: ReducersList = {
   profile: profileReducer,
@@ -47,7 +48,7 @@ function ProfilePage() {
   return (
     <div className={cls.ProfilePage}>
       <DynamicModuleLoader reducers={initialReducers}>
-        <ProfileCard />
+        <ProfileView />
       </DynamicModuleLoader>
 
       <Button

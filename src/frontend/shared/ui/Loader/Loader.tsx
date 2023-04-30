@@ -10,13 +10,14 @@ export enum LoaderSize {
 
 interface LoaderProps {
   size?: LoaderSize
+  className?: string
 }
 
 export const Loader = (props: LoaderProps) => {
-  const { size = LoaderSize.L } = props
+  const { size = LoaderSize.L, className } = props
 
   return (
-    <div className={classNames(cls.loadingIndicator, {}, [cls[size]])}>
+    <div className={classNames(cls.loadingIndicator, {}, [className, cls[size]])}>
       <img className={classNames(cls.image, {}, [cls.rotating])} src={bombImage} alt="bomb" />
     </div>
 

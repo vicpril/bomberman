@@ -9,6 +9,7 @@ import { createReducerManager } from './reducerManager'
 import { createReduxStore } from './store'
 import { UserSchema } from '@/entities/User'
 import { ProfileSchema } from '@/entities/Profile'
+import { ProfileUpdateSchema } from '@/features/ProfileEdit'
 
 export interface StateSchema {
   user: UserSchema,
@@ -16,6 +17,7 @@ export interface StateSchema {
   // асинхронные
   loginForm?: LoginSchema
   profile?: ProfileSchema
+  profileUpdate?: ProfileUpdateSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
