@@ -18,7 +18,7 @@ export const updateProfileData = createAsyncThunk<
     const { extra, dispatch, rejectWithValue } = thunkApi
 
     try {
-      const response = await extra.api.patch<Profile>(`user/${props.id}/`, props.data)
+      const response = await extra.api.patch<Profile>(`users/${props.id}/`, props.data)
 
       return response.data
     } catch (error) {
