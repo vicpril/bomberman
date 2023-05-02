@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { Profile } from '@/entities/Profile'
+import { ProfileUpdateFormFields } from '../../types/ProfileUpdateSchema'
 
 interface ProfileUpdateProps {
   id: number,
-  data: Pick<Profile, 'firstname' | 'lastname'>
+  data: ProfileUpdateFormFields
 }
 
 export const updateProfileData = createAsyncThunk<
@@ -15,7 +16,7 @@ export const updateProfileData = createAsyncThunk<
 >(
   'profile/update',
   async (props, thunkApi) => {
-    const { extra, dispatch, rejectWithValue } = thunkApi
+    const { extra, rejectWithValue } = thunkApi
 
     try {
       const response = await extra.api.patch<Profile>(`users/${props.id}/`, props.data)

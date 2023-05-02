@@ -1,10 +1,17 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { ProfileUpdateSchema } from '../../types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields, ProfileUpdateSchema } from '../../types/ProfileUpdateSchema'
 import { updateProfileData } from '../../services/updateProfileData/updateProfileData'
+import { Country, Currency } from '@/shared/const/common'
 
 export const initialProfileUpdateState: ProfileUpdateSchema = {
-  firstname: '',
-  lastname: '',
+  form: {
+    firstname: '',
+    lastname: '',
+    age: undefined,
+    avatar: '',
+    country: Country.Russia,
+    currency: Currency.RUB,
+  },
   isLoading: false,
   error: undefined,
 }
@@ -13,11 +20,8 @@ export const profileUpdateSlice = createSlice({
   name: 'profile/update',
   initialState: initialProfileUpdateState,
   reducers: {
-    setFirstname: (state, action: PayloadAction<string>) => {
-      state.firstname = action.payload
-    },
-    setLastname: (state, action: PayloadAction<string>) => {
-      state.lastname = action.payload
+    updateProfileForm: (state, action: PayloadAction<Partial<ProfileUpdateFormFields>>) => {
+      state.form = { ...state.form, ...action.payload }
     },
   },
   extraReducers(builder) {
@@ -27,8 +31,7 @@ export const profileUpdateSlice = createSlice({
     })
     builder.addCase(updateProfileData.fulfilled, (state, action) => {
       state.isLoading = false
-      state.firstname = action.payload.firstname
-      state.lastname = action.payload.lastname
+      state.form = action.payload
     })
     builder.addCase(updateProfileData.rejected, (state, action) => {
       state.isLoading = false

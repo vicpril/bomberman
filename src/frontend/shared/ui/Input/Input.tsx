@@ -4,7 +4,6 @@ import React, {
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { findFirstDiffPos } from '@/shared/lib/stringsDifference/getIndexOfDifferenceStrings'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
-import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import cls from './Input.module.scss'
 import { getSymbolWidth, getSymbolsLength } from './config'
 
@@ -26,11 +25,7 @@ export const Input = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [inputValue, setInputValue] = useState('')
 
-  useMountEffect(() => setInputValue(value || ''))
-
-  useEffect(() => {
-    onChange?.(inputValue)
-  }, [inputValue, onChange])
+  useEffect(() => { setInputValue(value || '') }, [value])
 
   const { flag: isFocused, on: onFocus, off: onBlur } = useFlag(false)
 
@@ -47,6 +42,7 @@ export const Input = (props: InputProps) => {
     const diffIndex = findFirstDiffPos(inputValue, e.target.value)
     setCaretPosition(diffIndex === -1 ? e.target.value.length : diffIndex)
     setInputValue(e.target.value)
+    onChange?.(e.target.value)
   }
 
   const onSelect = (e: any) => {
@@ -83,8 +79,6 @@ export const Input = (props: InputProps) => {
         )}
 
       </div>
-
     </div>
-
   )
 }

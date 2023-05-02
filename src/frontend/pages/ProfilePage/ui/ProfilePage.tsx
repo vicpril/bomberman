@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import cls from './ProfilePage.module.scss'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { RoutePaths } from '@/shared/config/routerConfig'
-import { fetchProfileData, profileReducer } from '@/entities/Profile'
+import {
+  Profile, fetchProfileData, getProfileData, profileActions, profileReducer,
+} from '@/entities/Profile'
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -14,6 +16,8 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { getUserAuthData } from '@/entities/User'
 import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { ProfileView } from '@/widgets/ProfileCard'
+import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
+import { ProfileEditForm } from '@/features/ProfileEdit'
 
 const initialReducers: ReducersList = {
   profile: profileReducer,
@@ -36,6 +40,19 @@ function ProfilePage() {
     if (userId) dispatch(fetchProfileData(userId))
   }, [userId, dispatch])
 
+  const {
+    flag: isEditMode, on: onEditMode, off: offEditMode,
+  } = useFlag(false)
+
+  const profileData = useSelector(getProfileData)
+
+  const onCancelHandler = offEditMode
+
+  const onUpdateProfileHandler = useCallback((data: Profile) => {
+    dispatch(profileActions.updateData(data))
+    offEditMode()
+  }, [dispatch, offEditMode])
+
   if (!userId) {
     return (
       <Text
@@ -46,19 +63,45 @@ function ProfilePage() {
   }
 
   return (
-    <div className={cls.ProfilePage}>
-      <DynamicModuleLoader reducers={initialReducers}>
-        <ProfileView />
-      </DynamicModuleLoader>
+    <DynamicModuleLoader reducers={initialReducers}>
+      <div className={cls.ProfilePage}>
 
-      <Button
-        className={cls.backButton}
-        theme={ButtonTheme.Clear}
-        onClick={onBackClick}
-      >
-        {t('Назад')}
-      </Button>
-    </div>
+        {// watch mode
+          !isEditMode && (
+            <>
+              <ProfileView />
+
+              <Button
+                className={cls.editButton}
+                onClick={onEditMode}
+              >
+                {t('Редактировать')}
+              </Button>
+
+              <Button
+                className={cls.backButton}
+                theme={ButtonTheme.Clear}
+                onClick={onBackClick}
+              >
+                {t('Назад')}
+              </Button>
+            </>
+          )
+        }
+
+        {// edit mode
+          isEditMode && (
+            <ProfileEditForm
+              userId={userId}
+              initialData={profileData}
+              onCancel={onCancelHandler}
+              onUpdate={onUpdateProfileHandler}
+            />
+          )
+        }
+
+      </div>
+    </DynamicModuleLoader>
   )
 }
 

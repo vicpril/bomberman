@@ -1,15 +1,14 @@
 import { useTranslation } from 'react-i18next'
-import { useCallback, useEffect } from 'react'
+import { memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileEditForm.module.scss'
-import { ProfileUpdateSchema } from '../../model/types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import {
-  initialProfileUpdateState,
   profileUpdateActions,
   profileUpdateReducer,
 } from '../../model/slices/updateProfile/updateProfile'
@@ -21,11 +20,12 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 import { Loader, LoaderSize } from '@/shared/ui/Loader/Loader'
 import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { Button, ButtonSize } from '@/shared/ui/Button/Button'
+import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 
 interface ProfileEditFormProps {
   className?: string
   userId: number
-  initialData?: ProfileUpdateSchema
+  initialData?: ProfileUpdateFormFields
   onUpdate?: (newData: Profile) => void
   onCancel?: () => void
 }
@@ -34,7 +34,7 @@ const initialReducers: ReducersList = {
   profileUpdate: profileUpdateReducer,
 }
 
-export const ProfileEditForm = (props: ProfileEditFormProps) => {
+export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
   const {
     userId, className, initialData, onUpdate, onCancel,
   } = props
@@ -43,23 +43,22 @@ export const ProfileEditForm = (props: ProfileEditFormProps) => {
 
   const dispatch = useAppDispatch()
 
-  const { isLoading, error, ...data } = useSelector(getProfileUpdateData)
+  const { isLoading, error, form } = useSelector(getProfileUpdateData)
 
   const onFirstnameChange = useCallback((value: string) => {
-    dispatch(profileUpdateActions.setFirstname(value))
+    dispatch(profileUpdateActions.updateProfileForm({ firstname: value }))
   }, [dispatch])
 
   const onLastnameChange = useCallback((value: string) => {
-    dispatch(profileUpdateActions.setLastname(value))
+    dispatch(profileUpdateActions.updateProfileForm({ lastname: value }))
   }, [dispatch])
 
-  useEffect(() => {
-    onFirstnameChange(initialData?.firstname ?? initialProfileUpdateState.firstname)
-    onLastnameChange(initialData?.lastname ?? initialProfileUpdateState.lastname)
-  }, [initialData, onFirstnameChange, onLastnameChange])
+  useMountEffect(() => {
+    dispatch(profileUpdateActions.updateProfileForm({ ...initialData }))
+  })
 
   const onSubmitHandler = async () => {
-    const result = await dispatch(updateProfileData({ id: userId, data }))
+    const result = await dispatch(updateProfileData({ id: userId, data: form }))
     if (result.meta.requestStatus === 'fulfilled') {
       onUpdate?.(result.payload as Profile)
     }
@@ -74,14 +73,14 @@ export const ProfileEditForm = (props: ProfileEditFormProps) => {
         <div className={cls.inputs}>
           <Input
             className={cls.firstname}
-            placeholder={t('Ваша фамилия')}
-            value={data.firstname}
+            placeholder={t('Фамилия')}
+            value={form.firstname}
             onChange={onFirstnameChange}
           />
           <Input
             className={cls.lastname}
-            placeholder={t('Ваше имя')}
-            value={data.lastname}
+            placeholder={t('Имя')}
+            value={form.lastname}
             onChange={onLastnameChange}
           />
         </div>
@@ -107,4 +106,4 @@ export const ProfileEditForm = (props: ProfileEditFormProps) => {
     </DynamicModuleLoader>
 
   )
-}
+})
