@@ -1,7 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { ProfileUpdateFormFields, ProfileUpdateSchema } from '../../types/ProfileUpdateSchema'
 import { updateProfileData } from '../../services/updateProfileData/updateProfileData'
-import { Country, Currency } from '@/shared/const/common'
+import { Currency } from '@/entities/Currency'
+import { Country } from '@/entities/Country'
 
 export const initialProfileUpdateState: ProfileUpdateSchema = {
   form: {

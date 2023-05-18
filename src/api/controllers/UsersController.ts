@@ -58,6 +58,7 @@ export class UsersController {
   public static getProfile = async (req: Request, res: Response) => {
     try {
       const user = await UsersService.getById(+req.params.id, { withMeta: true })
+      // console.log('🚀 ~ UsersController ~ user', user)
       if (!user) {
         res.status(404).send('User not found')
       } else {
@@ -76,6 +77,9 @@ export class UsersController {
       .trim().notEmpty().withMessage('firstname is required'),
     body('lastname')
       .trim().notEmpty().withMessage('lastname is required'),
+    body('age')
+      .trim().isNumeric().optional({ nullable: true })
+      .toInt(),
     async (req: Request, res: Response) => {
       if (!validateRequestBody(req, res)) return
 

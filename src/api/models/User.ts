@@ -25,7 +25,7 @@ export class User extends Model {
 
   get profile() {
     return {
-      ...this.meta.dataValues,
+      ...this.meta.get(),
       username: this.username,
       id: this.id,
     }

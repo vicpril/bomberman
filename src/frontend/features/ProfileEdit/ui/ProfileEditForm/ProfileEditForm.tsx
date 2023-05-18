@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileEditForm.module.scss'
@@ -21,6 +21,9 @@ import { Loader, LoaderSize } from '@/shared/ui/Loader/Loader'
 import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { Button, ButtonSize } from '@/shared/ui/Button/Button'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
+import { Select } from '@/shared/ui/Select/Select'
+import { Currency, CurrencySelect } from '@/entities/Currency'
+import { Country, CountrySelect } from '@/entities/Country'
 
 interface ProfileEditFormProps {
   className?: string
@@ -39,7 +42,7 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
     userId, className, initialData, onUpdate, onCancel,
   } = props
 
-  const { t } = useTranslation()
+  const { t } = useTranslation('profile')
 
   const dispatch = useAppDispatch()
 
@@ -51,6 +54,18 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
 
   const onLastnameChange = useCallback((value: string) => {
     dispatch(profileUpdateActions.updateProfileForm({ lastname: value }))
+  }, [dispatch])
+
+  const onAgeChange = useCallback((value: string) => {
+    dispatch(profileUpdateActions.updateProfileForm({ age: +value || 0 }))
+  }, [dispatch])
+
+  const onCurrencyChange = useCallback((value: Currency) => {
+    dispatch(profileUpdateActions.updateProfileForm({ currency: value }))
+  }, [dispatch])
+
+  const onCountryChange = useCallback((value: Country) => {
+    dispatch(profileUpdateActions.updateProfileForm({ country: value }))
   }, [dispatch])
 
   useMountEffect(() => {
@@ -72,16 +87,27 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
         {error && (<Text className={cls.error} theme={TextTheme.ERROR} text={error} />)}
         <div className={cls.inputs}>
           <Input
-            className={cls.firstname}
             placeholder={t('Фамилия')}
             value={form.firstname}
             onChange={onFirstnameChange}
           />
           <Input
-            className={cls.lastname}
             placeholder={t('Имя')}
             value={form.lastname}
             onChange={onLastnameChange}
+          />
+          <Input
+            placeholder={t('Возраст')}
+            value={form.age}
+            onChange={onAgeChange}
+          />
+          <CurrencySelect
+            value={form.currency}
+            onChange={onCurrencyChange}
+          />
+          <CountrySelect
+            value={form.country}
+            onChange={onCountryChange}
           />
         </div>
         <div className={cls.buttons}>

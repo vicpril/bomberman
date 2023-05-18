@@ -1,9 +1,13 @@
 {
   "stranica-profilya": "Profile page",
   "Аватар": "Avatar",
-  "Фамилия": "Lastname",
+  "Валюта": "Currency",
+  "Возраст": "Age",
   "Имя": "Firstname",
   "Имя пользователя": "Username",
   "Не авторизован": "Not authorized",
-  "Редактировать": "Edit"
+  "Пользователь": "Username",
+  "Редактировать": "Edit",
+  "Страна": "Country",
+  "Фамилия": "Lastname"
 }

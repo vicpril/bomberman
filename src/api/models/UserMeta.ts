@@ -21,21 +21,21 @@ export class UserMeta extends Model {
 
   @Default(null)
   @Column(DataType.INTEGER)
-    age: number | null = null
+    age: number | null
 
   @AllowNull
   @Default(null)
   @Column
-    currency: string = ''
+    currency: string
 
   @Column
-    country: string = ''
+    country: string
 
   @Column
-    city: string = ''
+    city: string
 
   @Column
-    avatar: string = ''
+    avatar: string
 
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, field: 'user_id' })

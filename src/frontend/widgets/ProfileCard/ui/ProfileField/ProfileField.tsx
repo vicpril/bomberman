@@ -1,10 +1,12 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileField.module.scss'
+import { Profile } from '@/entities/Profile'
+import { ValueOf } from '@/shared/lib/types'
 
 interface FieldProps {
   className?: string
   label: string,
-  value: string
+  value: ValueOf<Profile>
 }
 
 const ProfileField = ({ label, value, className }: FieldProps) => (
@@ -14,7 +16,7 @@ const ProfileField = ({ label, value, className }: FieldProps) => (
       {label}
       :
     </div>
-    <div className={cls.value}>{value}</div>
+    <div className={cls.value}>{value || '-'}</div>
 
   </div>
 )

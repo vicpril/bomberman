@@ -11,7 +11,7 @@ type CustomInputAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, '
 
 interface InputProps extends CustomInputAttributes {
   className?: string
-  value?: string
+  value?: string | number
   onChange?: (value: string) => void
   autofocus?: boolean
   placeholder?: string
@@ -25,7 +25,7 @@ export const Input = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [inputValue, setInputValue] = useState('')
 
-  useEffect(() => { setInputValue(value || '') }, [value])
+  useEffect(() => { setInputValue(value?.toString() || '') }, [value])
 
   const { flag: isFocused, on: onFocus, off: onBlur } = useFlag(false)
 
@@ -36,7 +36,7 @@ export const Input = (props: InputProps) => {
     }
   }, [autofocus, onFocus])
 
-  const [caretPosition, setCaretPosition] = useState(value?.length || 0)
+  const [caretPosition, setCaretPosition] = useState(value?.toString().length || 0)
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const diffIndex = findFirstDiffPos(inputValue, e.target.value)

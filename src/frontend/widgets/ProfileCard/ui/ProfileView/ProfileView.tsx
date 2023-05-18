@@ -36,19 +36,34 @@ export const ProfileView = (props: ProfileViewProps) => {
             </div>
             <div className={cls.infoContainer}>
               <ProfileField
-                className={cls.username}
+                className="username"
                 label={t('Пользователь')}
                 value={profileData?.username}
               />
               <ProfileField
-                className={cls.firstname}
+                className="firstname"
                 label={t('Фамилия')}
                 value={profileData?.firstname}
               />
               <ProfileField
-                className={cls.lastname}
+                className="lastname"
                 label={t('Имя')}
                 value={profileData?.lastname}
+              />
+              <ProfileField
+                className="age"
+                label={t('Возраст')}
+                value={profileData?.age}
+              />
+              <ProfileField
+                className="currency"
+                label={t('Валюта')}
+                value={profileData?.currency}
+              />
+              <ProfileField
+                className="country"
+                label={t('Страна')}
+                value={profileData?.country}
               />
             </div>
           </>
