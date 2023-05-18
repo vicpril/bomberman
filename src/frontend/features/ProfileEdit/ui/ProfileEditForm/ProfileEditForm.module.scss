@@ -3,10 +3,11 @@
   display: flex;
   flex-flow: column;
 
-  > .error {
-    margin-bottom: 20px;
+  > .errors {
+    > .error {
+      margin-bottom: 20px;
+    }
   }
-  
   
   > .inputs {
     > * {

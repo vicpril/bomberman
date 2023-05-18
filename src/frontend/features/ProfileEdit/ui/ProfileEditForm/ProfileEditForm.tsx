@@ -3,7 +3,7 @@ import { memo, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileEditForm.module.scss'
-import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields, ValidateProfileErrors } from '../../model/types/ProfileUpdateSchema'
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -21,9 +21,11 @@ import { Loader, LoaderSize } from '@/shared/ui/Loader/Loader'
 import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { Button, ButtonSize } from '@/shared/ui/Button/Button'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
-import { Select } from '@/shared/ui/Select/Select'
 import { Currency, CurrencySelect } from '@/entities/Currency'
 import { Country, CountrySelect } from '@/entities/Country'
+import {
+  getUpdateProfileValidateErrors,
+} from '../../model/selectors/getUpdateProfileValidateErrors/getUpdateProfileValidateErrors'
 
 interface ProfileEditFormProps {
   className?: string
@@ -44,9 +46,19 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
 
   const { t } = useTranslation('profile')
 
+  const valideteErrorsTranslations: Record<ValidateProfileErrors, string> = useMemo(() => ({
+    [ValidateProfileErrors.NO_DATA]: t('Данные не указаны'),
+    [ValidateProfileErrors.INCORRECT_USER_AGE]: t('Некорректный возраст'),
+    [ValidateProfileErrors.INCORRECT_USER_COUNTRY]: t('Некорректный регион'),
+    [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Имя и Фамилия обязательны'),
+    [ValidateProfileErrors.SERVER_ERROR]: t('Ошибка сервера'),
+  }), [t])
+
   const dispatch = useAppDispatch()
 
-  const { isLoading, error, form } = useSelector(getProfileUpdateData)
+  const { isLoading, form } = useSelector(getProfileUpdateData)
+
+  const errors = useSelector(getUpdateProfileValidateErrors)
 
   const onFirstnameChange = useCallback((value: string) => {
     dispatch(profileUpdateActions.updateProfileForm({ firstname: value }))
@@ -81,10 +93,25 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
 
   const onCancelHandler = onCancel
 
+  const errorsBlock = useMemo(() => errors && (
+    <div className={cls.errors}>
+      {errors.map((error) => (
+        (
+          <Text
+            key={error}
+            className={cls.error}
+            theme={TextTheme.ERROR}
+            text={valideteErrorsTranslations[error]}
+          />
+        )
+      ))}
+    </div>
+  ), [errors, valideteErrorsTranslations])
+
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <div className={classNames(cls.ProfileEditForm, {}, [className])}>
-        {error && (<Text className={cls.error} theme={TextTheme.ERROR} text={error} />)}
+        {errorsBlock}
         <div className={cls.inputs}>
           <Input
             placeholder={t('Фамилия')}

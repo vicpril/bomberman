@@ -15,6 +15,7 @@ export const initialProfileUpdateState: ProfileUpdateSchema = {
   },
   isLoading: false,
   error: undefined,
+  validateErrors: undefined,
 }
 
 export const profileUpdateSlice = createSlice({
@@ -28,7 +29,7 @@ export const profileUpdateSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(updateProfileData.pending, (state) => {
       state.isLoading = true
-      state.error = undefined
+      state.validateErrors = undefined
     })
     builder.addCase(updateProfileData.fulfilled, (state, action) => {
       state.isLoading = false
@@ -36,7 +37,7 @@ export const profileUpdateSlice = createSlice({
     })
     builder.addCase(updateProfileData.rejected, (state, action) => {
       state.isLoading = false
-      state.error = action.payload
+      state.validateErrors = action.payload
     })
   },
 })
