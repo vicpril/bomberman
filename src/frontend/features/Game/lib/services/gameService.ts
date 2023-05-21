@@ -2,7 +2,7 @@ import { Socket } from 'socket.io-client'
 import { CanvasLayersContext, GameRenderer, GameRendererCreator } from '@game/index'
 import { GameExportData } from '@game/core/classes/Game'
 import { ExportDataTitles, SECONDS_BEFORE_START } from '@game/core/config'
-import { socket } from '@game/core/services/socketService'
+import { socketConnect } from '@game/core/services/socketService'
 import { getBattleField } from '../SingleGameCore/classes/BattleField'
 import { Observable } from '../SingleGameCore/helpers/Observable'
 import { addControlListener, removeControlListener } from './controlHandler'
@@ -46,7 +46,7 @@ class GameService {
 
   readonly startingTimer = new Observable(SECONDS_BEFORE_START)
 
-  private socket: Socket = socket
+  public socket: Socket | null = null
 
   private gameRenderer: GameRenderer | null = null
 
@@ -55,21 +55,22 @@ class GameService {
   }
 
   initMultiplayerGame() {
+    this.socket = socketConnect()
     // подписка на стейт
-    this.socket.on('state', (state: GameExportData) => {
+    this.socket?.on('state', (state: GameExportData) => {
       if (this.gameRenderer) {
         this.gameRenderer.render(state)
         this.updateStats(state)
       }
     })
     // подписка на ожтдание игрока
-    this.socket.on('game:waiting-player', () => {
+    this.socket?.on('game:waiting-player', () => {
       console.log('~ game:waiting-player')
       this.status.set(GameStatus.WAITING_PLAYER)
-      this.socket.off('game:waiting-player')
+      this.socket?.off('game:waiting-player')
     })
     // подписка на старт игры
-    this.socket.on('game:starting', () => {
+    this.socket?.on('game:starting', () => {
       console.log('~ game:starting')
       const startingTimerId = window.setInterval(() => {
         if (this.startingTimer.get() > 0) {
@@ -81,28 +82,28 @@ class GameService {
         }
       }, 1000)
       this.status.set(GameStatus.NOT_STARTED)
-      this.socket.off('game:starting')
+      this.socket?.off('game:starting')
     })
-    this.socket.on('state', (state: GameExportData) => {
+    this.socket?.on('state', (state: GameExportData) => {
       if (this.gameRenderer) {
         this.gameRenderer.render(state)
         this.updateStats(state)
       }
     })
     // подписка на дисконнект
-    this.socket.on('player:disconnected', (id: string) => {
+    this.socket?.on('player:disconnected', (id: string) => {
       console.log('~ player:disconnected', id)
       this.status.set(GameStatus.VICTORY)
       this.destroyMultiplayerGame()
     })
     // подписка на поражение
-    this.socket.on('defeat', () => {
+    this.socket?.on('defeat', () => {
       console.log('~ defeat')
       this.status.set(GameStatus.DEFEAT)
       this.destroyMultiplayerGame()
     })
-    this.socket.connect()
-    this.socket.emit('player/connect')
+    this.socket?.connect()
+    this.socket?.emit('player/connect')
   }
 
   updateStats(state: GameExportData) {
@@ -119,10 +120,10 @@ class GameService {
 
   destroyMultiplayerGame() {
     removeControlListener()
-    this.socket.off('state')
-    this.socket.off('victory')
-    this.socket.off('defeat')
-    this.socket.disconnect()
+    this.socket?.off('state')
+    this.socket?.off('victory')
+    this.socket?.off('defeat')
+    this.socket?.disconnect()
   }
 
   setCanvasLayersContext(ctx: CanvasLayersContext | null) {

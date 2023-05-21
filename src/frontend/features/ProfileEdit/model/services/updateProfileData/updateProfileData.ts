@@ -26,7 +26,7 @@ export const updateProfileData = createAsyncThunk<
     }
 
     try {
-      const response = await extra.api.patch<Profile>(`users/${props.id}/`, props.data)
+      const response = await extra.api.put<Profile>(`users/${props.id}/`, props.data)
 
       return response.data
     } catch (error) {

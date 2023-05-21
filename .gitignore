@@ -1,6 +1,7 @@
 /build
 /build-frontend
 /build-server
+/build-sockets
 /database
 node_modules
 .idea

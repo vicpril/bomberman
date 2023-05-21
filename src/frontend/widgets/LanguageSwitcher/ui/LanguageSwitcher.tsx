@@ -24,7 +24,7 @@ export const LanguageSwitcher = (props: LanguageSwitcherProps) => {
       theme={ButtonTheme.Background}
       size={ButtonSize.M}
     >
-      {t(short ? 'short-lang' : 'Язык')}
+      {t(short ? 'Ру' : 'Язык')}
     </Button>
 
   )

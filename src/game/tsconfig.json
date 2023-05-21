@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+  },
+  "exclude": [
+    "node_modules",
+    "../../src/frontend",
+    "../../src/api"
+  ],
+  "include": [
+    "../../src/game/**/*.ts"
+  ],
+}

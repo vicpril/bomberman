@@ -37,7 +37,9 @@ function ProfilePage() {
   const userId = useSelector(getUserAuthData)?.id
 
   useEffect(() => {
-    if (userId) dispatch(fetchProfileData(userId))
+    if (__PROJECT__ !== 'storybook') {
+      if (userId) dispatch(fetchProfileData(userId))
+    }
   }, [userId, dispatch])
 
   const {
@@ -65,7 +67,6 @@ function ProfilePage() {
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <div className={cls.ProfilePage}>
-
         {// watch mode
           !isEditMode && (
             <>

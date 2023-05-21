@@ -1,7 +1,8 @@
-import { socket, KeyTypes, PlayerAction } from '@game/index'
+import { KeyTypes, PlayerAction } from '@game/index'
+import { gameService } from './gameService'
 
 const sendActionRequest = (action: PlayerAction) => {
-  socket.emit('player/action', action)
+  gameService.socket?.emit('player/action', action)
 }
 
 const keysSet = new Set()

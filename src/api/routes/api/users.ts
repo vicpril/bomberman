@@ -12,6 +12,6 @@ usersRouter.post('/', UsersController.create)
 
 usersRouter.get('/:id/', UsersController.getProfile)
 
-usersRouter.patch('/:id/', UsersController.updateProfile)
+usersRouter.put('/:id/', UsersController.updateProfile)
 
 export default usersRouter

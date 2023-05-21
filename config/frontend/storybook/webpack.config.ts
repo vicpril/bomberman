@@ -55,6 +55,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
     __IS_DEV__: JSON.stringify(true),
     __API__: JSON.stringify(''),
     __SOCKETS_URL__: JSON.stringify(''),
+    __PROJECT__: JSON.stringify('storybook'),
   }))
 
   return config
