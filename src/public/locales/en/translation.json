@@ -7,7 +7,6 @@
   "login": "Login",
   "page-not-found": "Page not found",
   "perezagruzit-stranicu": "Reload page",
-  "Ру": "En",
   "throw-button": "throw a bug",
   "uncollapse": "",
   "Введите username": "Username",
@@ -25,7 +24,9 @@
   "Перевод": "Translate",
   "Пользователь": "User",
   "Профиль": "Profile",
+  "Ру": "En",
   "Сохранить": "Submit",
+  "Страница не найдена": "Page not found",
   "Тестовый пример": "Test example",
   "Форма авторизации": "Authorization",
   "Язык": "English"

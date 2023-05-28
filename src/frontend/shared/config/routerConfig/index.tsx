@@ -4,42 +4,48 @@ import { MainPage } from '@/pages/MainPage'
 // import { NotFoundPage } from '@/pages/NotFoundPage'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { GamePage } from '@/pages/GamePage'
+import { NotFoundPage } from '@/pages/NotFoundPage'
 
-export enum RouteName {
+export enum AppRoutes {
   Main = 'main',
   Game = 'game',
   // About = 'about',
   Profile = 'profile',
-  // NotFound = 'notFound'
+  NotFound = 'notFound'
 }
 
-export const RoutePaths: Record<RouteName, string> = {
-  [RouteName.Main]: '/',
-  [RouteName.Game]: '/game',
-  // [RouteName.About]: '/about',
-  [RouteName.Profile]: '/profile',
-  // [RouteName.NotFound]: '/*',
+export type AppRoutesProps = RouteProps & {
+  authRequired?: boolean
 }
 
-export const routerConfig: Record<RouteName, RouteProps> = {
-  [RouteName.Main]: {
+export const RoutePaths: Record<AppRoutes, string> = {
+  [AppRoutes.Main]: '/',
+  [AppRoutes.Game]: '/game',
+  // [AppRoutes.About]: '/about',
+  [AppRoutes.Profile]: '/profile',
+  [AppRoutes.NotFound]: '/*',
+}
+
+export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
+  [AppRoutes.Main]: {
     element: <MainPage />,
     path: RoutePaths.main,
   },
-  [RouteName.Game]: {
+  [AppRoutes.Game]: {
     element: <GamePage />,
     path: RoutePaths.game,
   },
-  // [RouteName.About]: {
+  // [AppRoutes.About]: {
   //   element: <AboutPage />,
   //   path: RoutePaths.about,
   // },
-  [RouteName.Profile]: {
+  [AppRoutes.Profile]: {
     element: <ProfilePage />,
     path: RoutePaths.profile,
+    authRequired: true,
   },
-  // [RouteName.NotFound]: {
-  //   element: <NotFoundPage />,
-  //   path: RoutePaths.notFound,
-  // },
+  [AppRoutes.NotFound]: {
+    element: <NotFoundPage />,
+    path: RoutePaths.notFound,
+  },
 }

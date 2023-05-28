@@ -2,12 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './NavbarUser.module.scss'
 import { getUserAuthData, userActions } from '@/entities/User'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { LoginModal } from '@/features/AuthByUsername/ui/LoginModal/LoginModal'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
+import { LoginModal } from '@/features/AuthByUsername'
 
 interface NavbarUserProps {
   className?: string
