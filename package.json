@@ -34,7 +34,8 @@
     "api:serve": "yarn api:build:dev && yarn api:_watch",
     "sockets:start": "node ./build-sockets/index.js",
     "sockets:build:dev": "rm -rf ./build-sockets/ && webpack --env mode=development --config ./config/sockets/webpack.config.ts",
-    "sockets:build:prod": "rm -rf ./build-sockets/ && webpack --env mode=production --config ./config/sockets/webpack.config.ts"
+    "sockets:build:prod": "rm -rf ./build-sockets/ && webpack --env mode=production --config ./config/sockets/webpack.config.ts",
+    "dev": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn sockets:start\" \"yarn start\" -n \"api,sockets,frontend\" -c auto"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -69,6 +70,7 @@
     "@typescript-eslint/parser": "^5.12.1",
     "babel-loader": "^9.1.2",
     "babel-plugin-i18next-extract": "^0.9.0",
+    "concurrently": "^8.0.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.10.0",
