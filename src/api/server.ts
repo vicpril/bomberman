@@ -18,11 +18,6 @@ export const startServer = async () => {
     app.use(cookieParser())
     app.use(cors())
 
-    app.use((req, res, next) => {
-      console.log('🚀 ~ req.body', req.body)
-      next()
-    })
-
     app.use(router)
 
     app.get('/', (req, res) => {
