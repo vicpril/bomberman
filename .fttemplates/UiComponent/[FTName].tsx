@@ -6,7 +6,7 @@ interface [FTName]Props {
   className?: string
 }
 
-export const [FTName] = (props: [FTName]Props) => {
+const [FTName] = (props: [FTName]Props) => {
   const { className } = props
 
   const { t } = useTranslation()
@@ -18,3 +18,5 @@ export const [FTName] = (props: [FTName]Props) => {
 
   )
 }
+
+export default [FTName]
