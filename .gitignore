@@ -5,6 +5,6 @@
 /database
 node_modules
 .idea
-.vscode
+# .vscode
 /storybook-static
 *.env.*
