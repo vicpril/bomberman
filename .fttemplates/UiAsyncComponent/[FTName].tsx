@@ -19,4 +19,4 @@ const [FTName] = (props: [FTName]Props) => {
   )
 }
 
-export { [FTName] }
+export default [FTName]
