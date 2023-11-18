@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesDetailPage.module.scss'
+import { ArticleDetails } from '@/entities/Article'
 
 interface ArticlesDetailPageProps {
   className?: string
@@ -13,7 +14,7 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
 
   return (
     <div className={classNames(cls.ArticlesDetailPage, {}, [className])}>
-      <h1>ArticlesDetailPage</h1>
+      <ArticleDetails />
     </div>
 
   )
