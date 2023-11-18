@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": false
   },
   "exclude": [
     "node_modules",

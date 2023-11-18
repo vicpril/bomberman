@@ -1,7 +1,10 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import dotenv from 'dotenv'
-import { UserMeta } from './UserMeta'
 import { User } from './User'
+import { UserMeta } from './UserMeta'
+// import { Article } from './Article'
+// import { ArticleBlock } from './ArtricleBlock'
+// import { ArticleComment } from './ArticleComment'
 
 dotenv.config()
 
@@ -27,5 +30,8 @@ export const initDB = async () => {
 
   User.sync()
   UserMeta.sync()
+  // Article.sync()
+  // ArticleBlock.sync()
+  // ArticleComment.sync()
   // await sequelize.sync()
 }

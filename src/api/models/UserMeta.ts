@@ -38,9 +38,9 @@ export class UserMeta extends Model {
     avatar: string
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.INTEGER, field: 'user_id' })
+  @Column
     userId!: number
 
-  @BelongsTo(() => User)
-    user!: User
+  @BelongsTo(() => User, 'userId')
+    user!: Awaited<User>
 }

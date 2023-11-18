@@ -1,7 +1,14 @@
 import { UserMeta } from 'api/models/UserMeta'
 import {
-  Table, Model, PrimaryKey, Column, DataType, Unique, HasOne, AutoIncrement,
+  Table, Model, PrimaryKey, Column, DataType, Unique, HasOne, AutoIncrement, Default,
 } from 'sequelize-typescript'
+// import { Article } from './Article'
+// import { ArticleComment } from './ArticleComment'
+
+export enum UserRoles {
+  Admin = 'ADMIN',
+  User = 'USER'
+}
 
 @Table({
   tableName: 'users',
@@ -20,8 +27,15 @@ export class User extends Model {
   @Column
     password!: string
 
-  @HasOne(() => UserMeta)
-  public meta!: Awaited<UserMeta>
+  @Default(UserRoles.User)
+  @Column(DataType.ENUM(...Object.values(UserRoles)))
+    role: UserRoles
+
+  @HasOne(() => UserMeta, {
+    foreignKey: 'userId',
+    onDelete: 'CASCADE',
+  })
+    meta!: Awaited<UserMeta>
 
   get profile() {
     return {
@@ -30,4 +44,10 @@ export class User extends Model {
       id: this.id,
     }
   }
+
+  // @HasMany(() => Article, 'userId')
+  //   articles!: Awaited<Article[]>
+
+  // @HasMany(() => ArticleComment, 'articleId')
+  //   articleComments: Awaited<ArticleComment[]>
 }
