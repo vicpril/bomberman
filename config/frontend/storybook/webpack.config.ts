@@ -14,6 +14,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
     output: '',
     public: '',
     socketsUrl: '',
+    apiUrl: '',
+    jsonServerUrl: '',
     src: srcFrontendDir,
   }
 

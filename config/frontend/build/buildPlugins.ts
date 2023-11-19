@@ -8,7 +8,7 @@ import path from 'path'
 import { BuildOptions } from './types'
 
 export function buildPlugins({
-  paths, isDev, apiUrl, project,
+  paths, isDev, project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
   const plugins: webpack.WebpackPluginInstance[] = [
     new HtmlWebpackPlugin({
@@ -21,7 +21,8 @@ export function buildPlugins({
     }),
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
-      __API__: JSON.stringify(apiUrl),
+      __API__: JSON.stringify(paths.apiUrl),
+      __API_JSON__: JSON.stringify(paths.jsonServerUrl),
       __SOCKETS_URL__: JSON.stringify(paths.socketsUrl),
       __PROJECT__: JSON.stringify(project),
     }),

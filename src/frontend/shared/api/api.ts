@@ -7,3 +7,10 @@ export const $api = axios.create({
     Authorization: JSON.stringify(localStorage.getItem(USER_LOCALSTORAGE_KEY) || ''),
   },
 })
+
+export const $apiJson = axios.create({
+  baseURL: __API_JSON__,
+  headers: {
+    Authorization: JSON.stringify(localStorage.getItem(USER_LOCALSTORAGE_KEY) || ''),
+  },
+})

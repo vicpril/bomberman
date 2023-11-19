@@ -17,6 +17,7 @@ export type AppDispatch = ReturnType<typeof createAppStore>['dispatch']
 
 export interface ThunkExtraArgs {
   api: AxiosInstance,
+  apiJson: AxiosInstance,
   navigate?: NavigateFunction
 }
 

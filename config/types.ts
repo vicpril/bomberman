@@ -8,5 +8,6 @@ export interface BuildEnv {
   root?: string
   url?: string
   apiUrl?: string,
+  jsonServerUrl?: string,
   socketsUrl?: string
 }

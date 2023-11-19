@@ -7,6 +7,8 @@ export interface BuildPaths {
   src: string
   public: string
   socketsUrl: string
+  apiUrl: string,
+  jsonServerUrl: string,
 }
 
 export interface BuildOptions {
@@ -14,6 +16,5 @@ export interface BuildOptions {
   paths: BuildPaths,
   isDev: boolean,
   port: number,
-  apiUrl: string,
   project: 'frontend' | 'storybook' | 'tests'
 }

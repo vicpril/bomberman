@@ -2,7 +2,7 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 import { NavigateFunction } from 'react-router-dom'
 // import { counterReducer } from '@/entities/Counter'
 import { userReducer } from '@/entities/User'
-import { $api } from '@/shared/api/api'
+import { $api, $apiJson } from '@/shared/api/api'
 import { createReducerManager } from '../lib/reducerManager'
 import type { StateSchema } from './StateSchema'
 import { ThunkExtraArgs } from './types'
@@ -21,6 +21,7 @@ export const createAppStore = (
 
   const extraArg: ThunkExtraArgs = {
     api: $api,
+    apiJson: $apiJson,
     navigate,
   }
 

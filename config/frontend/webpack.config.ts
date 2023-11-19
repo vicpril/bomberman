@@ -8,6 +8,7 @@ export default (env?: BuildEnv) => {
   const mode = env?.mode || 'development'
   const PORT = env?.port || 3000
   const apiUrl = env?.apiUrl || 'http://localhost:3001/api/v1'
+  const jsonServerUrl = env?.apiUrl || 'http://localhost:8000'
   const socketsUrl = env?.socketsUrl || 'http://localhost:3002'
 
   const isDev = mode === 'development'
@@ -23,6 +24,8 @@ export default (env?: BuildEnv) => {
     src: srcFrontendDir,
     public: path.resolve(srcDir, 'public'),
     socketsUrl,
+    apiUrl,
+    jsonServerUrl,
   }
 
   const config: webpack.Configuration = buildWebpackConfig({
@@ -30,7 +33,6 @@ export default (env?: BuildEnv) => {
     paths,
     isDev,
     port: PORT,
-    apiUrl,
     project: 'frontend',
   })
 
