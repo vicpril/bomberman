@@ -48,12 +48,12 @@ export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.Profile]: {
     element: <ProfilePage />,
     path: RoutePaths.profile,
-    authRequired: true,
+    // authRequired: true,
   },
   [AppRoutes.Articles]: {
     element: <ArticlesPage />,
     path: RoutePaths.articles,
-    authRequired: true,
+    // authRequired: true,
   },
   [AppRoutes.ArticlesDetail]: {
     element: <ArticlesDetailPage />,

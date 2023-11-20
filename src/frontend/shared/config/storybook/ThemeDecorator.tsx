@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import cls from '@/app/App.scss'
 
 interface Props {
   themeName: string
