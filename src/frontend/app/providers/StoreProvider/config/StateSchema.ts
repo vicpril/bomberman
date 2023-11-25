@@ -9,6 +9,7 @@ import { UserSchema } from '@/entities/User'
 import { ProfileSchema } from '@/entities/Profile'
 import { ProfileUpdateSchema } from '@/features/ProfileEdit'
 import { ArticleDetailsSchema } from '@/entities/Article'
+import { ArticleDetailsCommentsSchema } from '@/pages/ArticlesDetailPage'
 
 export interface StateSchema {
   user: UserSchema,
@@ -18,6 +19,7 @@ export interface StateSchema {
   profile?: ProfileSchema
   profileUpdate?: ProfileUpdateSchema
   articleDetails?: ArticleDetailsSchema
+  articleDetailsComments?: ArticleDetailsCommentsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

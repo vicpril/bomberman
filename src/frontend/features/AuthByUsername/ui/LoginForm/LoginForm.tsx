@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import {
+  ChangeEvent, useCallback, useEffect, useRef,
+} from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './LoginForm.module.scss'
 import {
@@ -15,6 +18,8 @@ import { Input } from '@/shared/ui/Input/Input'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { RoutePaths } from '@/shared/config/routerConfig'
+import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
+import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
 
 export interface LoginFormProps {
   className?: string
@@ -36,21 +41,44 @@ const LoginForm = (props: LoginFormProps) => {
     username, password, error, isLoading,
   } = useSelector(getLoginState)
 
-  const onUsernameChange = (value: string) => {
-    dispatch(loginActions.setLoginUsername(value))
+  const usernameRef = useRef('')
+  const passwordRef = useRef('')
+
+  useEffect(() => {
+    usernameRef.current = username
+    passwordRef.current = password
+  }, [username, password])
+
+  const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(loginActions.setLoginUsername(e.target.value))
   }
 
-  const onPasswordChange = (value: string) => {
-    dispatch(loginActions.setLoginPassword(value))
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(loginActions.setLoginPassword(e.target.value))
   }
 
   const onSubmitClick = async () => {
-    const result = await dispatch(loginByUsername({ username, password }))
+    const result = await dispatch(loginByUsername({
+      username: usernameRef.current,
+      password: passwordRef.current,
+    }))
     if (result.meta.requestStatus === 'fulfilled') {
       onSuccess?.()
       navigate(RoutePaths.main)
     }
   }
+
+  const onEnterPress = (e: KeyboardEvent) => {
+    if (e.code === 'Enter') onSubmitClick()
+  }
+
+  useMountEffect(() => {
+    document.addEventListener('keypress', onEnterPress)
+  })
+
+  useUnmountEffect(() => {
+    document.removeEventListener('keypress', onEnterPress)
+  })
 
   return (
     <DynamicModuleLoader
@@ -73,14 +101,14 @@ const LoginForm = (props: LoginFormProps) => {
           type="text"
           className={cls.input}
           placeholder={t('Введите username')}
-          onChange={onUsernameChange}
+          onInput={onUsernameChange}
         />
 
         <Input
           type="text"
           className={cls.input}
           placeholder={t('Введите пароль')}
-          onChange={onPasswordChange}
+          onInput={onPasswordChange}
         />
 
         <Button

@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 
 export const useMountEffect = (callback: () => void) => {
   useEffect(() => {
-    callback()
+    if (__PROJECT__ !== 'storybook') {
+      callback()
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }

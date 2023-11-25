@@ -1,0 +1,38 @@
+import { memo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { classNames } from '@/shared/lib/classNames/classNames'
+import cls from './CommentList.module.scss'
+import { Comment } from '../../model/types/comment'
+import { Text } from '@/shared/ui/Text/Text'
+import { CommentCard } from '../CommentCard/CommentCard'
+
+interface CommentListProps {
+  className?: string
+  comments?: Comment[]
+  isLoading?: boolean
+}
+
+const CommentList = memo((props: CommentListProps) => {
+  const { className, comments, isLoading } = props
+
+  const { t } = useTranslation()
+
+  return (
+    <div className={classNames(cls.CommentList, {}, [className])}>
+      {
+        comments?.length
+          ? comments.map((comment) => (
+            <CommentCard
+              comment={comment}
+              isLoading={isLoading}
+            />
+          ))
+          : <Text title={t('Комментарии отсутствуют')} />
+      }
+
+    </div>
+
+  )
+})
+
+export { CommentList }
