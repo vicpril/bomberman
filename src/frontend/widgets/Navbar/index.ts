@@ -1,2 +1,2 @@
 export { Navbar } from './ui/Navbar/Navbar'
-export { NavbarLinks as navbarLinks } from './model/items'
+export { getNavLinks } from './model/selectors/getNavLinks/getNavLinks'

@@ -6,7 +6,7 @@ import { userActions } from '@/entities/User'
 
 describe('Service loginByUsername.test', () => {
   test('success login', async () => {
-    const remoteMockValue = { username: 'user', id: 1 }
+    const remoteMockValue = { username: 'user', id: '1' }
 
     const thunk = new TestAsyncThunk(loginByUsername, { data: remoteMockValue })
     const result = await thunk.callThunk({ username: 'user', password: '123' })

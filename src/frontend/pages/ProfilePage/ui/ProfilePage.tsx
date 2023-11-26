@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { useCallback, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import cls from './ProfilePage.module.scss'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
-import { RoutePaths } from '@/shared/config/routerConfig'
 import {
   Profile, fetchProfileData, getProfileData, profileActions, profileReducer,
 } from '@/entities/Profile'
@@ -31,10 +30,14 @@ function ProfilePage() {
   const dispatch = useAppDispatch()
 
   const onBackClick = () => {
-    navigate(RoutePaths.main)
+    navigate(-1)
+    // navigate(RoutePaths.main)
   }
 
-  const userId = useSelector(getUserAuthData)?.id
+  const currentUserId = useSelector(getUserAuthData)?.id
+  const { id: userId } = useParams()
+
+  const canEdit = useMemo(() => currentUserId?.toString() === userId?.toString(), [currentUserId, userId])
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
@@ -67,17 +70,21 @@ function ProfilePage() {
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <div className={cls.ProfilePage}>
+        {
+          !profileData && (<Text title={t('Пользователь не найден')} />)
+        }
         {// watch mode
           !isEditMode && (
             <>
               <ProfileView />
-
-              <Button
-                className={cls.editButton}
-                onClick={onEditMode}
-              >
-                {t('Редактировать')}
-              </Button>
+              {canEdit && (
+                <Button
+                  className={cls.editButton}
+                  onClick={onEditMode}
+                >
+                  {t('Редактировать')}
+                </Button>
+              )}
 
               <Button
                 className={cls.backButton}
@@ -91,7 +98,7 @@ function ProfilePage() {
         }
 
         {// edit mode
-          isEditMode && (
+          isEditMode && canEdit && (
             <ProfileEditForm
               userId={userId}
               initialData={profileData}

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './NavbarLinks.module.scss'
-import { NavbarLinks as items } from '../../model/items'
-import { isUserAuth } from '@/entities/User/model/selectors/getUserAuthData/isUserAuth'
+import { getNavLinks } from '../../model/selectors/getNavLinks/getNavLinks'
+// import { isUserAuth } from '@/entities/User/model/selectors/getUserAuthData/isUserAuth'
 
 interface NavbarLinksProps {
   className?: string
@@ -16,9 +16,10 @@ export const NavbarLinks = (props: NavbarLinksProps) => {
 
   const { t } = useTranslation()
 
-  const isAuth = useSelector(isUserAuth)
+  // const isAuth = useSelector(isUserAuth)
 
-  const menuItems = useMemo(() => (isAuth ? items : items.filter((i) => !i.auth)), [isAuth])
+  // const menuItems = useMemo(() => (isAuth ? items : items.filter((i) => !i.auth)), [isAuth])
+  const menuItems = useSelector(getNavLinks)
 
   const itemsList = useMemo(() => menuItems.map((item) => (
     <NavLink

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Profile } from '../../types/profile'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 
-type ProfileId = number
+type ProfileId = string
 
 export const fetchProfileData = createAsyncThunk<Profile, ProfileId, ThunkConfig<string>>(
   'profile/fetchProfile',

@@ -6,7 +6,7 @@ import { ProfileUpdateFormFields, ValidateProfileErrors } from '../../types/Prof
 import { validateProfileData } from '../validateProfileData/validateProfileData'
 
 interface ProfileUpdateProps {
-  id: number,
+  id: string,
   data: ProfileUpdateFormFields
 }
 

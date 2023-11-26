@@ -14,7 +14,7 @@ export default {
         <div id="Navbars" />
       </>
     ),
-    StoreDecorator({ user: { authData: { id: 1 } } }),
+    StoreDecorator({ user: { authData: { id: '1' } } }),
   ],
 } as ComponentMeta<typeof Navbar>
 

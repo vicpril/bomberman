@@ -5,8 +5,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './MainPageLinks.module.scss'
 import { AppLink } from '@/shared/ui/AppLink/AppLink'
 import { RoutePaths } from '@/shared/config/routerConfig'
-import { isUserAuth } from '@/entities/User/model/selectors/getUserAuthData/isUserAuth'
-import { navbarLinks } from '@/widgets/Navbar'
+import { getNavLinks } from '@/widgets/Navbar'
 
 interface MainPageLinksProps {
   className?: string
@@ -17,15 +16,12 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
 
   const { t } = useTranslation()
 
-  const isAuth = useSelector(isUserAuth)
+  const links = useSelector(getNavLinks)
 
-  const links = useMemo(() => (
-    !isAuth
-      ? navbarLinks.filter((l) => l.path !== RoutePaths.main).filter((l) => !l.auth)
-      : navbarLinks.filter((l) => l.path !== RoutePaths.main)), [isAuth])
+  const linksMain = links.filter((l) => l.path !== RoutePaths.main)
 
   const linkComponents = useMemo(() => (
-    links.map((link) => (
+    linksMain.map((link) => (
       <AppLink
         to={link.path}
         size="l"
@@ -34,7 +30,7 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
         {t(link.text)}
       </AppLink>
     ))
-  ), [links, t])
+  ), [linksMain, t])
 
   return (
     <div className={classNames(cls.MainPageLinks, {}, [className])}>

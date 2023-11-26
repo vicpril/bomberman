@@ -30,7 +30,7 @@ export default {
   component: ProfilePage,
   decorators: [
     StoreDecorator(
-      { profile: mockState, user: { authData: { id: 1 } } },
+      { profile: mockState, user: { authData: { id: '1' } } },
       { profile: profileReducer },
     ),
   ],

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
-  ChangeEvent, useCallback, useEffect, useRef,
+  ChangeEvent, useEffect, useRef,
 } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './LoginForm.module.scss'

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesDetailPage.module.scss'
 import { ArticleDetails } from '@/entities/Article'
@@ -22,6 +23,9 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { Text } from '@/shared/ui/Text/Text'
+import { AddCommentForm } from '@/features/AddCommentForm'
+import { addCommentsByArticleId } from '../../model/services/addCommentsByArticleId/addCommentsByArticleId'
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
 
 interface ArticlesDetailPageProps {
   className?: string
@@ -46,6 +50,11 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
 
   const comments = useSelector(getArticleComments.selectAll)
   const isLoading = useSelector(getArticleDetailsIsLoading)
+  const isCommentsLoading = useSelector(getArticleCommentsIsLoading)
+
+  const onSendComment = useCallback((text: string) => {
+    dispatch(addCommentsByArticleId(text))
+  }, [dispatch])
 
   if (!id) {
     return (
@@ -60,8 +69,9 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={classNames(cls.ArticlesDetailPage, {}, [className])}>
         <ArticleDetails id={+id} />
-        <Text className={cls.commentTitle} title={t('Комментарии')} />
-        <CommentList comments={comments} isLoading={isLoading} />
+        {!isLoading && <Text className={cls.commentTitle} title={t('Комментарии')} />}
+        {!isLoading && <AddCommentForm onSendComment={onSendComment} />}
+        {!isLoading && <CommentList comments={comments} isLoading={isCommentsLoading} />}
       </div>
 
     </DynamicModuleLoader>

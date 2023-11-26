@@ -18,7 +18,7 @@ describe('Service updateProfileData.test', () => {
     }
 
     const thunk = new TestAsyncThunk(updateProfileData, { data: remoteMockValue })
-    const result = await thunk.callThunk({ data: remoteMockValue, id: 1 })
+    const result = await thunk.callThunk({ data: remoteMockValue, id: '1' })
 
     expect(thunk.api.put).toHaveBeenCalled()
     expect(result.meta.requestStatus).toBe('fulfilled')

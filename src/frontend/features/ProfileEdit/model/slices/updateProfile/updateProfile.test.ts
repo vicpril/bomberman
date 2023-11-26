@@ -43,7 +43,7 @@ describe('updateProfile.test', () => {
       isLoading: true,
     }
     expect(
-      profileUpdateReducer(state as ProfileUpdateSchema, updateProfileData.fulfilled(data, '', { data, id: 1 })),
+      profileUpdateReducer(state as ProfileUpdateSchema, updateProfileData.fulfilled(data, '', { data, id: '1' })),
     )
       .toEqual({
         isLoading: false,

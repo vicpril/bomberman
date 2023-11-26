@@ -4,7 +4,7 @@ import { CommentCard } from './CommentCard'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/CommentCard',
+  title: 'entities/CommentCard',
   component: CommentCard,
   args: {
     children: 'CommentCard',
@@ -16,4 +16,20 @@ export default {
 const Template: ComponentStory<typeof CommentCard> = (args) => <CommentCard {...args} />
 
 export const Normal = Template.bind({})
-Normal.args = {}
+Normal.args = {
+  comment: {
+    id: '1',
+    text: 'hello world',
+    user: { id: '1', username: 'Vasya' },
+  },
+}
+
+export const Loading = Template.bind({})
+Loading.args = {
+  comment: {
+    id: '1',
+    text: 'hello world',
+    user: { id: '1', username: 'Vasya' },
+  },
+  isLoading: true,
+}

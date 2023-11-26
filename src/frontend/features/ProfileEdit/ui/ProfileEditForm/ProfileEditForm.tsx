@@ -29,7 +29,7 @@ import {
 
 interface ProfileEditFormProps {
   className?: string
-  userId: number
+  userId: string
   initialData?: ProfileUpdateFormFields
   onUpdate?: (newData: Profile) => void
   onCancel?: () => void

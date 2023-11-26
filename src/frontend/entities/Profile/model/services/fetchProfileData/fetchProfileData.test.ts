@@ -14,7 +14,7 @@ describe('Service fetchProfileData.test', () => {
     }
 
     const thunk = new TestAsyncThunk(fetchProfileData, { data: remoteMockValue })
-    const result = await thunk.callThunk(1)
+    const result = await thunk.callThunk('1')
 
     expect(thunk.api.get).toHaveBeenCalled()
     expect(thunk.dispatch).toHaveBeenCalledTimes(2)
