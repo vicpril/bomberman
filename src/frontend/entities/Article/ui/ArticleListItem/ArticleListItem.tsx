@@ -27,7 +27,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
   const navigate = useNavigate()
 
   const onOpenArticle = useCallback(() => {
-    navigate(RoutePaths.articlesDetail + article.id)
+    navigate(`${RoutePaths.articlesDetail}/${article.id}`)
   }, [article.id, navigate])
 
   const types = <Text text={article.type.join(', ')} className={cls.types} />
@@ -58,7 +58,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             <ArticleBlockTextComponent block={textBlock} className={cls.textBlock} />
           )}
           <div className={cls.footer}>
-            <Button onClick={onOpenArticle} theme={ButtonTheme.Clear}>
+            <Button onClick={onOpenArticle} theme={ButtonTheme.Background}>
               {t('Читать далее...')}
             </Button>
             {views}
