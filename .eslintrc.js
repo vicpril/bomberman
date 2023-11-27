@@ -79,6 +79,7 @@ module.exports = {
     'no-constructor-return': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
+    'react/no-array-index-key': 'off',
   },
   globals: {
     __IS_DEV__: true,

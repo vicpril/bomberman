@@ -13,6 +13,10 @@ describe('fetchArticleDetailsById.test', () => {
       createdAt: 'string',
       type: [],
       blocks: [],
+      user: {
+        id: '1',
+        username: 'Ulbi tv',
+      },
     }
     const thunk = new TestAsyncThunk(fetchArticleDetailsById, {
       data: remoteMockValue,

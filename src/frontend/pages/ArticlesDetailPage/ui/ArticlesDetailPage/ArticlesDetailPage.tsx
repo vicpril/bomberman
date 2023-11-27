@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
@@ -26,6 +26,8 @@ import { Text } from '@/shared/ui/Text/Text'
 import { AddCommentForm } from '@/features/AddCommentForm'
 import { addCommentsByArticleId } from '../../model/services/addCommentsByArticleId/addCommentsByArticleId'
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
+import { RoutePaths } from '@/shared/config/routerConfig'
+import { Button, ButtonTheme, ButtonSize } from '@/shared/ui/Button/Button'
 
 interface ArticlesDetailPageProps {
   className?: string
@@ -41,6 +43,12 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
   const { id } = useParams<{id: string}>()
 
   const { t } = useTranslation('articles')
+
+  const navigate = useNavigate()
+
+  const onBackToList = useCallback(() => {
+    navigate(RoutePaths.articles)
+  }, [navigate])
 
   const dispatch = useAppDispatch()
 
@@ -68,6 +76,13 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className={classNames(cls.ArticlesDetailPage, {}, [className])}>
+        <Button
+          theme={ButtonTheme.Clear}
+          size={ButtonSize.M}
+          onClick={onBackToList}
+        >
+          {t('Назад к списку')}
+        </Button>
         <ArticleDetails id={+id} />
         {!isLoading && <Text className={cls.commentTitle} title={t('Комментарии')} />}
         {!isLoading && <AddCommentForm onSendComment={onSendComment} />}
