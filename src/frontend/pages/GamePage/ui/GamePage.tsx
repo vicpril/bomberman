@@ -23,6 +23,7 @@ import {
   GameStatus,
 } from '@/features/Game'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Page } from '@/shared/ui/Page/Page'
 
 const GamePage: FC = () => {
   const stage = useObservable(gameService.stage)
@@ -103,10 +104,10 @@ const GamePage: FC = () => {
 
   return (
     // <FullScreen handle={fullScreenHandle}>
-    <div className={classNames(cls.GamePage, {}, [])}>
+    <Page className={classNames(cls.GamePage, {}, [])}>
       { status === GameStatus.START_SCREEN && startScreen }
       { status !== GameStatus.START_SCREEN && mainScreen}
-    </div>
+    </Page>
     // </FullScreen>
   )
 }

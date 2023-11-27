@@ -1,17 +1,17 @@
 .BIG {
-    .card {
-        margin-bottom: 30px;
-    }
+  .card {
+    margin-bottom: 30px;
+  }
 }
 
 .SMALL {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    grid-gap: 30px;
-    justify-items: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-gap: 30px;
+  justify-items: center;
 
-    .card {
-        display: block;
-    }
+  .card {
+    display: block;
+  }
 }

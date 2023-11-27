@@ -28,6 +28,7 @@ import { addCommentsByArticleId } from '../../model/services/addCommentsByArticl
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
 import { RoutePaths } from '@/shared/config/routerConfig'
 import { Button, ButtonTheme, ButtonSize } from '@/shared/ui/Button/Button'
+import { Page } from '@/shared/ui/Page/Page'
 
 interface ArticlesDetailPageProps {
   className?: string
@@ -75,7 +76,7 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div className={classNames(cls.ArticlesDetailPage, {}, [className])}>
+      <Page className={classNames(cls.ArticlesDetailPage, {}, [className])}>
         <Button
           theme={ButtonTheme.Clear}
           size={ButtonSize.M}
@@ -87,7 +88,7 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
         {!isLoading && <Text className={cls.commentTitle} title={t('Комментарии')} />}
         {!isLoading && <AddCommentForm onSendComment={onSendComment} />}
         {!isLoading && <CommentList comments={comments} isLoading={isCommentsLoading} />}
-      </div>
+      </Page>
 
     </DynamicModuleLoader>
 

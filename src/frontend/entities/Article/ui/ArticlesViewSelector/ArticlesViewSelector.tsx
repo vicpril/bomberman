@@ -2,8 +2,8 @@ import { memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesViewSelector.module.scss'
 import { ArticleView } from '../../model/types/article'
-import ViewSmallIcon from '@/shared/assets/icons/list-24-24.svg'
-import ViewBiglIcon from '@/shared/assets/icons/tiled-24-24.svg'
+import ViewBigIcon from '@/shared/assets/icons/list-24-24.svg'
+import ViewSmallIcon from '@/shared/assets/icons/tiled-24-24.svg'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { Icon } from '@/shared/ui/Icon/Icon'
 
@@ -20,7 +20,7 @@ const articleViews = [
   },
   {
     view: ArticleView.BIG,
-    icon: ViewBiglIcon,
+    icon: ViewBigIcon,
   },
 ]
 
@@ -32,10 +32,11 @@ const ArticlesViewSelector = memo((props: ArticlesViewSelectorProps) => {
   }
 
   return (
-    <div className={classNames(cls.ArticlesViewSelector, {}, [className])}>
+    <div className={classNames('ArticlesViewSelector', {}, [className])}>
       {
         articleViews.map((viewType) => (
           <Button
+            key={viewType.view}
             theme={ButtonTheme.Clear}
             onClick={onClick(viewType.view)}
           >

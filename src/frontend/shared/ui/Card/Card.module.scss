@@ -1,6 +1,7 @@
 .Card {
-    padding: 15px;
-    // border-radius: 12px;
-    border: $lineWidthM solid var(--primary-color-inverted);
-    background: var(--card-bg);
+  padding: 15px;
+
+  // border-radius: 12px;
+  border: $lineWidthM solid var(--primary-color-inverted);
+  background: var(--card-bg);
 }

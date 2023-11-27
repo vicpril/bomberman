@@ -17,6 +17,7 @@ import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { ProfileView } from '@/widgets/ProfileCard'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { ProfileEditForm } from '@/features/ProfileEdit'
+import { Page } from '@/shared/ui/Page/Page'
 
 const initialReducers: ReducersList = {
   profile: profileReducer,
@@ -69,7 +70,7 @@ function ProfilePage() {
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <div className={cls.ProfilePage}>
+      <Page className={cls.ProfilePage}>
         {
           !profileData && (<Text title={t('Пользователь не найден')} />)
         }
@@ -108,7 +109,7 @@ function ProfilePage() {
           )
         }
 
-      </div>
+      </Page>
     </DynamicModuleLoader>
   )
 }

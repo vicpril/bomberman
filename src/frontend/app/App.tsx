@@ -18,10 +18,8 @@ function App() {
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">
         <Navbar />
-        <div className="contentPage">
-          {/* <Sidebar /> */}
-          <AppRouter />
-        </div>
+        {/* <Sidebar /> */}
+        <AppRouter />
       </Suspense>
 
       <div id="modals" />
