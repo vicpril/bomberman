@@ -24,7 +24,7 @@ describe('fetchArticleDetailsById.test', () => {
 
     const result = await thunk.callThunk(1)
 
-    expect(thunk.api.get).toHaveBeenCalled()
+    expect(thunk.apiJson.get).toHaveBeenCalled()
     expect(thunk.dispatch).toHaveBeenCalledTimes(2)
     expect(result.payload).toEqual(remoteMockValue)
     expect(result.meta.requestStatus).toBe('fulfilled')

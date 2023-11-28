@@ -38,8 +38,10 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '\\.png$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     axios: '<rootDir>/node_modules/axios/dist/node/axios.cjs',
     '^@/(.*)$': '<rootDir>/src/frontend/$1', // aliases for frontend
+    '^@game/(.*)$': '<rootDir>/src/game/$1', // aliases for frontend
   },
   setupFilesAfterEnv: [
     '<rootDir>config/jest/setupTests.ts',
