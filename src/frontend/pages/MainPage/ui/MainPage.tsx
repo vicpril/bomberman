@@ -2,7 +2,7 @@ import { BugButton } from '@/app/providers/ErrorBoundary'
 import cls from './MainPage.module.scss'
 import { Logo } from '@/shared/ui/Logo/Logo'
 import { MainPageLinks } from './MainPageLinks/MainPageLinks'
-import { Page } from '@/shared/ui/Page/Page'
+import { Page } from '@/widgets/Page/Page'
 
 function MainPage() {
   return (

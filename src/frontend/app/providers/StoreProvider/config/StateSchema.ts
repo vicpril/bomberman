@@ -12,9 +12,11 @@ import { ArticleDetailsSchema } from '@/entities/Article'
 import { ArticleDetailsCommentsSchema } from '@/pages/ArticlesDetailPage'
 import { AddCommentFormSchema } from '@/features/AddCommentForm'
 import { ArticlesPageSchema } from '@/pages/ArticlesPage'
+import { UISchema } from '@/features/UI'
 
 export interface StateSchema {
   user: UserSchema,
+  ui: UISchema,
 
   // асинхронные
   loginForm?: LoginSchema

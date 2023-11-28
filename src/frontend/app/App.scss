@@ -10,6 +10,9 @@
   color: var(--primary-color);
   min-height: 100vh;
   transition: background-color .2s;
+}
+
+.content-page {
   display: flex;
-  flex-flow: column
+  flex-flow: column;
 }

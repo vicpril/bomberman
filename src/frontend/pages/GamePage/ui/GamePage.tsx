@@ -23,7 +23,7 @@ import {
   GameStatus,
 } from '@/features/Game'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/shared/ui/Page/Page'
+import { Page } from '@/widgets/Page/Page'
 
 const GamePage: FC = () => {
   const stage = useObservable(gameService.stage)

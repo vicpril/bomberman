@@ -28,7 +28,7 @@ import { addCommentsByArticleId } from '../../model/services/addCommentsByArticl
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
 import { RoutePaths } from '@/shared/config/routerConfig'
 import { Button, ButtonTheme, ButtonSize } from '@/shared/ui/Button/Button'
-import { Page } from '@/shared/ui/Page/Page'
+import { Page } from '@/widgets/Page/Page'
 
 interface ArticlesDetailPageProps {
   className?: string

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Text } from '@/shared/ui/Text/Text'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './NotFoundPage.module.scss'
-import { Page } from '@/shared/ui/Page/Page'
+import { Page } from '@/widgets/Page/Page'
 
 const GamePage: FC = () => {
   const { t } = useTranslation()

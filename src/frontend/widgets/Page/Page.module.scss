@@ -1,0 +1,13 @@
+.Page {
+  @include appContainer;
+  flex-grow: 1;
+  height: calc(100vh - #{$headerHeight} - 4px);
+  overflow-y: auto;
+  flex-shrink: 100;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.intersectedElement {
+  height: 1px;
+}
