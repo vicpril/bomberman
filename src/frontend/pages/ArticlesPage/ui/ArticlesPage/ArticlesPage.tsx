@@ -12,6 +12,7 @@ import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 import {
+  getArticlesPageInited,
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors'
@@ -19,6 +20,7 @@ import { Page } from '@/shared/ui/Page/Page'
 import {
   fetchNextArticlesPage,
 } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
 
 interface ArticlesPageProps {
   className?: string
@@ -35,6 +37,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const isLoading = useSelector(getArticlesPageIsLoading)
   const view = useSelector(getArticlesPageView)
 
+  const inited = useSelector(getArticlesPageInited)
+
   const dispatch = useAppDispatch()
 
   const onLoadNextPart = useCallback(() => {
@@ -42,8 +46,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   }, [dispatch])
 
   useMountEffect(() => {
-    dispatch(articlesPageActions.initView())
-    dispatch(fetchArticlesList({ page: 1 }))
+    dispatch(initArticlesPage())
   })
 
   const onViewChange = useCallback((view: ArticleView) => {
@@ -51,7 +54,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   }, [dispatch])
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 
       <Page
         className={classNames(cls.ArticlesPage, {}, [className])}

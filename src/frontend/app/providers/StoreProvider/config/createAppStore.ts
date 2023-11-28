@@ -10,7 +10,6 @@ import { ThunkExtraArgs } from './types'
 export const createAppStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
-  navigate?: NavigateFunction,
 ) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -22,7 +21,6 @@ export const createAppStore = (
   const extraArg: ThunkExtraArgs = {
     api: $api,
     apiJson: $apiJson,
-    navigate,
   }
 
   const store = configureStore({

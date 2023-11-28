@@ -1,36 +1,38 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk'
-import { fetchNextArticlesPage } from './fetchNextArticlesPage'
+import { initArticlesPage } from './initArticlesPage'
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
 
 jest.mock('../fetchArticlesList/fetchArticlesList')
 
-describe('fetchNextArticlesPage.test', () => {
-  test('success', async () => {
-    const thunk = new TestAsyncThunk(fetchNextArticlesPage, {}, {
+describe('initArticlesPage.test', () => {
+  test('init done', async () => {
+    const thunk = new TestAsyncThunk(initArticlesPage, {}, {
       articlesPage: {
-        page: 2,
+        page: 1,
         ids: [],
         entities: {},
         limit: 5,
         isLoading: false,
         hasMore: true,
+        _inited: false,
       },
     })
 
     await thunk.callThunk()
 
     expect(thunk.dispatch).toBeCalledTimes(4)
-    expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 })
+    expect(fetchArticlesList).toHaveBeenCalledWith({ page: 1 })
   })
-  test('fetchAritcleList not called', async () => {
-    const thunk = new TestAsyncThunk(fetchNextArticlesPage, {}, {
+  test('init dont doubled', async () => {
+    const thunk = new TestAsyncThunk(initArticlesPage, {}, {
       articlesPage: {
-        page: 2,
+        page: 1,
         ids: [],
         entities: {},
         limit: 5,
         isLoading: false,
-        hasMore: false,
+        hasMore: true,
+        _inited: true,
       },
     })
 
