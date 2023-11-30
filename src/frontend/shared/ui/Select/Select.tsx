@@ -1,33 +1,35 @@
 import React, {
-  ChangeEvent, useMemo,
+  ChangeEvent, memo, useMemo,
 } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Select.module.scss'
+import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
 
 type CustomSelectAttributes = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'>
 
-export type SelectOption = {
-  value: string | number,
+export type SelectOption<T extends string | number = string> = {
+  value: T,
   label: string
 }
 
-interface SelectProps extends CustomSelectAttributes {
+interface SelectProps<T extends string | number = string> extends CustomSelectAttributes {
   className?: string
-  value?: string | number
-  options: SelectOption[]
-  onChange?: (value: string) => void
+  value?: T
+  options: SelectOption<T>[]
+  onChange?: (value: T) => void
   label?: string
   readonly?: boolean
+  denyResponsive?: boolean
 }
 
-export const Select = (props: SelectProps) => {
+const Component = <T extends string | number = string>(props: SelectProps<T>) => {
   const {
-    options, className, label, onChange, value, readonly,
+    options, className, label, onChange, value, readonly, denyResponsive,
   } = props
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     if (onChange) {
-      onChange(e.target.value)
+      onChange(e.target.value as T)
     }
   }
 
@@ -36,8 +38,8 @@ export const Select = (props: SelectProps) => {
   )), [options])
 
   return (
-    <div className={classNames(cls.SelectWrapper, {}, [className])}>
-      <div className={cls.label}>{label ? `${label}>` : ''}</div>
+    <div className={classNames(cls.SelectWrapper, { [cls._responsive]: !denyResponsive }, [className])}>
+      {label && <div className={cls.label}>{label ? `${label}>` : ''}</div> }
       <select
         className={cls.select}
         value={value}
@@ -49,3 +51,5 @@ export const Select = (props: SelectProps) => {
     </div>
   )
 }
+
+export const Select = genericMemo(Component)

@@ -5,21 +5,43 @@ import {
 } from '../../selectors/articlesPageSelectors'
 import { articlesPageActions } from '../../slices/articlesPageSlice'
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
+import { SortOrder } from '@/shared/types'
+import { ArticleSortProps } from '@/features/ArticlesFilters/model/types/articlesFilters'
+import { articleFiltersActions } from '@/features/ArticlesFilters'
+import { ArticleType } from '@/entities/Article/model/types/article'
 
 export const initArticlesPage = createAsyncThunk<
     void,
-    void,
+    URLSearchParams | void,
     ThunkConfig<string>
     >(
       'articlesPage/initArticlesPage',
-      async (_, thunkApi) => {
+      async (searchParams, thunkApi) => {
         const { getState, dispatch } = thunkApi
 
         const inited = getArticlesPageInited(getState())
 
         if (!inited) {
+          const orderFromUrl = searchParams?.get('order') as SortOrder
+          const sortFromUrl = searchParams?.get('sort') as ArticleSortProps
+          const searchFromUrl = searchParams?.get('search')
+          const typeFromUrl = searchParams?.get('type') as ArticleType
+
+          if (orderFromUrl) {
+            dispatch(articleFiltersActions.setOrder(orderFromUrl))
+          }
+          if (sortFromUrl) {
+            dispatch(articleFiltersActions.setSort(sortFromUrl))
+          }
+          if (searchFromUrl) {
+            dispatch(articleFiltersActions.setSearch(searchFromUrl))
+          }
+          if (typeFromUrl) {
+            dispatch(articleFiltersActions.setType(typeFromUrl))
+          }
+
           dispatch(articlesPageActions.initView())
-          dispatch(fetchArticlesList({ page: 1 }))
+          dispatch(fetchArticlesList({ replace: true }))
         }
       },
     )

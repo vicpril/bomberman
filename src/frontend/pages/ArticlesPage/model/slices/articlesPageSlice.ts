@@ -33,6 +33,9 @@ const articlesPageSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload
     },
+    setHasMore: (state, action: PayloadAction<boolean>) => {
+      state.hasMore = action.payload
+    },
     initView: (state) => {
       const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView ?? ArticleView.SMALL
       state.view = view
@@ -41,15 +44,23 @@ const articlesPageSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchArticlesList.pending, (state) => {
+    builder.addCase(fetchArticlesList.pending, (state, action) => {
       state.isLoading = true
       state.error = undefined
+      if (action.meta.arg?.replace) {
+        articlesAdapter.setAll(state, [])
+      }
     })
     builder.addCase(fetchArticlesList.fulfilled, (state, action) => {
       state.isLoading = false
       state.error = undefined
-      articlesAdapter.addMany(state, action.payload)
-      state.hasMore = action.payload.length > 0
+      if (action.meta.arg?.replace) {
+        articlesAdapter.setAll(state, action.payload)
+      } else {
+        articlesAdapter.addMany(state, action.payload)
+      }
+      // вынесен в async thunc
+      // state.hasMore = action.payload.length > 0
     })
     builder.addCase(fetchArticlesList.rejected, (state, action) => {
       state.isLoading = false

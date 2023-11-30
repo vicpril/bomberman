@@ -1,7 +1,10 @@
 .SelectWrapper {
-  width: 100%;
   display: flex;
   align-items: center;
+  
+  &._responsive {
+    width: 100%;
+  }
 }
 
 .label {
