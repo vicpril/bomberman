@@ -9,7 +9,7 @@ import { UserSchema } from '@/entities/User'
 import { ProfileSchema } from '@/entities/Profile'
 import { ProfileUpdateSchema } from '@/features/ProfileEdit'
 import { ArticleDetailsSchema } from '@/entities/Article'
-import { ArticleDetailsCommentsSchema } from '@/pages/ArticlesDetailPage'
+import { ArticleDetailsPageSchema } from '@/pages/ArticlesDetailPage'
 import { AddCommentFormSchema } from '@/features/AddCommentForm'
 import { ArticlesPageSchema } from '@/pages/ArticlesPage'
 import { UISchema } from '@/features/UI'
@@ -24,7 +24,7 @@ export interface StateSchema {
   profile?: ProfileSchema
   profileUpdate?: ProfileUpdateSchema
   articleDetails?: ArticleDetailsSchema
-  articleDetailsComments?: ArticleDetailsCommentsSchema
+  articleDetailsPage?: ArticleDetailsPageSchema
   addCommentForm?: AddCommentFormSchema
   articlesPage?: ArticlesPageSchema
   articleFilters?: ArticleFiltersSchema

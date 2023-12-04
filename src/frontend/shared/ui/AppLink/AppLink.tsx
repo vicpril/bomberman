@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { AnchorHTMLAttributes, FC } from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './AppLink.module.scss'
@@ -13,6 +13,7 @@ interface AppLinkProps extends LinkProps {
   theme?: AppLinkTheme
   size?: AppLinkSize
   bombed?: boolean
+  target?: AnchorHTMLAttributes<HTMLAnchorElement>['target']
 }
 
 export const AppLink: FC<AppLinkProps> = (props) => {
@@ -23,6 +24,7 @@ export const AppLink: FC<AppLinkProps> = (props) => {
     theme = 'primary',
     size = 's',
     bombed,
+    target,
     ...otherProps
   } = props
 
@@ -30,6 +32,7 @@ export const AppLink: FC<AppLinkProps> = (props) => {
     <div className={classNames(cls.AppLink, { [cls._bombed]: bombed }, [cls[`_size_${size}`]])}>
       <Link
         to={to}
+        target={target}
         className={classNames(cls.link, {}, [className, cls[theme]])}
         {...otherProps}
       >

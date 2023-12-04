@@ -1,10 +1,14 @@
 .Code {
-  border: 1px solid var(--primary-color);
-  padding: 20px;
   position: relative;
-  background: var(--code-bg);
-  overflow: auto;
-  font: var(--font-l)
+  width: 100%;
+
+  > .pre {
+    border: 1px solid var(--primary-color);
+    padding: 20px;
+    background: var(--code-bg);
+    overflow: auto;
+    font: var(--font-l)
+  }
 }
 
 .copyBtn {

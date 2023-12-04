@@ -72,7 +72,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
           onChange={onFiltersChange}
         />
         <ArticleList
-          className={cls.list}
           isLoading={isLoading}
           view={view}
           articles={articles}

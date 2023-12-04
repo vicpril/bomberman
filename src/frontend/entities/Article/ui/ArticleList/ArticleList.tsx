@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { AnchorHTMLAttributes, memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import cls from './ArticleList.module.scss'
@@ -10,6 +10,8 @@ interface ArticleListProps {
     articles: Article[]
     isLoading?: boolean;
     view?: ArticleView;
+    inline?: boolean;
+    target?: AnchorHTMLAttributes<HTMLAnchorElement>['target'];
 }
 
 const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 9 : 3)
@@ -22,8 +24,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
   const {
     className,
     articles,
-    view = ArticleView.SMALL,
     isLoading,
+    view = ArticleView.SMALL,
+    inline = false,
+    target,
   } = props
 
   const renderArticle = (article: Article) => (
@@ -32,11 +36,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
       view={view}
       className={cls.card}
       key={article.id}
+      target={target}
     />
   )
 
   return (
-    <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+    <div className={classNames(cls.ArticleList, { [cls._inline]: inline }, [className, cls[view]])}>
       {articles.length > 0
         ? articles.map(renderArticle)
         : null}

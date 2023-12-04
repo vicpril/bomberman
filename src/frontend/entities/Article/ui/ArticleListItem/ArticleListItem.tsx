@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { memo, useCallback } from 'react'
+import { AnchorHTMLAttributes, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Text } from '@/shared/ui/Text/Text'
@@ -14,15 +14,19 @@ import {
 } from '../../model/types/article'
 import { RoutePaths } from '@/shared/config/routerConfig'
 import { ArticleBlockTextComponent } from '../ArticleBlockTextComponent/ArticleBlockTextComponent'
+import { AppLink } from '@/shared/ui/AppLink/AppLink'
 
 interface ArticleListItemProps {
     className?: string;
     article: Article;
     view: ArticleView;
+    target?: AnchorHTMLAttributes<HTMLAnchorElement>['target']
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-  const { className, article, view } = props
+  const {
+    className, article, view, target,
+  } = props
   const { t } = useTranslation()
   const navigate = useNavigate()
 
@@ -69,8 +73,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
   }
 
   return (
-    <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
-      <Card className={cls.card} onClick={onOpenArticle}>
+    <AppLink
+      className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+      to={`${RoutePaths.articlesDetail}/${article.id}`}
+      target={target}
+    >
+      <Card className={cls.card}>
         <div className={cls.imageWrapper}>
           <img alt={article.title} src={article.img} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />
@@ -81,6 +89,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         </div>
         <Text text={article.title} className={cls.title} />
       </Card>
-    </div>
+    </AppLink>
   )
 })
