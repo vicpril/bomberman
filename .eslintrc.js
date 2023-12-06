@@ -21,6 +21,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'fsd-project',
   ],
   rules: {
     'react/jsx-indent': [2, 2],
@@ -81,6 +82,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
+    'fsd-project/path-checker': 'error',
   },
   globals: {
     __IS_DEV__: true,

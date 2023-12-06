@@ -1,8 +1,8 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
 import LoginForm from './LoginForm'
+import { loginReducer } from '../../model/slice/loginSlice'
 
 export default {
   title: 'features/LoginForm',
