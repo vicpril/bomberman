@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Text, TextTheme } from '@/shared/ui/Text/Text'
+import { Text, TextTheme, TextSize } from '@/shared/ui/Text/Text'
 
 export default {
   title: 'shared/Text',
@@ -15,6 +15,27 @@ export const Primary = Template.bind({})
 Primary.args = {
   title: 'Title lorem ipsun',
   text: 'Description Description Description Description',
+}
+
+export const SizeL = Template.bind({})
+SizeL.args = {
+  title: 'Title lorem ipsun',
+  text: 'Description Description Description Description',
+  size: TextSize.L,
+}
+
+export const SizeM = Template.bind({})
+SizeM.args = {
+  title: 'Title lorem ipsun',
+  text: 'Description Description Description Description',
+  size: TextSize.M,
+}
+
+export const SizeS = Template.bind({})
+SizeS.args = {
+  title: 'Title lorem ipsun',
+  text: 'Description Description Description Description',
+  size: TextSize.S,
 }
 
 export const Error = Template.bind({})

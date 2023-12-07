@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './NavbarLinks.module.scss'
 import { getNavLinks } from '../../model/selectors/getNavLinks/getNavLinks'
+import { HStack } from '@/shared/ui/Stack'
 // import { isUserAuth } from '@/entities/User/model/selectors/getUserAuthData/isUserAuth'
 
 interface NavbarLinksProps {
@@ -32,9 +33,15 @@ export const NavbarLinks = (props: NavbarLinksProps) => {
   )), [t, menuItems])
 
   return (
-    <div className={classNames(cls.NavbarLinks, {}, [className])}>
+    <HStack
+      gap="16"
+      align="center"
+      max
+      role="navigation"
+      className={classNames('NavbarLinks', {}, [className])}
+    >
       {itemsList}
-    </div>
+    </HStack>
 
   )
 }

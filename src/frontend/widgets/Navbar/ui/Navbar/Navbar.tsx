@@ -14,7 +14,7 @@ export const Navbar = (props: NavbarProps) => {
   const { className } = props
 
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
+    <nav className={classNames(cls.Navbar, {}, [className])}>
 
       <div className={cls.container}>
         <HStack
@@ -40,7 +40,7 @@ export const Navbar = (props: NavbarProps) => {
           <NavbarUser />
         </HStack>
       </div>
-    </div>
+    </nav>
 
   )
 }
