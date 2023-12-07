@@ -18,6 +18,7 @@ import { ProfileView } from '@/widgets/ProfileCard'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { ProfileEditForm } from '@/features/ProfileEdit'
 import { Page } from '@/widgets/Page/Page'
+import { VStack } from '@/shared/ui/Stack'
 
 const initialReducers: ReducersList = {
   profile: profileReducer,
@@ -71,43 +72,45 @@ function ProfilePage() {
   return (
     <DynamicModuleLoader reducers={initialReducers}>
       <Page className={cls.ProfilePage}>
-        {
-          !profileData && (<Text title={t('Пользователь не найден')} />)
-        }
-        {// watch mode
-          !isEditMode && (
-            <>
-              <ProfileView />
-              {canEdit && (
+        <VStack gap="32">
+          {
+            !profileData && (<Text title={t('Пользователь не найден')} />)
+          }
+          {// watch mode
+            !isEditMode && (
+              <>
+                <ProfileView />
+                {canEdit && (
+                  <Button
+                    className={cls.editButton}
+                    onClick={onEditMode}
+                  >
+                    {t('Редактировать')}
+                  </Button>
+                )}
+
                 <Button
-                  className={cls.editButton}
-                  onClick={onEditMode}
+                  className={cls.backButton}
+                  theme={ButtonTheme.Clear}
+                  onClick={onBackClick}
                 >
-                  {t('Редактировать')}
+                  {t('Назад')}
                 </Button>
-              )}
+              </>
+            )
+          }
 
-              <Button
-                className={cls.backButton}
-                theme={ButtonTheme.Clear}
-                onClick={onBackClick}
-              >
-                {t('Назад')}
-              </Button>
-            </>
-          )
-        }
-
-        {// edit mode
-          isEditMode && canEdit && (
-            <ProfileEditForm
-              userId={userId}
-              initialData={profileData}
-              onCancel={onCancelHandler}
-              onUpdate={onUpdateProfileHandler}
-            />
-          )
-        }
+          {// edit mode
+            isEditMode && canEdit && (
+              <ProfileEditForm
+                userId={userId}
+                initialData={profileData}
+                onCancel={onCancelHandler}
+                onUpdate={onUpdateProfileHandler}
+              />
+            )
+          }
+        </VStack>
 
       </Page>
     </DynamicModuleLoader>

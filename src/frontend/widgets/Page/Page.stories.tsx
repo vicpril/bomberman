@@ -4,7 +4,7 @@ import { Page } from './Page'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/Page',
+  title: 'widgets/Page',
   component: Page,
   args: {
     children: 'Page',

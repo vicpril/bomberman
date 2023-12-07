@@ -4,6 +4,7 @@ import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
 import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
 import { LanguageSwitcher } from '@/widgets/LanguageSwitcher'
 import { NavbarUser } from '../NavbarUser/NavbarUser'
+import { HStack } from '@/shared/ui/Stack'
 
 interface NavbarProps {
   className?: string
@@ -16,16 +17,28 @@ export const Navbar = (props: NavbarProps) => {
     <div className={classNames(cls.Navbar, {}, [className])}>
 
       <div className={cls.container}>
-        <div className={cls.switchers}>
+        <HStack
+          align="center"
+          justify="start"
+          className={cls.switchers}
+        >
           <LanguageSwitcher short />
           <ThemeSwitcher />
-        </div>
-        <div className={cls.links}>
+        </HStack>
+        <HStack
+          align="center"
+          justify="center"
+          className={cls.links}
+        >
           <NavbarLinks />
-        </div>
-        <div className={cls.user}>
+        </HStack>
+        <HStack
+          align="center"
+          justify="end"
+          className={cls.user}
+        >
           <NavbarUser />
-        </div>
+        </HStack>
       </div>
     </div>
 

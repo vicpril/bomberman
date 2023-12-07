@@ -4,7 +4,7 @@ import { Modal } from './Modal'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/Modal',
+  title: 'widgets/Modal',
   component: Modal,
   decorators: [
     (Story) => (

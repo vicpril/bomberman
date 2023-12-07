@@ -7,6 +7,7 @@ import { Text } from '@/shared/ui/Text/Text'
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton'
 import { AppLink } from '@/shared/ui/AppLink/AppLink'
 import { RoutePaths } from '@/shared/config/routerConfig'
+import { HStack } from '@/shared/ui/Stack'
 
 interface CommentCardProps {
   className?: string
@@ -20,10 +21,10 @@ const CommentCard = memo((props: CommentCardProps) => {
   if (isLoading) {
     return (
       <div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
-        <div className={cls.header}>
+        <HStack max gap="16">
           <Skeleton width={30} height={30} border="50%" />
-          <Skeleton height={16} width={100} className={cls.username} />
-        </div>
+          <Skeleton height={16} width={100} />
+        </HStack>
         <Skeleton className={cls.text} width="100%" height={50} />
       </div>
     )
@@ -36,8 +37,10 @@ const CommentCard = memo((props: CommentCardProps) => {
   return (
     <div className={classNames(cls.CommentCard, {}, [className])}>
       <AppLink className={cls.header} to={`${RoutePaths.profile}/${comment.user.id}`}>
-        {comment.user.avatar ? <Avatar size={30} src={comment.user.avatar} /> : null}
-        <Text className={cls.username} title={comment.user.username} />
+        <HStack max gap="16">
+          {comment.user.avatar ? <Avatar size={30} src={comment.user.avatar} /> : null}
+          <Text title={comment.user.username} />
+        </HStack>
       </AppLink>
       <Text className={cls.text} text={comment.text} />
     </div>

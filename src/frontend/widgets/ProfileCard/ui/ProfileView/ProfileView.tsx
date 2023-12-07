@@ -8,6 +8,7 @@ import defaultAvatar from '@/shared/assets/icons/logo_img_base.png'
 import {
   getProfileData, getProfileIsLoading,
 } from '@/entities/Profile'
+import { HStack, VStack } from '@/shared/ui/Stack'
 
 interface ProfileViewProps {
   className?: string
@@ -26,15 +27,19 @@ export const ProfileView = (props: ProfileViewProps) => {
   }
 
   return (
-    <div className={classNames(cls.ProfileView, {}, [className])}>
+    <VStack gap="32" className={classNames(cls.ProfileView, {}, [className])}>
       {
         profileData
         && (
           <>
-            <div className={cls.avatarContainer}>
+            <HStack
+              align="center"
+              justify="center"
+              className={cls.avatarContainer}
+            >
               <img className={cls.avatar} src={profileData?.avatar || defaultAvatar} alt={t('Аватар')} />
-            </div>
-            <div className={cls.infoContainer}>
+            </HStack>
+            <VStack gap="32" className={cls.infoContainer}>
               <ProfileField
                 className="username"
                 label={t('Пользователь')}
@@ -65,10 +70,10 @@ export const ProfileView = (props: ProfileViewProps) => {
                 label={t('Страна')}
                 value={profileData?.country}
               />
-            </div>
+            </VStack>
           </>
         )
       }
-    </div>
+    </VStack>
   )
 }

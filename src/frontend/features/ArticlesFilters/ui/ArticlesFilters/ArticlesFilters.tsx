@@ -24,6 +24,7 @@ import {
 import { Tabs } from '@/shared/ui/Tabs/Tabs'
 import { articleTypeOptions, ArticleType } from '@/entities/Article/model/types/article'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
+import { HStack } from '@/shared/ui/Stack'
 
 interface ArticlesFiltersProps {
   className?: string
@@ -81,7 +82,12 @@ const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
 
       <div className={classNames(cls.ArticlesFilters, {}, [className])}>
         <ArticlesViewSelector view={view} onViewChange={onViewChange} className={cls.view} />
-        <div className={cls.sortWrapper}>
+        <HStack
+          className={cls.sortWrapper}
+          wrap="wrap"
+          align="center"
+          gap="8"
+        >
           <span>
             {t('Сортировать по')}
             :
@@ -98,7 +104,7 @@ const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
             onChange={onOrderChange}
             denyResponsive
           />
-        </div>
+        </HStack>
         <div className={cls.search}>
           <Input
             placeholder={t('Поиск')}

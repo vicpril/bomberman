@@ -4,7 +4,7 @@ import { ArticlesViewSelector } from './ArticlesViewSelector'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/ArticlesViewSelector',
+  title: 'entities/ArticlesViewSelector',
   component: ArticlesViewSelector,
   args: {
     children: 'ArticlesViewSelector',

@@ -25,6 +25,7 @@ import { Avatar } from '@/shared/ui/Avatar/Avatar'
 import { Icon } from '@/shared/ui/Icon/Icon'
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
+import { HStack, VStack } from '@/shared/ui/Stack'
 
 interface ArticleDetailsProps {
   className?: string,
@@ -103,14 +104,14 @@ const ArticleDetails = memo((props: ArticleDetailsProps) => {
     )
   } else {
     content = (
-      <>
-        <div className={cls.avatarWrapper}>
+      <VStack max gap="8" align="start">
+        <HStack justify="center" max>
           <Avatar
             size={200}
             src={article?.img}
             className={cls.avatar}
           />
-        </div>
+        </HStack>
         <Text
           className={cls.title}
           title={article?.title}
@@ -118,16 +119,16 @@ const ArticleDetails = memo((props: ArticleDetailsProps) => {
           align={TextAlign.Left}
           size={TextSize.L}
         />
-        <div className={cls.articleInfo}>
+        <HStack align="center">
           <Icon className={cls.icon} Svg={EyeIcon} />
           <Text text={String(article?.views)} />
-        </div>
-        <div className={cls.articleInfo}>
+        </HStack>
+        <HStack align="center">
           <Icon className={cls.icon} Svg={CalendarIcon} />
           <Text text={article?.createdAt} />
-        </div>
+        </HStack>
         {article?.blocks.map(renderBlock)}
-      </>
+      </VStack>
     )
   }
 

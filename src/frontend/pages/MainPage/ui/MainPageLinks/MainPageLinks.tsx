@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './MainPageLinks.module.scss'
 import { AppLink } from '@/shared/ui/AppLink/AppLink'
 import { RoutePaths } from '@/shared/config/routerConfig'
 import { getNavLinks } from '@/widgets/Navbar'
+import { VStack } from '@/shared/ui/Stack'
 
 interface MainPageLinksProps {
   className?: string
@@ -33,10 +33,14 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
   ), [linksMain, t])
 
   return (
-    <div className={classNames(cls.MainPageLinks, {}, [className])}>
+    <VStack
+      gap="32"
+      justify="center"
+      className={classNames('', {}, [className])}
+    >
       {...linkComponents}
 
-    </div>
+    </VStack>
 
   )
 }

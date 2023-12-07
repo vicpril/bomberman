@@ -26,6 +26,7 @@ import { Country, CountrySelect } from '@/entities/Country'
 import {
   getUpdateProfileValidateErrors,
 } from '../../model/selectors/getUpdateProfileValidateErrors/getUpdateProfileValidateErrors'
+import { HStack, VStack } from '@/shared/ui/Stack'
 
 interface ProfileEditFormProps {
   className?: string
@@ -94,25 +95,24 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
   const onCancelHandler = onCancel
 
   const errorsBlock = useMemo(() => errors && (
-    <div className={cls.errors}>
+    <VStack justify="center" max gap="16">
       {errors.map((error) => (
         (
           <Text
             key={error}
-            className={cls.error}
             theme={TextTheme.ERROR}
             text={valideteErrorsTranslations[error]}
           />
         )
       ))}
-    </div>
+    </VStack>
   ), [errors, valideteErrorsTranslations])
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <div className={classNames(cls.ProfileEditForm, {}, [className])}>
+      <VStack gap="32" className={classNames(cls.ProfileEditForm, {}, [className])}>
         {errorsBlock}
-        <div className={cls.inputs}>
+        <VStack max gap="16">
           <Input
             placeholder={t('Фамилия')}
             value={form.firstname}
@@ -136,25 +136,27 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
             value={form.country}
             onChange={onCountryChange}
           />
-        </div>
-        <div className={cls.buttons}>
+        </VStack>
+        <HStack
+          justify="between"
+          gap="32"
+          max
+        >
           <Button
-            className={cls.saveButton}
             onClick={onSubmitHandler}
             size={ButtonSize.M}
           >
             {t('Сохранить')}
           </Button>
           <Button
-            className={cls.cancelButton}
             onClick={onCancelHandler}
             size={ButtonSize.M}
           >
             {t('Отмена')}
           </Button>
-        </div>
+        </HStack>
         {isLoading && (<Loader className={cls.loader} size={LoaderSize.S} />)}
-      </div>
+      </VStack>
 
     </DynamicModuleLoader>
 

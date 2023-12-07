@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesDetailPage.module.scss'
 import { ArticleDetails, ArticleList } from '@/entities/Article'
