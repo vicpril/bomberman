@@ -129,10 +129,12 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
             onChange={onAgeChange}
           />
           <CurrencySelect
+            className={cls.select}
             value={form.currency}
             onChange={onCurrencyChange}
           />
           <CountrySelect
+            className={cls.select}
             value={form.country}
             onChange={onCountryChange}
           />

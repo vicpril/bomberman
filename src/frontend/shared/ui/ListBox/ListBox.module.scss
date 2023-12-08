@@ -1,0 +1,50 @@
+.ListBox {
+  .label {}
+
+  .container {
+    position: relative;
+  }
+  
+
+  .trigger {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .options {
+    position: absolute;
+    z-index: 10000;
+    min-width: 100%;
+    background: var(--bg-color);
+    outline: none;
+    color: var(--primary-color);
+    border: $lineWidthM solid var(--primary-color);
+  }
+
+  .option {
+    padding: 10px 20px;
+    white-space: nowrap;
+  }
+
+  .selected {
+    color: var(--secondary-color);
+  }
+  
+  .active {
+    color: var(--secondary-color);
+    background: var(--card-bg);
+    cursor: pointer;
+  }
+
+  .disabled {
+    opacity: 0.7;
+  }
+
+  .optionsTop {
+    bottom: 100%;
+  }
+
+}
