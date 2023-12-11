@@ -6,16 +6,17 @@ import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
 import { SelectOption } from '@/shared/ui/Select/Select'
 import { HStack } from '../Stack'
 import { Button, ButtonSize } from '../Button/Button'
+import { DropdownDirection } from '@/shared/types/ui'
 
 type ListBoxOption<T extends string | number = string> = SelectOption<T> & {
   disabled?: boolean
 }
 
-type DropdownDirection = 'top' | 'bottom';
-
 const mapDirectionClass: Record<DropdownDirection, string> = {
-  bottom: cls.optionsBottom,
-  top: cls.optionsTop,
+  'bottom left': cls.optionsBottomLeft,
+  'bottom right': cls.optionsBottomRight,
+  'top left': cls.optionsTopLeft,
+  'top right': cls.optionsTopRight,
 }
 
 interface ListBoxProps<T extends string | number> {
@@ -38,7 +39,7 @@ const ListBoxComponent = <T extends string | number = string>(props: ListBoxProp
     onChange,
     defaultValue,
     readonly,
-    direction = 'bottom',
+    direction = 'bottom left',
   } = props
 
   const optionsClasses = [mapDirectionClass[direction]]
@@ -57,7 +58,7 @@ const ListBoxComponent = <T extends string | number = string>(props: ListBoxProp
       <HListBox
         disabled={readonly}
         as="div"
-        className={classNames(cls.container, {}, [className])}
+        className={cls.container}
         value={value}
         onChange={onChange}
       >

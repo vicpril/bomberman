@@ -29,3 +29,39 @@ Normal.args = {
   value: '',
   defaultValue: 'Выберите',
 }
+
+export const TopLeft = Template.bind({})
+TopLeft.args = {
+  options: items,
+  label: 'Label',
+  value: '',
+  defaultValue: 'Выберите',
+  direction: 'top left',
+}
+
+export const TopRight = Template.bind({})
+TopRight.args = {
+  options: items,
+  label: 'Label',
+  value: '',
+  defaultValue: 'Выберите',
+  direction: 'top right',
+}
+
+export const BottomLeft = Template.bind({})
+BottomLeft.args = {
+  options: items,
+  label: 'Label',
+  value: '',
+  defaultValue: 'Выберите',
+  direction: 'bottom left',
+}
+
+export const BottomRight = Template.bind({})
+BottomRight.args = {
+  options: items,
+  label: 'Label',
+  value: '',
+  defaultValue: 'Выберите',
+  direction: 'bottom right',
+}
