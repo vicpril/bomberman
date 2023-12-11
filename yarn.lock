@@ -8050,7 +8050,7 @@ from2@^2.1.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
 
-fs-extra@^10.1.0:
+fs-extra@^10.0.0, fs-extra@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
@@ -9895,6 +9895,14 @@ jest-haste-map@^29.5.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
+jest-html-reporters@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/jest-html-reporters/-/jest-html-reporters-3.1.5.tgz#291e09e94e0aae6a3513a3da4f8edaaf93d9bb4c"
+  integrity sha512-uw5w9j8nqxrki3VfXkHwz1bU0coyHuNNOmSSzJK8hLvImYNvIy4SHhTs9pPcI8E0nEnbqIXKxdRUb6qsHZUNIw==
+  dependencies:
+    fs-extra "^10.0.0"
+    open "^8.0.3"
+
 jest-leak-detector@^29.5.0:
   version "29.5.0"
   resolved "https://registry.yarnpkg.com/jest-leak-detector/-/jest-leak-detector-29.5.0.tgz#cf4bdea9615c72bac4a3a7ba7e7930f9c0610c8c"
@@ -11699,7 +11707,7 @@ open@^7.0.3:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
-open@^8.0.9, open@^8.4.0:
+open@^8.0.3, open@^8.0.9, open@^8.4.0:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/open/-/open-8.4.2.tgz#5b5ffe2a8f793dcd2aad73e550cb87b59cb084f9"
   integrity sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==
