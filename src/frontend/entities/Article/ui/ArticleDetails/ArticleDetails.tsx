@@ -29,7 +29,7 @@ import { HStack, VStack } from '@/shared/ui/Stack'
 
 interface ArticleDetailsProps {
   className?: string,
-  id: number
+  id: string
 }
 
 const reducers: ReducersList = {
@@ -76,7 +76,7 @@ const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
-      dispatch(fetchArticleDetailsById(id))
+      dispatch(fetchArticleDetailsById(+id))
     }
   }, [dispatch, id])
 

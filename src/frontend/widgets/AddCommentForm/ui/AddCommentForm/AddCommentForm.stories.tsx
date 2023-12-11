@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'features/AddCommentForm',
+  title: 'widgets/AddCommentForm',
   component: AddCommentForm,
   args: {
     children: 'AddCommentForm',

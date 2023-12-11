@@ -7,8 +7,10 @@ import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/Dynami
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
 import { profileReducer } from '@/entities/Profile'
 import { articleDetailsReducer } from '@/entities/Article/model/slices/articleDetailsSlice'
-import { addCommentFormReducer } from '@/features/AddCommentForm/model/slices/AddCommentFormSlice'
-import { articleDetailsPageReducer } from '@/pages/ArticlesDetailPage/model/slices'
+import { addCommentFormReducer } from '@/widgets/AddCommentForm/model/slices/AddCommentFormSlice'
+import {
+  articleCommentsListReducer,
+} from '@/features/ArticleCommentsList/model/slices/ArticleCommentsListSlice'
 
 const defaultAsyncReducers: ReducersList = {
   // loginForm: loginReducer,
@@ -17,7 +19,7 @@ const defaultAsyncReducers: ReducersList = {
   profile: profileReducer,
   articleDetails: articleDetailsReducer,
   addCommentForm: addCommentFormReducer,
-  articleDetailsPage: articleDetailsPageReducer,
+  articleCommentsList: articleCommentsListReducer,
 }
 
 export const StoreDecorator = (

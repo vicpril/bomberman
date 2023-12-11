@@ -1,4 +1,4 @@
-import { BugButton } from '@/app/providers/ErrorBoundary'
+// import { BugButton } from '@/app/providers/ErrorBoundary'
 import cls from './MainPage.module.scss'
 import { Logo } from '@/shared/ui/Logo/Logo'
 import { MainPageLinks } from './MainPageLinks/MainPageLinks'
@@ -15,7 +15,7 @@ function MainPage() {
       >
         <Logo className={cls.logo} />
         <MainPageLinks className={cls.links} />
-        <BugButton />
+        {/* <BugButton /> */}
       </VStack>
     </Page>
   )

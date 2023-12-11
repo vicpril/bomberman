@@ -1,15 +1,10 @@
 import React, { FC } from 'react'
 
-// import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { useTranslation } from 'react-i18next'
 import cls from './GamePage.module.scss'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { Button } from '@/shared/ui/Button/Button'
-// import { useBoundAction } from 'hooks/useBoundAction'
-// import { addLeaderAsync } from 'store/leaderboard/leaderboardActions'
-// import { SCORE_FIELD_NAME } from 'api/types'
-// import { getUserState } from 'store/user/userSlice'
-// import { useSelector } from 'react-redux'
+
 import {
   MultiplayerGameHeader,
   MultiplayerGameContent,
@@ -31,10 +26,7 @@ const GamePage: FC = () => {
   const score = useObservable(gameService.score)
   const timer = useObservable(gameService.timer)
   const bombs = useObservable(gameService.bombs)
-  // const fullScreenHandle = useFullScreenHandle()
   const { t } = useTranslation('game')
-  // const addLeaderAsyncBounded = useBoundAction(addLeaderAsync)
-  // const { isAuth, userInfo } = useSelector(getUserState)
 
   useMountEffect(() => () => {
     gameService.destroyMultiplayerGame()
@@ -51,36 +43,11 @@ const GamePage: FC = () => {
     gameService.initMultiplayerGame()
   }
 
-  // useEffect(() => {
-  //   // if (!isAuth) {
-  //   //   return
-  //   // }
-
-  //   // const isVictory = status === GameStatus.VICTORY
-  //   // const isDefeat = status === GameStatus.DEFEAT
-  //   // const isFinished = status === GameStatus.FINISHED
-
-  //   // if (isVictory || isDefeat || isFinished) {
-  //   //   const requestData = {
-  //   //     data: {
-  //   //       displayName: `${userInfo.first_name} ${userInfo.second_name}`,
-  //   //       scoreFieldGD: score,
-  //   //     },
-  //   //     ratingFieldName: SCORE_FIELD_NAME,
-  //   //   }
-
-  //   //   addLeaderAsyncBounded(requestData)
-  //   // }
-  // }, [status, userInfo, isAuth, score, addLeaderAsyncBounded])
-
   const startScreen = (
 
     <div className={cls.buttons}>
       <Button onClick={() => startSingleGameHandler()}>{t('Одиночная игра')}</Button>
       <Button onClick={() => startMultiplayerGameHandler()}>{t('Мультиплеер')}</Button>
-      {/* {fullScreenHandle.active
-          ? <Button onClick={fullScreenHandle.exit}>{t('exit_fullscreen_mode')}</Button>
-          : <Button onClick={fullScreenHandle.enter}>{t('enter_fullscreen_mode')}</Button>} */}
     </div>
 
   )
@@ -89,7 +56,6 @@ const GamePage: FC = () => {
     ? (
       <>
         <SingleGameHeader score={score} timer={timer} bombs={bombs} />
-        {/* <SingleGameContent gameStatus={status} stage={stage} fullScreenHandle={fullScreenHandle} /> */}
         <SingleGameContent gameStatus={status} stage={stage} />
         <SingleGameFooter />
       </>
@@ -103,12 +69,10 @@ const GamePage: FC = () => {
     )
 
   return (
-    // <FullScreen handle={fullScreenHandle}>
     <Page className={classNames(cls.GamePage, {}, [])}>
       { status === GameStatus.START_SCREEN && startScreen }
       { status !== GameStatus.START_SCREEN && mainScreen}
     </Page>
-    // </FullScreen>
   )
 }
 

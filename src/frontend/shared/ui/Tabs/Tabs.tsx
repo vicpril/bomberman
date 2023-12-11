@@ -1,7 +1,4 @@
-import { memo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import cls from './Tabs.module.scss'
 import { SelectOption } from '../Select/Select'
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'

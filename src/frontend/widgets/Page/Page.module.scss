@@ -1,6 +1,8 @@
 .Page {
   @include appContainer;
+
   flex-grow: 1;
+
   // height: calc(100vh - #{$headerHeight} - 4px);
   // overflow-y: auto;
   flex-shrink: 100;
