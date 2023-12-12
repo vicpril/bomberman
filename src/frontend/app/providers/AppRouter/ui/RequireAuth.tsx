@@ -1,19 +1,26 @@
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { RoutePaths } from '@/shared/config/routerConfig'
-import { getUserAuthData } from '@/entities/User'
+import {
+  UserRoles, getUserAuthData,
+} from '@/entities/User'
 
 interface RequireAuthProps {
   children: JSX.Element
+  roles?: UserRoles[]
 }
 
 export const RequireAuth = (props: RequireAuthProps) => {
-  const { children } = props
+  const { children, roles } = props
 
-  const auth = useSelector(getUserAuthData)?.id
+  const authData = useSelector(getUserAuthData)
 
-  if (!auth) {
+  if (!authData?.id) {
     return <Navigate to={RoutePaths.main} replace />
+  }
+
+  if (roles && !roles.some((role) => !!authData.roles?.includes(role))) {
+    return <Navigate to={RoutePaths.forbidden} replace />
   }
 
   return children

@@ -47,24 +47,23 @@ const Dropdown = memo((props: DropdownProps) => {
             const content = ({ active }: {active: boolean}) => {
               if (item.href) {
                 return (
-                  <AppLink
-                    to={item.href}
-                    className={classNames(cls.item, { [cls.active]: active }, [])}
-                  >
-                    {item.content}
-                  </AppLink>
+                  <div className={classNames(cls.item, { [cls.active]: active }, [])}>
+                    <AppLink
+                      to={item.href}
+                    >
+                      {item.content}
+                    </AppLink>
+                  </div>
                 )
               }
 
               return (
-                <button
-                  type="button"
+                <div
                   className={classNames(cls.item, { [cls.active]: active }, [])}
                   onClick={item.onClick}
-                  disabled={item.disabled}
                 >
                   {item.content}
-                </button>
+                </div>
               )
             }
 

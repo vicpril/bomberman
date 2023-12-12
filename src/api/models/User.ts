@@ -7,6 +7,7 @@ import {
 
 export enum UserRoles {
   Admin = 'ADMIN',
+  Manager = 'MANAGER',
   User = 'USER'
 }
 
@@ -27,9 +28,11 @@ export class User extends Model {
   @Column
     password!: string
 
-  @Default(UserRoles.User)
-  @Column(DataType.ENUM(...Object.values(UserRoles)))
-    role: UserRoles
+  @Default([UserRoles.User])
+  // @Column(DataType.ENUM(...Object.values(UserRoles)))
+  //   role: UserRoles
+  @Column(DataType.ARRAY(DataType.ENUM(...Object.values(UserRoles))))
+    roles: UserRoles[]
 
   @HasOne(() => UserMeta, {
     foreignKey: 'userId',
