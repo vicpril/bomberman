@@ -95,7 +95,7 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
   const onCancelHandler = onCancel
 
   const errorsBlock = useMemo(() => errors && (
-    <VStack justify="center" max gap="16">
+    <VStack justify="center" max gap="16" data-testid="ProfileEditForm.errors">
       {errors.map((error) => (
         (
           <Text
@@ -117,11 +117,13 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
             placeholder={t('Фамилия')}
             value={form.firstname}
             onChange={onFirstnameChange}
+            data-testid="ProfileEditForm.firstname"
           />
           <Input
             placeholder={t('Имя')}
             value={form.lastname}
             onChange={onLastnameChange}
+            data-testid="ProfileEditForm.lastname"
           />
           <Input
             placeholder={t('Возраст')}
@@ -147,12 +149,14 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
           <Button
             onClick={onSubmitHandler}
             size={ButtonSize.M}
+            data-testid="ProfileEditForm.submitBtn"
           >
             {t('Сохранить')}
           </Button>
           <Button
             onClick={onCancelHandler}
             size={ButtonSize.M}
+            data-testid="ProfileEditForm.cancelBtn"
           >
             {t('Отмена')}
           </Button>

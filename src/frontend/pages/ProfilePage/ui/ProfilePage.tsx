@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useCallback, useEffect, useMemo } from 'react'
+import {
+  useCallback, useEffect, useMemo,
+} from 'react'
 import { useSelector } from 'react-redux'
 import cls from './ProfilePage.module.scss'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
@@ -42,7 +44,7 @@ function ProfilePage() {
   const canEdit = useMemo(() => currentUserId?.toString() === userId?.toString(), [currentUserId, userId])
 
   useEffect(() => {
-    if (__PROJECT__ !== 'storybook') {
+    if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'tests') {
       if (userId) dispatch(fetchProfileData(userId))
     }
   }, [userId, dispatch])
@@ -84,6 +86,7 @@ function ProfilePage() {
                   <Button
                     className={cls.editButton}
                     onClick={onEditMode}
+                    data-testid="ProfilePage.editBtn"
                   >
                     {t('Редактировать')}
                   </Button>
