@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 
 interface Props {
   themeName: string
+  children?: ReactNode
 }
 
-export const ThemeDecorator: FC<Props> = ({ children, themeName }) => (
+export const ThemeDecorator = ({ children, themeName }: Props) => (
   <div
     className={`app ${themeName}`}
   >
