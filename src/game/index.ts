@@ -1,4 +1,6 @@
-export { KeyTypes, PlayerAction } from './server-side/controllers/controlsTypes'
+export type { PlayerAction } from './server-side/controllers/controlsTypes'
+export { KeyTypes } from './server-side/controllers/controlsConsts'
 export { socketConnect } from './core/services/socketService'
 export { MapRenderer } from './client-side/renderers/map-renderer'
-export { CanvasLayersContext, GameRenderer, GameRendererCreator } from './client-side/renderers/game-renderer'
+export type { CanvasLayersContext, GameRenderer } from './client-side/renderers/game-renderer'
+export { GameRendererCreator } from './client-side/renderers/game-renderer'

@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import cls from './ArticlesFilters.module.scss'
-import { ArticleView, ArticlesViewSelector } from '@/entities/Article'
+import {
+  ArticleView, ArticlesViewSelector, articleTypeOptions, ArticleType,
+} from '@/entities/Article'
 import {
   articlesPropsOptions,
   getArticlesFilterOrder,
@@ -22,7 +24,6 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { Tabs } from '@/shared/ui/Tabs/Tabs'
-import { articleTypeOptions, ArticleType } from '@/entities/Article/model/types/article'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 import { HStack } from '@/shared/ui/Stack'
 

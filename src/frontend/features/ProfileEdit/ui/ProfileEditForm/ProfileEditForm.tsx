@@ -3,7 +3,8 @@ import { memo, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileEditForm.module.scss'
-import { ProfileUpdateFormFields, ValidateProfileErrors } from '../../model/types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
+import { ValidateProfileErrors } from '../../model/consts'
 import {
   DynamicModuleLoader,
   ReducersList,

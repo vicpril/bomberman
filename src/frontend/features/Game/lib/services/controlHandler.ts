@@ -1,4 +1,5 @@
-import { KeyTypes, PlayerAction } from '@game/index'
+import { KeyTypes } from '@game/index'
+import type { PlayerAction } from '@game/index'
 import { gameService } from './gameService'
 
 const sendActionRequest = (action: PlayerAction) => {

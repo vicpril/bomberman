@@ -1,6 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
 import { getUpdateProfileValidateErrors } from './getUpdateProfileValidateErrors'
-import { ValidateProfileErrors } from '../../types/ProfileUpdateSchema'
+import { ValidateProfileErrors } from '../../consts'
 
 describe('getUpdateProfileValidateErrors', () => {
   test('should work with filled state', () => {

@@ -1,10 +1,4 @@
-export enum KeyTypes {
-  UP = 2,
-  RIGHT = 3,
-  DOWN = 4,
-  LEFT = 5,
-  SPACE = 6,
-}
+import { KeyTypes } from './controlsConsts'
 
 export type PlayerAction = {
   key: KeyTypes,

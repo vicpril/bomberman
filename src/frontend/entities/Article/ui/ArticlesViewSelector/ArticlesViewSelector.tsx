@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesViewSelector.module.scss'
-import { ArticleView } from '../../model/types/article'
+import { ArticleView } from '../../model/consts'
 import ViewBigIcon from '@/shared/assets/icons/list-24-24.svg'
 import ViewSmallIcon from '@/shared/assets/icons/tiled-24-24.svg'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'

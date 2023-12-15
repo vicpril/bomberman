@@ -1,4 +1,4 @@
-export { ProfileSchema, Profile } from './model/types/profile'
+export type { ProfileSchema, Profile } from './model/types/profile'
 export { getProfileData } from './model/selectors/getProfileData/getProfileData'
 export { getProfileError } from './model/selectors/getProfileError/getProfileError'
 export { getProfileIsLoading } from './model/selectors/getProfileIsLoading/getProfileIsLoading'

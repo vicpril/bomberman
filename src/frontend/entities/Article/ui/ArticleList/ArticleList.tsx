@@ -2,7 +2,8 @@ import { AnchorHTMLAttributes, memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import cls from './ArticleList.module.scss'
-import { Article, ArticleView } from '../../model/types/article'
+import { Article } from '../../model/types/article'
+import { ArticleView } from '../../model/consts'
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton'
 
 interface ArticleListProps {

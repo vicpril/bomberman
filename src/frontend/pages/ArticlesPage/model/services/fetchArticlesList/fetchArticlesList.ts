@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
-import { Article } from '@/entities/Article'
+import { Article, ArticleType } from '@/entities/Article'
 import { getArticlesPageLimit, getArticlesPageNum } from '../../selectors/articlesPageSelectors'
 import {
   getArticlesFilterOrder,
@@ -10,7 +10,6 @@ import {
   getArticlesFilterType,
 } from '@/features/ArticlesFilters/model/selectors/articlesFiltersSelectors'
 import { articlesPageActions } from '../../slices/articlesPageSlice'
-import { ArticleType } from '@/entities/Article/model/types/article'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams'
 
 interface FetchArticlesListProps {

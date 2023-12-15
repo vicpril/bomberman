@@ -1,4 +1,5 @@
-import { ProfileUpdateFormFields, ValidateProfileErrors } from '../../types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields } from '../../types/ProfileUpdateSchema'
+import { ValidateProfileErrors } from '../../consts'
 
 export const validateProfileData = (profile?: ProfileUpdateFormFields): ValidateProfileErrors[] => {
   if (!profile) {

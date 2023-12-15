@@ -2,7 +2,8 @@ import { Country } from '@/entities/Country'
 import { Currency } from '@/entities/Currency'
 import { Profile } from '@/entities/Profile'
 import { profileUpdateActions, profileUpdateReducer } from './updateProfile'
-import { ProfileUpdateSchema, ValidateProfileErrors } from '../../types/ProfileUpdateSchema'
+import { ProfileUpdateSchema } from '../../types/ProfileUpdateSchema'
+import { ValidateProfileErrors } from '../../consts'
 import { updateProfileData } from '../../services/updateProfileData/updateProfileData'
 
 const data: Profile = {

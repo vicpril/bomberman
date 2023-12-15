@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { Profile } from '@/entities/Profile'
-import { ProfileUpdateFormFields, ValidateProfileErrors } from '../../types/ProfileUpdateSchema'
+import { ProfileUpdateFormFields } from '../../types/ProfileUpdateSchema'
+import { ValidateProfileErrors } from '../../consts'
 import { validateProfileData } from '../validateProfileData/validateProfileData'
 
 interface ProfileUpdateProps {

@@ -1,4 +1,4 @@
-import { ArticleType } from '@/entities/Article/model/types/article'
+import { ArticleType } from '@/entities/Article'
 import { SortOrder } from '@/shared/types'
 
 export enum ArticleSortProps {

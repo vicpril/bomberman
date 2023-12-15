@@ -1,7 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import ArticlesDetailPage from './ArticlesDetailPage'
-import { Article, ArticleBlockType, ArticleType } from '@/entities/Article/model/types/article'
+import { Article } from '@/entities/Article/model/types/article'
+import { ArticleType, ArticleBlockType } from '@/entities/Article'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 const article: Article = {
