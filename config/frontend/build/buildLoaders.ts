@@ -1,8 +1,10 @@
 import webpack from 'webpack'
 import buildCssLoader from './loaders/buildCssLoader'
 import { BuildOptions } from './types'
+import { buildBabelLoader } from './loaders/buildBabelLoader'
 
-export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+  const { isDev } = options
   const svgLoader = {
     test: /\.svg$/,
     use: ['@svgr/webpack'],
@@ -24,38 +26,23 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoader = buildCssLoader(isDev)
 
-  const babalLoader = {
-    test: /\.(js|jsx|tsx)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-        // plugins: [
-        //   ["i18next-extract", {
-        //       "locales": [
-        //         "ru",
-        //         "en"
-        //       ],
-        //       "keyAsDefaultValue": true
-        //     }]
-        // ]
-      },
-    },
-  }
+  const codeBabalLoader = buildBabelLoader({ ...options, isTsx: false })
+  const tsxCodeBabalLoader = buildBabelLoader({ ...options, isTsx: true })
 
-  const tsLoader = {
-    test: /\.tsx?$/,
-    use: 'ts-loader?configFile=src/frontend/tsconfig.json',
-    exclude: /node_modules/,
-  }
+  // DONE: babel-loader setup instead
+  // const tsLoader = {
+  //   test: /\.tsx?$/,
+  //   use: 'ts-loader?configFile=src/frontend/tsconfig.json',
+  //   exclude: /node_modules/,
+  // }
 
   return [
     svgLoader,
     fileLoader,
     fontLoader,
-    babalLoader,
-    tsLoader,
+    codeBabalLoader,
+    tsxCodeBabalLoader,
+    // tsLoader,
     ...cssLoader,
   ]
 }

@@ -23,6 +23,7 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
   const linkComponents = useMemo(() => (
     linksMain.map((link) => (
       <AppLink
+        key={link.path}
         to={link.path}
         size="l"
         bombed
@@ -38,8 +39,7 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
       justify="center"
       className={classNames('', {}, [className])}
     >
-      {...linkComponents}
-
+      {linkComponents}
     </VStack>
 
   )

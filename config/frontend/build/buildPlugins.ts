@@ -5,6 +5,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import CopyPlugin from 'copy-webpack-plugin'
 import path from 'path'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import { BuildOptions } from './types'
 
 export function buildPlugins({
@@ -31,6 +32,23 @@ export function buildPlugins({
       patterns: [
         { from: path.resolve(paths.public, 'locales'), to: path.resolve(paths.output, 'locales') },
       ],
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      issue: {
+        include: [
+          { file: '**/src/frontentd/**/*' },
+        ],
+        exclude: [
+          { file: '**/*.test.ts' },
+        ],
+      },
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: 'write-references',
+      },
     }),
   ]
 
