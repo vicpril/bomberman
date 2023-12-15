@@ -1,6 +1,20 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { ArticleRecomendationList } from './ArticleRecomendationList'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { Article } from '@/entities/Article'
+
+const article: Article = {
+  id: '1',
+  img: '',
+  createdAt: '',
+  views: 111,
+  user: { id: '1', username: '123' },
+  blocks: [],
+  type: [],
+  title: 'Тестовая статья',
+  subtitle: 'статья',
+}
 
 export default {
   title: 'features/ArticleRecomendationList',
@@ -13,6 +27,19 @@ export default {
 const Template: ComponentStory<typeof ArticleRecomendationList> = (args) => <ArticleRecomendationList {...args} />
 
 export const Normal = Template.bind({})
-Normal.args = {
-
+Normal.args = {}
+Normal.decorators = [StoreDecorator({})]
+Normal.parameters = {
+  mockData: [
+    {
+      url: `${__API_JSON__}/articles?_limit=3`,
+      method: 'GET',
+      status: 200,
+      response: [
+        { ...article, id: '1' },
+        { ...article, id: '2' },
+        { ...article, id: '3' },
+      ],
+    },
+  ],
 }

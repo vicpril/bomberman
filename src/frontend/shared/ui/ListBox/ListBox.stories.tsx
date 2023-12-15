@@ -9,6 +9,9 @@ export default {
   args: {
     children: 'ListBox',
   },
+  decorators: [
+    (Story) => <div style={{ padding: 60 }}><Story /></div>,
+  ],
 } as ComponentMeta<typeof ListBox>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

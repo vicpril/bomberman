@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Dropdown } from './Dropdown'
+import { Dropdown, DropdownItem } from './Dropdown'
+import { Button } from '../Button/Button'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -15,5 +16,24 @@ export default {
 // eslint-disable-next-line i18next/no-literal-string
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />
 
+const options: DropdownItem[] = [
+  {
+    content: <Button>Item 1</Button>,
+    // onClick: () => {},
+  },
+  {
+    content: <Button>Item 2 (href)</Button>,
+    href: '/',
+  },
+  {
+    content: <Button>Item 1 (disabled)</Button>,
+    // onClick: () => {},
+    disabled: true,
+  },
+]
+
 export const Normal = Template.bind({})
-Normal.args = {}
+Normal.args = {
+  trigger: <Button>Open</Button>,
+  items: options,
+}

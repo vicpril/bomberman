@@ -46,7 +46,7 @@ const article: Article = {
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'pages/ArticlesDetailPage',
+  title: 'pages/articles/ArticlesDetailPage',
   component: ArticlesDetailPage,
   args: {
     children: 'ArticlesDetailPage',

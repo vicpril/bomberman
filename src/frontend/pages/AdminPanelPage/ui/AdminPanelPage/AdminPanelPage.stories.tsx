@@ -1,10 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import AdminPanelPage from './AdminPanelPage'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/AdminPanelPage',
+  title: 'pages/admin/AdminPanelPage',
   component: AdminPanelPage,
   args: {
     children: 'AdminPanelPage',
@@ -17,3 +18,4 @@ const Template: ComponentStory<typeof AdminPanelPage> = (args) => <AdminPanelPag
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = [StoreDecorator({})]

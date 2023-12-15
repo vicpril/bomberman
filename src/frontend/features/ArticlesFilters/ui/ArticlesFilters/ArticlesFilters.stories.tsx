@@ -1,6 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { ArticlesFilters } from './ArticlesFilters'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { ArticleSortProps } from '../../model/types/articlesFilters'
+import { articleFiltersReducer } from '../../model/slices/articlesFiltersSlice'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,3 +20,13 @@ const Template: ComponentStory<typeof ArticlesFilters> = (args) => <ArticlesFilt
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = [StoreDecorator({
+  articleFilters: {
+    search: '',
+    sort: ArticleSortProps.VIEWS,
+    order: 'asc',
+  },
+
+}, {
+  articleFilters: articleFiltersReducer,
+})]
