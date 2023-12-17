@@ -49,8 +49,6 @@ export const fetchArticlesList = createAsyncThunk<
           },
         })
 
-        dispatch(articlesPageActions.setHasMore(response.data.length >= limit))
-
         return response.data
       } catch (error) {
         if (axios.isAxiosError<string>(error)) {

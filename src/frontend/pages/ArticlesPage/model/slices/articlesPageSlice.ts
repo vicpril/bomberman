@@ -59,8 +59,7 @@ const articlesPageSlice = createSlice({
       } else {
         articlesAdapter.addMany(state, action.payload)
       }
-      // вынесен в async thunc
-      // state.hasMore = action.payload.length > 0
+      state.hasMore = action.payload.length >= Number(state.limit)
     })
     builder.addCase(fetchArticlesList.rejected, (state, action) => {
       state.isLoading = false
