@@ -9,7 +9,6 @@ import {
   getArticlesFilterSort,
   getArticlesFilterType,
 } from '@/features/ArticlesFilters/model/selectors/articlesFiltersSelectors'
-import { articlesPageActions } from '../../slices/articlesPageSlice'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams'
 
 interface FetchArticlesListProps {

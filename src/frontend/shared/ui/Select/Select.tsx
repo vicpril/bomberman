@@ -1,6 +1,4 @@
-import React, {
-  ChangeEvent, memo, useMemo,
-} from 'react'
+import React, { ChangeEvent, useMemo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Select.module.scss'
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'

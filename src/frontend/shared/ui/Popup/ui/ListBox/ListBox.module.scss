@@ -1,0 +1,21 @@
+.ListBox {
+  .options {
+    position: absolute;
+    z-index: 10000;
+    min-width: 100%;
+    background: var(--bg-color);
+    outline: none;
+    color: var(--primary-color);
+    border: $lineWidthM solid var(--primary-color);
+  }
+
+  .option {
+    padding: 10px 20px;
+    white-space: nowrap;
+  }
+
+  .disabled {
+    opacity: 0.7;
+  }
+
+}

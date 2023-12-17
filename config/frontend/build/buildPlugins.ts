@@ -6,8 +6,8 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import CopyPlugin from 'copy-webpack-plugin'
 import path from 'path'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
-import { BuildOptions } from './types'
 import CircularDependencyPlugin from 'circular-dependency-plugin'
+import { BuildOptions } from './types'
 
 export function buildPlugins({
   paths, isDev, project,

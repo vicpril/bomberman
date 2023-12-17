@@ -5,6 +5,7 @@ import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
 import { LanguageSwitcher } from '@/widgets/LanguageSwitcher'
 import { NavbarUser } from '../NavbarUser/NavbarUser'
 import { HStack } from '@/shared/ui/Stack'
+import { NotificationButton } from '@/features/NotificationButton'
 
 interface NavbarProps {
   className?: string
@@ -35,8 +36,10 @@ export const Navbar = (props: NavbarProps) => {
         <HStack
           align="center"
           justify="end"
+          gap="16"
           className={cls.user}
         >
+          <NotificationButton />
           <NavbarUser />
         </HStack>
       </div>
