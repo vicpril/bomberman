@@ -1,9 +1,8 @@
-import React, {
-  ReactNode, useCallback, useEffect, useState,
-} from 'react'
+import { ReactNode } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Portal } from '@/shared/ui/Portal/Portal'
 import cls from './Modal.module.scss'
+import { useModal } from '@/shared/lib/hooks/useModal/useModal'
 
 interface ModalProps {
   className?: string
@@ -20,63 +19,22 @@ export const Modal = (props: ModalProps) => {
     className, children, isOpen, onClose, lazy = true,
   } = props
 
-  const [isMounted, setIsMounted] = useState(false)
-  const [isOpened, setIsOpened] = useState(false)
-  const [isClosing, setIsClosing] = useState(false)
-  const [isOpening, setIsOpening] = useState(false)
-
-  const [target, setTarget] = useState<HTMLElement | null>(null)
-
-  useEffect(() => {
-    setTarget(document.getElementById('modals'))
-  }, [])
+  const {
+    target,
+    close,
+    click,
+    isClosing,
+    isMounted,
+    isOpened,
+    isOpening,
+  } = useModal({
+    isOpen, onClose, animationDelay: ANIMATION_SPEED, targetId: 'modals',
+  })
 
   const mods: Record<string, boolean> = {
     [cls.opened]: isOpened,
     [cls.opening]: isOpening,
     [cls.closing]: isClosing,
-  }
-
-  const onOpenHandler = useCallback(() => {
-    setIsOpening(true)
-    setTimeout(() => {
-      setIsOpened(true)
-      setIsOpening(false)
-    }, ANIMATION_SPEED)
-  }, [])
-
-  const onCloseHandler = useCallback(() => {
-    setIsClosing(true)
-    setTimeout(() => {
-      onClose()
-      setIsOpened(false)
-      setIsClosing(false)
-    }, ANIMATION_SPEED)
-  }, [onClose])
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsMounted(true)
-      onOpenHandler()
-    } else {
-      setIsMounted(false)
-    }
-  }, [isOpen, onOpenHandler])
-
-  const onEscDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape' && isOpen) {
-      onCloseHandler()
-    }
-  }, [isOpen, onCloseHandler])
-
-  window.addEventListener('keydown', onEscDown)
-
-  useEffect(() => () => {
-    window.removeEventListener('keydown', onEscDown)
-  }, [onEscDown])
-
-  const onContentClick = (e: React.MouseEvent) => {
-    e.stopPropagation()
   }
 
   if (lazy && !isMounted) {
@@ -86,8 +44,8 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal element={target}>
       <div className={classNames(cls.Modal, mods, [className])}>
-        <div className={cls.overlay} onClick={onCloseHandler}>
-          <div className={cls.content} onClick={onContentClick}>
+        <div className={cls.overlay} onClick={close}>
+          <div className={cls.content} onClick={click}>
             {children}
           </div>
         </div>
