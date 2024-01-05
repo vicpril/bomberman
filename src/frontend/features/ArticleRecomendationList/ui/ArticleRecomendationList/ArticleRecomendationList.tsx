@@ -27,7 +27,7 @@ export const ArticleRecomendationList = memo((props: ArticleRecomendationListPro
   const getSkeletons = () => new Array(4)
     .fill(0)
     .map((_, index) => (
-      <ArticleListItemSkeleton className={cls.card} key={index} view={ArticleView.SMALL} />
+      <ArticleListItemSkeleton key={index} view={ArticleView.SMALL} />
     ))
 
   if (isLoading || !recomendations) {
@@ -41,7 +41,6 @@ export const ArticleRecomendationList = memo((props: ArticleRecomendationListPro
   return (
     <VStack gap="8" className={classNames(cls.ArticleRecomendationList, {}, [className])}>
       <Text
-        className={cls.recomedationsTitle}
         size={TextSize.M}
         title={t('Рекоммендованные статьи')}
       />
