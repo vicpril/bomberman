@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './NotificationButton.module.scss'
 import { Popover } from '@/shared/ui/Popup'
@@ -6,6 +6,9 @@ import { Icon } from '@/shared/ui/Icon/Icon'
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg'
 import { NotificationList } from '@/entities/Notification'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
+import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
+import { Drawer } from '@/shared/ui/Drawer/Drawer'
+import { BrowserView, MobileView } from '@/shared/lib/deviceDetect'
 
 interface NotificationButtonProps {
   className?: string
@@ -14,18 +17,37 @@ interface NotificationButtonProps {
 const NotificationButton = memo((props: NotificationButtonProps) => {
   const { className } = props
 
+  const { flag: isDrawerOpen, on: openDrawer, off: closeDrawer } = useFlag(false)
+
+  const onResizeHandler = useCallback((_isMobile: boolean) => {
+    closeDrawer()
+  }, [closeDrawer])
+
+  const trigger = (
+    <Button theme={ButtonTheme.Clear} onClick={openDrawer}>
+      <Icon Svg={NotificationIcon} />
+    </Button>
+  )
+
   return (
-    <Popover
-      className={classNames('NotificationButton', {}, [className])}
-      direction="bottom right"
-      trigger={(
-        <Button theme={ButtonTheme.Clear}>
-          <Icon Svg={NotificationIcon} />
-        </Button>
-      )}
-    >
-      <NotificationList className={cls.notifications} />
-    </Popover>
+    <>
+      <MobileView onResizeCallback={onResizeHandler}>
+        {trigger}
+        <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
+          <NotificationList className={cls.notifications} />
+        </Drawer>
+      </MobileView>
+      <BrowserView onResizeCallback={onResizeHandler}>
+        <Popover
+          className={classNames('NotificationButton', {}, [className])}
+          direction="bottom right"
+          trigger={trigger}
+        >
+          <NotificationList className={classNames(cls.notifications, {}, [cls.popover])} />
+
+        </Popover>
+      </BrowserView>
+    </>
   )
 })
 
