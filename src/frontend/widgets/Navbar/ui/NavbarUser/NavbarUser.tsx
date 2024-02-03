@@ -13,6 +13,8 @@ import { Dropdown, DropdownItem } from '@/shared/ui/Popup/ui/Dropdown/Dropdown'
 import { Avatar } from '@/shared/ui/Avatar/Avatar'
 import { RoutePaths } from '@/shared/config/routerConfig'
 import cls from './NavbarUser.module.scss'
+import { NotificationButton } from '@/features/NotificationButton'
+import { HStack } from '@/shared/ui/Stack'
 
 interface NavbarUserProps {
   className?: string
@@ -57,11 +59,14 @@ export const NavbarUserInner = () => {
     )
 
     return (
-      <Dropdown
-        trigger={avatar}
-        items={items}
-        direction="bottom right"
-      />
+      <HStack gap="32">
+        <NotificationButton />
+        <Dropdown
+          trigger={avatar}
+          items={items}
+          direction="bottom right"
+        />
+      </HStack>
     )
   }
 

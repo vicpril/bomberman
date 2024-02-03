@@ -9,7 +9,6 @@ import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { Drawer } from '@/shared/ui/Drawer/Drawer'
 import { BrowserView, MobileView } from '@/shared/lib/deviceDetect'
-import { AnimationProvider } from '@/shared/lib/components/AnimationProvider'
 
 interface NotificationButtonProps {
   className?: string
@@ -34,11 +33,9 @@ const NotificationButton = memo((props: NotificationButtonProps) => {
     <>
       <MobileView onResizeCallback={onResizeHandler}>
         {trigger}
-        <AnimationProvider>
-          <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-            <NotificationList className={cls.notifications} />
-          </Drawer>
-        </AnimationProvider>
+        <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
+          <NotificationList className={cls.notifications} />
+        </Drawer>
       </MobileView>
       <BrowserView onResizeCallback={onResizeHandler}>
         <Popover
