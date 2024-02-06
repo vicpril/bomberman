@@ -5,7 +5,6 @@
   "author": "V.Prilepin",
   "license": "ISC",
   "keywords": [],
-  "type": "module",
   "scripts": {
     "start": "webpack serve --env port=3000",
     "start:vite": "vite --port 3000 -c ./config/frontend/vite.config.ts",
