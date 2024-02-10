@@ -12,6 +12,7 @@ import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDe
 import { VStack } from '@/shared/ui/Stack'
 import { ArticleRecomendationList } from '@/features/ArticleRecomendationList'
 import { ArticleCommentsList } from '@/features/ArticleCommentsList'
+import { ArticleRating } from '@/features/ArticleRating'
 
 interface ArticlesDetailPageProps {
   className?: string
@@ -40,13 +41,14 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
       className={classNames(cls.ArticlesDetailPage, {}, [className])}
       saveScroll
     >
-      <VStack gap="8" max>
+      <VStack gap="32" max>
 
         <ArticlesDetailPageHeader />
         <ArticleDetails id={id} />
         {!isLoading
           && (
             <>
+              <ArticleRating articleId={id} className={cls.rating} />
               <ArticleRecomendationList />
               <ArticleCommentsList articleId={id} />
             </>
