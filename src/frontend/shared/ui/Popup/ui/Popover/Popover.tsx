@@ -1,8 +1,6 @@
 import { ReactNode, memo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Popover as HPopover } from '@headlessui/react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import cls from './Popover.module.scss'
 import popupCls from '../../styles/popup.module.scss'
 

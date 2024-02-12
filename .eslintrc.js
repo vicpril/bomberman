@@ -82,7 +82,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
-    'fsd-project/path-checker': 'error',
+    'fsd-project/path-checker': ['error', { alias: '@', srcPath: 'src/frontend' }],
   },
   globals: {
     __IS_DEV__: true,
