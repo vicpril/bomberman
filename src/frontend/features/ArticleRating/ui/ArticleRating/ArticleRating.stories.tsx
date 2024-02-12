@@ -1,10 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import ArticleRating from './ArticleRating'
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/ArticleRating',
+  title: 'features/ArticleRating',
   component: ArticleRating,
   args: {
     children: 'ArticleRating',
@@ -17,3 +18,22 @@ const Template: ComponentStory<typeof ArticleRating> = (args) => <ArticleRating 
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = [
+  StoreDecorator({
+    user: {
+      authData: { id: '1' },
+    },
+  }),
+]
+Normal.parameters = {
+  mockData: [
+    {
+      url: `${__API_JSON__}/articles-rating?userId=1&articleId=1`,
+      method: 'GET',
+      status: 200,
+      response: [
+        { rate: 4 },
+      ],
+    },
+  ],
+}

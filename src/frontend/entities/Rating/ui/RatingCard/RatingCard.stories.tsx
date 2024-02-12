@@ -4,7 +4,7 @@ import { RatingCard } from './RatingCard'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/RatingCard',
+  title: 'entities/RatingCard',
   component: RatingCard,
   args: {
     children: 'RatingCard',
@@ -17,3 +17,8 @@ const Template: ComponentStory<typeof RatingCard> = (args) => <RatingCard {...ar
 
 export const Normal = Template.bind({})
 Normal.args = {}
+
+export const WithRating = Template.bind({})
+WithRating.args = {
+  rate: 4,
+}
