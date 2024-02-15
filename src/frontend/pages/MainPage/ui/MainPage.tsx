@@ -2,7 +2,7 @@
 import cls from './MainPage.module.scss'
 import { Logo } from '@/shared/ui/Logo/Logo'
 import { MainPageLinks } from './MainPageLinks/MainPageLinks'
-import { Page } from '@/widgets/Page/Page'
+import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'
 
 function MainPage() {

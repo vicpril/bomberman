@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { Comment } from '@/entities/Comment'
 import { getUserAuthData } from '@/entities/User'
-import { getArticleDetailsData } from '@/entities/Article/model/selectors/getArticleDetails/getArticleDetails'
+import { getArticleDetailsData } from '@/entities/Article'
 import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId'
 
 export const addCommentsByArticleId = createAsyncThunk<

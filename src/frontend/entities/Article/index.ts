@@ -8,5 +8,10 @@ export {
 } from './model/consts'
 
 export { ArticleList } from './ui/ArticleList/ArticleList'
+export { ArticleListItemSkeleton } from './ui/ArticleListItem/ArticleListItemSkeleton'
 
 export { ArticlesViewSelector } from './ui/ArticlesViewSelector/ArticlesViewSelector'
+export {
+  getArticleDetailsData,
+  getArticleDetailsIsLoading,
+} from './model/selectors/getArticleDetails/getArticleDetails'

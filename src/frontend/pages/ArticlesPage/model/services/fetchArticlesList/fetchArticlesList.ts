@@ -8,7 +8,7 @@ import {
   getArticlesFilterSearch,
   getArticlesFilterSort,
   getArticlesFilterType,
-} from '@/features/ArticlesFilters/model/selectors/articlesFiltersSelectors'
+} from '@/features/ArticlesFilters'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams'
 
 interface FetchArticlesListProps {
@@ -22,7 +22,7 @@ export const fetchArticlesList = createAsyncThunk<
     'articles/fetchArticlesList',
     async (_props, thunkApi) => {
       const {
-        extra, rejectWithValue, getState, dispatch,
+        extra, rejectWithValue, getState,
       } = thunkApi
 
       const page = getArticlesPageNum(getState())

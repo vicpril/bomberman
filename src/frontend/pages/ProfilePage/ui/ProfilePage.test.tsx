@@ -7,7 +7,7 @@ import { Profile } from '@/entities/Profile'
 import { Currency } from '@/entities/Currency'
 import { Country } from '@/entities/Country'
 import { $api } from '@/shared/api/api'
-import { profileUpdateReducer } from '@/features/ProfileEdit/model/slices/updateProfile/updateProfile'
+import { profileUpdateReducer } from '@/features/ProfileEdit/testing'
 
 const profile: Profile = {
   id: 1,

@@ -4,13 +4,11 @@ import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider'
 // import { loginReducer } from '@/features/AuthByUsername/model/slices/loginSlice'
 // import { profileReducer } from '@/entities/Profile'
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
+import { loginReducer } from '@/features/AuthByUsername/testing'
 import { profileReducer } from '@/entities/Profile'
-import { articleDetailsReducer } from '@/entities/Article/model/slices/articleDetailsSlice'
-import { addCommentFormReducer } from '@/widgets/AddCommentForm/model/slices/AddCommentFormSlice'
-import {
-  articleCommentsListReducer,
-} from '@/features/ArticleCommentsList/model/slices/ArticleCommentsListSlice'
+import { articleDetailsReducer } from '@/entities/Article/testing'
+import { addCommentFormReducer } from '@/widgets/AddCommentForm/testing'
+import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testing'
 
 const defaultAsyncReducers: ReducersList = {
   // loginForm: loginReducer,

@@ -6,7 +6,7 @@ import {
 import { articlesPageActions } from '../../slices/articlesPageSlice'
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
 import { SortOrder } from '@/shared/types'
-import { ArticleSortProps } from '@/features/ArticlesFilters/model/types/articlesFilters'
+import type { ArticleSortProps } from '@/features/ArticlesFilters'
 import { articleFiltersActions } from '@/features/ArticlesFilters'
 import { ArticleType } from '@/entities/Article'
 

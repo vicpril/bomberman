@@ -18,7 +18,7 @@ import {
   GameStatus,
 } from '@/features/Game'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/widgets/Page/Page'
+import { Page } from '@/widgets/Page'
 
 const GamePage: FC = () => {
   const stage = useObservable(gameService.stage)

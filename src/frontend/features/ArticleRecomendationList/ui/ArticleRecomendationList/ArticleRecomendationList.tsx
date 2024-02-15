@@ -4,9 +4,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticleRecomendationList.module.scss'
 import { HStack, VStack } from '@/shared/ui/Stack'
 import { Text, TextSize } from '@/shared/ui/Text/Text'
-import { ArticleList, ArticleView } from '@/entities/Article'
+import { ArticleList, ArticleView, ArticleListItemSkeleton } from '@/entities/Article'
 import { useArticleRecommendationsList } from '../../api/aritcleRecommendationsApi'
-import { ArticleListItemSkeleton } from '@/entities/Article/ui/ArticleListItem/ArticleListItemSkeleton'
 
 interface ArticleRecomendationListProps {
     className?: string;

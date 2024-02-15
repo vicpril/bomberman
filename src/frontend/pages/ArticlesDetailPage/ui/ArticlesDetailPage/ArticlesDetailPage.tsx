@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesDetailPage.module.scss'
-import { ArticleDetails } from '@/entities/Article'
 import {
+  ArticleDetails,
   getArticleDetailsIsLoading,
-} from '@/entities/Article/model/selectors/getArticleDetails/getArticleDetails'
-import { Page } from '@/widgets/Page/Page'
+} from '@/entities/Article'
+import { Page } from '@/widgets/Page'
 import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
 import { VStack } from '@/shared/ui/Stack'
 import { ArticleRecomendationList } from '@/features/ArticleRecomendationList'
