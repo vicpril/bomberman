@@ -17,7 +17,7 @@ import { Text, TextTheme } from '@/shared/ui/Text/Text'
 import { Input } from '@/shared/ui/Input/Input'
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
-import { RoutePaths } from '@/shared/config/routerConfig'
+import { RoutePaths } from '@/shared/const/router'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
 
