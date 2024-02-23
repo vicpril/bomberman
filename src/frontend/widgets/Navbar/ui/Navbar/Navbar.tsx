@@ -1,8 +1,8 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Navbar.module.scss'
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
+import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
-import { LanguageSwitcher } from '@/widgets/LanguageSwitcher'
+import { LanguageSwitcher } from '@/features/LanguageSwitcher'
 import { NavbarUser } from '../NavbarUser/NavbarUser'
 import { HStack } from '@/shared/ui/Stack'
 

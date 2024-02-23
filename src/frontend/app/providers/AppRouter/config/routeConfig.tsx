@@ -1,4 +1,4 @@
-import { UserRoles } from '@/entities/User'
+import { UserRoles } from '@/shared/const/UserRoles'
 import { AdminPanelPage } from '@/pages/AdminPanelPage'
 import { ArticlesDetailPage } from '@/pages/ArticlesDetailPage'
 import { ArticlesPage } from '@/pages/ArticlesPage'

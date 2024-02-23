@@ -8,10 +8,10 @@ import { Card } from '@/shared/ui/Card/Card'
 import { Drawer } from '@/shared/ui/Drawer/Drawer'
 import { VStack, HStack } from '@/shared/ui/Stack'
 import { StarRating } from '@/shared/ui/StarRating/StarRating'
-import { Modal } from '@/widgets/Modal'
 import { Text } from '@/shared/ui/Text/Text'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { Input } from '@/shared/ui/Input/Input'
+import { Modal } from '@/shared/ui/Modal'
 
 interface RatingCardProps {
   className?: string;

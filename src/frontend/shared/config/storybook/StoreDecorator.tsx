@@ -5,10 +5,10 @@ import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider'
 // import { profileReducer } from '@/entities/Profile'
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { loginReducer } from '@/features/AuthByUsername/testing'
-import { profileReducer } from '@/entities/Profile'
 import { articleDetailsReducer } from '@/entities/Article/testing'
 import { addCommentFormReducer } from '@/widgets/AddCommentForm/testing'
 import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testing'
+import { profileReducer } from '@/entities/Profile/testing'
 
 const defaultAsyncReducers: ReducersList = {
   // loginForm: loginReducer,

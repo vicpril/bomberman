@@ -5,6 +5,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticleCommentsList.module.scss'
 import { Text, TextSize } from '@/shared/ui/Text/Text'
 import { CommentList } from '@/entities/Comment'
+// eslint-disable-next-line fsd-project/layer-imports
 import { AddCommentForm } from '@/widgets/AddCommentForm'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'

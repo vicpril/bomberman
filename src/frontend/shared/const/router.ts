@@ -1,5 +1,5 @@
 import { RouteProps } from 'react-router-dom'
-import { UserRoles } from '@/entities/User'
+import { UserRoles } from '@/shared/const/UserRoles'
 
 export enum AppRoutes {
   Main = 'main',
