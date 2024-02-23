@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
-import ProfilePage from './ProfilePage'
 import { Profile, ProfileSchema, profileReducer } from '@/entities/Profile'
 import { Country } from '@/entities/Country'
 import { Currency } from '@/entities/Currency'
+import ProfilePage from './ProfilePage'
 
 const mockProfileData: Profile = {
   id: 1,

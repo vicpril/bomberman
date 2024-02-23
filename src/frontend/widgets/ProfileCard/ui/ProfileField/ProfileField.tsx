@@ -1,8 +1,8 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ProfileField.module.scss'
 import { Profile } from '@/entities/Profile'
 import { ValueOf } from '@/shared/lib/types'
 import { HStack } from '@/shared/ui/Stack'
+import cls from './ProfileField.module.scss'
 
 interface FieldProps {
   className?: string

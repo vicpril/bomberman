@@ -1,13 +1,13 @@
 import { Fragment, useMemo } from 'react'
 import { Listbox as HListBox } from '@headlessui/react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ListBox.module.scss'
-import popupCls from '../../styles/popup.module.scss'
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
 import { SelectOption } from '@/shared/ui/Select'
 import { DropdownDirection } from '@/shared/types/ui'
 import { HStack } from '@/shared/ui/Stack'
 import { Button, ButtonSize } from '@/shared/ui/Button'
+import popupCls from '../../styles/popup.module.scss'
+import cls from './ListBox.module.scss'
 import { mapDirectionClass } from '../../consts'
 
 type ListBoxOption<T extends string | number = string> = SelectOption<T> & {

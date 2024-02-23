@@ -1,8 +1,8 @@
 import { Country } from '@/entities/Country'
-import { validateProfileData } from './validateProfileData'
 import { Currency } from '@/entities/Currency'
-import { ValidateProfileErrors } from '../../consts'
 import { Profile } from '@/entities/Profile'
+import { validateProfileData } from './validateProfileData'
+import { ValidateProfileErrors } from '../../consts'
 
 const data: Profile = {
   id: 1,

@@ -2,17 +2,17 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ArticlesDetailPage.module.scss'
 import {
   ArticleDetails,
   getArticleDetailsIsLoading,
 } from '@/entities/Article'
 import { Page } from '@/widgets/Page'
-import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
 import { VStack } from '@/shared/ui/Stack'
 import { ArticleRecomendationList } from '@/features/ArticleRecomendationList'
 import { ArticleCommentsList } from '@/features/ArticleCommentsList'
 import { ArticleRating } from '@/features/ArticleRating'
+import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
+import cls from './ArticlesDetailPage.module.scss'
 
 interface ArticlesDetailPageProps {
   className?: string

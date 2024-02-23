@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ArticleCommentsList } from './ArticleCommentsList'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { ArticleCommentsList } from './ArticleCommentsList'
 
 export default {
   title: 'features/ArticleCommentsList',

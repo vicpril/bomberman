@@ -1,8 +1,8 @@
 // jest.mock('axios')
 
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk'
-import { loginByUsername } from './loginByUsername'
 import { userActions } from '@/entities/User'
+import { loginByUsername } from './loginByUsername'
 
 describe('Service loginByUsername.test', () => {
   test('success login', async () => {

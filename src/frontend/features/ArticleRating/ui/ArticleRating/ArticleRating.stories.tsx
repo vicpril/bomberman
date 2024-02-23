@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import ArticleRating from './ArticleRating'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import ArticleRating from './ArticleRating'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

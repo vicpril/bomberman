@@ -4,7 +4,6 @@ import {
   useCallback, useEffect, useMemo,
 } from 'react'
 import { useSelector } from 'react-redux'
-import cls from './ProfilePage.module.scss'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
 import {
   Profile, fetchProfileData, getProfileData, profileActions, profileReducer,
@@ -21,6 +20,7 @@ import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { ProfileEditForm } from '@/features/ProfileEdit'
 import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'
+import cls from './ProfilePage.module.scss'
 
 const initialReducers: ReducersList = {
   profile: profileReducer,

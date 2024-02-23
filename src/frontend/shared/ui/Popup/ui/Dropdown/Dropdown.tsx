@@ -2,9 +2,9 @@ import { Fragment, ReactNode, memo } from 'react'
 import { Menu } from '@headlessui/react'
 import { AppLink } from '@/shared/ui/AppLink'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { DropdownDirection } from '@/shared/types/ui'
 import cls from './Dropdown.module.scss'
 import popupCls from '../../styles/popup.module.scss'
-import { DropdownDirection } from '@/shared/types/ui'
 import { mapDirectionClass } from '../../consts'
 
 export interface DropdownItem {

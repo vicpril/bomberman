@@ -1,7 +1,7 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
-import { ArticleSortProps, ArticleSortPropsLabels } from '../types/articlesFilters'
 import { ArticleType } from '@/entities/Article'
 import { SelectOption } from '@/shared/ui/Select'
+import { ArticleSortProps, ArticleSortPropsLabels } from '../types/articlesFilters'
 
 export const getArticlesFilterOrder = (state: StateSchema) => state.articleFilters?.order ?? 'desc'
 export const getArticlesFilterSort = (state: StateSchema) => state.articleFilters?.sort

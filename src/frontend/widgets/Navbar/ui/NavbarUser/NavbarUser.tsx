@@ -12,9 +12,9 @@ import { LoginModal } from '@/features/AuthByUsername'
 import { Dropdown, DropdownItem } from '@/shared/ui/Popup'
 import { Avatar } from '@/shared/ui/Avatar'
 import { RoutePaths } from '@/shared/const/router'
-import cls from './NavbarUser.module.scss'
 import { NotificationButton } from '@/features/NotificationButton'
 import { HStack } from '@/shared/ui/Stack'
+import cls from './NavbarUser.module.scss'
 
 interface NavbarUserProps {
   className?: string

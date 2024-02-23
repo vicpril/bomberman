@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import MainPage from './MainPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import MainPage from './MainPage'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { NavbarLinks } from './NavbarLinks'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { NavbarLinks } from './NavbarLinks'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

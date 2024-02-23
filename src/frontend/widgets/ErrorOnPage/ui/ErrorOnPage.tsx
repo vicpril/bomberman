@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/Button'
-import cls from './ErrorOnPage.module.scss'
 import { Text, TextTheme } from '@/shared/ui/Text'
+import cls from './ErrorOnPage.module.scss'
 
 interface ErrorOnPageProps {
   className?: string

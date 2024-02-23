@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './Loader.module.scss'
 import bombImage from '@/shared/assets/icons/bomb.png'
+import cls from './Loader.module.scss'
 
 export enum LoaderSize {
   S = 'size_s',

@@ -2,32 +2,32 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ProfileEditForm.module.scss'
-import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
-import { ValidateProfileErrors } from '../../model/consts'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import {
-  profileUpdateActions,
-  profileUpdateReducer,
-} from '../../model/slices/updateProfile/updateProfile'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Input } from '@/shared/ui/Input'
 import { Profile } from '@/entities/Profile'
-import { getProfileUpdateData } from '../../model/selectors/getUpdateProfileData/getProfileUpdateData'
-import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData'
 import { Loader, LoaderSize } from '@/shared/ui/Loader'
 import { Text, TextTheme } from '@/shared/ui/Text'
 import { Button, ButtonSize } from '@/shared/ui/Button'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { Currency, CurrencySelect } from '@/entities/Currency'
 import { Country, CountrySelect } from '@/entities/Country'
+import { HStack, VStack } from '@/shared/ui/Stack'
 import {
   getUpdateProfileValidateErrors,
 } from '../../model/selectors/getUpdateProfileValidateErrors/getUpdateProfileValidateErrors'
-import { HStack, VStack } from '@/shared/ui/Stack'
+import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData'
+import { getProfileUpdateData } from '../../model/selectors/getUpdateProfileData/getProfileUpdateData'
+import {
+  profileUpdateActions,
+  profileUpdateReducer,
+} from '../../model/slices/updateProfile/updateProfile'
+import { ValidateProfileErrors } from '../../model/consts'
+import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
+import cls from './ProfileEditForm.module.scss'
 
 interface ProfileEditFormProps {
   className?: string

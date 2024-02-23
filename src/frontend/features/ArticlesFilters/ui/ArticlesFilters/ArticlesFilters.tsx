@@ -3,20 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import cls from './ArticlesFilters.module.scss'
 import {
   ArticleView, ArticlesViewSelector, articleTypeOptions, ArticleType,
 } from '@/entities/Article'
-import {
-  articlesPropsOptions,
-  getArticlesFilterOrder,
-  getArticlesFilterSearch,
-  getArticlesFilterSort,
-  getArticlesFilterType,
-} from '../../model/selectors/articlesFiltersSelectors'
 import { Select } from '@/shared/ui/Select'
-import { articleFiltersActions, articleFiltersReducer } from '../../model/slices/articlesFiltersSlice'
-import { ArticleSortProps } from '../../model/types/articlesFilters'
 import { SortOrder, orderOptions } from '@/shared/types'
 import { Input } from '@/shared/ui/Input'
 import {
@@ -26,6 +16,16 @@ import {
 import { Tabs } from '@/shared/ui/Tabs'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 import { HStack } from '@/shared/ui/Stack'
+import { ArticleSortProps } from '../../model/types/articlesFilters'
+import { articleFiltersActions, articleFiltersReducer } from '../../model/slices/articlesFiltersSlice'
+import {
+  articlesPropsOptions,
+  getArticlesFilterOrder,
+  getArticlesFilterSearch,
+  getArticlesFilterSort,
+  getArticlesFilterType,
+} from '../../model/selectors/articlesFiltersSelectors'
+import cls from './ArticlesFilters.module.scss'
 
 interface ArticlesFiltersProps {
   className?: string

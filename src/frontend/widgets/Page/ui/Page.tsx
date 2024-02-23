@@ -4,13 +4,13 @@ import {
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './Page.module.scss'
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { getUiScrollByPath, uiActions } from '@/features/UI'
 import { StateSchema } from '@/app/providers/StoreProvider'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
+import cls from './Page.module.scss'
 
 interface PageProps {
   className?: string

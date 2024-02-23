@@ -1,10 +1,10 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './Navbar.module.scss'
 import { ThemeSwitcher } from '@/features/ThemeSwitcher'
-import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
 import { LanguageSwitcher } from '@/features/LanguageSwitcher'
-import { NavbarUser } from '../NavbarUser/NavbarUser'
 import { HStack } from '@/shared/ui/Stack'
+import cls from './Navbar.module.scss'
+import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
+import { NavbarUser } from '../NavbarUser/NavbarUser'
 
 interface NavbarProps {
   className?: string

@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { Article, ArticleType } from '@/entities/Article'
-import { getArticlesPageLimit, getArticlesPageNum } from '../../selectors/articlesPageSelectors'
 import {
   getArticlesFilterOrder,
   getArticlesFilterSearch,
@@ -10,6 +9,7 @@ import {
   getArticlesFilterType,
 } from '@/features/ArticlesFilters'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams'
+import { getArticlesPageLimit, getArticlesPageNum } from '../../selectors/articlesPageSelectors'
 
 interface FetchArticlesListProps {
   replace?: boolean;

@@ -8,14 +8,14 @@ import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import { Card } from '@/shared/ui/Card'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
+import { RoutePaths } from '@/shared/const/router'
+import { AppLink } from '@/shared/ui/AppLink'
 import cls from './ArticleListItem.module.scss'
 import {
   Article, ArticleTextBlock,
 } from '../../model/types/article'
 import { ArticleView, ArticleBlockType } from '../../model/consts'
-import { RoutePaths } from '@/shared/const/router'
 import { ArticleBlockTextComponent } from '../ArticleBlockTextComponent/ArticleBlockTextComponent'
-import { AppLink } from '@/shared/ui/AppLink'
 
 interface ArticleListItemProps {
     className?: string;

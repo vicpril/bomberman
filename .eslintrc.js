@@ -22,6 +22,8 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'fsd-project',
+    'unused-imports',
+    'import',
   ],
   rules: {
     'react/jsx-indent': [2, 2],
@@ -35,6 +37,8 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'import/order': 'error',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -92,6 +96,12 @@ module.exports = {
       srcPath: 'src/frontend',
       ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
     }],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
   },
   globals: {
     __IS_DEV__: true,

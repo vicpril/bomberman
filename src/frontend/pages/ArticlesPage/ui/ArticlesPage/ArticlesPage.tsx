@@ -2,25 +2,25 @@ import { useSelector } from 'react-redux'
 import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ArticlesPage.module.scss'
 import { ArticleList, ArticleView } from '@/entities/Article'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { Page } from '@/widgets/Page'
+import { ArticlesFilters } from '@/features/ArticlesFilters'
+import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
 import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors'
-import { Page } from '@/widgets/Page'
 import {
   fetchNextArticlesPage,
 } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
-import { ArticlesFilters } from '@/features/ArticlesFilters'
+import cls from './ArticlesPage.module.scss'
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 
 interface ArticlesPageProps {

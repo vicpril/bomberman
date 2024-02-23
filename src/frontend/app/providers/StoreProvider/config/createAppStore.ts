@@ -3,11 +3,11 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 // import { counterReducer } from '@/entities/Counter'
 import { userReducer } from '@/entities/User'
 import { $api, $apiJson } from '@/shared/api/api'
+import { uiReducer } from '@/features/UI'
+import { rtkApiJson } from '@/shared/api/rtkApi'
 import { createReducerManager } from '../lib/reducerManager'
 import type { StateSchema } from './StateSchema'
 import { ThunkExtraArgs } from './types'
-import { uiReducer } from '@/features/UI'
-import { rtkApiJson } from '@/shared/api/rtkApi'
 
 export const createAppStore = (
   initialState?: StateSchema,

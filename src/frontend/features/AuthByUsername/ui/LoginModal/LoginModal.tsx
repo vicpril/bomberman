@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import LoginForm from '../LoginForm/LoginForm'
 import { Modal } from '@/shared/ui/Modal'
+import LoginForm from '../LoginForm/LoginForm'
 
 interface LoginModalProps {
   className?: string

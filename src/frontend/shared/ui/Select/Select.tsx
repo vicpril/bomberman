@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './Select.module.scss'
 import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
+import cls from './Select.module.scss'
 
 type CustomSelectAttributes = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'>
 

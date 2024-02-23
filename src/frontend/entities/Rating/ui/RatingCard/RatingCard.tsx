@@ -1,7 +1,6 @@
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './RatingCard.module.scss'
 import { BrowserView, MobileView } from '@/shared/lib/deviceDetect'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
@@ -12,6 +11,7 @@ import { Text } from '@/shared/ui/Text'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { Input } from '@/shared/ui/Input'
 import { Modal } from '@/shared/ui/Modal'
+import cls from './RatingCard.module.scss'
 
 interface RatingCardProps {
   className?: string;

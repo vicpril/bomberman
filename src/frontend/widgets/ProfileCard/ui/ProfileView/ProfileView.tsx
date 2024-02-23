@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ProfileView.module.scss'
 import { Loader } from '@/shared/ui/Loader'
-import ProfileField from '../ProfileField/ProfileField'
 import defaultAvatar from '@/shared/assets/icons/logo_img_base.png'
 import {
   getProfileData, getProfileIsLoading,
 } from '@/entities/Profile'
 import { HStack, VStack } from '@/shared/ui/Stack'
+import ProfileField from '../ProfileField/ProfileField'
+import cls from './ProfileView.module.scss'
 
 interface ProfileViewProps {
   className?: string

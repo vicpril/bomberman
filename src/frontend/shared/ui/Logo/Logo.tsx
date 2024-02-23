@@ -1,7 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './Logo.module.scss'
 import logoImage from '@/shared/assets/icons/logo_img_base.png'
+import cls from './Logo.module.scss'
 
 interface LogoProps {
   className?: string

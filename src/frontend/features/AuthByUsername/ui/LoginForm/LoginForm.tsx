@@ -5,21 +5,21 @@ import {
   ChangeEvent, useEffect, useRef,
 } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './LoginForm.module.scss'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { Text, TextTheme } from '@/shared/ui/Text'
 import { Input } from '@/shared/ui/Input'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { RoutePaths } from '@/shared/const/router'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
+import { loginActions, loginReducer } from '../../model/slice/loginSlice'
+import { getLoginState } from '../../model/selectors/getLoginState/getLoginState'
+import cls from './LoginForm.module.scss'
 
 export interface LoginFormProps {
   className?: string

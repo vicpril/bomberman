@@ -2,31 +2,31 @@ import { memo, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './ArticleDetails.module.scss'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { articleDetailsReducer } from '../../model/slices/articleDetailsSlice'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { Text, TextAlign, TextSize } from '@/shared/ui/Text'
+import { Skeleton } from '@/shared/ui/Skeleton'
+import { Avatar } from '@/shared/ui/Avatar'
+import { Icon } from '@/shared/ui/Icon'
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
+import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
+import { HStack, VStack } from '@/shared/ui/Stack'
+import cls from './ArticleDetails.module.scss'
+import { articleDetailsReducer } from '../../model/slices/articleDetailsSlice'
 import { fetchArticleDetailsById } from '../../model/services/fetchArticleDetailsById/fetchArticleDetailsById'
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from '../../model/selectors/getArticleDetails/getArticleDetails'
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text'
-import { Skeleton } from '@/shared/ui/Skeleton'
 import { ArticleBlockCodeComponent } from '../ArticleBlockCodeComponent/ArticleBlockCodeComponent'
 import { ArticleBlockTextComponent } from '../ArticleBlockTextComponent/ArticleBlockTextComponent'
 import { ArticleBlock } from '../../model/types/article'
 import { ArticleBlockType } from '../../model/consts'
 import { ArticleBlockImageComponent } from '../ArticleBlockImageComponent/ArticleBlockImageComponent'
-import { Avatar } from '@/shared/ui/Avatar'
-import { Icon } from '@/shared/ui/Icon'
-import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
-import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg'
-import { HStack, VStack } from '@/shared/ui/Stack'
 
 interface ArticleDetailsProps {
   className?: string,

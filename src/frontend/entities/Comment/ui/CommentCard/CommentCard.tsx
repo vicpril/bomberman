@@ -1,13 +1,13 @@
 import { memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import cls from './CommentCard.module.scss'
-import { Comment } from '../../model/types/comment'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Text } from '@/shared/ui/Text'
 import { Skeleton } from '@/shared/ui/Skeleton'
 import { AppLink } from '@/shared/ui/AppLink'
 import { RoutePaths } from '@/shared/const/router'
 import { HStack } from '@/shared/ui/Stack'
+import { Comment } from '../../model/types/comment'
+import cls from './CommentCard.module.scss'
 
 interface CommentCardProps {
   className?: string

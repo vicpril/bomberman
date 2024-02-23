@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { HStack } from '@/shared/ui/Stack'
 import cls from './NavbarLinks.module.scss'
 import { getNavLinks } from '../../model/selectors/getNavLinks/getNavLinks'
-import { HStack } from '@/shared/ui/Stack'
 // import { isUserAuth } from '@/entities/User/model/selectors/getUserAuthData/isUserAuth'
 
 interface NavbarLinksProps {

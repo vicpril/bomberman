@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import AdminPanelPage from './AdminPanelPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import AdminPanelPage from './AdminPanelPage'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

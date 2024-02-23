@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { NotificationList } from './NotificationList'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
+import { NotificationList } from './NotificationList'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

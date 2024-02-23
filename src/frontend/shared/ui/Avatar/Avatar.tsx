@@ -1,7 +1,7 @@
 import { CSSProperties, useMemo } from 'react'
-import cls from './Avatar.module.scss'
 import { Mods, classNames } from '@/shared/lib/classNames/classNames'
 import defaultAvatar from '@/shared/assets/icons/logo_img_base.png'
+import cls from './Avatar.module.scss'
 
 interface AvatarProps {
     className?: string;

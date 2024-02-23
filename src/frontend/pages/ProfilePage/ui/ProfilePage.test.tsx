@@ -2,12 +2,12 @@ import { screen } from '@testing-library/react'
 import { Route, Routes } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { renderComponent } from '@/shared/lib/tests/renderComponent/renderComponent'
-import ProfilePage from './ProfilePage'
 import { Profile } from '@/entities/Profile'
 import { Currency } from '@/entities/Currency'
 import { Country } from '@/entities/Country'
 import { $api } from '@/shared/api/api'
 import { profileUpdateReducer } from '@/features/ProfileEdit/testing'
+import ProfilePage from './ProfilePage'
 
 const profile: Profile = {
   id: 1,

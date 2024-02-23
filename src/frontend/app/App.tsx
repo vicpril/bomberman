@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { userActions } from '@/entities/User'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 import { AppRouter } from './providers/AppRouter'
 import './App.scss'
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 
 function App() {
   const { theme } = useTheme()

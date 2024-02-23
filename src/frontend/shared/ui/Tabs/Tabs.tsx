@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
 import cls from './Tabs.module.scss'
 import { SelectOption } from '../Select/Select'
-import { genericMemo } from '@/shared/lib/components/genericMemo/genericMemo'
 import { Button, ButtonSize, ButtonTheme } from '../Button/Button'
 
 interface TabsProps<T extends string | number = string> {

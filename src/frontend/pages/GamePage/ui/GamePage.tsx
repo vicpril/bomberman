@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
 import { useTranslation } from 'react-i18next'
-import cls from './GamePage.module.scss'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { Button } from '@/shared/ui/Button'
 
@@ -19,6 +18,7 @@ import {
 } from '@/features/Game'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Page } from '@/widgets/Page'
+import cls from './GamePage.module.scss'
 
 const GamePage: FC = () => {
   const stage = useObservable(gameService.stage)

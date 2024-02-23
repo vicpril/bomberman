@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import ArticlesPage from './ArticlesPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { Article } from '@/entities/Article'
+import ArticlesPage from './ArticlesPage'
 import { articlesPageReducer } from '../../model/slices/articlesPageSlice'
 // import { articleFiltersReducer } from '@/features/ArticlesFilters'
 
