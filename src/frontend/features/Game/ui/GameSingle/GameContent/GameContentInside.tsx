@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button, ButtonSize } from '@/shared/ui/Button/Button'
+import { Button, ButtonSize } from '@/shared/ui/Button'
 
 type GameContentInsideProps = {
   text?: string,

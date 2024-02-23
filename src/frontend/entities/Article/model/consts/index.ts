@@ -1,4 +1,4 @@
-import { SelectOption } from '@/shared/ui/Select/Select'
+import { SelectOption } from '@/shared/ui/Select'
 
 export enum ArticleBlockType {
   CODE = 'CODE',

@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Popover } from './Popover'
-import { Text } from '@/shared/ui/Text/Text'
-import { Button } from '@/shared/ui/Button/Button'
+import { Text } from '@/shared/ui/Text'
+import { Button } from '@/shared/ui/Button'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

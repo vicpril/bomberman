@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticleRecomendationList.module.scss'
 import { HStack, VStack } from '@/shared/ui/Stack'
-import { Text, TextSize } from '@/shared/ui/Text/Text'
+import { Text, TextSize } from '@/shared/ui/Text'
 import { ArticleList, ArticleView, ArticleListItemSkeleton } from '@/entities/Article'
 import { useArticleRecommendationsList } from '../../api/aritcleRecommendationsApi'
 

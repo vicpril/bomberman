@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './GamePage.module.scss'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
-import { Button } from '@/shared/ui/Button/Button'
+import { Button } from '@/shared/ui/Button'
 
 import {
   MultiplayerGameHeader,

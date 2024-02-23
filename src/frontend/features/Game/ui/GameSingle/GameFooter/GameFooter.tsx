@@ -2,7 +2,7 @@ import './GameFooter.css'
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { Button, ButtonTheme, ButtonSize } from '@/shared/ui/Button/Button'
+import { Button, ButtonTheme, ButtonSize } from '@/shared/ui/Button'
 
 export const GameFooter: FC = () => {
   const { t } = useTranslation()

@@ -1,6 +1,6 @@
 // import { BugButton } from '@/app/providers/ErrorBoundary'
 import cls from './MainPage.module.scss'
-import { Logo } from '@/shared/ui/Logo/Logo'
+import { Logo } from '@/shared/ui/Logo'
 import { MainPageLinks } from './MainPageLinks/MainPageLinks'
 import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'

@@ -5,7 +5,7 @@ import {
 } from 'react'
 import { useSelector } from 'react-redux'
 import cls from './ProfilePage.module.scss'
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button'
+import { Button, ButtonTheme } from '@/shared/ui/Button'
 import {
   Profile, fetchProfileData, getProfileData, profileActions, profileReducer,
 } from '@/entities/Profile'
@@ -15,7 +15,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { getUserAuthData } from '@/entities/User'
-import { Text, TextTheme } from '@/shared/ui/Text/Text'
+import { Text, TextTheme } from '@/shared/ui/Text'
 import { ProfileView } from '@/widgets/ProfileCard'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { ProfileEditForm } from '@/features/ProfileEdit'

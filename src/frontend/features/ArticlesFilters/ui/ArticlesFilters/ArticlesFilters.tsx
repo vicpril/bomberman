@@ -14,16 +14,16 @@ import {
   getArticlesFilterSort,
   getArticlesFilterType,
 } from '../../model/selectors/articlesFiltersSelectors'
-import { Select } from '@/shared/ui/Select/Select'
+import { Select } from '@/shared/ui/Select'
 import { articleFiltersActions, articleFiltersReducer } from '../../model/slices/articlesFiltersSlice'
 import { ArticleSortProps } from '../../model/types/articlesFilters'
 import { SortOrder, orderOptions } from '@/shared/types'
-import { Input } from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input'
 import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { Tabs } from '@/shared/ui/Tabs/Tabs'
+import { Tabs } from '@/shared/ui/Tabs'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 import { HStack } from '@/shared/ui/Stack'
 

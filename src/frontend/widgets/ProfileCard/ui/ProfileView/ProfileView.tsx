@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileView.module.scss'
-import { Loader } from '@/shared/ui/Loader/Loader'
+import { Loader } from '@/shared/ui/Loader'
 import ProfileField from '../ProfileField/ProfileField'
 import defaultAvatar from '@/shared/assets/icons/logo_img_base.png'
 import {

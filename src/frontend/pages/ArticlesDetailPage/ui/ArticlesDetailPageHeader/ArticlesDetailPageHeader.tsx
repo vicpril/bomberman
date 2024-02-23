@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticlesDetailPageHeader.module.scss'
 import { RoutePaths } from '@/shared/const/router'
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button'
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button'
 
 interface ArticlesDetailPageHeaderProps {
   className?: string

@@ -3,7 +3,7 @@ import { memo, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './ArticleCommentsList.module.scss'
-import { Text, TextSize } from '@/shared/ui/Text/Text'
+import { Text, TextSize } from '@/shared/ui/Text'
 import { CommentList } from '@/entities/Comment'
 // eslint-disable-next-line fsd-project/layer-imports
 import { AddCommentForm } from '@/widgets/AddCommentForm'

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Text, TextTheme, TextSize } from '@/shared/ui/Text/Text'
+import { Text, TextTheme, TextSize } from '@/shared/ui/Text'
 
 export default {
   title: 'shared/Text',
