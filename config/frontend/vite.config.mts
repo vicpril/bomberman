@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vitejs.dev/config/
 // export default defineConfig({
@@ -28,11 +29,22 @@ const config = defineConfig(({ mode }) => {
   const srcDir = path.resolve(rootDir, 'src')
   const srcFrontendDir = path.resolve(srcDir, 'frontend')
   const srcGameDir = path.resolve(srcDir, 'game')
+  const srcPublicDir = path.resolve(srcDir, 'public')
+  const srcLocalesDir = path.resolve(srcPublicDir, 'locales')
+  // const srcOutput = path.resolve(rootDir, 'build-frontend')
 
   return {
     plugins: [
       svgr({ exportAsDefault: true }),
       react(),
+      viteStaticCopy({
+        targets: [
+          {
+            src: srcLocalesDir,
+            dest: './',
+          },
+        ],
+      }),
     ],
     resolve: {
       alias: [
