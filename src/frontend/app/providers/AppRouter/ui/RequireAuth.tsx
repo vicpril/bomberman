@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import {
-  UserRoles, getUserAuthData,
+  getUserAuthData,
 } from '@/entities/User'
 import { RoutePaths } from '@/shared/const/router'
+import { UserRoles } from '@/shared/const/UserRoles'
 
 interface RequireAuthProps {
   children: JSX.Element
