@@ -41,7 +41,8 @@
     "sockets:build:dev": "rm -rf ./build-sockets/ && webpack --env mode=development --config ./config/sockets/webpack.config.ts",
     "sockets:build:prod": "rm -rf ./build-sockets/ && webpack --env mode=production --config ./config/sockets/webpack.config.ts",
     "dev": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn sockets:start\" \"yarn start\" -n \"api,sockets,frontend\" -c auto",
-    "dev:api": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn json:start\""
+    "dev:api": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn json:start\"",
+    "generate:slice": "node ./scripts/createSlice/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

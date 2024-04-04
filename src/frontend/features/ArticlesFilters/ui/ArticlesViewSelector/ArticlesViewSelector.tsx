@@ -4,7 +4,7 @@ import ViewBigIcon from '@/shared/assets/icons/list-24-24.svg'
 import ViewSmallIcon from '@/shared/assets/icons/tiled-24-24.svg'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
 import { Icon } from '@/shared/ui/Icon'
-import { ArticleView } from '../../model/consts'
+import { ArticleView } from '@/entities/Article'
 import cls from './ArticlesViewSelector.module.scss'
 
 interface ArticlesViewSelectorProps {
