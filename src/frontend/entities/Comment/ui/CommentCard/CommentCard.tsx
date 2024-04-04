@@ -4,7 +4,7 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { Text } from '@/shared/ui/Text'
 import { Skeleton } from '@/shared/ui/Skeleton'
 import { AppLink } from '@/shared/ui/AppLink'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { HStack } from '@/shared/ui/Stack'
 import { Comment } from '../../model/types/comment'
 import cls from './CommentCard.module.scss'
@@ -36,7 +36,7 @@ const CommentCard = memo((props: CommentCardProps) => {
 
   return (
     <div className={classNames(cls.CommentCard, {}, [className])}>
-      <AppLink className={cls.header} to={`${RoutePaths.profile}/${comment.user.id}`}>
+      <AppLink className="header" to={GetRoutePaths.profile(comment.user.id)}>
         <HStack max gap="16">
           {comment.user.avatar ? <Avatar size={30} src={comment.user.avatar} /> : null}
           <Text title={comment.user.username} />

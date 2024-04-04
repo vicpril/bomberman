@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { AppLink } from '@/shared/ui/AppLink'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { getNavLinks } from '@/widgets/Navbar'
 import { VStack } from '@/shared/ui/Stack'
 
@@ -18,7 +18,7 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
 
   const links = useSelector(getNavLinks)
 
-  const linksMain = links.filter((l) => l.path !== RoutePaths.main)
+  const linksMain = links.filter((l) => l.path !== GetRoutePaths.main())
 
   const linkComponents = useMemo(() => (
     linksMain.map((link) => (

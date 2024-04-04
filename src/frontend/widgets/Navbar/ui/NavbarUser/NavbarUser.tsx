@@ -11,7 +11,7 @@ import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import { LoginModal } from '@/features/AuthByUsername'
 import { Dropdown, DropdownItem } from '@/shared/ui/Popup'
 import { Avatar } from '@/shared/ui/Avatar'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { NotificationButton } from '@/features/NotificationButton'
 import { HStack } from '@/shared/ui/Stack'
 import cls from './NavbarUser.module.scss'
@@ -40,11 +40,11 @@ export const NavbarUserInner = () => {
     const items: DropdownItem[] = [
       ...(showAdmin ? [{
         content: <Button size={ButtonSize.M} theme={ButtonTheme.Clear}>{t('Админка')}</Button>,
-        href: `${RoutePaths.adminPanel}`,
+        href: GetRoutePaths.adminPanel(),
       }] : []),
       {
         content: <Button size={ButtonSize.M} theme={ButtonTheme.Clear}>{t('Профиль')}</Button>,
-        href: `${RoutePaths.profile}/${authData.id}`,
+        href: GetRoutePaths.profile(authData.id),
       },
       {
         content: <Button size={ButtonSize.M} theme={ButtonTheme.Clear}>{t('Выйти')}</Button>,

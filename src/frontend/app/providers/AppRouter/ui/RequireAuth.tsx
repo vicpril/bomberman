@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import {
   getUserAuthData,
 } from '@/entities/User'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { UserRoles } from '@/shared/const/UserRoles'
 
 interface RequireAuthProps {
@@ -17,11 +17,11 @@ export const RequireAuth = (props: RequireAuthProps) => {
   const authData = useSelector(getUserAuthData)
 
   if (!authData?.id) {
-    return <Navigate to={RoutePaths.main} replace />
+    return <Navigate to={GetRoutePaths.main()} replace />
   }
 
   if (roles && !roles.some((role) => !!authData.roles?.includes(role))) {
-    return <Navigate to={RoutePaths.forbidden} replace />
+    return <Navigate to={GetRoutePaths.forbidden()} replace />
   }
 
   return children

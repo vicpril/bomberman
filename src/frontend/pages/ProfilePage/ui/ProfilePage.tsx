@@ -35,7 +35,7 @@ function ProfilePage() {
 
   const onBackClick = () => {
     navigate(-1)
-    // navigate(RoutePaths.main)
+    // navigate(GetRoutePaths.main())
   }
 
   const currentUserId = useSelector(getUserAuthData)?.id
@@ -84,7 +84,7 @@ function ProfilePage() {
                 <ProfileView />
                 {canEdit && (
                   <Button
-                    className={cls.editButton}
+                    className="editButton"
                     onClick={onEditMode}
                     data-testid="ProfilePage.editBtn"
                   >
@@ -93,7 +93,7 @@ function ProfilePage() {
                 )}
 
                 <Button
-                  className={cls.backButton}
+                  className="backButton"
                   theme={ButtonTheme.Clear}
                   onClick={onBackClick}
                 >

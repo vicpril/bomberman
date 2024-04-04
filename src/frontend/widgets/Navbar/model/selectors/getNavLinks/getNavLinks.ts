@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { getUserAuthData } from '@/entities/User'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { NavbarItemType } from '../../types/NavbarItems'
 
 export const getNavLinks = createSelector(
@@ -8,20 +8,20 @@ export const getNavLinks = createSelector(
   (state): NavbarItemType[] => {
     const links: NavbarItemType[] = [
       {
-        path: RoutePaths.main,
+        path: GetRoutePaths.main(),
         text: 'Главная',
       },
       {
-        path: RoutePaths.game,
+        path: GetRoutePaths.game(),
         text: 'Играть',
       },
       {
-        path: `${RoutePaths.profile}/${state?.id}`,
+        path: GetRoutePaths.profile(state?.id ?? ''),
         text: 'Профиль',
         auth: true,
       },
       {
-        path: RoutePaths.articles,
+        path: GetRoutePaths.articles(),
         text: 'Статьи',
         auth: false,
       },

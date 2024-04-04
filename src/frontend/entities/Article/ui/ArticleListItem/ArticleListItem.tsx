@@ -8,7 +8,7 @@ import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import { Card } from '@/shared/ui/Card'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { AppLink } from '@/shared/ui/AppLink'
 import cls from './ArticleListItem.module.scss'
 import {
@@ -32,7 +32,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
   const navigate = useNavigate()
 
   const onOpenArticle = useCallback(() => {
-    navigate(`${RoutePaths.articlesDetail}/${article.id}`)
+    navigate(GetRoutePaths.articlesDetail(article.id))
   }, [article.id, navigate])
 
   const types = <Text text={article.type.join(', ')} className={cls.types} />
@@ -49,8 +49,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     ) as ArticleTextBlock
 
     return (
-      <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
-        <Card className={cls.card}>
+      <div className={classNames('ArticleListItem', {}, [className, cls[view]])}>
+        <Card className="card">
           <div className={cls.header}>
             <Avatar size={30} src={article.user.avatar} />
             <Text text={article.user.username} className={cls.username} />
@@ -75,11 +75,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
   return (
     <AppLink
-      className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
-      to={`${RoutePaths.articlesDetail}/${article.id}`}
+      className={classNames('ArticleListItem', {}, [className, cls[view]])}
+      to={GetRoutePaths.articlesDetail(article.id)}
       target={target}
     >
-      <Card className={cls.card}>
+      <Card className="card">
         <div className={cls.imageWrapper}>
           <img alt={article.title} src={article.img} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />

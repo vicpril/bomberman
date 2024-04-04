@@ -18,14 +18,26 @@ export type AppRoutesProps = RouteProps & {
   roles?: UserRoles[]
 }
 
-export const RoutePaths: Record<AppRoutes, string> = {
-  [AppRoutes.Main]: '/',
-  [AppRoutes.Game]: '/game',
-  // [AppRoutes.About]: '/about',
-  [AppRoutes.Profile]: '/profile', // + :id
-  [AppRoutes.Articles]: '/articles',
-  [AppRoutes.ArticlesDetail]: '/articles', // + :id
-  [AppRoutes.AdminPanel]: '/admin', // + :id
-  [AppRoutes.Forbidden]: '/forbidden',
-  [AppRoutes.NotFound]: '/*',
+export const GetRoutePaths = {
+  [AppRoutes.Main]: () => '/',
+  [AppRoutes.Game]: () => '/game',
+  // [AppRoutes.About]: () => '/about',
+  [AppRoutes.Profile]: (id: string) => `/profile/${id}`, // + :id
+  [AppRoutes.Articles]: () => '/articles',
+  [AppRoutes.ArticlesDetail]: (id: string) => `/articles${id}`, // + :id
+  [AppRoutes.AdminPanel]: () => '/admin',
+  [AppRoutes.Forbidden]: () => '/forbidden',
+  [AppRoutes.NotFound]: () => '/*',
 }
+
+// export const RoutePaths: Record<AppRoutes, string> = {
+//   [AppRoutes.Main]: '/',
+//   [AppRoutes.Game]: '/game',
+//   // [AppRoutes.About]: '/about',
+//   [AppRoutes.Profile]: '/profile', // + :id
+//   [AppRoutes.Articles]: '/articles',
+//   [AppRoutes.ArticlesDetail]: '/articles', // + :id
+//   [AppRoutes.AdminPanel]: '/admin', // + :id
+//   [AppRoutes.Forbidden]: '/forbidden',
+//   [AppRoutes.NotFound]: '/*',
+// }

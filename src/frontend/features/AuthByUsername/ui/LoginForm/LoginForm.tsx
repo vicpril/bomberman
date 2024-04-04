@@ -13,7 +13,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Text, TextTheme } from '@/shared/ui/Text'
 import { Input } from '@/shared/ui/Input'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
-import { RoutePaths } from '@/shared/const/router'
+import { GetRoutePaths } from '@/shared/const/router'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
@@ -64,7 +64,7 @@ const LoginForm = (props: LoginFormProps) => {
     }))
     if (result.meta.requestStatus === 'fulfilled') {
       onSuccess?.()
-      navigate(RoutePaths.main)
+      navigate(GetRoutePaths.main())
     }
   }
 

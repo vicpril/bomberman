@@ -7,48 +7,48 @@ import { GamePage } from '@/pages/GamePage'
 import { MainPage } from '@/pages/MainPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { ProfilePage } from '@/pages/ProfilePage'
-import { AppRoutes, AppRoutesProps, RoutePaths } from '@/shared/const/router'
+import { AppRoutes, AppRoutesProps, GetRoutePaths } from '@/shared/const/router'
 
 export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.Main]: {
     element: <MainPage />,
-    path: RoutePaths.main,
+    path: GetRoutePaths.main(),
   },
   [AppRoutes.Game]: {
     element: <GamePage />,
-    path: RoutePaths.game,
+    path: GetRoutePaths.game(),
   },
   // [AppRoutes.About]: {
   //   element: <AboutPage />,
-  //   path: RoutePaths.about,
+  //   path: GetRoutePaths.about,
   // },
   [AppRoutes.Profile]: {
     element: <ProfilePage />,
-    path: `${RoutePaths.profile}/:id`,
+    path: GetRoutePaths.profile(':id'),
     // authRequired: true,
   },
   [AppRoutes.Articles]: {
     element: <ArticlesPage />,
-    path: RoutePaths.articles,
+    path: GetRoutePaths.articles(),
     // authRequired: true,
   },
   [AppRoutes.ArticlesDetail]: {
     element: <ArticlesDetailPage />,
-    path: `${RoutePaths.articlesDetail}/:id`,
+    path: GetRoutePaths.articlesDetail(':id'),
     authRequired: true,
   },
   [AppRoutes.AdminPanel]: {
     element: <AdminPanelPage />,
-    path: `${RoutePaths.adminPanel}`,
+    path: GetRoutePaths.adminPanel(),
     authRequired: true,
     roles: [UserRoles.ADMIN, UserRoles.MANAGER],
   },
   [AppRoutes.Forbidden]: {
     element: <ForbiddenPage />,
-    path: RoutePaths.forbidden,
+    path: GetRoutePaths.forbidden(),
   },
   [AppRoutes.NotFound]: {
     element: <NotFoundPage />,
-    path: RoutePaths.notFound,
+    path: GetRoutePaths.notFound(),
   },
 }
