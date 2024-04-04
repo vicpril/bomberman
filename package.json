@@ -42,7 +42,8 @@
     "sockets:build:prod": "rm -rf ./build-sockets/ && webpack --env mode=production --config ./config/sockets/webpack.config.ts",
     "dev": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn sockets:start\" \"yarn start\" -n \"api,sockets,frontend\" -c auto",
     "dev:api": "concurrently \"docker-compose up -d && yarn api:serve\" \"yarn json:start\"",
-    "generate:slice": "node ./scripts/createSlice/index.js"
+    "generate:slice": "node ./scripts/createSlice/index.js",
+    "postinstall": "node ./scripts/clear/clear-cache.js"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

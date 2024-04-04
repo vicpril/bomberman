@@ -20,7 +20,7 @@ export default (env?: BuildEnv) => {
   const paths: BuildPaths = {
     entry: path.resolve(srcFrontendDir, 'index.tsx'),
     output: path.resolve(rootDir, 'build-frontend'),
-    html: path.resolve(srcDir, 'public', 'index.html'),
+    html: path.resolve(rootDir, 'index.html'),
     src: srcFrontendDir,
     public: path.resolve(srcDir, 'public'),
     socketsUrl,
