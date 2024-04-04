@@ -4,10 +4,10 @@ import { useStore } from 'react-redux'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useUnmountEffect } from '@/shared/lib/hooks/useUnmountEffect/useUnmountEffect'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import type { ReduxStoreWithManager, StateSchemaKey } from '@/app/providers/StoreProvider'
+import type { ReduxStoreWithManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider'
 
 export type ReducersList = {
-  [name in StateSchemaKey]?: Reducer
+  [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>
 }
 
 interface DynamicModuleLoaderProps {
