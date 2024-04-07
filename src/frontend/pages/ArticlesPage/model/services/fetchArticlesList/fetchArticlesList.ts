@@ -1,6 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { ThunkConfig } from '@/app/providers/StoreProvider'
 import { Article, ArticleType } from '@/entities/Article'
 import {
   getArticlesFilterOrder,
@@ -9,16 +7,17 @@ import {
   getArticlesFilterType,
 } from '@/features/ArticlesFilters'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams'
+import { buildAsyncThunk } from '@/shared/lib/store'
 import { getArticlesPageLimit, getArticlesPageNum } from '../../selectors/articlesPageSelectors'
 
 interface FetchArticlesListProps {
   replace?: boolean;
 }
 
-export const fetchArticlesList = createAsyncThunk<
+export const { useAsyncThunk: useFetchArticlesList, asyncThunk: fetchArticlesList } = buildAsyncThunk<
   Article[],
   FetchArticlesListProps | undefined,
-  ThunkConfig<string>>(
+  string>(
     'articles/fetchArticlesList',
     async (_props, thunkApi) => {
       const {

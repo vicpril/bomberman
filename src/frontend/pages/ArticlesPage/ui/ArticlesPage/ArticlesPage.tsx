@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux'
-import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { ArticleList, ArticleView } from '@/entities/Article'
@@ -8,20 +7,17 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Page } from '@/widgets/Page'
 import { ArticlesFilters } from '@/features/ArticlesFilters'
-import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
+import { articlesPageReducer, getArticles, useArticlesActions } from '../../model/slices/articlesPageSlice'
 import {
-  getArticlesPageIsLoading,
-  getArticlesPageView,
+  useArticlesPageIsLoading,
+  useArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors'
-import {
-  fetchNextArticlesPage,
-} from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
-import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
+import { useFetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { useInitArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
 import cls from './ArticlesPage.module.scss'
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
+import { useFetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 
 interface ArticlesPageProps {
   className?: string
@@ -35,28 +31,33 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const { className } = props
 
   const articles = useSelector(getArticles.selectAll)
-  const isLoading = useSelector(getArticlesPageIsLoading)
-  const view = useSelector(getArticlesPageView)
+  const isLoading = useArticlesPageIsLoading()
+  const view = useArticlesPageView()
+
   const [searchParams] = useSearchParams()
 
-  const dispatch = useAppDispatch()
+  const { setPage, setView } = useArticlesActions()
 
-  const onLoadNextPart = useCallback(() => {
-    dispatch(fetchNextArticlesPage())
-  }, [dispatch])
+  const initArticlesPage = useInitArticlesPage()
+  const fetchNextArticlesPage = useFetchNextArticlesPage()
+  const fetchArticlesList = useFetchArticlesList()
+
+  const onLoadNextPart = () => {
+    fetchNextArticlesPage()
+  }
 
   useMountEffect(() => {
-    dispatch(initArticlesPage(searchParams))
+    initArticlesPage(searchParams)
   })
 
-  const onViewChange = useCallback((view: ArticleView) => {
-    dispatch(articlesPageActions.setView(view))
-  }, [dispatch])
+  const onViewChange = (view: ArticleView) => {
+    setView(view)
+  }
 
-  const onFiltersChange = useCallback(() => {
-    dispatch(articlesPageActions.setPage(1))
-    dispatch(fetchArticlesList({ replace: true }))
-  }, [dispatch])
+  const onFiltersChange = () => {
+    setPage(1)
+    fetchArticlesList({ replace: true })
+  }
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
