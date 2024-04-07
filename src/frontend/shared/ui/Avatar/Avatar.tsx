@@ -2,6 +2,8 @@ import { CSSProperties, useMemo } from 'react'
 import { Mods, classNames } from '@/shared/lib/classNames/classNames'
 import defaultAvatar from '@/shared/assets/icons/logo_img_base.png'
 import cls from './Avatar.module.scss'
+import { AppImage } from '../AppImage/AppImage'
+import { Skeleton } from '../Skeleton'
 
 interface AvatarProps {
     className?: string;
@@ -21,8 +23,10 @@ export const Avatar = ({
   }), [size])
 
   return (
-    <img
+    <AppImage
       src={src ?? defaultAvatar}
+      fallback={<Skeleton />}
+      errorFallback={defaultAvatar}
       alt={alt}
       style={styles}
       className={classNames(cls.Avatar, mods, [className])}
