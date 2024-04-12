@@ -69,7 +69,7 @@ const GamePage: FC = () => {
     )
 
   return (
-    <Page className={classNames(cls.GamePage, {}, [])}>
+    <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
       { status === GameStatus.START_SCREEN && startScreen }
       { status !== GameStatus.START_SCREEN && mainScreen}
     </Page>

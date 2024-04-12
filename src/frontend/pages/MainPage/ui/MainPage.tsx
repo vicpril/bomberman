@@ -7,7 +7,7 @@ import cls from './MainPage.module.scss'
 
 function MainPage() {
   return (
-    <Page className={cls.MainPage}>
+    <Page className={cls.MainPage} data-testid="MainPage">
       <VStack
         justify="center"
         align="center"

@@ -9,7 +9,7 @@ const GamePage: FC = () => {
   const { t } = useTranslation()
 
   return (
-    <Page className={classNames(cls.NotFoundPage, {}, [])}>
+    <Page className={classNames(cls.NotFoundPage, {}, [])} data-testid="NotFoundPage">
       <Text
         title={t('Страница не найдена')}
       />

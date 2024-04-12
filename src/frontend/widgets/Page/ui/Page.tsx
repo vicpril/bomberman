@@ -10,9 +10,10 @@ import { getUiScrollByPath, uiActions } from '@/features/UI'
 import { StateSchema } from '@/app/providers/StoreProvider'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
+import { TestProps } from '@/shared/types/tests'
 import cls from './Page.module.scss'
 
-interface PageProps {
+interface PageProps extends TestProps {
   className?: string
   children?: ReactNode
   onScrollEnd?: () => void;
@@ -69,6 +70,7 @@ const Page = memo((props: PageProps) => {
       ref={wrapperRef}
       className={classNames(cls.Page, {}, [className])}
       // onScroll={onScroll}
+      data-testid={props['data-testid'] ?? 'Page'}
     >
       {children}
       {onScrollEnd && <div ref={triggerRef} className={cls.trigger} />}

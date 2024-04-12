@@ -14,7 +14,7 @@ const AdminPanelPage = (props: AdminPanelPageProps) => {
   const { t } = useTranslation()
 
   return (
-    <Page className={classNames(cls.AdminPanelPage, {}, [className])}>
+    <Page className={classNames(cls.AdminPanelPage, {}, [className])} data-testid="AdminPanelPage">
       <Text title={t('Административная панель')} />
     </Page>
 
