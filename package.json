@@ -22,7 +22,7 @@
     "test:ui:up": "yarn build-storybook && loki update --reactUri file:./storybook-static --config ./config/frontend/storybook",
     "test:ui": "yarn build-storybook && loki test --reactUri file:./storybook-static --config ./config/frontend/storybook",
     "test:ui:ok": "loki approve",
-    "test:ui:ci": "loki --reactUri file:./storybook-static",
+    "test:ui:ci": "loki --reactUri file:./storybook-static --config ./config/frontend/storybook",
     "test:ui:report": "yarn test:ui:json && yarn test:ui:html",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
