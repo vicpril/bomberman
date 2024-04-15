@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+npx lint-staged
 # yarn lint:ts
 # yarn lint:scss
 # yarn test:unit
