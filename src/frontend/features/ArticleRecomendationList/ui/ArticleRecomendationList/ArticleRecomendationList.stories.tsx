@@ -2,11 +2,12 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { Article } from '@/entities/Article'
+import withMock from 'storybook-addon-mock'
 import { ArticleRecomendationList } from './ArticleRecomendationList'
 
 const article: Article = {
   id: '1',
-  img: '',
+  img: 'assets/storybook.jpeg',
   createdAt: '',
   views: 111,
   user: { id: '1', username: '123' },
@@ -22,6 +23,7 @@ export default {
   args: {
     children: 'ArticleRecomendationList',
   },
+  decorators: [withMock],
 } as ComponentMeta<typeof ArticleRecomendationList>
 
 const Template: ComponentStory<typeof ArticleRecomendationList> = (args) => <ArticleRecomendationList {...args} />
