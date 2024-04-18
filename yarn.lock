@@ -7878,10 +7878,10 @@ eslint-module-utils@^2.7.4, eslint-module-utils@^2.8.0:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-fsd-project@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-fsd-project/-/eslint-plugin-fsd-project-0.0.11.tgz#530b9539a7cb1a2d3a37c2f33762e415b5d63782"
-  integrity sha512-YFcxjZLqCa9T3i0gXCjQtAoP7ZczEHKZ1qKsrb6COYEnpejx57ZikmUkolbiiMIGcWNoyW2OCU2Ic6AksqLZLg==
+eslint-plugin-fsd-project@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-fsd-project/-/eslint-plugin-fsd-project-0.0.14.tgz#c106ce7ce76b83e8bdf1c78898fb143879ed2ce2"
+  integrity sha512-ddldV19asDmpZ+5X4bI5BoSzYc33GzwtEqSycyMi/KpOt4dvyR8nhi72E1/wZ9lqZe84Jgx3946MwuZYwhfe+g==
   dependencies:
     micromatch "^4.0.5"
     requireindex "^1.2.0"
