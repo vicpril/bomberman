@@ -8,5 +8,5 @@ node_modules
 # .vscode
 /storybook-static
 *.env.*
-/reports
+/reports/unit
 yarn-error.log
