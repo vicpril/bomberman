@@ -1,6 +1,7 @@
 import { Country } from '@/entities/Country'
 import { Currency } from '@/entities/Currency'
 import { Profile } from '@/entities/Profile'
+import { Action } from '@reduxjs/toolkit'
 import { profileUpdateActions, profileUpdateReducer } from './updateProfile'
 import { ProfileUpdateSchema } from '../../types/ProfileUpdateSchema'
 import { ValidateProfileErrors } from '../../consts'
@@ -34,7 +35,7 @@ describe('updateProfile.test', () => {
       validateErrors: [ValidateProfileErrors.SERVER_ERROR],
     }
     expect(
-      profileUpdateReducer(state as ProfileUpdateSchema, updateProfileData.pending),
+      profileUpdateReducer(state as ProfileUpdateSchema, <Action>updateProfileData.pending),
     )
       .toEqual({ isLoading: true, validateErrors: undefined })
   })

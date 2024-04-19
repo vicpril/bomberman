@@ -6,7 +6,7 @@ import { buildSlice } from '@/shared/lib/store'
 import { ArticlesPageSchema } from '../types/ArticlesPageSchema'
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList'
 
-const articlesAdapter = createEntityAdapter<Article>({
+const articlesAdapter = createEntityAdapter<Article, string>({
   selectId: (article) => article.id,
 })
 
