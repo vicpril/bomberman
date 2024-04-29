@@ -73,7 +73,7 @@ function ProfilePage() {
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <Page className={cls.ProfilePage}>
+      <Page className={cls.ProfilePage} data-testid="ProfilePage">
         <VStack gap="32">
           {
             !profileData && (<Text title={t('Пользователь не найден')} />)

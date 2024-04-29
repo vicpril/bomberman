@@ -25,7 +25,7 @@ export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.Profile]: {
     element: <ProfilePage />,
     path: GetRoutePaths.profile(':id'),
-    // authRequired: true,
+    authRequired: true,
   },
   [AppRoutes.Articles]: {
     element: <ArticlesPage />,

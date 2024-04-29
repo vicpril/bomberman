@@ -66,6 +66,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         className={classNames(cls.ArticlesPage, {}, [className])}
         onScrollEnd={onLoadNextPart}
         saveScroll
+        data-testid="ArticlesPage"
       >
         <ArticlesFilters
           view={view}
