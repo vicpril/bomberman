@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
-import { login } from './commands/login'
+import * as commonCommands from './commands/common'
+import * as profileCommands from './commands/profile'
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -12,12 +13,5 @@ import { login } from './commands/login'
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
-Cypress.Commands.add('login', login)
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      login(username?: string, password?: string): Chainable<void>
-    }
-  }
-}
+Cypress.Commands.addAll(commonCommands)
+Cypress.Commands.addAll(profileCommands)

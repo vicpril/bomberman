@@ -17,7 +17,7 @@ const ProfileField = ({ label, value, className }: FieldProps) => (
       {label}
       :
     </div>
-    <div className={cls.value}>{value || '-'}</div>
+    <div className={cls.value} data-testId={`ProfileField.${className}`}>{value || '-'}</div>
 
   </HStack>
 )
