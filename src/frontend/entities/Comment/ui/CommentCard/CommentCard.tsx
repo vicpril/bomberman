@@ -42,7 +42,7 @@ const CommentCard = memo((props: CommentCardProps) => {
           <Text title={comment.user.username} />
         </HStack>
       </AppLink>
-      <Text className={cls.text} text={comment.text} />
+      <Text className={cls.text} text={comment.text} data-testid="CommentCard.Content" />
     </div>
   )
 })

@@ -26,7 +26,7 @@ export const Avatar = ({
     <AppImage
       src={src ?? defaultAvatar}
       fallback={<Skeleton />}
-      errorFallback={defaultAvatar}
+      errorFallback={<AppImage src={defaultAvatar} alt={alt} style={styles} />}
       alt={alt}
       style={styles}
       className={classNames(cls.Avatar, mods, [className])}

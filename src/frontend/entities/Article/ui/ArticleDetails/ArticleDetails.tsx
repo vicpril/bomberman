@@ -77,7 +77,7 @@ const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
-      dispatch(fetchArticleDetailsById(+id))
+      dispatch(fetchArticleDetailsById(id))
     }
   }, [dispatch, id])
 
@@ -105,7 +105,7 @@ const ArticleDetails = memo((props: ArticleDetailsProps) => {
     )
   } else {
     content = (
-      <VStack max gap="8" align="start">
+      <VStack max gap="8" align="start" data-testid="ArticleDetails.Content">
         <HStack justify="center" max>
           <Avatar
             size={200}

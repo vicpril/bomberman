@@ -22,7 +22,7 @@ describe('fetchArticleDetailsById.test', () => {
       data: remoteMockValue,
     })
 
-    const result = await thunk.callThunk(1)
+    const result = await thunk.callThunk('1')
 
     expect(thunk.apiJson.get).toHaveBeenCalled()
     expect(thunk.dispatch).toHaveBeenCalledTimes(2)

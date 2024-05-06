@@ -70,12 +70,16 @@ const RatingCard = memo((props: RatingCardProps) => {
         value={feedback}
         onChange={setFeedback}
         placeholder={t('Ваш отзыв')}
+        data-testid="RatingCard.Input"
       />
     </>
   )
 
   return (
-    <Card className={classNames(cls.RatingCard, { [cls.responsive]: responsive }, [className])}>
+    <Card
+      className={classNames(cls.RatingCard, { [cls.responsive]: responsive }, [className])}
+      data-testid="RatingCard"
+    >
       <VStack align="center" gap="8">
         <Text title={title} />
         <StarRating size={40} onSelect={onSelectStars} selectedStars={starsCount} />
@@ -85,10 +89,10 @@ const RatingCard = memo((props: RatingCardProps) => {
           <VStack max gap="32">
             {modalContent}
             <HStack max gap="16" justify="end">
-              <Button onClick={cancelHandle} theme={ButtonTheme.Outline}>
+              <Button onClick={cancelHandle} theme={ButtonTheme.Outline} data-testid="RatingCard.Close">
                 {t('Закрыть')}
               </Button>
-              <Button onClick={acceptHandle}>
+              <Button onClick={acceptHandle} data-testid="RatingCard.Send">
                 {t('Отправить')}
               </Button>
             </HStack>
@@ -99,7 +103,7 @@ const RatingCard = memo((props: RatingCardProps) => {
         <Drawer isOpen={isModalOpen} onClose={cancelHandle}>
           <VStack gap="32">
             {modalContent}
-            <Button responsive onClick={acceptHandle} size={ButtonSize.L}>
+            <Button responsive onClick={acceptHandle} size={ButtonSize.L} data-testid="RatingCard.Send">
               {t('Отправить')}
             </Button>
           </VStack>

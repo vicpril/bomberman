@@ -52,7 +52,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
     return (
       <div className={classNames('ArticleListItem', {}, [className, cls[view]])}>
-        <Card className="card">
+        <Card className="card" data-testid="ArticleListItem">
           <div className={cls.header}>
             <Avatar size={30} src={article.user.avatar} />
             <Text text={article.user.username} className={cls.username} />
@@ -86,7 +86,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
       to={GetRoutePaths.articlesDetail(article.id)}
       target={target}
     >
-      <Card className="card">
+      <Card className="card" data-testid="ArticleListItem">
         <div className={cls.imageWrapper}>
           <AppImage
             fallback={<Skeleton width="100%" height="200px" />}
