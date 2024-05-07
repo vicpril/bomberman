@@ -5,24 +5,21 @@ import cls from './ArticleBlockTextComponent.module.scss'
 import { ArticleTextBlock } from '../../model/types/article'
 
 interface ArticleBlockTextComponentProps {
-  className?: string
-  block: ArticleTextBlock
+    className?: string
+    block: ArticleTextBlock
 }
 
 const ArticleBlockTextComponent = memo((props: ArticleBlockTextComponentProps) => {
-  const { className, block } = props
+    const { className, block } = props
 
-  return (
-    <div className={classNames(cls.ArticleBlockTextComponent, {}, [className])}>
-      {block.title && (
-        <Text title={block.title} className={cls.title} />
-      )}
-      {block.paragraphs.map((paragraph, _index) => (
-        <Text key={paragraph} text={paragraph} className={cls.paragraph} />
-      ))}
-    </div>
-
-  )
+    return (
+        <div className={classNames(cls.ArticleBlockTextComponent, {}, [className])}>
+            {block.title && <Text title={block.title} className={cls.title} />}
+            {block.paragraphs.map((paragraph, _index) => (
+                <Text key={paragraph} text={paragraph} className={cls.paragraph} />
+            ))}
+        </div>
+    )
 })
 
 export { ArticleBlockTextComponent }

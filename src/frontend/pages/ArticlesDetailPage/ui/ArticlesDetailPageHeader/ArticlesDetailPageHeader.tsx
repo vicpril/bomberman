@@ -7,32 +7,27 @@ import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button'
 import cls from './ArticlesDetailPageHeader.module.scss'
 
 interface ArticlesDetailPageHeaderProps {
-  className?: string
+    className?: string
 }
 
 const ArticlesDetailPageHeader = memo((props: ArticlesDetailPageHeaderProps) => {
-  const { className } = props
+    const { className } = props
 
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  const onBackToList = useCallback(() => {
-    navigate(GetRoutePaths.articles())
-  }, [navigate])
+    const onBackToList = useCallback(() => {
+        navigate(GetRoutePaths.articles())
+    }, [navigate])
 
-  return (
-    <div className={classNames(cls.ArticlesDetailPageHeader, {}, [className])}>
-      <Button
-        theme={ButtonTheme.Clear}
-        size={ButtonSize.M}
-        onClick={onBackToList}
-      >
-        {t('Назад к списку')}
-      </Button>
-    </div>
-
-  )
+    return (
+        <div className={classNames(cls.ArticlesDetailPageHeader, {}, [className])}>
+            <Button theme={ButtonTheme.Clear} size={ButtonSize.M} onClick={onBackToList}>
+                {t('Назад к списку')}
+            </Button>
+        </div>
+    )
 })
 
 export { ArticlesDetailPageHeader }

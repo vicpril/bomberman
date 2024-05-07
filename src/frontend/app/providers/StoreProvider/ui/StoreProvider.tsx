@@ -5,26 +5,14 @@ import { StateSchema } from '../config/StateSchema'
 import { createAppStore } from '../config/createAppStore'
 
 interface StoreProviderProps {
-  children?: ReactNode
-  initialState?: DeepPartial<StateSchema>
-  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
+    children?: ReactNode
+    initialState?: DeepPartial<StateSchema>
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
 }
 export const StoreProvider = (props: StoreProviderProps) => {
-  const {
-    children,
-    initialState,
-    asyncReducers,
-  } = props
+    const { children, initialState, asyncReducers } = props
 
-  const store = createAppStore(
-    initialState as StateSchema,
-    asyncReducers as ReducersMapObject<StateSchema>,
-  )
+    const store = createAppStore(initialState as StateSchema, asyncReducers as ReducersMapObject<StateSchema>)
 
-  return (
-    <Provider store={store}>
-      {children}
-    </Provider>
-
-  )
+    return <Provider store={store}>{children}</Provider>
 }

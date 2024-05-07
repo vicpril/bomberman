@@ -8,34 +8,26 @@ import popupCls from '../../styles/popup.module.scss'
 import { mapDirectionClass } from '../../consts'
 
 interface PopoverProps {
-  className?: string
-  direction?: DropdownDirection
-  trigger: ReactNode
-  children: ReactNode
+    className?: string
+    direction?: DropdownDirection
+    trigger: ReactNode
+    children: ReactNode
 }
 
 const Popover = memo((props: PopoverProps) => {
-  const {
-    className,
-    trigger,
-    children,
-    direction = 'bottom right',
-  } = props
+    const { className, trigger, children, direction = 'bottom right' } = props
 
-  const menuClasses = [mapDirectionClass[direction]]
+    const menuClasses = [mapDirectionClass[direction]]
 
-  return (
-    <HPopover className={classNames(cls.Popover, {}, [className, popupCls.popup])}>
-      <HPopover.Button as="div" className={popupCls.trigger}>
-        {trigger}
-      </HPopover.Button>
+    return (
+        <HPopover className={classNames(cls.Popover, {}, [className, popupCls.popup])}>
+            <HPopover.Button as="div" className={popupCls.trigger}>
+                {trigger}
+            </HPopover.Button>
 
-      <HPopover.Panel className={classNames(cls.panel, {}, menuClasses)}>
-        {children}
-      </HPopover.Panel>
-    </HPopover>
-
-  )
+            <HPopover.Panel className={classNames(cls.panel, {}, menuClasses)}>{children}</HPopover.Panel>
+        </HPopover>
+    )
 })
 
 export { Popover }

@@ -8,23 +8,23 @@ import { AppRouter } from './providers/AppRouter'
 import './App.scss'
 
 function App() {
-  const { theme } = useTheme()
+    const { theme } = useTheme()
 
-  const dispatch = useDispatch()
-  dispatch(userActions.initAuthData())
+    const dispatch = useDispatch()
+    dispatch(userActions.initAuthData())
 
-  return (
-    <div className={classNames('app', {}, [theme])}>
-      <Suspense fallback="">
-        <div className="content-page">
-          <Navbar />
-          <AppRouter />
+    return (
+        <div className={classNames('app', {}, [theme])}>
+            <Suspense fallback="">
+                <div className="content-page">
+                    <Navbar />
+                    <AppRouter />
+                </div>
+            </Suspense>
+
+            <div id="modals" />
         </div>
-      </Suspense>
-
-      <div id="modals" />
-    </div>
-  )
+    )
 }
 
 export default App

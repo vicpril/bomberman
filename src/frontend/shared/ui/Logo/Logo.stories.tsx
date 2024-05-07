@@ -4,8 +4,8 @@ import { Logo } from './Logo'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/Logo',
-  component: Logo,
+    title: 'shared/Logo',
+    component: Logo,
 } as ComponentMeta<typeof Logo>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

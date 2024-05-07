@@ -1,56 +1,64 @@
 import { UserMeta } from 'api/models/UserMeta'
 import {
-  Table, Model, PrimaryKey, Column, DataType, Unique, HasOne, AutoIncrement, Default,
+    Table,
+    Model,
+    PrimaryKey,
+    Column,
+    DataType,
+    Unique,
+    HasOne,
+    AutoIncrement,
+    Default,
 } from 'sequelize-typescript'
 // import { Article } from './Article'
 // import { ArticleComment } from './ArticleComment'
 
 export enum UserRoles {
-  Admin = 'ADMIN',
-  Manager = 'MANAGER',
-  User = 'USER'
+    Admin = 'ADMIN',
+    Manager = 'MANAGER',
+    User = 'USER',
 }
 
 @Table({
-  tableName: 'users',
-  timestamps: false,
+    tableName: 'users',
+    timestamps: false,
 })
 export class User extends Model {
-  @AutoIncrement
-  @PrimaryKey
-  @Column(DataType.INTEGER)
+    @AutoIncrement
+    @PrimaryKey
+    @Column(DataType.INTEGER)
     id!: number
 
-  @Unique
-  @Column
+    @Unique
+    @Column
     username!: string
 
-  @Column
+    @Column
     password!: string
 
-  @Default([UserRoles.User])
-  // @Column(DataType.ENUM(...Object.values(UserRoles)))
-  //   role: UserRoles
-  @Column(DataType.ARRAY(DataType.ENUM(...Object.values(UserRoles))))
+    @Default([UserRoles.User])
+    // @Column(DataType.ENUM(...Object.values(UserRoles)))
+    //   role: UserRoles
+    @Column(DataType.ARRAY(DataType.ENUM(...Object.values(UserRoles))))
     roles: UserRoles[]
 
-  @HasOne(() => UserMeta, {
-    foreignKey: 'userId',
-    onDelete: 'CASCADE',
-  })
+    @HasOne(() => UserMeta, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+    })
     meta!: Awaited<UserMeta>
 
-  get profile() {
-    return {
-      ...this.meta.get(),
-      username: this.username,
-      id: this.id,
+    get profile() {
+        return {
+            ...this.meta.get(),
+            username: this.username,
+            id: this.id,
+        }
     }
-  }
 
-  // @HasMany(() => Article, 'userId')
-  //   articles!: Awaited<Article[]>
+    // @HasMany(() => Article, 'userId')
+    //   articles!: Awaited<Article[]>
 
-  // @HasMany(() => ArticleComment, 'articleId')
-  //   articleComments: Awaited<ArticleComment[]>
+    // @HasMany(() => ArticleComment, 'articleId')
+    //   articleComments: Awaited<ArticleComment[]>
 }

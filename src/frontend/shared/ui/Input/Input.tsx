@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useMemo, useRef, useState,
-} from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { findFirstDiffPos } from '@/shared/lib/stringsDifference/getIndexOfDifferenceStrings'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
@@ -10,75 +8,77 @@ import { getSymbolWidth, getSymbolsLength } from './config'
 type CustomInputAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
 interface InputProps extends CustomInputAttributes {
-  className?: string
-  value?: string | number
-  onChange?: (value: string) => void
-  autofocus?: boolean
-  placeholder?: string
+    className?: string
+    value?: string | number
+    onChange?: (value: string) => void
+    autofocus?: boolean
+    placeholder?: string
 }
 
 export const Input = (props: InputProps) => {
-  const {
-    className, placeholder, onChange, value, autofocus, ...otherProps
-  } = props
+    const { className, placeholder, onChange, value, autofocus, ...otherProps } = props
 
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [inputValue, setInputValue] = useState('')
+    const inputRef = useRef<HTMLInputElement>(null)
+    const [inputValue, setInputValue] = useState('')
 
-  useEffect(() => { setInputValue(value?.toString() || '') }, [value])
+    useEffect(() => {
+        setInputValue(value?.toString() || '')
+    }, [value])
 
-  const { flag: isFocused, on: onFocus, off: onBlur } = useFlag(false)
+    const { flag: isFocused, on: onFocus, off: onBlur } = useFlag(false)
 
-  useEffect(() => {
-    if (autofocus) {
-      onFocus()
-      inputRef.current?.focus()
+    useEffect(() => {
+        if (autofocus) {
+            onFocus()
+            inputRef.current?.focus()
+        }
+    }, [autofocus, onFocus])
+
+    const [caretPosition, setCaretPosition] = useState(value?.toString().length || 0)
+
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const diffIndex = findFirstDiffPos(inputValue, e.target.value)
+        setCaretPosition(diffIndex === -1 ? e.target.value.length : diffIndex)
+        setInputValue(e.target.value)
+        onChange?.(e.target.value)
     }
-  }, [autofocus, onFocus])
 
-  const [caretPosition, setCaretPosition] = useState(value?.toString().length || 0)
+    const onSelect = (e: any) => {
+        setCaretPosition(e?.target?.selectionStart || 0)
+    }
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const diffIndex = findFirstDiffPos(inputValue, e.target.value)
-    setCaretPosition(diffIndex === -1 ? e.target.value.length : diffIndex)
-    setInputValue(e.target.value)
-    onChange?.(e.target.value)
-  }
+    const caretLeft = useMemo(
+        () => getSymbolsLength(inputValue.slice(0, caretPosition)),
+        [inputValue, caretPosition],
+    )
 
-  const onSelect = (e: any) => {
-    setCaretPosition(e?.target?.selectionStart || 0)
-  }
+    const caretWidth = useMemo(() => getSymbolWidth(inputValue[caretPosition]), [caretPosition, inputValue])
 
-  const caretLeft = useMemo(
-    () => getSymbolsLength(inputValue.slice(0, caretPosition)),
-    [inputValue, caretPosition],
-  )
-
-  const caretWidth = useMemo(
-    () => getSymbolWidth(inputValue[caretPosition]),
-    [caretPosition, inputValue],
-  )
-
-  return (
-    <div className={classNames(cls.InputWrapper, {}, [className])}>
-      <div className={cls.placeholder}>{placeholder ? `${placeholder}>` : ''}</div>
-      <div className={cls.caretWrapper}>
-        <input
-          ref={inputRef}
-          className={cls.input}
-          type="text"
-          value={value}
-          onChange={onChangeHandler}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onSelect={onSelect}
-          {...otherProps}
-        />
-        {isFocused && (
-          <span className={cls.caret} style={{ left: `${caretLeft}px`, width: `${caretWidth}px` }} />
-        )}
-
-      </div>
-    </div>
-  )
+    return (
+        <div className={classNames(cls.InputWrapper, {}, [className])}>
+            <div className={cls.placeholder}>{placeholder ? `${placeholder}>` : ''}</div>
+            <div className={cls.caretWrapper}>
+                <input
+                    ref={inputRef}
+                    className={cls.input}
+                    type="text"
+                    value={value}
+                    onChange={onChangeHandler}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSelect={onSelect}
+                    {...otherProps}
+                />
+                {isFocused && (
+                    <span
+                        className={cls.caret}
+                        style={{
+                            left: `${caretLeft}px`,
+                            width: `${caretWidth}px`,
+                        }}
+                    />
+                )}
+            </div>
+        </div>
+    )
 }

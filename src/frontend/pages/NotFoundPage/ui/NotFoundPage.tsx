@@ -6,15 +6,13 @@ import { Page } from '@/widgets/Page'
 import cls from './NotFoundPage.module.scss'
 
 const GamePage: FC = () => {
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  return (
-    <Page className={classNames(cls.NotFoundPage, {}, [])} data-testid="NotFoundPage">
-      <Text
-        title={t('Страница не найдена')}
-      />
-    </Page>
-  )
+    return (
+        <Page className={classNames(cls.NotFoundPage, {}, [])} data-testid="NotFoundPage">
+            <Text title={t('Страница не найдена')} />
+        </Page>
+    )
 }
 
 export default GamePage

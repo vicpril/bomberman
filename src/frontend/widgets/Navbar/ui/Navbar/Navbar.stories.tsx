@@ -5,17 +5,17 @@ import { Navbar } from './Navbar'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'widgets/Navbar',
-  component: Navbar,
-  decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <div id="Navbars" />
-      </>
-    ),
-    StoreDecorator({ user: { authData: { id: '1' } } }),
-  ],
+    title: 'widgets/Navbar',
+    component: Navbar,
+    decorators: [
+        (Story) => (
+            <>
+                <Story />
+                <div id="Navbars" />
+            </>
+        ),
+        StoreDecorator({ user: { authData: { id: '1' } } }),
+    ],
 } as ComponentMeta<typeof Navbar>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

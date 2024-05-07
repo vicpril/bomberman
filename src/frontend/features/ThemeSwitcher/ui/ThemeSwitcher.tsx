@@ -6,21 +6,20 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
 
 interface ThemeSwitcherProps {
-  className?: string
+    className?: string
 }
 
 export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
-  const { className } = props
-  const { theme, toggleTheme } = useTheme()
+    const { className } = props
+    const { theme, toggleTheme } = useTheme()
 
-  return (
-    <Button
-      className={classNames('ThemeSwitcher', {}, [className])}
-      onClick={toggleTheme}
-      theme={ButtonTheme.Clear}
-    >
-      {theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
-    </Button>
-
-  )
+    return (
+        <Button
+            className={classNames('ThemeSwitcher', {}, [className])}
+            onClick={toggleTheme}
+            theme={ButtonTheme.Clear}
+        >
+            {theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
+        </Button>
+    )
 }

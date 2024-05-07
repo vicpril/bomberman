@@ -1,3 +1,3 @@
 module.exports = {
-  '**/*.{ts,tsx}': () => 'yarn lint',
+    '**/*.{ts,tsx}': () => 'yarn lint',
 }

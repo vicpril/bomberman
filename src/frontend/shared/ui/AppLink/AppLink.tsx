@@ -9,42 +9,33 @@ type AppLinkTheme = 'primary' | 'inverted'
 type AppLinkSize = 's' | 'm' | 'l'
 
 interface AppLinkProps extends LinkProps {
-  className?: string
-  theme?: AppLinkTheme
-  size?: AppLinkSize
-  bombed?: boolean
-  target?: AnchorHTMLAttributes<HTMLAnchorElement>['target']
+    className?: string
+    theme?: AppLinkTheme
+    size?: AppLinkSize
+    bombed?: boolean
+    target?: AnchorHTMLAttributes<HTMLAnchorElement>['target']
 }
 
 export const AppLink: FC<AppLinkProps> = (props) => {
-  const {
-    className,
-    to,
-    children,
-    theme = 'primary',
-    size = 's',
-    bombed,
-    target,
-    ...otherProps
-  } = props
+    const { className, to, children, theme = 'primary', size = 's', bombed, target, ...otherProps } = props
 
-  return (
-    <div className={classNames(cls.AppLink, { [cls._bombed]: bombed }, [cls[`_size_${size}`]])}>
-      <Link
-        to={to}
-        target={target}
-        className={classNames(cls.link, {}, [className, cls[theme]])}
-        {...otherProps}
-      >
-        {children}
-      </Link>
+    return (
+        <div className={classNames(cls.AppLink, { [cls._bombed]: bombed }, [cls[`_size_${size}`]])}>
+            <Link
+                to={to}
+                target={target}
+                className={classNames(cls.link, {}, [className, cls[theme]])}
+                {...otherProps}
+            >
+                {children}
+            </Link>
 
-      {bombed && (
-        <>
-          <img className={classNames(cls.bomb, {}, [])} src={bombImage} alt="bomb" />
-          <img className={classNames(cls.bomb, {}, [])} src={bombImage} alt="bomb" />
-        </>
-      )}
-    </div>
-  )
+            {bombed && (
+                <>
+                    <img className={classNames(cls.bomb, {}, [])} src={bombImage} alt="bomb" />
+                    <img className={classNames(cls.bomb, {}, [])} src={bombImage} alt="bomb" />
+                </>
+            )}
+        </div>
+    )
 }

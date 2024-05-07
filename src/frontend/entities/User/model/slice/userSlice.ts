@@ -5,25 +5,24 @@ import { User, UserSchema } from '../types/user'
 const initialState: UserSchema = {}
 
 export const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    setAuthData: (state, action: PayloadAction<User>) => {
-      state.authData = action.payload
-      localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(action.payload))
+    name: 'user',
+    initialState,
+    reducers: {
+        setAuthData: (state, action: PayloadAction<User>) => {
+            state.authData = action.payload
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(action.payload))
+        },
+        initAuthData: (state) => {
+            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
+            if (user) {
+                state.authData = JSON.parse(user)
+            }
+        },
+        logout: (state) => {
+            state.authData = null
+            localStorage.removeItem(USER_LOCALSTORAGE_KEY)
+        },
     },
-    initAuthData: (state) => {
-      const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
-      if (user) {
-        state.authData = JSON.parse(user)
-      }
-    },
-    logout: (state) => {
-      state.authData = null
-      localStorage.removeItem(USER_LOCALSTORAGE_KEY)
-    },
-  },
-
 })
 
 export const { actions: userActions } = userSlice

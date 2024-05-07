@@ -1,13 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {
-  ChangeEvent, useEffect, useRef,
-} from 'react'
+import { ChangeEvent, useEffect, useRef } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import {
-  DynamicModuleLoader,
-  ReducersList,
+    DynamicModuleLoader,
+    ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Text, TextTheme } from '@/shared/ui/Text'
@@ -22,109 +20,97 @@ import { getLoginState } from '../../model/selectors/getLoginState/getLoginState
 import cls from './LoginForm.module.scss'
 
 export interface LoginFormProps {
-  className?: string
-  onSuccess?: () => void
+    className?: string
+    onSuccess?: () => void
 }
 
 const initialReducers: ReducersList = {
-  loginForm: loginReducer,
+    loginForm: loginReducer,
 }
 
 const LoginForm = (props: LoginFormProps) => {
-  const { className, onSuccess } = props
+    const { className, onSuccess } = props
 
-  const { t } = useTranslation()
-  const navigate = useNavigate()
+    const { t } = useTranslation()
+    const navigate = useNavigate()
 
-  const dispatch = useAppDispatch()
-  const {
-    username, password, error, isLoading,
-  } = useSelector(getLoginState)
+    const dispatch = useAppDispatch()
+    const { username, password, error, isLoading } = useSelector(getLoginState)
 
-  const usernameRef = useRef('')
-  const passwordRef = useRef('')
+    const usernameRef = useRef('')
+    const passwordRef = useRef('')
 
-  useEffect(() => {
-    usernameRef.current = username
-    passwordRef.current = password
-  }, [username, password])
+    useEffect(() => {
+        usernameRef.current = username
+        passwordRef.current = password
+    }, [username, password])
 
-  const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(loginActions.setLoginUsername(e.target.value))
-  }
-
-  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(loginActions.setLoginPassword(e.target.value))
-  }
-
-  const onSubmitClick = async () => {
-    const result = await dispatch(loginByUsername({
-      username: usernameRef.current,
-      password: passwordRef.current,
-    }))
-    if (result.meta.requestStatus === 'fulfilled') {
-      onSuccess?.()
-      navigate(GetRoutePaths.main())
+    const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(loginActions.setLoginUsername(e.target.value))
     }
-  }
 
-  const onEnterPress = (e: KeyboardEvent) => {
-    if (e.code === 'Enter') onSubmitClick()
-  }
+    const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(loginActions.setLoginPassword(e.target.value))
+    }
 
-  useMountEffect(() => {
-    document.addEventListener('keypress', onEnterPress)
-  })
+    const onSubmitClick = async () => {
+        const result = await dispatch(
+            loginByUsername({
+                username: usernameRef.current,
+                password: passwordRef.current,
+            }),
+        )
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess?.()
+            navigate(GetRoutePaths.main())
+        }
+    }
 
-  useUnmountEffect(() => {
-    document.removeEventListener('keypress', onEnterPress)
-  })
+    const onEnterPress = (e: KeyboardEvent) => {
+        if (e.code === 'Enter') onSubmitClick()
+    }
 
-  return (
-    <DynamicModuleLoader
-      reducers={initialReducers}
-      removeAfterUnmount
-    >
-      <div className={classNames(cls.LoginForm, {}, [className])}>
-        <Text className={cls.title} title={t('Форма авторизации')} />
+    useMountEffect(() => {
+        document.addEventListener('keypress', onEnterPress)
+    })
 
-        {error
-        && (
-          <Text
-            text={t('Выввели неверный логин или пароль')}
-            theme={TextTheme.ERROR}
-          />
-        )}
+    useUnmountEffect(() => {
+        document.removeEventListener('keypress', onEnterPress)
+    })
 
-        <Input
-          autofocus
-          type="text"
-          className={cls.input}
-          placeholder={t('Введите username')}
-          onInput={onUsernameChange}
-        />
+    return (
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text className={cls.title} title={t('Форма авторизации')} />
 
-        <Input
-          type="text"
-          className={cls.input}
-          placeholder={t('Введите пароль')}
-          onInput={onPasswordChange}
-        />
+                {error && <Text text={t('Выввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
 
-        <Button
-          className={cls.loginBtn}
-          theme={ButtonTheme.OutlineInverted}
-          onClick={onSubmitClick}
-          disabled={isLoading}
-        >
-          {t('login')}
-        </Button>
+                <Input
+                    autofocus
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите username')}
+                    onInput={onUsernameChange}
+                />
 
-      </div>
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите пароль')}
+                    onInput={onPasswordChange}
+                />
 
-    </DynamicModuleLoader>
-
-  )
+                <Button
+                    className={cls.loginBtn}
+                    theme={ButtonTheme.OutlineInverted}
+                    onClick={onSubmitClick}
+                    disabled={isLoading}
+                >
+                    {t('login')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
+    )
 }
 
 export default LoginForm

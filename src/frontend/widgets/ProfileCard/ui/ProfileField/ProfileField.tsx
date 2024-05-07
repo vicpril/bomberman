@@ -5,21 +5,18 @@ import { HStack } from '@/shared/ui/Stack'
 import cls from './ProfileField.module.scss'
 
 interface FieldProps {
-  className?: string
-  label: string,
-  value: ValueOf<Profile>
+    className?: string
+    label: string
+    value: ValueOf<Profile>
 }
 
 const ProfileField = ({ label, value, className }: FieldProps) => (
-
-  <HStack max justify="between" className={classNames(cls.ProfileField, {}, [className])}>
-    <div className={cls.label}>
-      {label}
-      :
-    </div>
-    <div className={cls.value} data-testid={`ProfileField.${className}`}>{value || '-'}</div>
-
-  </HStack>
+    <HStack max justify="between" className={classNames(cls.ProfileField, {}, [className])}>
+        <div className={cls.label}>{label}:</div>
+        <div className={cls.value} data-testid={`ProfileField.${className}`}>
+            {value || '-'}
+        </div>
+    </HStack>
 )
 
 export default ProfileField

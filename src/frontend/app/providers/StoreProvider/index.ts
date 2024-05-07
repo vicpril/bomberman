@@ -4,11 +4,11 @@ import { createAppStore } from './config/createAppStore'
 import type { AppDispatch, ThunkConfig, ReduxStoreWithManager } from './config/types'
 
 export {
-  StoreProvider,
-  StateSchema,
-  StateSchemaKey,
-  AppDispatch,
-  createAppStore,
-  ThunkConfig,
-  ReduxStoreWithManager,
+    StoreProvider,
+    StateSchema,
+    StateSchemaKey,
+    AppDispatch,
+    createAppStore,
+    ThunkConfig,
+    ReduxStoreWithManager,
 }

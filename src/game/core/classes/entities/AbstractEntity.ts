@@ -3,21 +3,21 @@ import { Position } from '@game/core/types/PositionType'
 import { BattleField } from '../BattleField'
 
 export type AbstractEntityOptions = {
-  BF: BattleField,
-  pos: Position
+    BF: BattleField
+    pos: Position
 }
 
 export abstract class AbstractEntity {
-  abstract type: EntitiesTypes
+    abstract type: EntitiesTypes
 
-  alive = true
+    alive = true
 
-  public pos: Position
+    public pos: Position
 
-  public BF: BattleField
+    public BF: BattleField
 
-  constructor(options: AbstractEntityOptions) {
-    this.BF = options.BF
-    this.pos = options.pos
-  }
+    constructor(options: AbstractEntityOptions) {
+        this.BF = options.BF
+        this.pos = options.pos
+    }
 }

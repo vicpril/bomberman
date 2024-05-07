@@ -10,45 +10,45 @@ import { ProfilePage } from '@/pages/ProfilePage'
 import { AppRoutes, AppRoutesProps, GetRoutePaths } from '@/shared/const/router'
 
 export const routerConfig: Record<AppRoutes, AppRoutesProps> = {
-  [AppRoutes.Main]: {
-    element: <MainPage />,
-    path: GetRoutePaths.main(),
-  },
-  [AppRoutes.Game]: {
-    element: <GamePage />,
-    path: GetRoutePaths.game(),
-  },
-  // [AppRoutes.About]: {
-  //   element: <AboutPage />,
-  //   path: GetRoutePaths.about,
-  // },
-  [AppRoutes.Profile]: {
-    element: <ProfilePage />,
-    path: GetRoutePaths.profile(':id'),
-    authRequired: true,
-  },
-  [AppRoutes.Articles]: {
-    element: <ArticlesPage />,
-    path: GetRoutePaths.articles(),
-    // authRequired: true,
-  },
-  [AppRoutes.ArticlesDetail]: {
-    element: <ArticlesDetailPage />,
-    path: GetRoutePaths.articlesDetail(':id'),
-    authRequired: true,
-  },
-  [AppRoutes.AdminPanel]: {
-    element: <AdminPanelPage />,
-    path: GetRoutePaths.adminPanel(),
-    authRequired: true,
-    roles: [UserRoles.ADMIN, UserRoles.MANAGER],
-  },
-  [AppRoutes.Forbidden]: {
-    element: <ForbiddenPage />,
-    path: GetRoutePaths.forbidden(),
-  },
-  [AppRoutes.NotFound]: {
-    element: <NotFoundPage />,
-    path: GetRoutePaths.notFound(),
-  },
+    [AppRoutes.Main]: {
+        element: <MainPage />,
+        path: GetRoutePaths.main(),
+    },
+    [AppRoutes.Game]: {
+        element: <GamePage />,
+        path: GetRoutePaths.game(),
+    },
+    // [AppRoutes.About]: {
+    //   element: <AboutPage />,
+    //   path: GetRoutePaths.about,
+    // },
+    [AppRoutes.Profile]: {
+        element: <ProfilePage />,
+        path: GetRoutePaths.profile(':id'),
+        authRequired: true,
+    },
+    [AppRoutes.Articles]: {
+        element: <ArticlesPage />,
+        path: GetRoutePaths.articles(),
+        // authRequired: true,
+    },
+    [AppRoutes.ArticlesDetail]: {
+        element: <ArticlesDetailPage />,
+        path: GetRoutePaths.articlesDetail(':id'),
+        authRequired: true,
+    },
+    [AppRoutes.AdminPanel]: {
+        element: <AdminPanelPage />,
+        path: GetRoutePaths.adminPanel(),
+        authRequired: true,
+        roles: [UserRoles.ADMIN, UserRoles.MANAGER],
+    },
+    [AppRoutes.Forbidden]: {
+        element: <ForbiddenPage />,
+        path: GetRoutePaths.forbidden(),
+    },
+    [AppRoutes.NotFound]: {
+        element: <NotFoundPage />,
+        path: GetRoutePaths.notFound(),
+    },
 }

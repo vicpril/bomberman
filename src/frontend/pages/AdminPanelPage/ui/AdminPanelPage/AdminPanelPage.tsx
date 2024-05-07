@@ -5,20 +5,19 @@ import { Page } from '@/widgets/Page'
 import cls from './AdminPanelPage.module.scss'
 
 interface AdminPanelPageProps {
-  className?: string
+    className?: string
 }
 
 const AdminPanelPage = (props: AdminPanelPageProps) => {
-  const { className } = props
+    const { className } = props
 
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  return (
-    <Page className={classNames(cls.AdminPanelPage, {}, [className])} data-testid="AdminPanelPage">
-      <Text title={t('Административная панель')} />
-    </Page>
-
-  )
+    return (
+        <Page className={classNames(cls.AdminPanelPage, {}, [className])} data-testid="AdminPanelPage">
+            <Text title={t('Административная панель')} />
+        </Page>
+    )
 }
 
 export default AdminPanelPage

@@ -5,11 +5,11 @@ import { Page } from './Page'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'widgets/Page',
-  component: Page,
-  args: {
-    children: 'Page',
-  },
+    title: 'widgets/Page',
+    component: Page,
+    args: {
+        children: 'Page',
+    },
 } as ComponentMeta<typeof Page>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

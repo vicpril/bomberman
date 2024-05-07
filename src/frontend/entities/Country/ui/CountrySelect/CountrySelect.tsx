@@ -6,40 +6,41 @@ import { ListBox } from '@/shared/ui/Popup'
 import { Country } from '../../model/consts/country'
 
 interface CountrySelectProps {
-  className?: string
-  value?: Country
-  onChange?: (value: Country) => void
-  readonly?: boolean
+    className?: string
+    value?: Country
+    onChange?: (value: Country) => void
+    readonly?: boolean
 }
 
 const options: SelectOption<Country>[] = [
-  { value: Country.Armenia, label: Country.Armenia },
-  { value: Country.Russia, label: Country.Russia },
-  { value: Country.Belarus, label: Country.Belarus },
-  { value: Country.Kazakhstan, label: Country.Kazakhstan },
-  { value: Country.Ukraine, label: Country.Ukraine },
+    { value: Country.Armenia, label: Country.Armenia },
+    { value: Country.Russia, label: Country.Russia },
+    { value: Country.Belarus, label: Country.Belarus },
+    { value: Country.Kazakhstan, label: Country.Kazakhstan },
+    { value: Country.Ukraine, label: Country.Ukraine },
 ]
 
 export const CountrySelect = (props: CountrySelectProps) => {
-  const {
-    className, value, onChange, readonly,
-  } = props
+    const { className, value, onChange, readonly } = props
 
-  const { t } = useTranslation('profile')
+    const { t } = useTranslation('profile')
 
-  const onChangeHandler = useCallback((value: string) => {
-    onChange?.(value as Country)
-  }, [onChange])
+    const onChangeHandler = useCallback(
+        (value: string) => {
+            onChange?.(value as Country)
+        },
+        [onChange],
+    )
 
-  return (
-    <ListBox
-      className={classNames('', {}, [className])}
-      label={t('Страна')}
-      defaultValue={t('Выберите страну')}
-      options={options}
-      value={value}
-      onChange={onChangeHandler}
-      readonly={readonly}
-    />
-  )
+    return (
+        <ListBox
+            className={classNames('', {}, [className])}
+            label={t('Страна')}
+            defaultValue={t('Выберите страну')}
+            options={options}
+            value={value}
+            onChange={onChangeHandler}
+            readonly={readonly}
+        />
+    )
 }

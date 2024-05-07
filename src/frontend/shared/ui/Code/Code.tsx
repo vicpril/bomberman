@@ -5,27 +5,25 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './Code.module.scss'
 
 interface CodeProps {
-    className?: string;
-    text: string;
+    className?: string
+    text: string
 }
 
 export const Code = memo((props: CodeProps) => {
-  const { className, text } = props
+    const { className, text } = props
 
-  const onCopy = useCallback(() => {
-    navigator.clipboard.writeText(text)
-  }, [text])
+    const onCopy = useCallback(() => {
+        navigator.clipboard.writeText(text)
+    }, [text])
 
-  return (
-    <div className={classNames(cls.Code, {}, [className])}>
-      <pre className={classNames(cls.pre, {}, [className])}>
-        <Button onClick={onCopy} className={cls.copyBtn} theme={ButtonTheme.Clear}>
-          <CopyIcon className={cls.copyIcon} />
-        </Button>
-        <code>
-          {text}
-        </code>
-      </pre>
-    </div>
-  )
+    return (
+        <div className={classNames(cls.Code, {}, [className])}>
+            <pre className={classNames(cls.pre, {}, [className])}>
+                <Button onClick={onCopy} className={cls.copyBtn} theme={ButtonTheme.Clear}>
+                    <CopyIcon className={cls.copyIcon} />
+                </Button>
+                <code>{text}</code>
+            </pre>
+        </div>
+    )
 })

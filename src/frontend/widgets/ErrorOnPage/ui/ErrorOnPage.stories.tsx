@@ -4,8 +4,8 @@ import { ErrorOnPage } from './ErrorOnPage'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'widgets/ErrorOnPage',
-  component: ErrorOnPage,
+    title: 'widgets/ErrorOnPage',
+    component: ErrorOnPage,
 } as ComponentMeta<typeof ErrorOnPage>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

@@ -4,11 +4,11 @@ import { StarRating } from './StarRating'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/StarRating',
-  component: StarRating,
-  args: {
-    children: 'StarRating',
-  },
+    title: 'shared/StarRating',
+    component: StarRating,
+    args: {
+        children: 'StarRating',
+    },
 } as ComponentMeta<typeof StarRating>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

@@ -7,32 +7,32 @@ import { store } from './store'
 import { routes } from './routes'
 
 export const createServerIo = (server: Server) => {
-  const serverIo = new ServerIO(server, {
-    cors: {
-      origin: 'http://localhost:3000',
-      methods: ['GET'],
-      credentials: true,
-    },
-  })
-
-  serverIo.on('connection', (socket: Socket) => {
-    routes.forEach((route) => {
-      socket.on(route.name, route.controller(socket))
+    const serverIo = new ServerIO(server, {
+        cors: {
+            origin: 'http://localhost:3000',
+            methods: ['GET'],
+            credentials: true,
+        },
     })
-  })
 
-  setInterval(() => {
-    store.rooms.players.forEach((room, socketId) => {
-      if (room.game.status.get() === GameStatus.IN_PROGRESS) {
-        const data = room.game.exportData(room.playersId.findIndex((id) => id === socketId))
-        serverIo.to(socketId).emit('state', data)
-      }
+    serverIo.on('connection', (socket: Socket) => {
+        routes.forEach((route) => {
+            socket.on(route.name, route.controller(socket))
+        })
     })
-  }, 1000 / 50)
 
-  return {
-    io: serverIo,
-  }
+    setInterval(() => {
+        store.rooms.players.forEach((room, socketId) => {
+            if (room.game.status.get() === GameStatus.IN_PROGRESS) {
+                const data = room.game.exportData(room.playersId.findIndex((id) => id === socketId))
+                serverIo.to(socketId).emit('state', data)
+            }
+        })
+    }, 1000 / 50)
+
+    return {
+        io: serverIo,
+    }
 }
 
 const app = express()
@@ -44,8 +44,8 @@ export const { io } = createServerIo(server)
 const port = process.env.port || 3002
 
 export const startServer = async () => {
-  server.listen(port, () => {
-  // eslint-disable-next-line no-console
-    console.log('Sockets is started on localhost:', port)
-  })
+    server.listen(port, () => {
+        // eslint-disable-next-line no-console
+        console.log('Sockets is started on localhost:', port)
+    })
 }

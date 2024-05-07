@@ -8,108 +8,117 @@ import { FrameActions } from '../../types/SpriteTypes'
 import { AbstractEntity, AbstractEntityOptions } from './AbstractEntity'
 
 type BombOptions = AbstractEntityOptions & {
-  owner: Player,
-  blownSize: number,
+    owner: Player
+    blownSize: number
 }
 
 export class Bomb extends AbstractEntity {
-  type = EntitiesTypes.BOMB
+    type = EntitiesTypes.BOMB
 
-  radius = GRID * 0.4
+    radius = GRID * 0.4
 
-  alive: boolean = true
+    alive: boolean = true
 
-  timer: number = 3000
+    timer: number = 3000
 
-  public owner: Player
+    public owner: Player
 
-  private blownSize: number
+    private blownSize: number
 
-  constructor({
-    pos, owner, blownSize, BF,
-  }: BombOptions) {
-    super({ BF, pos })
-    this.owner = owner
-    this.blownSize = blownSize
-    this.init()
-    this.BF.bombs[`${pos.x}:${pos.y}`] = [pos.x, pos.y]
-  }
-
-  private init() {
-    setTimeout(() => {
-      this.blowUp()
-    }, this.timer)
-  }
-
-  blowUp(): void {
-    if (!this.alive) return
-
-    this.alive = false
-    this.BF.removeEntityFromPosition(this.type, this.pos)
-
-    this.owner.addBombToPlayer()
-
-    if (
-      this.owner.pos.x === this.pos.x
-      && this.owner.pos.y === this.pos.y
-    ) {
-      this.owner.die()
+    constructor({ pos, owner, blownSize, BF }: BombOptions) {
+        super({ BF, pos })
+        this.owner = owner
+        this.blownSize = blownSize
+        this.init()
+        this.BF.bombs[`${pos.x}:${pos.y}`] = [pos.x, pos.y]
     }
 
-    this.BF.clearCell(this.pos)
+    private init() {
+        setTimeout(() => {
+            this.blowUp()
+        }, this.timer)
+    }
 
-    delete this.BF.bombs[`${this.pos.x}:${this.pos.y}`]
+    blowUp(): void {
+        if (!this.alive) return
 
-    // create Explosions per each directions
-    Object.values(DIRECTIONS).forEach((dir) => {
-      for (let i = 0; i < this.blownSize; i++) {
-        // calculate position
-        const pos: Position = {
-          x: this.pos.x + dir.x * i,
-          y: this.pos.y + dir.y * i,
-        }
-        const cell = this.BF.getCell(pos)
-        if (cell === EntitiesTypes.WALL) return
-        if (cell === EntitiesTypes.WALL_SOFT) {
-          this.BF.destroyWall(pos)
-        }
-        if (cell === EntitiesTypes.BOMB) {
-          this.BF.findEntity(EntitiesTypes.BOMB, pos)?.blowUp()
-          return
+        this.alive = false
+        this.BF.removeEntityFromPosition(this.type, this.pos)
+
+        this.owner.addBombToPlayer()
+
+        if (this.owner.pos.x === this.pos.x && this.owner.pos.y === this.pos.y) {
+            this.owner.die()
         }
 
-        // create Explosion in cell
-        const isCenter = i === 0
-        const isEnd = i === this.blownSize - 1
-        let direction: ExplosionFrameDirection
-        switch (defineDirection(dir)) {
-          default:
-          case Movements.UP: direction = FrameActions.UP; break
-          case Movements.RIGHT: direction = FrameActions.RIGHT; break
-          case Movements.DOWN: direction = FrameActions.DOWN; break
-          case Movements.LEFT: direction = FrameActions.LEFT; break
-        }
+        this.BF.clearCell(this.pos)
 
-        this.BF.addEntity(new Explosion({
-          pos, BF: this.BF, frameDirection: direction, isCenter, isEnd,
-        }))
+        delete this.BF.bombs[`${this.pos.x}:${this.pos.y}`]
 
-        // clear cell
-        this.BF.clearCell(pos)
+        // create Explosions per each directions
+        Object.values(DIRECTIONS).forEach((dir) => {
+            for (let i = 0; i < this.blownSize; i++) {
+                // calculate position
+                const pos: Position = {
+                    x: this.pos.x + dir.x * i,
+                    y: this.pos.y + dir.y * i,
+                }
+                const cell = this.BF.getCell(pos)
+                if (cell === EntitiesTypes.WALL) return
+                if (cell === EntitiesTypes.WALL_SOFT) {
+                    this.BF.destroyWall(pos)
+                }
+                if (cell === EntitiesTypes.BOMB) {
+                    this.BF.findEntity(EntitiesTypes.BOMB, pos)?.blowUp()
+                    return
+                }
 
-        switch (cell) {
-          case EntitiesTypes.WALL_SOFT:
-            this.owner.increaseScore()
-            return // stop explosion this side
+                // create Explosion in cell
+                const isCenter = i === 0
+                const isEnd = i === this.blownSize - 1
+                let direction: ExplosionFrameDirection
+                switch (defineDirection(dir)) {
+                    default:
+                    case Movements.UP:
+                        direction = FrameActions.UP
+                        break
+                    case Movements.RIGHT:
+                        direction = FrameActions.RIGHT
+                        break
+                    case Movements.DOWN:
+                        direction = FrameActions.DOWN
+                        break
+                    case Movements.LEFT:
+                        direction = FrameActions.LEFT
+                        break
+                }
 
-          case EntitiesTypes.PLAYER:
-            this.BF.findEntity(EntitiesTypes.PLAYER, pos)?.die()
-            return
+                this.BF.addEntity(
+                    new Explosion({
+                        pos,
+                        BF: this.BF,
+                        frameDirection: direction,
+                        isCenter,
+                        isEnd,
+                    }),
+                )
 
-          default:
-            break
-        }
-      }
-    })
-  }
+                // clear cell
+                this.BF.clearCell(pos)
+
+                switch (cell) {
+                    case EntitiesTypes.WALL_SOFT:
+                        this.owner.increaseScore()
+                        return // stop explosion this side
+
+                    case EntitiesTypes.PLAYER:
+                        this.BF.findEntity(EntitiesTypes.PLAYER, pos)?.die()
+                        return
+
+                    default:
+                        break
+                }
+            }
+        })
+    }
 }

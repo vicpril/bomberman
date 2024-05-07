@@ -6,12 +6,12 @@ import { NotificationList } from './NotificationList'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'entities/NotificationList',
-  component: NotificationList,
-  args: {
-    children: 'NotificationList',
-  },
-  decorators: [withMock],
+    title: 'entities/NotificationList',
+    component: NotificationList,
+    args: {
+        children: 'NotificationList',
+    },
+    decorators: [withMock],
 } as ComponentMeta<typeof NotificationList>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -22,28 +22,28 @@ export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [StoreDecorator({})]
 Normal.parameters = {
-  mockData: [
-    {
-      url: `${__API_JSON__}/notifications`,
-      method: 'GET',
-      status: 200,
-      response: [
+    mockData: [
         {
-          id: '1',
-          title: 'Уведомление',
-          description: 'Поставь лайк и оставь комментарий',
+            url: `${__API_JSON__}/notifications`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    id: '1',
+                    title: 'Уведомление',
+                    description: 'Поставь лайк и оставь комментарий',
+                },
+                {
+                    id: '2',
+                    title: 'Уведомление 2',
+                    description: 'Поставь лайк и оставь комментарий',
+                },
+                {
+                    id: '3',
+                    title: 'Уведомление 3',
+                    description: 'Поставь лайк и оставь комментарий',
+                },
+            ],
         },
-        {
-          id: '2',
-          title: 'Уведомление 2',
-          description: 'Поставь лайк и оставь комментарий',
-        },
-        {
-          id: '3',
-          title: 'Уведомление 3',
-          description: 'Поставь лайк и оставь комментарий',
-        },
-      ],
-    },
-  ],
+    ],
 }

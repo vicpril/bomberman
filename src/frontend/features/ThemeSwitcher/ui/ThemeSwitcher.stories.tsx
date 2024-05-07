@@ -4,8 +4,8 @@ import { ThemeSwitcher } from './ThemeSwitcher'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'widgets/ThemeSwitcher',
-  component: ThemeSwitcher,
+    title: 'widgets/ThemeSwitcher',
+    component: ThemeSwitcher,
 } as ComponentMeta<typeof ThemeSwitcher>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

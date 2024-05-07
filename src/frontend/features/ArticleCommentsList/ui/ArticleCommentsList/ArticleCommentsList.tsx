@@ -9,58 +9,55 @@ import { AddCommentForm } from '@/widgets/AddCommentForm'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import {
-  DynamicModuleLoader,
-  ReducersList,
+    DynamicModuleLoader,
+    ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import {
-  fetchCommentsByArticleId,
-} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { addCommentsByArticleId } from '../../model/services/addCommentsByArticleId/addCommentsByArticleId'
 import { articleCommentsListReducer, getArticleComments } from '../../model/slices/ArticleCommentsListSlice'
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
 import cls from './ArticleCommentsList.module.scss'
 
 interface ArticleCommentsListProps {
-    className?: string;
+    className?: string
     articleId: string
 }
 
 const reducers: ReducersList = {
-  articleCommentsList: articleCommentsListReducer,
+    articleCommentsList: articleCommentsListReducer,
 }
 
 export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
-  const { className, articleId } = props
-  const { t } = useTranslation()
+    const { className, articleId } = props
+    const { t } = useTranslation()
 
-  const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-  useMountEffect(() => {
-    dispatch(fetchCommentsByArticleId(articleId))
-  })
+    useMountEffect(() => {
+        dispatch(fetchCommentsByArticleId(articleId))
+    })
 
-  const comments = useSelector(getArticleComments.selectAll)
-  const isCommentsLoading = useSelector(getArticleCommentsIsLoading)
+    const comments = useSelector(getArticleComments.selectAll)
+    const isCommentsLoading = useSelector(getArticleCommentsIsLoading)
 
-  const onSendComment = useCallback((text: string) => {
-    dispatch(addCommentsByArticleId(text))
-  }, [dispatch])
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentsByArticleId(text))
+        },
+        [dispatch],
+    )
 
-  if (!articleId) {
-    return null
-  }
+    if (!articleId) {
+        return null
+    }
 
-  return (
-    <div className={classNames(cls.ArticleCommentsList, {}, [className])}>
-      <DynamicModuleLoader reducers={reducers}>
-        <Text
-          className={cls.commentTitle}
-          size={TextSize.M}
-          title={t('Комментарии')}
-        />
-        <AddCommentForm onSendComment={onSendComment} />
-        <CommentList comments={comments} isLoading={isCommentsLoading} />
-      </DynamicModuleLoader>
-    </div>
-  )
+    return (
+        <div className={classNames(cls.ArticleCommentsList, {}, [className])}>
+            <DynamicModuleLoader reducers={reducers}>
+                <Text className={cls.commentTitle} size={TextSize.M} title={t('Комментарии')} />
+                <AddCommentForm onSendComment={onSendComment} />
+                <CommentList comments={comments} isLoading={isCommentsLoading} />
+            </DynamicModuleLoader>
+        </div>
+    )
 })

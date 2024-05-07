@@ -4,17 +4,17 @@ import usersRouter from './users'
 import authRoutes from './auth'
 
 export const initApiRoutes = (router: Router) => {
-  const apiRouter: Router = Router()
+    const apiRouter: Router = Router()
 
-  apiRouter.use('/', authRoutes)
+    apiRouter.use('/', authRoutes)
 
-  apiRouter.use('/users', usersRouter)
+    apiRouter.use('/users', usersRouter)
 
-  apiRouter.use('/profile', UsersController.getProfile)
+    apiRouter.use('/profile', UsersController.getProfile)
 
-  router.use('/api/v1', apiRouter)
+    router.use('/api/v1', apiRouter)
 
-  router.all(['/api/*'], (_, resp) => {
-    resp.status(404).send('API no found')
-  })
+    router.all(['/api/*'], (_, resp) => {
+        resp.status(404).send('API no found')
+    })
 }

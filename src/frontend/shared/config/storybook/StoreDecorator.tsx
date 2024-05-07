@@ -11,20 +11,19 @@ import { articleCommentsListReducer } from '@/features/ArticleCommentsList/testi
 import { profileReducer } from '@/entities/Profile/testing'
 
 const defaultAsyncReducers: ReducersList = {
-  // loginForm: loginReducer,
-  // profile: profileReducer,
-  loginForm: loginReducer,
-  profile: profileReducer,
-  articleDetails: articleDetailsReducer,
-  addCommentForm: addCommentFormReducer,
-  articleCommentsList: articleCommentsListReducer,
+    // loginForm: loginReducer,
+    // profile: profileReducer,
+    loginForm: loginReducer,
+    profile: profileReducer,
+    articleDetails: articleDetailsReducer,
+    addCommentForm: addCommentFormReducer,
+    articleCommentsList: articleCommentsListReducer,
 }
 
-export const StoreDecorator = (
-  state: DeepPartial<StateSchema>,
-  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>,
-) => (StoryComponent: Story) => (
-  <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
-    <StoryComponent />
-  </StoreProvider>
-)
+export const StoreDecorator =
+    (state: DeepPartial<StateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>) =>
+    (StoryComponent: Story) => (
+        <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
+            <StoryComponent />
+        </StoreProvider>
+    )

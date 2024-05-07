@@ -2,18 +2,17 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { AddCommentFormSchema } from '../types/AddCommentFormSchema'
 
 const initialState: AddCommentFormSchema = {
-  text: '',
+    text: '',
 }
 
 const AddCommentFormSlice = createSlice({
-  name: 'AddCommentForm',
-  initialState: { ...initialState },
-  reducers: {
-    setText: (state, action: PayloadAction<string>) => {
-      state.text = action.payload
+    name: 'AddCommentForm',
+    initialState: { ...initialState },
+    reducers: {
+        setText: (state, action: PayloadAction<string>) => {
+            state.text = action.payload
+        },
     },
-  },
-
 })
 
 export const { actions: addCommentFormActions } = AddCommentFormSlice

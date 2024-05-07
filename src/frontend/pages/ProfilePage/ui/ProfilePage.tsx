@@ -1,16 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
-import {
-  useCallback, useEffect, useMemo,
-} from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Button, ButtonTheme } from '@/shared/ui/Button'
+import { Profile, fetchProfileData, getProfileData, profileActions, profileReducer } from '@/entities/Profile'
 import {
-  Profile, fetchProfileData, getProfileData, profileActions, profileReducer,
-} from '@/entities/Profile'
-import {
-  DynamicModuleLoader,
-  ReducersList,
+    DynamicModuleLoader,
+    ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { getUserAuthData } from '@/entities/User'
@@ -23,101 +19,96 @@ import { VStack } from '@/shared/ui/Stack'
 import cls from './ProfilePage.module.scss'
 
 const initialReducers: ReducersList = {
-  profile: profileReducer,
+    profile: profileReducer,
 }
 
 function ProfilePage() {
-  const { t } = useTranslation('main')
+    const { t } = useTranslation('main')
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-  const onBackClick = () => {
-    navigate(-1)
-    // navigate(GetRoutePaths.main())
-  }
-
-  const currentUserId = useSelector(getUserAuthData)?.id
-  const { id: userId } = useParams()
-
-  const canEdit = useMemo(() => currentUserId?.toString() === userId?.toString(), [currentUserId, userId])
-
-  useEffect(() => {
-    if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'tests') {
-      if (userId) dispatch(fetchProfileData(userId))
+    const onBackClick = () => {
+        navigate(-1)
+        // navigate(GetRoutePaths.main())
     }
-  }, [userId, dispatch])
 
-  const {
-    flag: isEditMode, on: onEditMode, off: offEditMode,
-  } = useFlag(false)
+    const currentUserId = useSelector(getUserAuthData)?.id
+    const { id: userId } = useParams()
 
-  const profileData = useSelector(getProfileData)
+    const canEdit = useMemo(() => currentUserId?.toString() === userId?.toString(), [currentUserId, userId])
 
-  const onCancelHandler = offEditMode
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook' && __PROJECT__ !== 'tests') {
+            if (userId) dispatch(fetchProfileData(userId))
+        }
+    }, [userId, dispatch])
 
-  const onUpdateProfileHandler = useCallback((data: Profile) => {
-    dispatch(profileActions.updateData(data))
-    offEditMode()
-  }, [dispatch, offEditMode])
+    const { flag: isEditMode, on: onEditMode, off: offEditMode } = useFlag(false)
 
-  if (!userId) {
-    return (
-      <Text
-        title={t('Не авторизован')}
-        theme={TextTheme.ERROR}
-      />
+    const profileData = useSelector(getProfileData)
+
+    const onCancelHandler = offEditMode
+
+    const onUpdateProfileHandler = useCallback(
+        (data: Profile) => {
+            dispatch(profileActions.updateData(data))
+            offEditMode()
+        },
+        [dispatch, offEditMode],
     )
-  }
 
-  return (
-    <DynamicModuleLoader reducers={initialReducers}>
-      <Page className={cls.ProfilePage} data-testid="ProfilePage">
-        <VStack gap="32">
-          {
-            !profileData && (<Text title={t('Пользователь не найден')} />)
-          }
-          {// watch mode
-            !isEditMode && (
-              <>
-                <ProfileView />
-                {canEdit && (
-                  <Button
-                    className="editButton"
-                    onClick={onEditMode}
-                    data-testid="ProfilePage.editBtn"
-                  >
-                    {t('Редактировать')}
-                  </Button>
-                )}
+    if (!userId) {
+        return <Text title={t('Не авторизован')} theme={TextTheme.ERROR} />
+    }
 
-                <Button
-                  className="backButton"
-                  theme={ButtonTheme.Clear}
-                  onClick={onBackClick}
-                >
-                  {t('Назад')}
-                </Button>
-              </>
-            )
-          }
+    return (
+        <DynamicModuleLoader reducers={initialReducers}>
+            <Page className={cls.ProfilePage} data-testid="ProfilePage">
+                <VStack gap="32">
+                    {!profileData && <Text title={t('Пользователь не найден')} />}
+                    {
+                        // watch mode
+                        !isEditMode && (
+                            <>
+                                <ProfileView />
+                                {canEdit && (
+                                    <Button
+                                        className="editButton"
+                                        onClick={onEditMode}
+                                        data-testid="ProfilePage.editBtn"
+                                    >
+                                        {t('Редактировать')}
+                                    </Button>
+                                )}
 
-          {// edit mode
-            isEditMode && canEdit && (
-              <ProfileEditForm
-                userId={userId}
-                initialData={profileData}
-                onCancel={onCancelHandler}
-                onUpdate={onUpdateProfileHandler}
-              />
-            )
-          }
-        </VStack>
+                                <Button
+                                    className="backButton"
+                                    theme={ButtonTheme.Clear}
+                                    onClick={onBackClick}
+                                >
+                                    {t('Назад')}
+                                </Button>
+                            </>
+                        )
+                    }
 
-      </Page>
-    </DynamicModuleLoader>
-  )
+                    {
+                        // edit mode
+                        isEditMode && canEdit && (
+                            <ProfileEditForm
+                                userId={userId}
+                                initialData={profileData}
+                                onCancel={onCancelHandler}
+                                onUpdate={onUpdateProfileHandler}
+                            />
+                        )
+                    }
+                </VStack>
+            </Page>
+        </DynamicModuleLoader>
+    )
 }
 
 export default ProfilePage

@@ -11,19 +11,19 @@ import { rtkApiJson } from '@/shared/api/rtkApi'
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList'
 
 export interface StateSchema {
-  user: UserSchema,
-  ui: UISchema,
-  [rtkApiJson.reducerPath]: ReturnType<typeof rtkApiJson['reducer']>,
+    user: UserSchema
+    ui: UISchema
+    [rtkApiJson.reducerPath]: ReturnType<(typeof rtkApiJson)['reducer']>
 
-  // асинхронные
-  loginForm?: LoginSchema
-  profile?: ProfileSchema
-  profileUpdate?: ProfileUpdateSchema
-  articleDetails?: ArticleDetailsSchema
-  addCommentForm?: AddCommentFormSchema
-  articlesPage?: ArticlesPageSchema
-  articleFilters?: ArticleFiltersSchema
-  articleCommentsList?: ArticleCommentsListSchema
+    // асинхронные
+    loginForm?: LoginSchema
+    profile?: ProfileSchema
+    profileUpdate?: ProfileUpdateSchema
+    articleDetails?: ArticleDetailsSchema
+    addCommentForm?: AddCommentFormSchema
+    articlesPage?: ArticlesPageSchema
+    articleFilters?: ArticleFiltersSchema
+    articleCommentsList?: ArticleCommentsListSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

@@ -12,58 +12,49 @@ import { Theme } from '@/shared/context/ThemeContext'
 import '@/app/App.scss'
 
 interface InitialProps {
-  route?: string | {route: string, path: string}
-  initialState?: DeepPartial<StateSchema>
-  asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
-  theme?: Theme;
+    route?: string | { route: string; path: string }
+    initialState?: DeepPartial<StateSchema>
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
+    theme?: Theme
 }
 
 interface TestProviderProps {
-  children: ReactNode,
-  options?: InitialProps
+    children: ReactNode
+    options?: InitialProps
 }
 
 export function TestProvider(props: TestProviderProps) {
-  const { children, options = {} } = props
+    const { children, options = {} } = props
 
-  const {
-    route = '/',
-    initialState,
-    asyncReducers,
-    theme = Theme.DARK,
-  } = options
+    const { route = '/', initialState, asyncReducers, theme = Theme.DARK } = options
 
-  const content = (
-    <I18nextProvider i18n={i18nForTests}>
-      <ThemeProvider>
-        <div className={`app ${theme}`}>
-          {children}
-        </div>
-      </ThemeProvider>
-    </I18nextProvider>
-  )
-
-  if (typeof route === 'string') {
-    return (
-      <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
-        <MemoryRouter initialEntries={[route]}>
-          {content}
-        </MemoryRouter>
-      </StoreProvider>
+    const content = (
+        <I18nextProvider i18n={i18nForTests}>
+            <ThemeProvider>
+                <div className={`app ${theme}`}>{children}</div>
+            </ThemeProvider>
+        </I18nextProvider>
     )
-  }
 
-  return (
-    <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
-      <MemoryRouter initialEntries={[route.route]}>
-        <Routes>
-          <Route path={route.path} element={content} />
-        </Routes>
-      </MemoryRouter>
-    </StoreProvider>
-  )
+    if (typeof route === 'string') {
+        return (
+            <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
+                <MemoryRouter initialEntries={[route]}>{content}</MemoryRouter>
+            </StoreProvider>
+        )
+    }
+
+    return (
+        <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
+            <MemoryRouter initialEntries={[route.route]}>
+                <Routes>
+                    <Route path={route.path} element={content} />
+                </Routes>
+            </MemoryRouter>
+        </StoreProvider>
+    )
 }
 
 export function renderComponent(component: ReactNode, options: InitialProps = {}) {
-  return render(<TestProvider options={options}>{component}</TestProvider>)
+    return render(<TestProvider options={options}>{component}</TestProvider>)
 }

@@ -2,16 +2,16 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 type GameContentStageProps = {
-  stage: number
+    stage: number
 }
 export const GameContentStage: FC<GameContentStageProps> = ({ stage }) => {
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  return (
-    <p>
-      {t('stage')}
-      {': '}
-      {stage}
-    </p>
-  )
+    return (
+        <p>
+            {t('stage')}
+            {': '}
+            {stage}
+        </p>
+    )
 }

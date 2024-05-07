@@ -1,5 +1,5 @@
 function exhaustiveCheck(param: never) {
-  console.warn(`Необработанное значение '${param}'`)
+    console.warn(`Необработанное значение '${param}'`)
 }
 
 export default exhaustiveCheck

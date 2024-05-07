@@ -1,46 +1,55 @@
 import {
-  Table, Model, PrimaryKey, Column, DataType, Default, AllowNull, BelongsTo, ForeignKey, AutoIncrement,
+    Table,
+    Model,
+    PrimaryKey,
+    Column,
+    DataType,
+    Default,
+    AllowNull,
+    BelongsTo,
+    ForeignKey,
+    AutoIncrement,
 } from 'sequelize-typescript'
 import { User } from './User'
 
 @Table({
-  tableName: 'usermeta',
-  timestamps: true,
+    tableName: 'usermeta',
+    timestamps: true,
 })
 export class UserMeta extends Model {
-  @AutoIncrement
-  @PrimaryKey
-  @Column(DataType.INTEGER)
+    @AutoIncrement
+    @PrimaryKey
+    @Column(DataType.INTEGER)
     id!: number
 
-  @Column
+    @Column
     firstname!: string
 
-  @Column
+    @Column
     lastname!: string
 
-  @Default(null)
-  @Column(DataType.INTEGER)
+    @Default(null)
+    @Column(DataType.INTEGER)
     age: number | null
 
-  @AllowNull
-  @Default(null)
-  @Column
+    @AllowNull
+    @Default(null)
+    @Column
     currency: string
 
-  @Column
+    @Column
     country: string
 
-  @Column
+    @Column
     city: string
 
-  @Column
+    @Column
     avatar: string
 
-  @ForeignKey(() => User)
-  @Column
+    @ForeignKey(() => User)
+    @Column
     userId!: number
 
-  @BelongsTo(() => User, 'userId')
+    @BelongsTo(() => User, 'userId')
     user!: Awaited<User>
 }

@@ -7,41 +7,26 @@ import { NavbarLinks } from '../NavbarLinks/NavbarLinks'
 import { NavbarUser } from '../NavbarUser/NavbarUser'
 
 interface NavbarProps {
-  className?: string
+    className?: string
 }
 
 export const Navbar = (props: NavbarProps) => {
-  const { className } = props
+    const { className } = props
 
-  return (
-    <nav className={classNames(cls.Navbar, {}, [className])}>
-
-      <div className={cls.container}>
-        <HStack
-          align="center"
-          justify="start"
-          className={cls.switchers}
-        >
-          <LanguageSwitcher short />
-          <ThemeSwitcher />
-        </HStack>
-        <HStack
-          align="center"
-          justify="center"
-          className={cls.links}
-        >
-          <NavbarLinks />
-        </HStack>
-        <HStack
-          align="center"
-          justify="end"
-          gap="16"
-          className={cls.user}
-        >
-          <NavbarUser />
-        </HStack>
-      </div>
-    </nav>
-
-  )
+    return (
+        <nav className={classNames(cls.Navbar, {}, [className])}>
+            <div className={cls.container}>
+                <HStack align="center" justify="start" className={cls.switchers}>
+                    <LanguageSwitcher short />
+                    <ThemeSwitcher />
+                </HStack>
+                <HStack align="center" justify="center" className={cls.links}>
+                    <NavbarLinks />
+                </HStack>
+                <HStack align="center" justify="end" gap="16" className={cls.user}>
+                    <NavbarUser />
+                </HStack>
+            </div>
+        </nav>
+    )
 }

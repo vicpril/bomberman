@@ -8,39 +8,31 @@ import { getNavLinks } from '@/widgets/Navbar'
 import { VStack } from '@/shared/ui/Stack'
 
 interface MainPageLinksProps {
-  className?: string
+    className?: string
 }
 
 export const MainPageLinks = (props: MainPageLinksProps) => {
-  const { className } = props
+    const { className } = props
 
-  const { t } = useTranslation()
+    const { t } = useTranslation()
 
-  const links = useSelector(getNavLinks)
+    const links = useSelector(getNavLinks)
 
-  const linksMain = links.filter((l) => l.path !== GetRoutePaths.main())
+    const linksMain = links.filter((l) => l.path !== GetRoutePaths.main())
 
-  const linkComponents = useMemo(() => (
-    linksMain.map((link) => (
-      <AppLink
-        key={link.path}
-        to={link.path}
-        size="l"
-        bombed
-      >
-        {t(link.text)}
-      </AppLink>
-    ))
-  ), [linksMain, t])
+    const linkComponents = useMemo(
+        () =>
+            linksMain.map((link) => (
+                <AppLink key={link.path} to={link.path} size="l" bombed>
+                    {t(link.text)}
+                </AppLink>
+            )),
+        [linksMain, t],
+    )
 
-  return (
-    <VStack
-      gap="32"
-      justify="center"
-      className={classNames('', {}, [className])}
-    >
-      {linkComponents}
-    </VStack>
-
-  )
+    return (
+        <VStack gap="32" justify="center" className={classNames('', {}, [className])}>
+            {linkComponents}
+        </VStack>
+    )
 }

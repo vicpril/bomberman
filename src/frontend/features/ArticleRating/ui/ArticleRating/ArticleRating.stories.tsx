@@ -6,12 +6,12 @@ import ArticleRating from './ArticleRating'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'features/ArticleRating',
-  component: ArticleRating,
-  args: {
-    children: 'ArticleRating',
-  },
-  decorators: [withMock],
+    title: 'features/ArticleRating',
+    component: ArticleRating,
+    args: {
+        children: 'ArticleRating',
+    },
+    decorators: [withMock],
 } as ComponentMeta<typeof ArticleRating>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -20,46 +20,44 @@ const Template: ComponentStory<typeof ArticleRating> = (args) => <ArticleRating 
 
 export const Normal = Template.bind({})
 Normal.args = {
-  articleId: '1',
+    articleId: '1',
 }
 Normal.decorators = [
-  StoreDecorator({
-    user: {
-      authData: { id: '1' },
-    },
-  }),
+    StoreDecorator({
+        user: {
+            authData: { id: '1' },
+        },
+    }),
 ]
 Normal.parameters = {
-  mockData: [
-    {
-      url: `${__API_JSON__}/articles-rating?userId=1&articleId=1`,
-      method: 'GET',
-      status: 200,
-      response: [
-        { rate: 4 },
-      ],
-    },
-  ],
+    mockData: [
+        {
+            url: `${__API_JSON__}/articles-rating?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [{ rate: 4 }],
+        },
+    ],
 }
 
 export const WithoutRate = Template.bind({})
 WithoutRate.args = {
-  articleId: '1',
+    articleId: '1',
 }
 WithoutRate.decorators = [
-  StoreDecorator({
-    user: {
-      authData: { id: '1' },
-    },
-  }),
+    StoreDecorator({
+        user: {
+            authData: { id: '1' },
+        },
+    }),
 ]
 WithoutRate.parameters = {
-  mockData: [
-    {
-      url: `${__API_JSON__}/articles-rating?userId=1&articleId=1`,
-      method: 'GET',
-      status: 200,
-      response: [],
-    },
-  ],
+    mockData: [
+        {
+            url: `${__API_JSON__}/articles-rating?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [],
+        },
+    ],
 }

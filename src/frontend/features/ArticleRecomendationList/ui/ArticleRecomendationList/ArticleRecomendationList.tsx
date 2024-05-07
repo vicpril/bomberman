@@ -8,51 +8,36 @@ import cls from './ArticleRecomendationList.module.scss'
 import { useArticleRecommendationsList } from '../../api/aritcleRecommendationsApi'
 
 interface ArticleRecomendationListProps {
-    className?: string;
+    className?: string
 }
 
 export const ArticleRecomendationList = memo((props: ArticleRecomendationListProps) => {
-  const { className } = props
-  const { t } = useTranslation('articles')
+    const { className } = props
+    const { t } = useTranslation('articles')
 
-  const { data: recomendations, isLoading, error } = useArticleRecommendationsList(3)
+    const { data: recomendations, isLoading, error } = useArticleRecommendationsList(3)
 
-  if (error) {
+    if (error) {
+        return <Text title={t('Ошибка при загрузке списка рекоммендованных статей')} />
+    }
+
+    const getSkeletons = () =>
+        new Array(4)
+            .fill(0)
+            .map((_, index) => <ArticleListItemSkeleton key={index} view={ArticleView.SMALL} />)
+
+    if (isLoading || !recomendations) {
+        return <HStack gap="8">{getSkeletons()}</HStack>
+    }
+
     return (
-      <Text title={t('Ошибка при загрузке списка рекоммендованных статей')} />
+        <VStack
+            gap="8"
+            className={classNames(cls.ArticleRecomendationList, {}, [className])}
+            data-testid="ArticleRecommendationsList"
+        >
+            <Text size={TextSize.M} title={t('Рекоммендованные статьи')} />
+            <ArticleList articles={recomendations} isLoading={isLoading} inline target="_blank" />
+        </VStack>
     )
-  }
-
-  const getSkeletons = () => new Array(4)
-    .fill(0)
-    .map((_, index) => (
-      <ArticleListItemSkeleton key={index} view={ArticleView.SMALL} />
-    ))
-
-  if (isLoading || !recomendations) {
-    return (
-      <HStack gap="8">
-        {getSkeletons()}
-      </HStack>
-    )
-  }
-
-  return (
-    <VStack
-      gap="8"
-      className={classNames(cls.ArticleRecomendationList, {}, [className])}
-      data-testid="ArticleRecommendationsList"
-    >
-      <Text
-        size={TextSize.M}
-        title={t('Рекоммендованные статьи')}
-      />
-      <ArticleList
-        articles={recomendations}
-        isLoading={isLoading}
-        inline
-        target="_blank"
-      />
-    </VStack>
-  )
 })

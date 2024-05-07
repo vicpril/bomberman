@@ -10,19 +10,19 @@ export type ReducerManager = ReturnType<typeof createReducerManager>
 type ReduxStoreType = EnhancedStore<StateSchema>
 
 export interface ReduxStoreWithManager extends ReduxStoreType {
-  reducerManager: ReducerManager
+    reducerManager: ReducerManager
 }
 
 export type AppDispatch = ReturnType<typeof createAppStore>['dispatch']
 
 export interface ThunkExtraArgs {
-  api: AxiosInstance,
-  apiJson: AxiosInstance,
-  navigate?: NavigateFunction
+    api: AxiosInstance
+    apiJson: AxiosInstance
+    navigate?: NavigateFunction
 }
 
 export interface ThunkConfig<T> {
-  rejectValue: T
-  extra: ThunkExtraArgs,
-  state: StateSchema,
+    rejectValue: T
+    extra: ThunkExtraArgs
+    state: StateSchema
 }

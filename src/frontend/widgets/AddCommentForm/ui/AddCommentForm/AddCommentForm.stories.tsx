@@ -5,11 +5,11 @@ import AddCommentForm from './AddCommentForm'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'widgets/AddCommentForm',
-  component: AddCommentForm,
-  args: {
-    children: 'AddCommentForm',
-  },
+    title: 'widgets/AddCommentForm',
+    component: AddCommentForm,
+    args: {
+        children: 'AddCommentForm',
+    },
 } as ComponentMeta<typeof AddCommentForm>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -18,6 +18,4 @@ const Template: ComponentStory<typeof AddCommentForm> = (args) => <AddCommentFor
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [
-  StoreDecorator({ addCommentForm: { text: '' } }),
-]
+Normal.decorators = [StoreDecorator({ addCommentForm: { text: '' } })]

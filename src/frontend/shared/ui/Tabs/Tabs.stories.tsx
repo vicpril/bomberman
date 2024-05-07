@@ -4,11 +4,11 @@ import { Tabs } from './Tabs'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'shared/Tabs',
-  component: Tabs,
-  args: {
-    children: 'Tabs',
-  },
+    title: 'shared/Tabs',
+    component: Tabs,
+    args: {
+        children: 'Tabs',
+    },
 } as ComponentMeta<typeof Tabs>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -17,10 +17,10 @@ const Template: ComponentStory<typeof Tabs> = (args) => <Tabs {...args} />
 
 export const Normal = Template.bind({})
 Normal.args = {
-  options: [
-    { value: '1', label: 'tab 1' },
-    { value: '2', label: 'tab 2' },
-    { value: '3', label: 'tab 3' },
-  ],
-  value: 2,
+    options: [
+        { value: '1', label: 'tab 1' },
+        { value: '2', label: 'tab 2' },
+        { value: '3', label: 'tab 3' },
+    ],
+    value: 2,
 }

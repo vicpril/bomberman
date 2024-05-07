@@ -10,36 +10,37 @@ import type { StateSchema } from './StateSchema'
 import { ThunkExtraArgs } from './types'
 
 export const createAppStore = (
-  initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>,
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
-  const rootReducers: ReducersMapObject<StateSchema> = {
-    ...asyncReducers,
-    user: userReducer,
-    ui: uiReducer,
-    rtkApi: rtkApiJson.reducer,
-  }
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
+        user: userReducer,
+        ui: uiReducer,
+        rtkApi: rtkApiJson.reducer,
+    }
 
-  const reducerManager = createReducerManager(rootReducers)
+    const reducerManager = createReducerManager(rootReducers)
 
-  const extraArg: ThunkExtraArgs = {
-    api: $api,
-    apiJson: $apiJson,
-  }
+    const extraArg: ThunkExtraArgs = {
+        api: $api,
+        apiJson: $apiJson,
+    }
 
-  const store = configureStore({
-    reducer: reducerManager.reduce,
-    preloadedState: initialState,
-    devTools: __IS_DEV__,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      thunk: {
-        extraArgument: extraArg,
-      },
-    }).concat(rtkApiJson.middleware),
-  })
+    const store = configureStore({
+        reducer: reducerManager.reduce,
+        preloadedState: initialState,
+        devTools: __IS_DEV__,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }).concat(rtkApiJson.middleware),
+    })
 
-  // @ts-ignore
-  store.reducerManager = reducerManager
+    // @ts-ignore
+    store.reducerManager = reducerManager
 
-  return store
+    return store
 }

@@ -6,35 +6,35 @@ import { SpritesExplosion } from '../../core/classes/sprites/SpritesExplosion'
 type ExplosionRenderer = RendererType<ExplosionExportData[]>
 
 export const ExplosionsRendererCreator = (context: CanvasRenderingContext2D): ExplosionRenderer => {
-  const cache: Record<string, SpritesExplosion> = {}
+    const cache: Record<string, SpritesExplosion> = {}
 
-  const render = (data: ExplosionExportData[]) => {
-    data.forEach((obj: ExplosionExportData) => {
-      const [x, y] = obj[ExportDataTitles.position]
+    const render = (data: ExplosionExportData[]) => {
+        data.forEach((obj: ExplosionExportData) => {
+            const [x, y] = obj[ExportDataTitles.position]
 
-      if (!cache[`${x}:${y}`]) {
-        cache[`${x}:${y}`] = new SpritesExplosion(
-          context,
-          { x, y },
-          obj[ExportDataTitles.frame_type],
-          obj[ExportDataTitles.direction],
-        )
-      }
-    })
+            if (!cache[`${x}:${y}`]) {
+                cache[`${x}:${y}`] = new SpritesExplosion(
+                    context,
+                    { x, y },
+                    obj[ExportDataTitles.frame_type],
+                    obj[ExportDataTitles.direction],
+                )
+            }
+        })
 
-    Object.values(cache).forEach((sprite) => {
-      const dataExists = data.some((exData) => {
-        const [px, py] = exData[ExportDataTitles.position]
-        return px === sprite.pos.x && py === sprite.pos.y
-      })
-      if (!dataExists) {
-        sprite.destroy()
-        delete cache[`${sprite.pos.x}:${sprite.pos.y}`]
-      }
-    })
-  }
+        Object.values(cache).forEach((sprite) => {
+            const dataExists = data.some((exData) => {
+                const [px, py] = exData[ExportDataTitles.position]
+                return px === sprite.pos.x && py === sprite.pos.y
+            })
+            if (!dataExists) {
+                sprite.destroy()
+                delete cache[`${sprite.pos.x}:${sprite.pos.y}`]
+            }
+        })
+    }
 
-  return {
-    render,
-  }
+    return {
+        render,
+    }
 }

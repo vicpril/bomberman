@@ -2,34 +2,34 @@ import { v4 as uuidv4 } from 'uuid'
 import { Game } from './Game'
 
 export class Room {
-  id: string
+    id: string
 
-  playersId: string[] = []
+    playersId: string[] = []
 
-  game: Game
+    game: Game
 
-  isClosed = false
+    isClosed = false
 
-  constructor() {
-    this.id = uuidv4()
-    this.game = new Game()
-  }
+    constructor() {
+        this.id = uuidv4()
+        this.game = new Game()
+    }
 
-  get size() {
-    return this.playersId.length
-  }
+    get size() {
+        return this.playersId.length
+    }
 
-  get isFull() {
-    return this.size === 2
-  }
+    get isFull() {
+        return this.size === 2
+    }
 
-  addPlayer(id: string) {
-    this.playersId.push(id)
-    if (this.isFull) this.isClosed = true
-  }
+    addPlayer(id: string) {
+        this.playersId.push(id)
+        if (this.isFull) this.isClosed = true
+    }
 
-  removePlayer(id: string) {
-    this.playersId = this.playersId.filter((pid) => pid !== id)
-    this.game.BF.removePlayer(id)
-  }
+    removePlayer(id: string) {
+        this.playersId = this.playersId.filter((pid) => pid !== id)
+        this.game.BF.removePlayer(id)
+    }
 }

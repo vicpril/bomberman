@@ -4,11 +4,11 @@ import { ArticlesViewSelector } from './ArticlesViewSelector'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'entities/ArticlesViewSelector',
-  component: ArticlesViewSelector,
-  args: {
-    children: 'ArticlesViewSelector',
-  },
+    title: 'entities/ArticlesViewSelector',
+    component: ArticlesViewSelector,
+    args: {
+        children: 'ArticlesViewSelector',
+    },
 } as ComponentMeta<typeof ArticlesViewSelector>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

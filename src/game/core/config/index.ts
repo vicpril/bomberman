@@ -1,22 +1,22 @@
 export const BATTLEFIELD_TEMPLATE = [
-  ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
-  ['W', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'W'],
-  ['W', 'x', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', 'x', 'W'],
-  ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'W'],
-  ['W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W'],
-  ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-  ['W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W'],
-  ['W', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-  ['W', 'x', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', 'x', 'W'],
-  ['W', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'W'],
-  ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+    ['W', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'W'],
+    ['W', 'x', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', 'x', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'W'],
+    ['W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W'],
+    ['W', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', 'x', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', ' ', 'W', 'x', 'W'],
+    ['W', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'W'],
+    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
 ]
 
 export const GRID = 64
 export const NUM_ROWS = 11
 export const NUM_COLS = 15
 
-export const SOFT_WALL_PROBABILITY = 0.50
+export const SOFT_WALL_PROBABILITY = 0.5
 
 export const DEGREE_360 = 2 * Math.PI
 
@@ -42,18 +42,18 @@ export const START_POSITION_SECOND_PLAYER = { x: 13, y: 1 }
 export const SECONDS_BEFORE_START = 3
 
 export enum ExportDataTitles {
-  players = 0,
-  soft_walls = 1,
-  bombs = 2,
-  explosions = 3,
-  position = 4,
-  coords = 5,
-  frame_type = 6,
-  direction = 7,
-  movement = 8,
-  player_bombs = 9,
-  player_score = 10,
-  timer = 11,
-  alive = 12,
-  index = 13
+    players = 0,
+    soft_walls = 1,
+    bombs = 2,
+    explosions = 3,
+    position = 4,
+    coords = 5,
+    frame_type = 6,
+    direction = 7,
+    movement = 8,
+    player_bombs = 9,
+    player_score = 10,
+    timer = 11,
+    alive = 12,
+    index = 13,
 }

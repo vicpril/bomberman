@@ -4,8 +4,8 @@ export { articleFiltersActions, articleFiltersReducer } from './model/slices/art
 export type { ArticleFiltersSchema, ArticleSortProps } from './model/types/articlesFilters'
 
 export {
-  getArticlesFilterOrder,
-  getArticlesFilterSearch,
-  getArticlesFilterSort,
-  getArticlesFilterType,
+    getArticlesFilterOrder,
+    getArticlesFilterSearch,
+    getArticlesFilterSort,
+    getArticlesFilterType,
 } from './model/selectors/articlesFiltersSelectors'

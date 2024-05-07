@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react'
 export type ResizeCallback = (isMobile: boolean) => void
 
 export const useDeviceDetect = (onResizeCallback?: ResizeCallback) => {
-  const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.matchMedia('(pointer:coarse)').matches)
-      onResizeCallback?.(isMobile)
-    }
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.matchMedia('(pointer:coarse)').matches)
+            onResizeCallback?.(isMobile)
+        }
 
-    handleResize()
-    window.addEventListener('resize', handleResize)
+        handleResize()
+        window.addEventListener('resize', handleResize)
 
-    return () => window.removeEventListener('resize', handleResize)
-  }, [isMobile, onResizeCallback])
+        return () => window.removeEventListener('resize', handleResize)
+    }, [isMobile, onResizeCallback])
 
-  return { isMobile }
+    return { isMobile }
 }

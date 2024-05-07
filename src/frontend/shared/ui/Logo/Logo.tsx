@@ -4,21 +4,20 @@ import logoImage from '@/shared/assets/icons/logo_img_base.png'
 import cls from './Logo.module.scss'
 
 interface LogoProps {
-  className?: string
+    className?: string
 }
 
 export const Logo = (props: LogoProps) => {
-  const { className } = props
+    const { className } = props
 
-  return (
-    <div className={classNames(cls.Logo, {}, [className])}>
-      <span className={classNames('', {}, [cls.text, cls.textBig])}>
-        B
-        <img className={cls.image} src={logoImage} alt="logo" />
-        MB
-      </span>
-      <span className={classNames('', {}, [cls.text, cls.textSmall])}>ATTACK</span>
-    </div>
-
-  )
+    return (
+        <div className={classNames(cls.Logo, {}, [className])}>
+            <span className={classNames('', {}, [cls.text, cls.textBig])}>
+                B
+                <img className={cls.image} src={logoImage} alt="logo" />
+                MB
+            </span>
+            <span className={classNames('', {}, [cls.text, cls.textSmall])}>ATTACK</span>
+        </div>
+    )
 }
