@@ -1,0 +1,11 @@
+{
+  "id": "1",
+  "firstname": "admin",
+  "lastname": "admin",
+  "age": 465,
+  "currency": "RUB",
+  "country": "Belarus",
+  "city": "Moscow",
+  "username": "admin",
+  "avatar": null
+}
