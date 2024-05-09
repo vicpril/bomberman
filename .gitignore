@@ -1,6 +1,7 @@
 build
 build-frontend
 build-api
+build-json
 build-sockets
 /database
 node_modules
