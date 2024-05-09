@@ -17,7 +17,7 @@ export default (env: BuildEnv): webpack.Configuration => {
     const paths: BuildPaths = {
         root: rootDir,
         entry: path.resolve(srcApiDir, 'server.ts'),
-        output: path.resolve(rootDir, 'build-server'),
+        output: path.resolve(rootDir, 'build-api'),
         src: srcApiDir,
     }
 
