@@ -8,6 +8,7 @@ export interface BuildPaths {
   src: string
   root: string
   socketsUrl: string
+  socketsPath: string
 }
 
 export interface BuildOptions {

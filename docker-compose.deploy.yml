@@ -1,0 +1,105 @@
+services:
+  # storybook:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.storybook
+  #   container_name: storybook
+  #   restart: always
+  #   volumes:
+  #     - ./:/app
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     # - /app/node_modules
+  #     # - /app/.next
+  #   ports:
+  #     - 6006:6006
+
+    
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: .deploy/frontend.Dockerfile
+    environment:
+      NODE_ENV: production
+    restart: always
+    tty: true
+
+  sockets:
+    container_name: sockets
+    build:
+      context: .
+      dockerfile: .deploy/sockets.Dockerfile
+    environment:
+      NODE_ENV: production
+    restart: always
+    
+  json:
+    container_name: json
+    build:
+      context: .
+      dockerfile: .deploy/json.Dockerfile
+    environment:
+      NODE_ENV: production
+    restart: always
+    
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: .deploy/api.Dockerfile
+    environment:
+      # переназначить host на соседний контейнер
+      POSTGRES_HOST: postgres
+      NODE_ENV: production
+    restart: always
+    depends_on:
+      - postgres
+
+  nginx:
+    container_name: nginx
+    # depends_on:
+    #   - api
+    #   - json
+    #   - frontend
+    #   - sockets
+    restart: always
+    build:
+      context: .
+      dockerfile: .deploy/nginx.Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/postgresdata:/var/lib/postgresql/data
+      - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    restart: always
+    env_file:
+      ./.env
+
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   env_file:
+  #     ./.env
+  #   environment:
+  #     PGADMIN_LISTEN_PORT: 8081
+  #   ports:
+  #     - "8081:8081"
+  #   volumes:
+  #     - pgadmin-data:/var/lib/pgadmin
+  #   depends_on:
+  #     - postgres
+
+# volumes:
+#   pgadmin-data:
+
+networks:
+  default:
+    driver: bridge

@@ -8,6 +8,7 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
       __SOCKETS_URL__: JSON.stringify(paths.socketsUrl),
+      __SOCKETS_PATH__: JSON.stringify(paths.socketsPath),
     }),
     new CopyPlugin({
       patterns: [

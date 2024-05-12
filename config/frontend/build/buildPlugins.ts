@@ -23,6 +23,7 @@ export function buildPlugins({
       __API__: JSON.stringify(paths.apiUrl),
       __API_JSON__: JSON.stringify(paths.jsonServerUrl),
       __SOCKETS_URL__: JSON.stringify(paths.socketsUrl),
+      __SOCKETS_PATH__: JSON.stringify(paths.socketsPath),
       __PROJECT__: JSON.stringify(project),
     }),
     new ReactRefreshWebpackPlugin(),
@@ -51,6 +52,12 @@ export function buildPlugins({
     })] : []),
   ]
 
+  plugins.push(new CopyPlugin({
+    patterns: [
+      { from: path.resolve(paths.public, 'locales'), to: path.resolve(paths.output, 'locales') },
+    ],
+  }))
+
   if (isDev) {
     plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }))
     plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -61,11 +68,7 @@ export function buildPlugins({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
     }))
-    plugins.push(new CopyPlugin({
-      patterns: [
-        { from: path.resolve(paths.public, 'locales'), to: path.resolve(paths.output, 'locales') },
-      ],
-    }))
+    
   }
 
   return plugins

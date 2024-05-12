@@ -7,6 +7,7 @@ export interface BuildPaths {
   src: string
   public: string
   socketsUrl: string
+  socketsPath: string
   apiUrl: string,
   jsonServerUrl: string,
 }

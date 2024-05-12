@@ -3,11 +3,15 @@ import path from 'path'
 import { BuildEnv } from '../types'
 import { BuildPaths } from './build/types'
 import { buildSocketsWebpackConfig } from './build/buildSocketsWebpackConfig'
+import { defineEnv } from '../define-env'
 
 export default (env: BuildEnv): webpack.Configuration => {
     const mode = env.mode || 'development'
     const PORT = env.port || 3002
-    const url = env.socketsUrl || `http://localhost:${PORT}`
+
+    defineEnv(mode)
+
+    const url = process.env.SOCKETS_URL || `http://localhost:3002`
 
     const isDev = mode === 'development'
 
@@ -21,6 +25,7 @@ export default (env: BuildEnv): webpack.Configuration => {
         output: path.resolve(rootDir, 'build-sockets'),
         src: srcApiDir,
         socketsUrl: url,
+        socketsPath: process.env.SOCKETS_PATH || '/',
     }
 
     const config: webpack.Configuration = buildSocketsWebpackConfig({

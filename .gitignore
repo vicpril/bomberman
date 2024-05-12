@@ -1,13 +1,13 @@
-build
-build-frontend
-build-api
-build-json
-build-sockets
+/build
+/build-frontend
+/build-api
+/build-json
+/build-sockets
 /database
-node_modules
-.idea
-# .vscode
 /storybook-static
-*.env.*
+node_modules
+# .idea
+# .vscode
+# *.env.*
 /reports/unit
 yarn-error.log

@@ -1,0 +1,10 @@
+# .dockerignore
+node_modules
+database
+build
+# build-frontend
+build-api
+build-json
+build-sockets
+storybook-static
+yarn-error.log

@@ -3,15 +3,20 @@ import webpack from 'webpack'
 import { buildWebpackConfig } from './build/buildWebpackConfig'
 import { BuildPaths } from './build/types'
 import { BuildEnv } from '../types'
+import { defineEnv } from '../define-env'
 
 export default (env?: BuildEnv) => {
     const mode = env?.mode || 'development'
-    const PORT = env?.port || 3000
-    const apiUrl = env?.apiUrl || 'http://localhost:3001/api/v1'
-    const jsonServerUrl = env?.apiUrl || 'http://localhost:8000'
-    const socketsUrl = env?.socketsUrl || 'http://localhost:3002'
 
-    const isDev = mode === 'development'
+    defineEnv(mode)
+
+    const PORT = env?.port || 3000
+    const apiUrl = process.env.API_URL || 'http://localhost:3001/api/v1'
+    const jsonServerUrl = process.env.API_JSON_URL || 'http://localhost:3003'
+    const socketsUrl = process.env.SOCKETS_URL || 'http://localhost:3002'
+    const socketsPath = process.env.SOCKETS_PATH || '/socket.io'
+
+    const isDev = env?.mode === 'development'
 
     const rootDir = path.resolve(__dirname, '..', '..')
     const srcDir = path.resolve(rootDir, 'src')
@@ -24,6 +29,7 @@ export default (env?: BuildEnv) => {
         src: srcFrontendDir,
         public: path.resolve(srcDir, 'public'),
         socketsUrl,
+        socketsPath,
         apiUrl,
         jsonServerUrl,
     }
