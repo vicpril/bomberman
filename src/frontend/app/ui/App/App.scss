@@ -1,8 +1,8 @@
-@import "./styles/fonts";
-@import "./styles/reset";
-@import "./styles/variables/global";
-@import "./styles/themes/normal";
-@import "./styles/themes/light";
+@import "../../styles/fonts";
+@import "../../styles/reset";
+@import "../../styles/variables/global";
+@import "../../styles/themes/normal";
+@import "../../styles/themes/light";
 
 .app {
   font: var(--font-m);
@@ -12,7 +12,16 @@
   transition: background-color .2s;
 }
 
-.content-page {
+.container {
+  @include appContainer
+}
+
+header {
+  width: 100%;
+  border-bottom: $lineWidthM solid var(--primary-color);
+}
+
+.app-content {
   display: flex;
   flex-flow: column;
 }

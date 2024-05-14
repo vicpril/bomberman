@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { ReactNode } from 'react'
+import { ReactNode, useCallback } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { ReducersMapObject } from '@reduxjs/toolkit'
@@ -9,10 +9,11 @@ import i18nForTests from '@/shared/config/i18n/i18nForTests'
 import { ThemeProvider } from '@/app/providers/ThemeProvider'
 import { Theme } from '@/shared/context/ThemeContext'
 // eslint-disable-next-line fsd-project/layer-imports
-import '@/app/App.scss'
+import '@/app/ui/App/App.scss'
 
 interface InitialProps {
     route?: string | { route: string; path: string }
+    withRouting?: boolean
     initialState?: DeepPartial<StateSchema>
     asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
     theme?: Theme
@@ -26,7 +27,7 @@ interface TestProviderProps {
 export function TestProvider(props: TestProviderProps) {
     const { children, options = {} } = props
 
-    const { route = '/', initialState, asyncReducers, theme = Theme.DARK } = options
+    const { route = '/', withRouting = true, initialState, asyncReducers, theme = Theme.DARK } = options
 
     const content = (
         <I18nextProvider i18n={i18nForTests}>
@@ -36,21 +37,28 @@ export function TestProvider(props: TestProviderProps) {
         </I18nextProvider>
     )
 
-    if (typeof route === 'string') {
-        return (
-            <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
-                <MemoryRouter initialEntries={[route]}>{content}</MemoryRouter>
-            </StoreProvider>
-        )
-    }
+    const makeRouting = useCallback(
+        (content: ReactNode) => {
+            if (typeof route === 'string') {
+                return <MemoryRouter initialEntries={[route]}>{content}</MemoryRouter>
+            }
+
+            return (
+                <MemoryRouter initialEntries={[route.route]}>
+                    <Routes>
+                        <Route path={route.path} element={content} />
+                    </Routes>
+                </MemoryRouter>
+            )
+        },
+        [route],
+    )
+
+    const contentWithRouting = withRouting ? makeRouting(content) : content
 
     return (
         <StoreProvider initialState={initialState} asyncReducers={asyncReducers}>
-            <MemoryRouter initialEntries={[route.route]}>
-                <Routes>
-                    <Route path={route.path} element={content} />
-                </Routes>
-            </MemoryRouter>
+            {contentWithRouting}
         </StoreProvider>
     )
 }

@@ -37,3 +37,5 @@ type DeepPartial<T> = T extends object
 type OptionalRecord<K extends keyof any, T> = {
     [P in K]?: T
 }
+
+type ArrayType<T extends unknown[]> = T extends (infer U)[] ? U : never

@@ -150,7 +150,8 @@
     "webpack-bundle-analyzer": "^4.8.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.7.4",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -173,7 +174,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "react-redux": "^9.1.1",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^6.23.1",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.31.0",
     "sequelize-cli": "^6.6.0",

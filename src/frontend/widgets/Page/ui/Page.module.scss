@@ -1,6 +1,4 @@
 .Page {
-  @include appContainer;
-
   flex-grow: 1;
 
   // height: calc(100vh - #{$headerHeight} - 4px);
