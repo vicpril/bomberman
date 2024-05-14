@@ -3,6 +3,9 @@ import { getUserAuthData } from '@/entities/User'
 import { GetRoutePaths } from '@/shared/const/router'
 import { NavbarItemType } from '../../types/NavbarItems'
 
+const whenAuth = (link: NavbarItemType) => !link.onlyNotAuth
+const whenNotAuth = (link: NavbarItemType) => !link.onlyAuth
+
 export const getNavLinks = createSelector(getUserAuthData, (state): NavbarItemType[] => {
     const links: NavbarItemType[] = [
         {
@@ -16,14 +19,18 @@ export const getNavLinks = createSelector(getUserAuthData, (state): NavbarItemTy
         {
             path: GetRoutePaths.profile(state?.id ?? ''),
             text: 'Профиль',
-            auth: true,
+            onlyAuth: true,
         },
         {
             path: GetRoutePaths.articles(),
             text: 'Статьи',
-            auth: false,
+        },
+        {
+            path: GetRoutePaths.registration(),
+            text: 'Регистрация',
+            onlyNotAuth: true,
         },
     ]
 
-    return state ? links : links.filter((l) => !l.auth)
+    return state ? links.filter(whenAuth) : links.filter(whenNotAuth)
 })

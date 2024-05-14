@@ -10,6 +10,7 @@ import { Outlet, RouteObject } from 'react-router-dom'
 import { ArticlesPage } from '@/pages/ArticlesPage'
 import { allowRoles } from '@/shared/lib/middlewares/allowRoles'
 import { UserRoles } from '@/shared/const/UserRoles'
+import { RegistrationPage } from '@/pages/RegistrationPage'
 import { ProtectedRoute } from '../ui/ProtectedRoute'
 import { isAuthenticated } from '../../../../shared/lib/middlewares/isAuthenticated'
 
@@ -50,6 +51,10 @@ export const routerConfig: RouteObject[] = [
             />
         ),
         children: [{ index: true, element: <AdminPanelPage /> }],
+    },
+    {
+        path: GetRoutePaths.registration(),
+        element: <RegistrationPage />,
     },
     {
         path: GetRoutePaths.forbidden(),

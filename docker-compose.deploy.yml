@@ -75,9 +75,9 @@ services:
     image: postgres:15-alpine
     ports:
       - "5432:5432"
-    volumes:
-      - ./database/postgresdata:/var/lib/postgresql/data
-      - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    # volumes:
+    #   - ./database/postgresdata:/var/lib/postgresql/data
+    #   - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
     restart: always
     env_file:
       ./.env

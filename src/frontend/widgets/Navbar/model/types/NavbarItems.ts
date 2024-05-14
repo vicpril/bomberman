@@ -1,5 +1,6 @@
 export interface NavbarItemType {
     path: string
     text: string
-    auth?: boolean
+    onlyAuth?: boolean
+    onlyNotAuth?: boolean
 }

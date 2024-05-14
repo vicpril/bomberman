@@ -6,6 +6,7 @@ export enum AppRoutes {
     Game = 'game',
     // About = 'about',
     Profile = 'profile',
+    Registration = 'registration',
     Articles = 'articles',
     ArticlesDetail = 'articlesDetail',
     AdminPanel = 'adminPanel',
@@ -23,6 +24,7 @@ export const GetRoutePaths = {
     [AppRoutes.Game]: () => '/game',
     // [AppRoutes.About]: () => '/about',
     [AppRoutes.Profile]: (id: string) => `/profile/${id}`, // + :id
+    [AppRoutes.Registration]: () => '/registration',
     [AppRoutes.Articles]: () => '/articles',
     [AppRoutes.ArticlesDetail]: (id: string) => `/articles/${id}`, // + :id
     [AppRoutes.AdminPanel]: () => '/admin',
