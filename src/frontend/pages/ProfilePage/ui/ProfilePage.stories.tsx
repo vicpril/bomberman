@@ -7,7 +7,7 @@ import { Currency } from '@/entities/Currency'
 import ProfilePage from './ProfilePage'
 
 const mockProfileData: Profile = {
-    id: 1,
+    id: '1',
     username: 'user1',
     firstname: 'Vic',
     lastname: 'Pr',

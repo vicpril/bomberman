@@ -10,7 +10,7 @@ import { profileUpdateReducer } from '@/features/ProfileEdit/testing'
 import ProfilePage from './ProfilePage'
 
 const profile: Profile = {
-    id: 1,
+    id: '1',
     firstname: 'admin',
     lastname: 'admin',
     age: 465,

@@ -8,7 +8,7 @@ import { ValidateProfileErrors } from '../../consts'
 import { updateProfileData } from '../../services/updateProfileData/updateProfileData'
 
 const data: Profile = {
-    id: 1,
+    id: '1',
     username: 'user1',
     firstname: 'Vic',
     lastname: 'Pr',

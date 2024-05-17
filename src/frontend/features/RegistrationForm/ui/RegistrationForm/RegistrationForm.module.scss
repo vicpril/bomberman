@@ -1,0 +1,10 @@
+.RegistrationForm {
+  position: relative;
+
+  > .loader{
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    z-index: 2;
+  }
+}

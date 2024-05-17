@@ -5,7 +5,7 @@ import { validateProfileData } from './validateProfileData'
 import { ValidateProfileErrors } from '../../consts'
 
 const data: Profile = {
-    id: 1,
+    id: '1',
     username: 'user1',
     firstname: 'Vic',
     lastname: 'Pr',

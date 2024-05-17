@@ -7,7 +7,7 @@ import { updateProfileData } from './updateProfileData'
 describe('Service updateProfileData.test', () => {
     test('success fetching', async () => {
         const remoteMockValue: Profile = {
-            id: 1,
+            id: '1',
             username: 'user1',
             firstname: 'Vic',
             lastname: 'Pr',

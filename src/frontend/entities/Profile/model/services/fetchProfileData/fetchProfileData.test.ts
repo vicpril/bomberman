@@ -7,7 +7,7 @@ describe('Service fetchProfileData.test', () => {
         const remoteMockValue: Profile = {
             age: 22,
             avatar: '',
-            id: 1,
+            id: '1',
             username: 'user1',
             firstname: 'firstname',
             lastname: 'lastname',

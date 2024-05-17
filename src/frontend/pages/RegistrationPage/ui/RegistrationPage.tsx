@@ -1,7 +1,13 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { useTranslation } from 'react-i18next'
 import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'
+import { RegistrationForm } from '@/features/RegistrationForm'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { GetRoutePaths } from '@/shared/const/router'
+import { Profile } from '@/entities/Profile'
+import { userActions } from '@/entities/User'
 import cls from './RegistrationPage.module.scss'
 
 interface RegistrationPageProps {
@@ -11,16 +17,27 @@ interface RegistrationPageProps {
 const RegistrationPage = (props: RegistrationPageProps) => {
     const { className } = props
 
-    const { t } = useTranslation()
+    const dispatch = useAppDispatch()
+
+    const navigate = useNavigate()
+
+    const onCancelHandler = useCallback(() => {
+        navigate(GetRoutePaths.main())
+    }, [navigate])
+
+    const onRegistrationHandler = useCallback(
+        (data: Profile) => {
+            dispatch(userActions.setAuthData(data))
+        },
+        [dispatch],
+    )
 
     return (
-        // <DynamicModuleLoader>
         <Page className={classNames(cls.RegistrationPage, {}, [className])} data-testid="RegistrationPage">
             <VStack gap="16">
-                <div>Registration</div>
+                <RegistrationForm onCancel={onCancelHandler} onUpdate={onRegistrationHandler} />
             </VStack>
         </Page>
-        // </DynamicModuleLoader>
     )
 }
 

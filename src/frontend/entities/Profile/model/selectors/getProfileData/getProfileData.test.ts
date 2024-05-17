@@ -5,7 +5,7 @@ import { getProfileData } from './getProfileData'
 import { Profile } from '../../types/profile'
 
 const mockProfile: Profile = {
-    id: 1,
+    id: '1',
     username: 'user1',
     firstname: 'Vic',
     lastname: 'Pr',

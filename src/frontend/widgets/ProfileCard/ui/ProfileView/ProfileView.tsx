@@ -41,12 +41,12 @@ export const ProfileView = (props: ProfileViewProps) => {
                             label={t('Пользователь')}
                             value={profileData?.username}
                         />
+                        <ProfileField className="lastname" label={t('Имя')} value={profileData?.lastname} />
                         <ProfileField
                             className="firstname"
                             label={t('Фамилия')}
                             value={profileData?.firstname}
                         />
-                        <ProfileField className="lastname" label={t('Имя')} value={profileData?.lastname} />
                         <ProfileField className="age" label={t('Возраст')} value={profileData?.age} />
                         <ProfileField
                             className="currency"

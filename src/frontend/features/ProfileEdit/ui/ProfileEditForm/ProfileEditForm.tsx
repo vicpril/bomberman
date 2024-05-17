@@ -124,16 +124,16 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
                 {errorsBlock}
                 <VStack max gap="16">
                     <Input
-                        placeholder={t('Фамилия')}
-                        value={form.firstname ?? ''}
-                        onChange={onFirstnameChange}
-                        data-testid="ProfileEditForm.firstname"
-                    />
-                    <Input
                         placeholder={t('Имя')}
                         value={form.lastname ?? ''}
                         onChange={onLastnameChange}
                         data-testid="ProfileEditForm.lastname"
+                    />
+                    <Input
+                        placeholder={t('Фамилия')}
+                        value={form.firstname ?? ''}
+                        onChange={onFirstnameChange}
+                        data-testid="ProfileEditForm.firstname"
                     />
                     <Input placeholder={t('Возраст')} value={form.age ?? ''} onChange={onAgeChange} />
                     <CurrencySelect

@@ -9,6 +9,7 @@ import { UISchema } from '@/features/UI'
 import { ArticleFiltersSchema } from '@/features/ArticlesFilters'
 import { rtkApiJson } from '@/shared/api/rtkApi'
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList'
+import { RegistrationFormSchema } from '@/features/RegistrationForm'
 
 export interface StateSchema {
     user: UserSchema
@@ -17,6 +18,7 @@ export interface StateSchema {
 
     // асинхронные
     loginForm?: LoginSchema
+    registrationForm?: RegistrationFormSchema
     profile?: ProfileSchema
     profileUpdate?: ProfileUpdateSchema
     articleDetails?: ArticleDetailsSchema
