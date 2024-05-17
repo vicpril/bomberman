@@ -8,11 +8,10 @@ import { GetRoutePaths } from '@/shared/const/router'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { Outlet, RouteObject } from 'react-router-dom'
 import { ArticlesPage } from '@/pages/ArticlesPage'
-import { allowRoles } from '@/shared/lib/middlewares/allowRoles'
 import { UserRoles } from '@/shared/const/UserRoles'
 import { RegistrationPage } from '@/pages/RegistrationPage'
+import { isAuthenticated, allowRoles } from '@/entities/User'
 import { ProtectedRoute } from '../ui/ProtectedRoute'
-import { isAuthenticated } from '../../../../shared/lib/middlewares/isAuthenticated'
 
 export const routerConfig: RouteObject[] = [
     {
