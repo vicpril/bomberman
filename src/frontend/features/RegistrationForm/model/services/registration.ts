@@ -25,8 +25,10 @@ export const registration = createAsyncThunk<
         return response.data
     } catch (error) {
         if (axios.isAxiosError<ValidateRegistrationErrors>(error)) {
-            return error.message === ValidateRegistrationErrors.SERVER_ERROR_USERNAME_EXISTS
-                ? rejectWithValue([ValidateRegistrationErrors.SERVER_ERROR_USERNAME_EXISTS])
+            return Object.values(ValidateRegistrationErrors).includes(
+                error.response?.data as ValidateRegistrationErrors,
+            )
+                ? rejectWithValue([error.response?.data as ValidateRegistrationErrors])
                 : rejectWithValue([ValidateRegistrationErrors.SERVER_ERROR])
         }
         return rejectWithValue([ValidateRegistrationErrors.SERVER_ERROR])

@@ -25,6 +25,7 @@ export const sequelize = new Sequelize(sequelizeOptions)
 export const initDB = async () => {
     // Форс дропает все таблицы каждый раз при запуске сервера, пока мы вносим много изменений в базы это удобно
     // await sequelize.sync({ force: true })
+    await sequelize.sync()
 
     User.sync()
     UserMeta.sync()

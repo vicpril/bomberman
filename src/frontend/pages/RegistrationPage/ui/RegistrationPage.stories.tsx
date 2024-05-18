@@ -1,10 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import RegistrationPage from './RegistrationPage'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'shared/RegistrationPage',
+    title: 'pages/RegistrationPage',
     component: RegistrationPage,
     args: {
         children: 'RegistrationPage',
@@ -17,3 +18,4 @@ const Template: ComponentStory<typeof RegistrationPage> = (args) => <Registratio
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = [StoreDecorator({ user: { authData: undefined } })]

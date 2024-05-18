@@ -82,4 +82,22 @@ export class UsersController {
             }
         },
     ]
+
+    public static delete = [
+        async (req: Request, res: Response) => {
+            const { id } = req.params // Getting the ID from the URL params
+            // Checking if the ID is a number
+            if (!Number.isInteger(+id)) {
+                return res.status(400).send({ message: 'Invalid ID format.' })
+            }
+
+            try {
+                const user = await UsersService.delete(+id)
+
+                return res.send(user)
+            } catch (error) {
+                return res.status(404).send({ message: 'User not found.' })
+            }
+        },
+    ]
 }

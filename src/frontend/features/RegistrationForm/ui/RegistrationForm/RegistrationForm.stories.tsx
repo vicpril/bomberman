@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { RegistrationForm } from './RegistrationForm'
 
 export default {
@@ -14,3 +15,4 @@ const Template: ComponentStory<typeof RegistrationForm> = (args) => <Registratio
 
 export const Normal = Template.bind({})
 Normal.args = {}
+Normal.decorators = [StoreDecorator({ user: { authData: undefined } })]

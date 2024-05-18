@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import { useDispatch } from 'react-redux'
-import { userActions } from '@/entities/User'
+import { useDispatch, useSelector } from 'react-redux'
+import { isAuthenticated, userActions } from '@/entities/User'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
@@ -12,6 +12,8 @@ function App() {
 
     const dispatch = useDispatch()
     dispatch(userActions.initAuthData())
+
+    const isAuth = useSelector(isAuthenticated)
 
     return (
         <div className={classNames('app', {}, [theme])}>

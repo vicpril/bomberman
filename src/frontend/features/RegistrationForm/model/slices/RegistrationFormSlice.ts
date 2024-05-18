@@ -5,6 +5,7 @@ import { registration } from '../services/registration'
 export const initialRegistrationState: RegistrationFormSchema = {
     form: {
         username: '',
+        password: '',
         lastname: '',
         firstname: '',
     },
@@ -27,9 +28,8 @@ export const RegistrationFormSlice = createSlice({
                 state.isLoading = true
                 state.validateErrors = undefined
             })
-            .addCase(registration.fulfilled, (state, action) => {
+            .addCase(registration.fulfilled, (state, _action) => {
                 state.isLoading = false
-                state.form = action.payload
             })
             .addCase(registration.rejected, (state, action) => {
                 state.isLoading = false

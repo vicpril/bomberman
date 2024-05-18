@@ -22,7 +22,7 @@ export const getNavigationItem = createSelector(getUserAuthData, (authData) => {
         },
         [AppRoutes.Registration]: {
             path: GetRoutePaths.registration(),
-            text: 'Зарегистрироваться',
+            text: 'Новый игрок',
         },
         [AppRoutes.AdminPanel]: {
             path: GetRoutePaths.adminPanel(),

@@ -38,7 +38,13 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         () => ({
             [ValidateRegistrationErrors.INCORRECT_USERNAME]: t('Имя пользователя обязательное поле'),
             [ValidateRegistrationErrors.SERVER_ERROR]: t('Ошибка сервера'),
-            [ValidateRegistrationErrors.SERVER_ERROR_USERNAME_EXISTS]: t('Имя пользователя уже существует'),
+            [ValidateRegistrationErrors.SERVER_ERROR_USERNAME_EXISTS]: t(
+                'Пользователь с таким именем уже существует',
+            ),
+            [ValidateRegistrationErrors.SERVER_ERROR_PASSWORD_REQUIRED]: t('Пароль обязательное поле'),
+            [ValidateRegistrationErrors.SERVER_ERROR_USERNAME_REQUIRED]: t(
+                'Имя пользователя обязательное поле',
+            ),
         }),
         [t],
     )
@@ -75,6 +81,13 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         [dispatch],
     )
 
+    const onPasswordChange = useCallback(
+        (value: string) => {
+            dispatch(registrationFormActions.updateRegistrationForm({ password: value }))
+        },
+        [dispatch],
+    )
+
     const onLastnameChange = useCallback(
         (value: string) => {
             dispatch(registrationFormActions.updateRegistrationForm({ lastname: value }))
@@ -101,6 +114,12 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                         value={form.username ?? ''}
                         onChange={onUsernameChange}
                         data-testid="RegistrationForm.username"
+                    />
+                    <Input
+                        placeholder={t('Пароль')}
+                        value={form.password ?? ''}
+                        onChange={onPasswordChange}
+                        data-testid="RegistrationForm.password"
                     />
                     <Input
                         placeholder={t('Имя')}
