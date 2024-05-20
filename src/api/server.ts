@@ -27,10 +27,6 @@ export const startServer = async () => {
 
         app.use(router)
 
-        // app.get('/', (req, res) => {
-        //     res.send('Hi123!')
-        // })
-
         app.use(errorMiddleware)
 
         app.listen(port, () => {

@@ -1,23 +1,17 @@
-import { Suspense, useEffect } from 'react'
-import { getAccessToken, initUserData } from '@/entities/User'
+import { Suspense } from 'react'
+import { isUserLoading } from '@/entities/User'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 import './App.scss'
-import { Outlet } from 'react-router-dom'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Loader } from '@/shared/ui/Loader'
+import { useSelector } from 'react-redux'
+import { Outlet } from 'react-router-dom'
 
 function App() {
     const { theme } = useTheme()
 
-    const dispatch = useAppDispatch()
-
-    const token = getAccessToken()
-
-    useEffect(() => {
-        if (token) dispatch(initUserData())
-    }, [dispatch, token])
+    const isLoadingUserData = useSelector(isUserLoading)
 
     return (
         <div className={classNames('app', {}, [theme])}>
@@ -29,9 +23,7 @@ function App() {
                 </header>
                 <main>
                     <Suspense fallback={<Loader />}>
-                        <div className="container">
-                            <Outlet />
-                        </div>
+                        <div className="container">{isLoadingUserData ? <Loader /> : <Outlet />}</div>
                     </Suspense>
                 </main>
             </div>

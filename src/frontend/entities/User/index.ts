@@ -4,6 +4,7 @@ export { initUserData } from './model/services/initUserData/initUserData'
 export { callApiLogout } from './model/services/callApiLogout/callApiLogout'
 export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData'
 export { getAccessToken } from './model/selectors/getAccessToken/getAccessToken'
+export { isUserLoading } from './model/selectors/isUserLoading/isUserLoading'
 export {
     isUserAdmin,
     isUserManager,

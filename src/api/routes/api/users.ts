@@ -8,9 +8,9 @@ usersRouter.get('/', UsersController.getAll)
 //   res.send('users!!!')
 // })
 
-usersRouter.post('/', UsersController.create)
+// usersRouter.post('/', UsersController.create)
 
-usersRouter.get('/:id/', UsersController.getProfile)
+usersRouter.get('/:id/', UsersController.getUser)
 
 usersRouter.put('/:id/', UsersController.updateProfile)
 

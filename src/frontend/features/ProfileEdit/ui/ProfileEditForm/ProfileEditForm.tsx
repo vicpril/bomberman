@@ -16,11 +16,11 @@ import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect
 import { Currency, CurrencySelect } from '@/entities/Currency'
 import { Country, CountrySelect } from '@/entities/Country'
 import { HStack, VStack } from '@/shared/ui/Stack'
+import { useErrorMessages } from '@/shared/lib/hooks/useErrorMessages/useErrorMessages'
 import { getUpdateProfileValidateErrors } from '../../model/selectors/getUpdateProfileValidateErrors/getUpdateProfileValidateErrors'
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData'
 import { getProfileUpdateData } from '../../model/selectors/getUpdateProfileData/getProfileUpdateData'
 import { profileUpdateActions, profileUpdateReducer } from '../../model/slices/updateProfile/updateProfile'
-import { ValidateProfileErrors } from '../../model/consts'
 import { ProfileUpdateFormFields } from '../../model/types/ProfileUpdateSchema'
 import cls from './ProfileEditForm.module.scss'
 
@@ -41,16 +41,18 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
 
     const { t } = useTranslation('profile')
 
-    const valideteErrorsTranslations: Record<ValidateProfileErrors, string> = useMemo(
-        () => ({
-            [ValidateProfileErrors.NO_DATA]: t('Данные не указаны'),
-            [ValidateProfileErrors.INCORRECT_USER_AGE]: t('Некорректный возраст'),
-            [ValidateProfileErrors.INCORRECT_USER_COUNTRY]: t('Некорректный регион'),
-            [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Имя и Фамилия обязательны'),
-            [ValidateProfileErrors.SERVER_ERROR]: t('Ошибка сервера'),
-        }),
-        [t],
-    )
+    // const valideteErrorsTranslations: Record<ValidateProfileErrors, string> = useMemo(
+    //     () => ({
+    //         [ValidateProfileErrors.NO_DATA]: t('Данные не указаны'),
+    //         [ValidateProfileErrors.INCORRECT_USER_AGE]: t('Некорректный возраст'),
+    //         [ValidateProfileErrors.INCORRECT_USER_COUNTRY]: t('Некорректный регион'),
+    //         [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Имя и Фамилия обязательны'),
+    //         [ValidateProfileErrors.SERVER_ERROR]: t('Ошибка сервера'),
+    //     }),
+    //     [t],
+    // )
+
+    const { getErrorMessage } = useErrorMessages()
 
     const dispatch = useAppDispatch()
 
@@ -111,11 +113,11 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
             errors && (
                 <VStack justify="center" max gap="16" data-testid="ProfileEditForm.errors">
                     {errors.map((error) => (
-                        <Text key={error} theme={TextTheme.ERROR} text={valideteErrorsTranslations[error]} />
+                        <Text key={error} theme={TextTheme.ERROR} text={getErrorMessage(error)} />
                     ))}
                 </VStack>
             ),
-        [errors, valideteErrorsTranslations],
+        [errors, getErrorMessage],
     )
 
     return (

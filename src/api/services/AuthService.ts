@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import { ApiError } from '@api/exceptions/ApiError'
 import { ApiErrorCode } from '@api/config/ApiErrorCodes'
 import { UserMeta } from '@api/models/UserMeta'
+import { Request } from 'express'
 import { UserService, UserServiceFields } from './UserService'
 import { TokenService } from './TokenService'
 import { TransactionService } from './TransactionService'
@@ -80,5 +81,19 @@ export class AuthService {
     public static async profile(userId: number) {
         const user = await User.findByPk(userId, { include: UserMeta })
         return user?.dtoFull
+    }
+
+    public static getCurrentUser = async (request: Request, withMeta = false) => {
+        const accessToken = request.headers.authorization?.split(' ')[1] ?? null
+
+        if (!accessToken) return null
+
+        const userData = TokenService.validateAccessToken(accessToken)
+
+        if (!userData) return null
+
+        const currentUser = await User.findByPk(userData.id, withMeta ? { include: UserMeta } : {})
+
+        return currentUser
     }
 }

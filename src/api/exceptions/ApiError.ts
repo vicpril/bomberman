@@ -34,9 +34,10 @@ export class ApiError extends Error {
         return new ApiError(401, ApiErrorCode.NO_AUTH)
     }
 
-    // public static BadRequest(errors: unknown[] = [], message = API_ERROR_CODES.BAD_REQUEST) {
-    //     return new ApiError(400, 'BAD_REQUEST', message, errors)
-    // }
+    public static NotFound(code = ApiErrorCode.NOT_FOUND, message = API_ERROR_MESSAGE[code]) {
+        return new ApiError(400, code, message)
+    }
+
     public static BadRequest(code: ApiErrorCode, message = API_ERROR_MESSAGE[code]) {
         return new ApiError(400, code, message)
     }

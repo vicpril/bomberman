@@ -1,0 +1,18 @@
+{
+    "SERVER_ERROR": "server-error",
+    "NO_AUTH": "no-auth",
+    "BAD_REQUEST": "bad-request",
+    "REGISTRATION_USERNAME_REQUIRED": "registration-username-required",
+    "REGISTRATION_USERNAME_EXISTS": "registration-username-exists",
+    "REGISTRATION_PASSWORD_REQUIRED": "registration-password-required",
+    "PROFILE_EDIT_INCORRECT_USER_DATA": "profile-edit-incorrect-user-data",
+    "PROFILE_EDIT_INCORRECT_USER_AGE": "profile-edit-incorrect-user-age",
+    "PROFILE_EDIT_INCORRECT_USER_COUNTRY": "profile-edit-incorrect-user-country",
+    "PROFILE_EDIT_INCORRECT_USERNAME": "profile-edit-incorrect-username",
+    "PROFILE_EDIT_NO_DATA": "profile-edit-no-data",
+    "LOGIN_WRONG_CREDENTIALS": "login-wrong-credentials",
+    "NOT_FOUND": "not-found",
+    "USER_NOT_FOUND": "user-not-found",
+    "PROFILE_EDIT_INCORRECT_FIRATNAME": "profile-edit-incorrect-firatname",
+    "PROFILE_EDIT_INCORRECT_LASTNAME": "profile-edit-incorrect-lastname"
+}

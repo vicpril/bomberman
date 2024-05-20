@@ -1,13 +1,9 @@
-import { validateRequestBody } from 'api/helpers/validate'
+import { ApiErrorCode } from '@api/config/ApiErrorCodes'
+import { ApiError } from '@api/exceptions/ApiError'
+import { AuthService } from '@api/services/AuthService'
 import { UserService } from 'api/services/UserService'
-import { Response, Request } from 'express'
-import { CustomValidator, body, param } from 'express-validator'
-
-const isUsernameUnique: CustomValidator = async (username: string) => {
-    const user = await UserService.getByUsername(username)
-    if (user) throw new Error(`User with username '${username}' already exists`)
-    return true
-}
+import { Response, Request, NextFunction } from 'express'
+import { CustomValidator, body, param, validationResult } from 'express-validator'
 
 const isUserExists: CustomValidator = async (id: string) => {
     const user = await UserService.getById(+id)
@@ -16,79 +12,61 @@ const isUserExists: CustomValidator = async (id: string) => {
 }
 
 export class UsersController {
-    public static getAll = async (req: Request, res: Response) => {
+    public static getAll = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await UserService.get()
             res.send(result)
         } catch (error) {
-            res.status(500).send(error)
+            next(error)
         }
     }
 
-    public static create = [
-        body('username').trim().notEmpty().withMessage('username is required').custom(isUsernameUnique),
-        body('password')
-            .trim()
-            .notEmpty()
-            .withMessage('password is required')
-            .trim()
-            .isLength({ min: 3 })
-            .withMessage('password should be greater then 3'),
-        body('firstname').trim().notEmpty().withMessage('firstname is required'),
-        body('lastname').trim().notEmpty().withMessage('lastname is required'),
-        async (req: Request, res: Response) => {
-            if (!validateRequestBody(req, res)) return
-
-            try {
-                const result = await UserService.create(req.body)
-                res.send(result)
-            } catch (error) {
-                console.error(error)
-                res.status(500).send(error)
-            }
-        },
-    ]
-
-    public static getProfile = async (req: Request, res: Response) => {
+    public static getUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const user = await UserService.getById(+req.params.id, {
                 withMeta: true,
             })
             if (!user) {
-                res.status(404).send('User not found')
-            } else {
-                res.send(user.profile)
+                throw ApiError.NotFound(ApiErrorCode.USER_NOT_FOUND)
             }
+
+            const currentUser = await AuthService.getCurrentUser(req)
+
+            if (currentUser?.isAdmin || currentUser?.id === user.id) {
+                return res.json(user.dtoFull)
+            }
+            return res.json(user.dtoShort)
         } catch (error) {
-            res.status(500).send(error)
+            next(error)
         }
     }
 
     public static updateProfile = [
         param('id').custom(isUserExists),
-        body('firstname').trim().notEmpty().withMessage('firstname is required'),
-        body('lastname').trim().notEmpty().withMessage('lastname is required'),
+        body('firstname').trim().notEmpty().withMessage(ApiErrorCode.PROFILE_EDIT_INCORRECT_FIRATNAME),
+        body('lastname').trim().notEmpty().withMessage(ApiErrorCode.PROFILE_EDIT_INCORRECT_LASTNAME),
         body('age').trim().isNumeric().optional({ nullable: true }).toInt(),
-        async (req: Request, res: Response) => {
-            if (!validateRequestBody(req, res)) return
-
+        async (req: Request, res: Response, next: NextFunction) => {
             try {
+                const errors = validationResult(req)
+                if (!errors.isEmpty()) {
+                    throw ApiError.BadRequestWithValidator(ApiErrorCode.BAD_REQUEST, errors.array())
+                }
+
                 const result = await UserService.updateProfile(+req.params.id, req.body)
                 res.send(result.profile)
             } catch (error) {
-                // eslint-disable-next-line no-console
-                console.error(error)
-                res.status(500).send(error)
+                next(error)
             }
         },
     ]
 
     public static delete = [
-        async (req: Request, res: Response) => {
+        async (req: Request, res: Response, next: NextFunction) => {
             const { id } = req.params // Getting the ID from the URL params
             // Checking if the ID is a number
             if (!Number.isInteger(+id)) {
-                return res.status(400).send({ message: 'Invalid ID format.' })
+                throw ApiError.NotFound(ApiErrorCode.USER_NOT_FOUND)
             }
 
             try {
@@ -96,7 +74,7 @@ export class UsersController {
 
                 return res.send(user)
             } catch (error) {
-                return res.status(404).send({ message: 'User not found.' })
+                next(error)
             }
         },
     ]

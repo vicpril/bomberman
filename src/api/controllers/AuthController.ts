@@ -1,14 +1,21 @@
 import { ApiErrorCode } from '@api/config/ApiErrorCodes'
 import { ApiError } from '@api/exceptions/ApiError'
 import { AuthService } from '@api/services/AuthService'
-import { UserService } from 'api/services/UserService'
 import { Response, Request, NextFunction } from 'express'
 import { body, validationResult } from 'express-validator'
 
 export class AuthController {
     public static registeration = [
         body('username').trim().notEmpty().withMessage(ApiErrorCode.REGISTRATION_USERNAME_REQUIRED),
-        body('password').trim().notEmpty().withMessage(ApiErrorCode.REGISTRATION_PASSWORD_REQUIRED),
+        body('password')
+            .trim()
+            .notEmpty()
+            .withMessage(ApiErrorCode.REGISTRATION_PASSWORD_REQUIRED)
+            .trim()
+            .isLength({ min: 3 })
+            .withMessage('password should be greater then 2'),
+        // body('firstname').trim().notEmpty().withMessage('firstname is required'),
+        // body('lastname').trim().notEmpty().withMessage('lastname is required'),
 
         async (req: Request, res: Response, next: NextFunction) => {
             try {
@@ -62,21 +69,6 @@ export class AuthController {
         },
     ]
 
-    public static getProfile = async (req: Request, res: Response) => {
-        try {
-            const user = await UserService.getById(+req.params.id, {
-                withMeta: true,
-            })
-            if (!user) {
-                res.status(404).send('User not found')
-            } else {
-                res.send(user.profile)
-            }
-        } catch (error) {
-            res.status(500).send(error)
-        }
-    }
-
     public static logout = [
         async (req: Request, res: Response, next: NextFunction) => {
             try {
@@ -97,7 +89,6 @@ export class AuthController {
         try {
             const { refreshToken } = req.cookies
             const userData = await AuthService.refresh(refreshToken)
-            // res.clearCookie('refreshToken')
             res.cookie('refreshToken', userData.refreshToken, {
                 maxAge: 30 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
