@@ -1,16 +1,16 @@
 import { validateRequestBody } from 'api/helpers/validate'
-import { UsersService } from 'api/services/UsersService'
+import { UserService } from 'api/services/UserService'
 import { Response, Request } from 'express'
 import { CustomValidator, body, param } from 'express-validator'
 
 const isUsernameUnique: CustomValidator = async (username: string) => {
-    const user = await UsersService.getByUsername(username)
+    const user = await UserService.getByUsername(username)
     if (user) throw new Error(`User with username '${username}' already exists`)
     return true
 }
 
 const isUserExists: CustomValidator = async (id: string) => {
-    const user = await UsersService.getById(+id)
+    const user = await UserService.getById(+id)
     if (!user) throw new Error(`User with id '${id}' doesn't exist`)
     return true
 }
@@ -18,7 +18,7 @@ const isUserExists: CustomValidator = async (id: string) => {
 export class UsersController {
     public static getAll = async (req: Request, res: Response) => {
         try {
-            const result = await UsersService.get()
+            const result = await UserService.get()
             res.send(result)
         } catch (error) {
             res.status(500).send(error)
@@ -40,7 +40,7 @@ export class UsersController {
             if (!validateRequestBody(req, res)) return
 
             try {
-                const result = await UsersService.create(req.body)
+                const result = await UserService.create(req.body)
                 res.send(result)
             } catch (error) {
                 console.error(error)
@@ -51,10 +51,9 @@ export class UsersController {
 
     public static getProfile = async (req: Request, res: Response) => {
         try {
-            const user = await UsersService.getById(+req.params.id, {
+            const user = await UserService.getById(+req.params.id, {
                 withMeta: true,
             })
-            // console.log('🚀 ~ UsersController ~ user', user)
             if (!user) {
                 res.status(404).send('User not found')
             } else {
@@ -74,9 +73,10 @@ export class UsersController {
             if (!validateRequestBody(req, res)) return
 
             try {
-                const result = await UsersService.updateProfile(+req.params.id, req.body)
+                const result = await UserService.updateProfile(+req.params.id, req.body)
                 res.send(result.profile)
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error(error)
                 res.status(500).send(error)
             }
@@ -92,7 +92,7 @@ export class UsersController {
             }
 
             try {
-                const user = await UsersService.delete(+id)
+                const user = await UserService.delete(+id)
 
                 return res.send(user)
             } catch (error) {

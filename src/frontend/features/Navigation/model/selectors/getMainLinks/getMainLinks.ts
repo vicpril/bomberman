@@ -4,10 +4,7 @@ import { notEmpty } from '@/shared/lib/helpers/notEmpty'
 import { getNavigationItem } from '../getNavigationItem/getNavigationItem'
 
 export const getMainLinks = createSelector(
-    getNavigationItem,
-    isAuthenticated,
-    isUserAdmin,
-    isUserManager,
+    [getNavigationItem, isAuthenticated, isUserAdmin, isUserManager],
     (NavigationItem, isAuth, isUserAdmin, isUserManager) => {
         return [
             NavigationItem.game,

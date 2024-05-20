@@ -12,7 +12,7 @@ import { Input } from '@/shared/ui/Input'
 import { Button, ButtonSize } from '@/shared/ui/Button'
 import { Loader, LoaderSize } from '@/shared/ui/Loader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { Profile } from '@/entities/Profile'
+import { LoginResponseData } from '@/entities/User'
 import { registrationFormActions, registrationFormReducer } from '../../model/slices/RegistrationFormSlice'
 import cls from './RegistrationForm.module.scss'
 import { ValidateRegistrationErrors } from '../../model/consts'
@@ -22,7 +22,7 @@ import { registration } from '../../model/services/registration'
 
 interface RegistrationFormProps {
     className?: string
-    onUpdate?: (newData: Profile) => void
+    onUpdate?: (newData: LoginResponseData) => void
     onCancel?: () => void
 }
 
@@ -98,7 +98,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
     const onSubmitHandler = async () => {
         const result = await dispatch(registration(form))
         if (result.meta.requestStatus === 'fulfilled') {
-            onUpdate?.(result.payload as Profile)
+            onUpdate?.(result.payload as LoginResponseData)
         }
     }
 

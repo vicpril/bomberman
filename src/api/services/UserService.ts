@@ -1,7 +1,6 @@
-import { sequelize } from '@api/models'
 import { User, UserRoles } from 'api/models/User'
 import { UserMeta } from 'api/models/UserMeta'
-import { BaseRESTService } from 'api/services/BaseRESTService'
+import { TransactionService, TransactionServiceOptions } from './TransactionService'
 
 interface Options {
     withMeta?: boolean
@@ -11,30 +10,18 @@ export type UserServiceFields = Pick<User, 'username' | 'password'> & Omit<UserM
 
 export type UpdateUserProfileFields = Omit<UserMeta, 'id'>
 
-export class UsersService implements BaseRESTService<User> {
-    public static get = (options?: Options) => User.findAll(options?.withMeta ? { include: UserMeta } : {})
-
-    public static getById = (id: number, options?: Options) =>
-        User.findByPk(id, options?.withMeta ? { include: UserMeta } : {})
-
-    public static getByUsername = (username: string, options?: Options) =>
-        User.findOne({
-            where: { username },
-            include: options?.withMeta ? UserMeta : undefined,
-        })
-
+export class UserService {
     public static create = async (
         args: Partial<UserServiceFields> & Required<Pick<UserServiceFields, 'username' | 'password'>>,
+        options?: TransactionServiceOptions,
     ) => {
         const { username, password, ...usermetaFields } = args
 
-        const t = await sequelize.transaction()
+        return TransactionService(async (t) => {
+            const roles: UserRoles[] = [UserRoles.User]
+            if (username.toLocaleLowerCase() === 'admin') roles.push(UserRoles.Admin)
+            if (username.toLocaleLowerCase() === 'manager') roles.push(UserRoles.Manager)
 
-        const roles: UserRoles[] = [UserRoles.User]
-        if (username.toLocaleLowerCase() === 'admin') roles.push(UserRoles.Admin)
-        if (username.toLocaleLowerCase() === 'manager') roles.push(UserRoles.Manager)
-
-        try {
             const newUser = await User.create(
                 {
                     username,
@@ -50,14 +37,30 @@ export class UsersService implements BaseRESTService<User> {
                 },
                 { transaction: t },
             )
-            await t.commit()
 
-            return User.findByPk(newUser.id, { include: UserMeta })
-        } catch (error) {
-            await t.rollback()
-            throw error
-        }
+            const user = await User.findByPk(newUser.id, { include: UserMeta, transaction: t })
+            if (!user) {
+                throw new Error('Error on create user')
+            }
+
+            return user
+        }, options)
     }
+
+    /**
+     * OLD services
+     */
+
+    public static get = (options?: Options) => User.findAll(options?.withMeta ? { include: UserMeta } : {})
+
+    public static getById = (id: number, options?: Options) =>
+        User.findByPk(id, options?.withMeta ? { include: UserMeta } : {})
+
+    public static getByUsername = (username: string, options?: Options) =>
+        User.findOne({
+            where: { username },
+            include: options?.withMeta ? UserMeta : undefined,
+        })
 
     public static updateProfile = async (id: number, args: UpdateUserProfileFields) => {
         const { ...usermetaFields } = args

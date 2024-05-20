@@ -6,8 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetRoutePaths } from '@/shared/const/router'
-import { Profile } from '@/entities/Profile'
-import { userActions } from '@/entities/User'
+import { LoginResponseData, userActions } from '@/entities/User'
 import cls from './RegistrationPage.module.scss'
 
 interface RegistrationPageProps {
@@ -26,7 +25,7 @@ const RegistrationPage = (props: RegistrationPageProps) => {
     }, [navigate])
 
     const onRegistrationHandler = useCallback(
-        (data: Profile) => {
+        (data: LoginResponseData) => {
             dispatch(userActions.setAuthData(data))
         },
         [dispatch],

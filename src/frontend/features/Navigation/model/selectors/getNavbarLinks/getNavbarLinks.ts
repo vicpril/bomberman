@@ -5,8 +5,7 @@ import { getNavigationItem } from '../getNavigationItem/getNavigationItem'
 import { NavigationLink } from '../../types'
 
 export const getNavbarLinks = createSelector(
-    getNavigationItem,
-    isAuthenticated,
+    [getNavigationItem, isAuthenticated],
     (NavigationItem, isAuth): NavigationLink[] => {
         return [
             NavigationItem.main,

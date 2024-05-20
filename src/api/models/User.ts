@@ -10,6 +10,7 @@ import {
     AutoIncrement,
     Default,
 } from 'sequelize-typescript'
+import { Token } from './Token'
 // import { Article } from './Article'
 // import { ArticleComment } from './ArticleComment'
 
@@ -48,9 +49,42 @@ export class User extends Model {
     })
     meta!: Awaited<UserMeta>
 
+    @HasOne(() => Token, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+    })
+    refreshToken!: Awaited<Token>
+
+    get isAdmin() {
+        return this.roles.includes(UserRoles.Admin)
+    }
+
+    get isManager() {
+        return this.roles.includes(UserRoles.Manager)
+    }
+
     get profile() {
         return {
             ...this.meta.get(),
+            username: this.username,
+            id: this.id,
+        }
+    }
+
+    get dtoFull() {
+        return {
+            ...this.meta.get(),
+            roles: this.roles,
+            username: this.username,
+            id: this.id,
+        }
+    }
+
+    get dtoShort() {
+        return {
+            roles: this.roles,
+            firstname: this.meta.firstname,
+            lastname: this.meta.lastname,
             username: this.username,
             id: this.id,
         }

@@ -2,6 +2,7 @@ import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import dotenv from 'dotenv'
 import { User } from './User'
 import { UserMeta } from './UserMeta'
+import { Token } from './Token'
 // import { Article } from './Article'
 // import { ArticleBlock } from './ArtricleBlock'
 // import { ArticleComment } from './ArticleComment'
@@ -16,7 +17,7 @@ const sequelizeOptions: SequelizeOptions = {
     username: POSTGRES_USER || 'postgres',
     password: POSTGRES_PASSWORD || 'newPassword',
     database: POSTGRES_DB || 'gamedev_db',
-    models: [User, UserMeta],
+    models: [User, UserMeta, Token],
     dialect: 'postgres',
 }
 
@@ -24,9 +25,10 @@ export const sequelize = new Sequelize(sequelizeOptions)
 
 export const initDB = async () => {
     // Форс дропает все таблицы каждый раз при запуске сервера, пока мы вносим много изменений в базы это удобно
-    // await sequelize.sync({ force: true })
+    await sequelize.sync({ force: true })
     await sequelize.sync()
 
+    Token.sync()
     User.sync()
     UserMeta.sync()
     // Article.sync()

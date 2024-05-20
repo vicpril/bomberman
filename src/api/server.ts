@@ -4,9 +4,11 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import router from 'api/routes'
+import { errorMiddleware } from './middlewares/errorMiddleware'
 
 const app = express()
 const port = process.env.port || 3001
+const baseUrl = process.env.CLIENT_URL || 'http://localhost:3000'
 
 export const startServer = async () => {
     try {
@@ -16,13 +18,20 @@ export const startServer = async () => {
         app.use(bodyParser.json())
 
         app.use(cookieParser())
-        app.use(cors())
+        app.use(
+            cors({
+                credentials: true,
+                origin: baseUrl,
+            }),
+        )
 
         app.use(router)
 
-        app.get('/', (req, res) => {
-            res.send('Hi123!')
-        })
+        // app.get('/', (req, res) => {
+        //     res.send('Hi123!')
+        // })
+
+        app.use(errorMiddleware)
 
         app.listen(port, () => {
             console.log(`Server running on port ${port}`)

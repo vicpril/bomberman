@@ -6,7 +6,10 @@ import { loginByUsername } from './loginByUsername'
 
 describe('Service loginByUsername.test', () => {
     test('success login', async () => {
-        const remoteMockValue = { username: 'user', id: '1' }
+        const remoteMockValue = {
+            accessToken: '123123',
+            user: { username: 'user', id: '1' },
+        }
 
         const thunk = new TestAsyncThunk(loginByUsername, {
             data: remoteMockValue,

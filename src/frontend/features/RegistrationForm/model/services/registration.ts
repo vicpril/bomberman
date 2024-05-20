@@ -1,13 +1,13 @@
-import { Profile } from '@/entities/Profile'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from '@/app/providers/StoreProvider'
 import axios from 'axios'
+import { LoginResponseData } from '@/entities/User'
 import { RegistrationFormFields } from '../types/RegistrationFormSchema'
 import { ValidateRegistrationErrors } from '../consts'
 import { validateRegistrationData } from './validateRegistrationData'
 
 export const registration = createAsyncThunk<
-    Profile,
+    LoginResponseData,
     RegistrationFormFields,
     ThunkConfig<ValidateRegistrationErrors[]>
 >('registration/registrationByUsername', async (props, thunkApi) => {
@@ -20,7 +20,7 @@ export const registration = createAsyncThunk<
     }
 
     try {
-        const response = await extra.api.post<Profile>('registration/', props)
+        const response = await extra.api.post<LoginResponseData>('registration/', props)
 
         return response.data
     } catch (error) {

@@ -1,27 +1,37 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
-import { User, UserSchema } from '../types/user'
+import { LoginResponseData, UserSchema } from '../types/user'
+import { initUserData } from '../services/initUserData/initUserData'
 
-const initialState: UserSchema = {}
+const initialState: UserSchema = {
+    authData: null,
+    isLoading: false,
+}
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setAuthData: (state, action: PayloadAction<User>) => {
-            state.authData = action.payload
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(action.payload))
-        },
-        initAuthData: (state) => {
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY)
-            if (user) {
-                state.authData = JSON.parse(user)
-            }
+        setAuthData: (state, action: PayloadAction<LoginResponseData>) => {
+            state.authData = action.payload.user
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.accessToken)
         },
         logout: (state) => {
             state.authData = null
             localStorage.removeItem(USER_LOCALSTORAGE_KEY)
         },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(initUserData.pending, (state) => {
+            state.isLoading = true
+        })
+        builder.addCase(initUserData.fulfilled, (state, { payload }) => {
+            state.authData = payload
+            state.isLoading = false
+        })
+        builder.addCase(initUserData.rejected, (state) => {
+            state.isLoading = false
+        })
     },
 })
 

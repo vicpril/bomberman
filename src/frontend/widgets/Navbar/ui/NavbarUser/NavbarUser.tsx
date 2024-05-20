@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useCallback, useMemo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '@/entities/User'
+import { callApiLogout, getUserAuthData, isUserAdmin, isUserManager } from '@/entities/User'
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
@@ -31,7 +31,7 @@ export const NavbarUserInner = () => {
     const { flag: isOpen, on: openModal, off: closeModal } = useFlag(false)
 
     const onLogout = useCallback(() => {
-        dispatch(userActions.logout())
+        dispatch(callApiLogout())
     }, [dispatch])
 
     if (authData) {

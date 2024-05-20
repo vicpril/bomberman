@@ -1,68 +1,124 @@
-import { validateAsString } from 'api/helpers/validate'
-import { UsersService } from 'api/services/UsersService'
-import { Response, Request } from 'express'
-import { body } from 'express-validator'
-import { ValidateRegistrationErrors } from 'frontend/reexport'
+import { ApiErrorCode } from '@api/config/ApiErrorCodes'
+import { ApiError } from '@api/exceptions/ApiError'
+import { AuthService } from '@api/services/AuthService'
+import { UserService } from 'api/services/UserService'
+import { Response, Request, NextFunction } from 'express'
+import { body, validationResult } from 'express-validator'
 
 export class AuthController {
+    public static registeration = [
+        body('username').trim().notEmpty().withMessage(ApiErrorCode.REGISTRATION_USERNAME_REQUIRED),
+        body('password').trim().notEmpty().withMessage(ApiErrorCode.REGISTRATION_PASSWORD_REQUIRED),
+
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const errors = validationResult(req)
+                if (!errors.isEmpty()) {
+                    return next(ApiError.BadRequestWithValidator(ApiErrorCode.BAD_REQUEST, errors.array()))
+                }
+
+                const respData = await AuthService.registration(req.body)
+
+                res.cookie('refreshToken', respData.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true,
+                })
+
+                return res.send(respData)
+            } catch (error) {
+                next(error)
+            }
+        },
+    ]
+
     public static login = [
-        body('username').trim().notEmpty().withMessage('username is required'),
+        body('username').trim().notEmpty().withMessage(ApiErrorCode.REGISTRATION_USERNAME_REQUIRED),
         body('password')
             .trim()
             .notEmpty()
-            .withMessage('password is required')
+            .withMessage(ApiErrorCode.REGISTRATION_PASSWORD_REQUIRED)
             .trim()
             .isLength({ min: 3 })
             .withMessage('password should be greater then 3'),
 
-        async (req: Request, res: Response) => {
-            if (!validateAsString(req, res)) return
-
+        async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const user = await UsersService.getByUsername(req.body.username)
-
-                if (user?.password !== req.body.password) {
-                    res.status(400).send('Username or password is incorrect')
-                    return
+                const errors = validationResult(req)
+                if (!errors.isEmpty()) {
+                    return next(ApiError.BadRequestWithValidator(ApiErrorCode.BAD_REQUEST, errors.array()))
                 }
 
-                res.send(user)
-            } catch (error) {
-                console.error(error)
-                res.status(500).send(error)
-            }
-        },
-    ]
+                const userData = await AuthService.login(req.body)
 
-    public static register = [
-        body('username')
-            .trim()
-            .notEmpty()
-            .withMessage(ValidateRegistrationErrors.SERVER_ERROR_USERNAME_REQUIRED),
-        body('password')
-            .trim()
-            .notEmpty()
-            .withMessage(ValidateRegistrationErrors.SERVER_ERROR_PASSWORD_REQUIRED),
-
-        async (req: Request, res: Response) => {
-            if (!validateAsString(req, res)) return
-
-            try {
-                if (await UsersService.getByUsername(req.body.username)) {
-                    res.status(400).send(ValidateRegistrationErrors.SERVER_ERROR_USERNAME_EXISTS)
-                    return
-                }
-                const user = await UsersService.create({
-                    username: req.body.username,
-                    password: req.body.password,
-                    firstname: req.body.firstname,
-                    lastname: req.body.lastname,
+                res.cookie('refreshToken', userData.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true,
                 })
-                res.send(user)
+
+                res.json(userData)
             } catch (error) {
-                console.error(error)
-                res.status(500).send(error)
+                next(error)
             }
         },
     ]
+
+    public static getProfile = async (req: Request, res: Response) => {
+        try {
+            const user = await UserService.getById(+req.params.id, {
+                withMeta: true,
+            })
+            if (!user) {
+                res.status(404).send('User not found')
+            } else {
+                res.send(user.profile)
+            }
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+
+    public static logout = [
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const { refreshToken } = req.cookies
+                if (refreshToken) {
+                    await AuthService.logout(refreshToken ?? '')
+                    res.clearCookie('refreshToken')
+                    return res.send('OK')
+                }
+                return res.send('OK')
+            } catch (error) {
+                next(error)
+            }
+        },
+    ]
+
+    public static refresh = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { refreshToken } = req.cookies
+            const userData = await AuthService.refresh(refreshToken)
+            // res.clearCookie('refreshToken')
+            res.cookie('refreshToken', userData.refreshToken, {
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+            })
+            return res.json(userData)
+        } catch (error) {
+            res.clearCookie('refreshToken')
+            next(error)
+        }
+    }
+
+    public static profile = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { currentUserId } = req
+            if (!currentUserId) {
+                throw ApiError.UnauthorizedError()
+            }
+            const userData = await AuthService.profile(currentUserId)
+            return res.json(userData)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

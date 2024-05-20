@@ -1,8 +1,8 @@
-import { ReactNode, useCallback } from 'react'
+import { ReactNode } from 'react'
 import { Navigate, Outlet, To } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { StateSchema } from '../../StoreProvider'
 import { AppRouteGuard } from '../types'
+import { StateSchema } from '../../StoreProvider'
 
 interface ProtectedRouteProps {
     children?: ReactNode
@@ -13,9 +13,9 @@ interface ProtectedRouteProps {
 export const ProtectedRoute = (props: ProtectedRouteProps) => {
     const { children = <Outlet />, guards, redirectTo = '/' } = props
 
-    const state = useSelector((state: StateSchema) => state)
+    const isAllowedSelector = (state: StateSchema) => !guards.some((guard) => guard(state) === false)
 
-    const isAllowed = useCallback(() => !guards.some((guard) => guard(state) === false), [guards, state])
+    const isAllowed = useSelector(isAllowedSelector)
 
-    return isAllowed() ? children : <Navigate to={redirectTo} replace />
+    return isAllowed ? children : <Navigate to={redirectTo} replace />
 }

@@ -8,5 +8,11 @@ export interface User {
 }
 
 export interface UserSchema {
-    authData?: User | null
+    authData: User | null
+    isLoading: boolean
+}
+
+export interface LoginResponseData {
+    accessToken: string
+    user: User
 }

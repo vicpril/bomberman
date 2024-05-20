@@ -1,36 +1,40 @@
-import { Suspense } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { isAuthenticated, userActions } from '@/entities/User'
+import { Suspense, useEffect } from 'react'
+import { getAccessToken, initUserData } from '@/entities/User'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Navbar } from '@/widgets/Navbar'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 import './App.scss'
 import { Outlet } from 'react-router-dom'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { Loader } from '@/shared/ui/Loader'
 
 function App() {
     const { theme } = useTheme()
 
-    const dispatch = useDispatch()
-    dispatch(userActions.initAuthData())
+    const dispatch = useAppDispatch()
 
-    const isAuth = useSelector(isAuthenticated)
+    const token = getAccessToken()
+
+    useEffect(() => {
+        if (token) dispatch(initUserData())
+    }, [dispatch, token])
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback="">
-                <div className="app-content">
-                    <header>
-                        <div className="container">
-                            <Navbar />
-                        </div>
-                    </header>
-                    <main>
+            <div className="app-content">
+                <header>
+                    <div className="container">
+                        <Navbar />
+                    </div>
+                </header>
+                <main>
+                    <Suspense fallback={<Loader />}>
                         <div className="container">
                             <Outlet />
                         </div>
-                    </main>
-                </div>
-            </Suspense>
+                    </Suspense>
+                </main>
+            </div>
 
             <div id="modals" />
         </div>

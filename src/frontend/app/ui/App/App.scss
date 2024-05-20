@@ -12,8 +12,14 @@
   transition: background-color .2s;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
-  @include appContainer
+  @include appContainer;
+
 }
 
 header {
