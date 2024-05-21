@@ -13,6 +13,12 @@ jobs:
         VERSION: latest
 
     steps:
-    - uses: actions/checkout@v4
     - name: Test access and list images
-      run: docker image list
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          whoami
+          docker image list
