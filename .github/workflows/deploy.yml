@@ -34,25 +34,25 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd /var/local/
-          sudo rm -f .env
-          sudo touch .env
-          sudo echo CLIENT_URL=${{ vars.CLIENT_URL }} >> .env
-          sudo echo API_URL=${{ vars.API_URL }} >> .env
-          sudo echo API_JSON_URL=${{ vars.API_JSON_URL }} >> .env
-          sudo echo DATABASE_URL=${{ vars.DATABASE_URL }} >> .env
-          sudo echo POSTGRES_USER=${{ vars.POSTGRES_USER }} >> .env
-          sudo echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-          sudo echo POSTGRES_DB=${{ vars.POSTGRES_DB }} >> .env
-          sudo echo POSTGRES_HOST=${{ vars.POSTGRES_HOST }} >> .env
-          sudo echo POSTGRES_PORT=${{ vars.POSTGRES_PORT }} >> .env
-          sudo echo PGADMIN_DEFAULT_EMAIL=${{ vars.PGADMIN_DEFAULT_EMAIL }} >> .env
-          sudo echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
-          sudo echo CLIENT_URL=${{ vars.CLIENT_URL }} >> .env
-          sudo echo API_URL=${{ vars.API_URL }} >> .env
-          sudo echo API_JSON_URL=${{ vars.API_JSON_URL }} >> .env
-          sudo echo SOCKETS_URL=${{ vars.SOCKETS_URL }} >> .env
-          sudo echo SOCKETS_PATH=${{ vars.SOCKETS_PATH }} >> .env
+          cd /home/${{ secrets.SSH_USER }}/
+          rm -f .env
+          touch .env
+          echo CLIENT_URL=${{ vars.CLIENT_URL }} >> .env
+          echo API_URL=${{ vars.API_URL }} >> .env
+          echo API_JSON_URL=${{ vars.API_JSON_URL }} >> .env
+          echo DATABASE_URL=${{ vars.DATABASE_URL }} >> .env
+          echo POSTGRES_USER=${{ vars.POSTGRES_USER }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_DB=${{ vars.POSTGRES_DB }} >> .env
+          echo POSTGRES_HOST=${{ vars.POSTGRES_HOST }} >> .env
+          echo POSTGRES_PORT=${{ vars.POSTGRES_PORT }} >> .env
+          echo PGADMIN_DEFAULT_EMAIL=${{ vars.PGADMIN_DEFAULT_EMAIL }} >> .env
+          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
+          echo CLIENT_URL=${{ vars.CLIENT_URL }} >> .env
+          echo API_URL=${{ vars.API_URL }} >> .env
+          echo API_JSON_URL=${{ vars.API_JSON_URL }} >> .env
+          echo SOCKETS_URL=${{ vars.SOCKETS_URL }} >> .env
+          echo SOCKETS_PATH=${{ vars.SOCKETS_PATH }} >> .env
           cat .env
     
     # - name: Reload remote components
