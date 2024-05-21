@@ -1,0 +1,18 @@
+name: DEPLOY
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+        VERSION: latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test access and list images
+      run: docker image list
