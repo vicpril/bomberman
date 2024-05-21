@@ -13,15 +13,25 @@ jobs:
         VERSION: latest
 
     steps:
-    - name: Pull images
+    # - name: Pull images
+    #   uses: appleboy/ssh-action@v1.0.3
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.SSH_USER }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: |
+    #       docker pull ghcr.io/vicpril/bomberman-sockets:latest
+    #       docker pull ghcr.io/vicpril/bomberman-frontend:latest
+    #       docker pull ghcr.io/vicpril/bomberman-api:latest
+    #       docker pull ghcr.io/vicpril/bomberman-json:latest
+    #       docker pull ghcr.io/vicpril/bomberman-nginx:latest
+    #       docker image list
+    - name: Reload remote components
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
+        allenvs: true
         script: |
-          docker pull ghcr.io/vicpril/bomberman-sockets:latest
-          docker pull ghcr.io/vicpril/bomberman-frontend:latest
-          docker pull ghcr.io/vicpril/bomberman-api:latest
-          docker pull ghcr.io/vicpril/bomberman-json:latest
-          docker pull ghcr.io/vicpril/bomberman-nginx:latest
+          echo "I am $INPUT_CLIENT_URL"
