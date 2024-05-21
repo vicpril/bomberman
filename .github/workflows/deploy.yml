@@ -34,7 +34,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
-        envs: 
-          CLIENT_URL
+        allenvs: true
         script: |
           echo "I am $CLIENT_URL"
