@@ -29,11 +29,11 @@ jobs:
     - name: Reload remote components
       uses: appleboy/ssh-action@v1.0.3
       env:
-        CLIENT_URL: ${{ vars.CLIENT_URL }}
+        INPUT_CLIENT_URL: ${{ vars.CLIENT_URL }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         allenvs: true
         script: |
-          echo "I am $CLIENT_URL"
+          echo "I am $INPUT_CLIENT_URL"
