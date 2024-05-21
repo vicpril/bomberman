@@ -28,6 +28,8 @@ jobs:
     #       docker image list
     - name: Reload remote components
       uses: appleboy/ssh-action@v1.0.3
+      env:
+        INPUT_CLIENT_URL: ${{ env.INPUT_CLIENT_URL }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
