@@ -127,10 +127,8 @@ jobs:
 
 
   deploy:
-
+    needs: build
     runs-on: ubuntu-latest
-    env:
-        VERSION: latest
 
     steps:
     
@@ -145,11 +143,11 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          docker pull ghcr.io/vicpril/bomberman-sockets:${{env.VERSION}}
-          docker pull ghcr.io/vicpril/bomberman-frontend:${{env.VERSION}}
-          docker pull ghcr.io/vicpril/bomberman-api:${{env.VERSION}}
-          docker pull ghcr.io/vicpril/bomberman-json:${{env.VERSION}}
-          docker pull ghcr.io/vicpril/bomberman-nginx:${{env.VERSION}}
+          docker pull ghcr.io/vicpril/bomberman-sockets:latest
+          docker pull ghcr.io/vicpril/bomberman-frontend:latest
+          docker pull ghcr.io/vicpril/bomberman-api:latest
+          docker pull ghcr.io/vicpril/bomberman-json:latest
+          docker pull ghcr.io/vicpril/bomberman-nginx:latest
           docker image list
 
     - name: Image list
