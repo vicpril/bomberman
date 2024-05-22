@@ -23,3 +23,7 @@ export const [useArticlesPageLimit, getArticlesPageLimit] = buildSelector(
 export const [useArticlesPageInited, getArticlesPageInited] = buildSelector(
     (state: StateSchema) => state.articlesPage?._inited || false,
 )
+
+export const [useArticleById, getArticleById] = buildSelector(
+    (state: StateSchema, id: string) => state.articlesPage?.entities[id],
+)
