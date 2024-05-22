@@ -22,6 +22,7 @@ const config = defineConfig(({ mode }) => {
     const apiUrl = process.env.API_URL || 'http://localhost:3001/api/v1'
     const jsonServerUrl = process.env.API_JSON_URL || 'http://localhost:3003'
     const socketsUrl = process.env.SOCKETS_URL || 'http://localhost:3002'
+    const socketsPath = process.env.SOCKETS_PATH || '/socket.io'
 
     const isDev = mode === 'development'
 
@@ -34,6 +35,7 @@ const config = defineConfig(({ mode }) => {
     // const srcOutput = path.resolve(rootDir, 'build-frontend')
 
     return {
+        root: srcFrontendDir,
         plugins: [
             svgr({ exportAsDefault: true }),
             react(),
@@ -57,6 +59,7 @@ const config = defineConfig(({ mode }) => {
             __API__: JSON.stringify(apiUrl),
             __API_JSON__: JSON.stringify(jsonServerUrl),
             __SOCKETS_URL__: JSON.stringify(socketsUrl),
+            __SOCKETS_PATH__: JSON.stringify(socketsPath),
             __PROJECT__: JSON.stringify('frontend'),
         },
         css: {

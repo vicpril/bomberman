@@ -8,6 +8,11 @@ const initialState: UserSchema = {
     isLoading: false,
 }
 
+const logout = (state: UserSchema) => {
+    state.authData = null
+    localStorage.removeItem(USER_LOCALSTORAGE_KEY)
+}
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -16,10 +21,7 @@ export const userSlice = createSlice({
             state.authData = action.payload.user
             localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.accessToken)
         },
-        logout: (state) => {
-            state.authData = null
-            localStorage.removeItem(USER_LOCALSTORAGE_KEY)
-        },
+        logout,
     },
     extraReducers: (builder) => {
         builder.addCase(initUserData.pending, (state) => {
@@ -31,6 +33,7 @@ export const userSlice = createSlice({
         })
         builder.addCase(initUserData.rejected, (state) => {
             state.isLoading = false
+            logout(state)
         })
     },
 })
