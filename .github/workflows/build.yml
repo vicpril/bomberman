@@ -1,4 +1,4 @@
-name: DEPLOY
+name: BUILD
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  deploy:
+  build:
 
     runs-on: ubuntu-latest
     env:
@@ -16,6 +16,15 @@ jobs:
     
     - name: Check Out Repo 
       uses: actions/checkout@v2
+
+
+    - name: "Build and push: nginx"
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: .deploy/nginx.Dockerfile
+        push: true
+        tags: ghcr.io/vicpril/bomberman-nginx:${{env.VERSION}}
 
     - name: Image list
       run: docker image list
