@@ -36,15 +36,19 @@ jobs:
     #     script: |
     #       rm -f .env /home/${{ secrets.SSH_USER }}/.env
 
-    - name: 'Refresh .env: copy template to remote'
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        source: "./.env.production"
-        target: "/home/${{ secrets.SSH_USER }}"
-        overwrite: true
+    - name: 'test'
+      run: cat .env.production
+    
+
+    # - name: 'Refresh .env: copy template to remote'
+    #   uses: appleboy/scp-action@v0.1.7
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.SSH_USER }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     source: "./.env.production"
+    #     target: "/home/${{ secrets.SSH_USER }}"
+    #     overwrite: true
 
       
     
