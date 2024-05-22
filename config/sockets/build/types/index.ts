@@ -7,6 +7,7 @@ export interface BuildPaths {
   output: string
   src: string
   root: string
+  baseUrl: string
   socketsUrl: string
   socketsPath: string
 }

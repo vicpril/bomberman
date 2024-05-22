@@ -5,6 +5,6 @@ COPY . /app
 RUN yarn
 RUN yarn build:json:prod
 
-EXPOSE 3001
+EXPOSE 3003
 
 CMD ["yarn", "start:json"]

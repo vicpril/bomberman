@@ -5,6 +5,6 @@ COPY . /app
 RUN yarn
 RUN yarn build:sockets:prod
 
-EXPOSE 3003
+EXPOSE 3002
 
 CMD ["yarn", "start:sockets"]

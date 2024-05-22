@@ -2,7 +2,7 @@
 node_modules
 database
 build
-# build-frontend
+build-frontend
 build-api
 build-json
 build-sockets

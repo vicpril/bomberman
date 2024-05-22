@@ -9,7 +9,7 @@ import { routes } from './routes'
 export const createServerIo = (server: Server) => {
     const serverIo = new ServerIO(server, {
         cors: {
-            origin: 'http://localhost:3000',
+            origin: __BASE_URL__,
             methods: ['GET'],
             credentials: true,
         },

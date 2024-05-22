@@ -11,6 +11,7 @@ export default (env: BuildEnv): webpack.Configuration => {
 
     defineEnv(mode)
 
+    const baseUrl = process.env.CLIENT_URL || `http://localhost:3000`
     const url = process.env.SOCKETS_URL || `http://localhost:3002`
 
     const isDev = mode === 'development'
@@ -24,6 +25,7 @@ export default (env: BuildEnv): webpack.Configuration => {
         entry: path.resolve(srcApiDir, 'sockets.ts'),
         output: path.resolve(rootDir, 'build-sockets'),
         src: srcApiDir,
+        baseUrl,
         socketsUrl: url,
         socketsPath: process.env.SOCKETS_PATH || '/',
     }
