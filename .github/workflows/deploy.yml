@@ -37,7 +37,7 @@ jobs:
     #       rm -f .env /home/${{ secrets.SSH_USER }}/.env
 
     - name: 'test'
-      run: cat .env.production
+      run: ls -la
     
 
     # - name: 'Refresh .env: copy template to remote'
