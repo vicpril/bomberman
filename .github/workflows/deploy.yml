@@ -42,7 +42,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
-        source: "../../.env.production"
+        source: "./.env.production"
         target: "/home/${{ secrets.SSH_USER }}"
         overwrite: true
 
