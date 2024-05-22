@@ -60,8 +60,8 @@ jobs:
           cd /home/${{ secrets.SSH_USER }}/
           rm -f .env
           mv .env.production .env
-          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
+          printf "\nPOSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+          printf "\nPGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }}" >> .env
           cat .env
 
       
