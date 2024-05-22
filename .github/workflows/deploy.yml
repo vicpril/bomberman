@@ -187,4 +187,12 @@ jobs:
           cd /home/${{ secrets.SSH_USER }}/
           docker-compose down
           docker-compose up -d --build --force-recreate
+
+    - name: Clear docker images
+      uses: appleboy/ssh-action@v1.0.3
+      with: 
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
           docker image prune -a -f
