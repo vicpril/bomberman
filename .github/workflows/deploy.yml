@@ -40,12 +40,6 @@ jobs:
     #     script: |
     #       rm -f .env /home/${{ secrets.SSH_USER }}/.env
 
-    # - name: 'test'
-    #   with:
-    #     context: ./
-    #   run: ls -la
-    
-
     - name: 'Refresh .env: copy template to remote'
       uses: appleboy/scp-action@v0.1.7
       with:
@@ -55,6 +49,20 @@ jobs:
         source: .env.production
         target: /home/${{ secrets.SSH_USER }}
         overwrite: true
+        
+    - name: 'Refresh .env: edit .env with secrets'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/${{ secrets.SSH_USER }}/
+          rm -f .env
+          mv .env.production .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo PGADMIN_DEFAULT_PASSWORD=${{ secrets.PGADMIN_DEFAULT_PASSWORD }} >> .env
+          cat .env
 
       
     
