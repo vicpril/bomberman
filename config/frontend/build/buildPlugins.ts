@@ -55,6 +55,7 @@ export function buildPlugins({
   plugins.push(new CopyPlugin({
     patterns: [
       { from: path.resolve(paths.public, 'locales'), to: path.resolve(paths.output, 'locales') },
+      { from: path.resolve(paths.public, 'assets'), to: path.resolve(paths.output, 'assets') },
     ],
   }))
 

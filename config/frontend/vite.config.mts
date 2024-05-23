@@ -32,6 +32,7 @@ const config = defineConfig(({ mode }) => {
     const srcGameDir = path.resolve(srcDir, 'game')
     const srcPublicDir = path.resolve(srcDir, 'public')
     const srcLocalesDir = path.resolve(srcPublicDir, 'locales')
+    const srcPublicAssetsDir = path.resolve(srcPublicDir, 'assets')
     // const srcOutput = path.resolve(rootDir, 'build-frontend')
 
     return {
@@ -43,6 +44,10 @@ const config = defineConfig(({ mode }) => {
                 targets: [
                     {
                         src: srcLocalesDir,
+                        dest: './',
+                    },
+                    {
+                        src: srcPublicAssetsDir,
                         dest: './',
                     },
                 ],
