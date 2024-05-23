@@ -4,6 +4,9 @@ SSH_HOST="87.242.103.157"
 SSH_USER="vic"
 USER="vicpril"
 SSH_KEY_PATH="~/.ssh/cloud_rsa"
+SCRIPT=$(readlink -f "$0")
+SCRIPTDIR=$(dirname "$SCRIPT")
+BASEDIR="$(dirname "$SCRIPTDIR")"
 
 if [ "$#" -eq 0 ]; then
   containers=( frontend api sockets json nginx )
@@ -13,7 +16,7 @@ fi
 
 
 echo "BUILDING START: ${containers[@]}"
-docker-compose --project-directory ../. --progress auto -f ../docker-compose.deploy.yml build ${containers[@]}
+docker-compose --project-directory $BASEDIR --progress auto -f $BASEDIR/docker-compose.deploy.yml build ${containers[@]}
 echo "BUILDING END"
 
 echo "TAGGING START: ${containers[@]}"

@@ -57,11 +57,11 @@ services:
 
   nginx:
     container_name: nginx
-    # depends_on:
-    #   - api
-    #   - json
-    #   - frontend
-    #   - sockets
+    depends_on:
+      - api
+      - json
+      - frontend
+      - sockets
     restart: always
     build:
       context: .
@@ -69,7 +69,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-
     volumes:
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
@@ -80,17 +79,17 @@ services:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
 
-  # postgres:
-  #   container_name: postgres
-  #   image: postgres:15-alpine
-  #   ports:
-  #     - "5432:5432"
-  #   # volumes:
-  #   #   - ./database/postgresdata:/var/lib/postgresql/data
-  #   #   - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
-  #   restart: always
-  #   env_file:
-  #     ./.env
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - ./database/postgresdata:/var/lib/postgresql/data
+    #   - ./database/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
+    restart: always
+    env_file:
+      ./.env
 
   # pgadmin:
   #   container_name: pgadmin
