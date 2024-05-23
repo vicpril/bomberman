@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { User } from './User'
 import { UserMeta } from './UserMeta'
 import { Token } from './Token'
+import { FeatureFlags } from './FeatureFlags'
 // import { Article } from './Article'
 // import { ArticleBlock } from './ArtricleBlock'
 // import { ArticleComment } from './ArticleComment'
@@ -17,7 +18,7 @@ const sequelizeOptions: SequelizeOptions = {
     username: POSTGRES_USER || 'postgres',
     password: POSTGRES_PASSWORD || 'newPassword',
     database: POSTGRES_DB || 'gamedev_db',
-    models: [User, UserMeta, Token],
+    models: [User, UserMeta, Token, FeatureFlags],
     dialect: 'postgres',
 }
 
@@ -31,8 +32,5 @@ export const initDB = async () => {
     Token.sync()
     User.sync()
     UserMeta.sync()
-    // Article.sync()
-    // ArticleBlock.sync()
-    // ArticleComment.sync()
-    // await sequelize.sync()
+    FeatureFlags.sync()
 }

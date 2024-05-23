@@ -11,3 +11,4 @@ node_modules
 # *.env.*
 /reports/unit
 yarn-error.log
+certbot

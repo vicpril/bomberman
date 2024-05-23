@@ -120,5 +120,5 @@ module.exports = {
             },
         },
     ],
-    ignorePatterns: ['database/**/*'],
+    ignorePatterns: ['database/**/*', 'certbot/**/*'],
 }

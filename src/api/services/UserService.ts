@@ -54,12 +54,12 @@ export class UserService {
     public static get = (options?: Options) => User.findAll(options?.withMeta ? { include: UserMeta } : {})
 
     public static getById = (id: number, options?: Options) =>
-        User.findByPk(id, options?.withMeta ? { include: UserMeta } : {})
+        User.findByPk(id, options?.withMeta ? { include: [UserMeta] } : {})
 
     public static getByUsername = (username: string, options?: Options) =>
         User.findOne({
             where: { username },
-            include: options?.withMeta ? UserMeta : undefined,
+            include: options?.withMeta ? [UserMeta] : undefined,
         })
 
     public static updateProfile = async (id: number, args: UpdateUserProfileFields) => {

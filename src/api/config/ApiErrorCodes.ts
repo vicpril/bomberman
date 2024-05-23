@@ -1,5 +1,6 @@
 export enum ApiErrorCode {
     SERVER_ERROR = 'SERVER_ERROR',
+    FORBIDDEN = 'FORBIDDEN',
     NO_AUTH = 'NO_AUTH',
     BAD_REQUEST = 'BAD_REQUEST',
     REGISTRATION_USERNAME_REQUIRED = 'REGISTRATION_USERNAME_REQUIRED',
@@ -19,6 +20,7 @@ export enum ApiErrorCode {
 
 export const API_ERROR_MESSAGE: Record<ApiErrorCode, string> = {
     SERVER_ERROR: 'Непредвиденная ошибка на сервере',
+    FORBIDDEN: 'Доступ запрещен',
     NO_AUTH: 'Пользователь не авторизован',
     BAD_REQUEST: 'Ошибки в заполнении формы',
     REGISTRATION_USERNAME_REQUIRED: 'Имя пользователя обязательное поле',

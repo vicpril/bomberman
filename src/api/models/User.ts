@@ -9,8 +9,11 @@ import {
     HasOne,
     AutoIncrement,
     Default,
+    AfterCreate,
 } from 'sequelize-typescript'
+import { Transaction } from 'sequelize'
 import { Token } from './Token'
+import { FeatureFlags } from './FeatureFlags'
 // import { Article } from './Article'
 // import { ArticleComment } from './ArticleComment'
 
@@ -55,6 +58,12 @@ export class User extends Model {
     })
     refreshToken!: Awaited<Token>
 
+    @HasOne(() => FeatureFlags, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+    })
+    features!: FeatureFlags
+
     get isAdmin() {
         return this.roles.includes(UserRoles.Admin)
     }
@@ -73,7 +82,8 @@ export class User extends Model {
 
     get dtoFull() {
         return {
-            ...this.meta.get(),
+            ...this.meta?.get(),
+            features: this.features?.get(),
             roles: this.roles,
             username: this.username,
             id: this.id,
@@ -90,9 +100,8 @@ export class User extends Model {
         }
     }
 
-    // @HasMany(() => Article, 'userId')
-    //   articles!: Awaited<Article[]>
-
-    // @HasMany(() => ArticleComment, 'articleId')
-    //   articleComments: Awaited<ArticleComment[]>
+    @AfterCreate
+    static async createFeatures(user: User, { transaction }: { transaction: Transaction }) {
+        await FeatureFlags.create({ userId: user.id }, { transaction })
+    }
 }

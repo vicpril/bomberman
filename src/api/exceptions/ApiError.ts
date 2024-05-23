@@ -45,4 +45,8 @@ export class ApiError extends Error {
     public static BadRequestWithValidator(code: ApiErrorCode, errors: ValidationError[]) {
         return new ApiError(400, code, API_ERROR_MESSAGE[code], errors.map(bodyErrorsFormatter))
     }
+
+    public static Forbidden() {
+        return new ApiError(403, ApiErrorCode.FORBIDDEN)
+    }
 }

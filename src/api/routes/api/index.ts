@@ -1,6 +1,8 @@
 import { Router } from 'express'
+import { authMiddleware } from '@api/middlewares/authMiddleware'
 import usersRouter from './users'
 import authRoutes from './auth'
+import featureFlagsRouter from './features'
 
 export const initApiRoutes = (router: Router) => {
     const apiRouter: Router = Router()
@@ -8,6 +10,8 @@ export const initApiRoutes = (router: Router) => {
     apiRouter.use('/', authRoutes)
 
     apiRouter.use('/users', usersRouter)
+
+    apiRouter.use('/features', authMiddleware, featureFlagsRouter)
 
     router.use('/api/v1', apiRouter)
 
