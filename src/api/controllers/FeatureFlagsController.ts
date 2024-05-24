@@ -1,6 +1,7 @@
 import { ApiErrorCode } from '@api/config/ApiErrorCodes'
 import { ApiError } from '@api/exceptions/ApiError'
 import { FeatureFlags } from '@api/models/FeatureFlags'
+import { User } from '@api/models/User'
 import { AuthService } from '@api/services/AuthService'
 import { Response, Request, NextFunction } from 'express'
 import { param, validationResult } from 'express-validator'
@@ -12,6 +13,10 @@ export class FeatureFlagsController {
             const onlyOwn = currentUser && !currentUser?.isAdmin && !currentUser.isManager
             const result = await FeatureFlags.findAll({
                 where: onlyOwn ? { userId: currentUser.id } : {},
+                include: {
+                    model: User,
+                    attributes: ['id', 'username'],
+                },
             })
             res.json(result)
         } catch (error) {
@@ -34,7 +39,13 @@ export class FeatureFlagsController {
                     throw ApiError.Forbidden()
                 }
 
-                const ff = await FeatureFlags.findByPk(+req.params.userId)
+                const ff = await FeatureFlags.findByPk(+req.params.userId, {
+                    attributes: { include: ['userId'] },
+                    include: {
+                        model: User,
+                        attributes: ['id', 'username'],
+                    },
+                })
 
                 if (!ff) throw ApiError.NotFound()
 

@@ -5,9 +5,10 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { ArticleDetails, getArticleDetailsIsLoading } from '@/entities/Article'
 import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'
-import { ArticleRecomendationList } from '@/features/ArticleRecomendationList'
 import { ArticleCommentsList } from '@/features/ArticleCommentsList'
 import { ArticleRating } from '@/features/ArticleRating'
+import { toggleFeature } from '@/shared/lib/features'
+import { Card } from '@/shared/ui/Card'
 import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
 import cls from './ArticlesDetailPage.module.scss'
 
@@ -32,6 +33,15 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
         )
     }
 
+    // const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled')
+    // const isCounterEnabled = getFeatureFlag('isCounterEnabled')
+
+    const ratingBlock = toggleFeature({
+        name: 'isArticleRatingEnabled',
+        on: () => <ArticleRating articleId={id} className={cls.rating} />,
+        off: () => <Card>{t('Рейтинг статей появится в будущем')}</Card>,
+    })
+
     return (
         <Page className={classNames(cls.ArticlesDetailPage, {}, [className])} saveScroll>
             <VStack gap="32" max>
@@ -39,8 +49,8 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
                 <ArticleDetails id={id} />
                 {!isLoading && (
                     <>
-                        <ArticleRating articleId={id} className={cls.rating} />
-                        <ArticleRecomendationList />
+                        {/* {isArticleRatingEnabled && <ArticleRating articleId={id} className={cls.rating} />} */}
+                        {ratingBlock}
                         <ArticleCommentsList articleId={id} />
                     </>
                 )}

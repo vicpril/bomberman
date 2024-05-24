@@ -6,9 +6,8 @@ import { User } from './User'
     tableName: 'feature-flags',
     timestamps: false,
     defaultScope: {
-        include: {
-            association: 'user',
-            attributes: ['username'],
+        attributes: {
+            exclude: ['userId'],
         },
     },
 })
