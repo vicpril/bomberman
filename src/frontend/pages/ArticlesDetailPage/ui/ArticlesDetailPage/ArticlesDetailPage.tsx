@@ -33,9 +33,6 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
         )
     }
 
-    // const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled')
-    // const isCounterEnabled = getFeatureFlag('isCounterEnabled')
-
     const ratingBlock = toggleFeature({
         name: 'isArticleRatingEnabled',
         on: () => <ArticleRating articleId={id} className={cls.rating} />,
