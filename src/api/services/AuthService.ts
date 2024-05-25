@@ -5,6 +5,7 @@ import { ApiErrorCode } from '@api/config/ApiErrorCodes'
 import { UserMeta } from '@api/models/UserMeta'
 import { Request } from 'express'
 import { FeatureFlags } from '@api/models/FeatureFlags'
+import { UserSettings } from '@api/models/UserSettings'
 import { UserService, UserServiceFields } from './UserService'
 import { TokenService } from './TokenService'
 import { TransactionService } from './TransactionService'
@@ -80,7 +81,7 @@ export class AuthService {
     }
 
     public static async profile(userId: number) {
-        const user = await User.findByPk(userId, { include: [UserMeta, FeatureFlags] })
+        const user = await User.findByPk(userId, { include: [UserMeta, FeatureFlags, UserSettings] })
         return user?.dtoFull
     }
 

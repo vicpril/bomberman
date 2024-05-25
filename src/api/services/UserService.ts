@@ -1,5 +1,7 @@
 import { User, UserRoles } from 'api/models/User'
 import { UserMeta } from 'api/models/UserMeta'
+import { UserSettings } from '@api/models/UserSettings'
+import { FeatureFlags } from '@api/models/FeatureFlags'
 import { TransactionService, TransactionServiceOptions } from './TransactionService'
 
 interface Options {
@@ -38,7 +40,10 @@ export class UserService {
                 { transaction: t },
             )
 
-            const user = await User.findByPk(newUser.id, { include: UserMeta, transaction: t })
+            const user = await User.findByPk(newUser.id, {
+                include: [UserMeta, UserSettings, FeatureFlags],
+                transaction: t,
+            })
             if (!user) {
                 throw new Error('Error on create user')
             }
@@ -54,7 +59,7 @@ export class UserService {
     public static get = (options?: Options) => User.findAll(options?.withMeta ? { include: UserMeta } : {})
 
     public static getById = (id: number, options?: Options) =>
-        User.findByPk(id, options?.withMeta ? { include: [UserMeta] } : {})
+        User.findByPk(id, options?.withMeta ? { include: [UserMeta, UserSettings, FeatureFlags] } : {})
 
     public static getByUsername = (username: string, options?: Options) =>
         User.findOne({

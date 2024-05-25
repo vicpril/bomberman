@@ -14,6 +14,7 @@ import {
 import { Transaction } from 'sequelize'
 import { Token } from './Token'
 import { FeatureFlags } from './FeatureFlags'
+import { UserSettings } from './UserSettings'
 // import { Article } from './Article'
 // import { ArticleComment } from './ArticleComment'
 
@@ -64,6 +65,12 @@ export class User extends Model {
     })
     features!: FeatureFlags
 
+    @HasOne(() => UserSettings, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+    })
+    settings!: UserSettings
+
     get isAdmin() {
         return this.roles.includes(UserRoles.Admin)
     }
@@ -87,6 +94,7 @@ export class User extends Model {
             roles: this.roles,
             username: this.username,
             id: this.id,
+            settings: this.settings?.get().data,
         }
     }
 
@@ -103,5 +111,10 @@ export class User extends Model {
     @AfterCreate
     static async createFeatures(user: User, { transaction }: { transaction: Transaction }) {
         await FeatureFlags.create({ userId: user.id }, { transaction })
+    }
+
+    @AfterCreate
+    static async createSettings(user: User, { transaction }: { transaction: Transaction }) {
+        await UserSettings.create({ userId: user.id, data: {} }, { transaction })
     }
 }

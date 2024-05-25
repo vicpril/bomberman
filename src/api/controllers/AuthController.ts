@@ -1,6 +1,7 @@
 import { ApiErrorCode } from '@api/config/ApiErrorCodes'
 import { ApiError } from '@api/exceptions/ApiError'
 import { AuthService } from '@api/services/AuthService'
+import { UserService } from '@api/services/UserService'
 import { Response, Request, NextFunction } from 'express'
 import { body, validationResult } from 'express-validator'
 
@@ -112,4 +113,23 @@ export class AuthController {
             next(error)
         }
     }
+
+    public static updateSettings = [
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const { currentUserId, body } = req
+
+                const user = await UserService.getById(+currentUserId!, { withMeta: true })
+                if (!user) {
+                    throw ApiError.UnauthorizedError()
+                }
+
+                await user.settings.update({ data: body })
+
+                res.json(user.settings.data)
+            } catch (error) {
+                next(error)
+            }
+        },
+    ]
 }

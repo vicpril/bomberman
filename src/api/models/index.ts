@@ -4,6 +4,7 @@ import { User } from './User'
 import { UserMeta } from './UserMeta'
 import { Token } from './Token'
 import { FeatureFlags } from './FeatureFlags'
+import { UserSettings } from './UserSettings'
 // import { Article } from './Article'
 // import { ArticleBlock } from './ArtricleBlock'
 // import { ArticleComment } from './ArticleComment'
@@ -18,7 +19,7 @@ const sequelizeOptions: SequelizeOptions = {
     username: POSTGRES_USER || 'postgres',
     password: POSTGRES_PASSWORD || 'newPassword',
     database: POSTGRES_DB || 'gamedev_db',
-    models: [User, UserMeta, Token, FeatureFlags],
+    models: [User, UserMeta, UserSettings, Token, FeatureFlags],
     dialect: 'postgres',
 }
 
@@ -32,5 +33,6 @@ export const initDB = async () => {
     Token.sync()
     User.sync()
     UserMeta.sync()
+    UserSettings.sync()
     FeatureFlags.sync()
 }
