@@ -1,8 +1,6 @@
 import { RouteObject, RouterProvider, createBrowserRouter, createMemoryRouter } from 'react-router-dom'
 import { PageLoader } from '@/widgets/PageLoader'
 import { ReactNode } from 'react'
-import { getAccessToken, initUserData } from '@/entities/User'
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { routerConfig } from '../../config/routeConfig'
 
 interface Props {
@@ -12,10 +10,6 @@ interface Props {
 }
 
 const AppRouterProvider = ({ app = <div />, mode = 'browser', memoryOptions }: Props) => {
-    const dispatch = useAppDispatch()
-    const token = getAccessToken()
-    if (token) dispatch(initUserData())
-
     const routes: RouteObject[] = [
         {
             element: app,

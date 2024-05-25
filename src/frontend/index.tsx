@@ -6,6 +6,7 @@ import { ErrorBoundary } from '@/app/providers/ErrorBoundary'
 import '@/shared/config/i18n'
 import App from './app/ui/App/App'
 import { AppRouterProvider } from './app/providers/AppRouterProvider'
+import { AppInitProvider } from './app/providers/AppInitProvider'
 
 const container = document.getElementById('root')
 
@@ -18,7 +19,9 @@ root.render(
     <StoreProvider>
         <ErrorBoundary>
             <ThemeProvider>
-                <AppRouterProvider app={<App />} />
+                <AppInitProvider>
+                    <AppRouterProvider app={<App />} />
+                </AppInitProvider>
             </ThemeProvider>
         </ErrorBoundary>
     </StoreProvider>,

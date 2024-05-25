@@ -13,6 +13,8 @@ function App() {
 
     const isLoadingUserData = useSelector(isUserLoading)
 
+    const content = isLoadingUserData ? <Loader /> : <Outlet />
+
     return (
         <div className={classNames('app', {}, [theme])}>
             <div className="app-content">
@@ -23,7 +25,7 @@ function App() {
                 </header>
                 <main>
                     <Suspense fallback={<Loader />}>
-                        <div className="container">{isLoadingUserData ? <Loader /> : <Outlet />}</div>
+                        <div className="container">{content}</div>
                     </Suspense>
                 </main>
             </div>
