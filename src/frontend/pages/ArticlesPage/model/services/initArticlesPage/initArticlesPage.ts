@@ -1,4 +1,4 @@
-import { SortOrder } from '@/shared/types'
+import { SortOrder } from '@/shared/types/sort'
 import type { ArticleSortProps } from '@/features/ArticlesFilters'
 import { articleFiltersActions } from '@/features/ArticlesFilters'
 import { ArticleType } from '@/entities/Article'

@@ -2,6 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage'
 import { LoginResponseData, UserSchema } from '../types/user'
 import { initUserData } from '../services/initUserData/initUserData'
+import { setUserSettingsToLS } from '../services/saveUserSettings/setUserSettingsToLS'
+import { saveUserSettings } from '../services/saveUserSettings/saveUserSettings'
 
 const initialState: UserSchema = {
     authData: null,
@@ -29,11 +31,16 @@ export const userSlice = createSlice({
         })
         builder.addCase(initUserData.fulfilled, (state, { payload }) => {
             state.authData = payload
+            setUserSettingsToLS(payload.settings)
             state.isLoading = false
         })
         builder.addCase(initUserData.rejected, (state) => {
             state.isLoading = false
             logout(state)
+        })
+        builder.addCase(saveUserSettings.fulfilled, (state, { payload }) => {
+            if (state.authData) state.authData.settings = payload
+            setUserSettingsToLS(payload)
         })
     },
 })

@@ -5,7 +5,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { ArticleView, articleTypeOptions, ArticleType } from '@/entities/Article'
 import { Select } from '@/shared/ui/Select'
-import { SortOrder, orderOptions } from '@/shared/types'
+import { SortOrder, orderOptions } from '@/shared/types/sort'
 import { Input } from '@/shared/ui/Input'
 import {
     DynamicModuleLoader,

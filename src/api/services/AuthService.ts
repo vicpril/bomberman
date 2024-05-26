@@ -33,7 +33,10 @@ export class AuthService {
     }
 
     public static login = async (args: Pick<User, 'username' | 'password'>) => {
-        const user = await User.findOne({ where: { username: args.username }, include: UserMeta })
+        const user = await User.findOne({
+            where: { username: args.username },
+            include: [UserMeta, FeatureFlags, UserSettings],
+        })
         if (!user) {
             throw ApiError.BadRequest(ApiErrorCode.LOGIN_WRONG_CREDENTIALS)
         }

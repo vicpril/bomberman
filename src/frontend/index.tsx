@@ -3,10 +3,10 @@ import { ThemeProvider } from '@/app/providers/ThemeProvider'
 import { StoreProvider } from '@/app/providers/StoreProvider'
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary'
 
-import '@/shared/config/i18n'
 import App from './app/ui/App/App'
 import { AppRouterProvider } from './app/providers/AppRouterProvider'
 import { AppInitProvider } from './app/providers/AppInitProvider'
+import { LanguageProvider } from './app/providers/LanguageProvider'
 
 const container = document.getElementById('root')
 
@@ -19,9 +19,11 @@ root.render(
     <StoreProvider>
         <ErrorBoundary>
             <ThemeProvider>
-                <AppInitProvider>
-                    <AppRouterProvider app={<App />} />
-                </AppInitProvider>
+                <LanguageProvider>
+                    <AppInitProvider>
+                        <AppRouterProvider app={<App />} />
+                    </AppInitProvider>
+                </LanguageProvider>
             </ThemeProvider>
         </ErrorBoundary>
     </StoreProvider>,
