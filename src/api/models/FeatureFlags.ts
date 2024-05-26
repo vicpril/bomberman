@@ -19,7 +19,7 @@ export class FeatureFlags extends Model {
     @BelongsTo(() => User, 'userId')
     user!: Awaited<User>
 
-    @Column({ defaultValue: false })
+    @Column({ defaultValue: true })
     isArticleRatingEnabled: boolean
 
     @Column({ defaultValue: false })
