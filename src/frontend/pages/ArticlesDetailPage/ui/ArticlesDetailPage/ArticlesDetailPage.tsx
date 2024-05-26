@@ -6,8 +6,8 @@ import { ArticleDetails, getArticleDetailsIsLoading } from '@/entities/Article'
 import { Page } from '@/widgets/Page'
 import { VStack } from '@/shared/ui/Stack'
 import { ArticleCommentsList } from '@/features/ArticleCommentsList'
+import { ToggleFeature } from '@/shared/lib/features'
 import { ArticleRating } from '@/features/ArticleRating'
-import { toggleFeature } from '@/shared/lib/features'
 import { Card } from '@/shared/ui/Card'
 import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
 import cls from './ArticlesDetailPage.module.scss'
@@ -33,11 +33,11 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
         )
     }
 
-    const ratingBlock = toggleFeature({
-        name: 'isArticleRatingEnabled',
-        on: () => <ArticleRating articleId={id} className={cls.rating} />,
-        off: () => <Card>{t('Рейтинг статей появится в будущем')}</Card>,
-    })
+    // const ratingBlock = toggleFeature({
+    //     feature: 'isArticleRatingEnabled',
+    //     on: () => <ArticleRating articleId={id} className={cls.rating} />,
+    //     off: () => <Card>{t('Рейтинг статей появится в будущем')}</Card>,
+    // })
 
     return (
         <Page className={classNames(cls.ArticlesDetailPage, {}, [className])} saveScroll>
@@ -47,7 +47,12 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
                 {!isLoading && (
                     <>
                         {/* {isArticleRatingEnabled && <ArticleRating articleId={id} className={cls.rating} />} */}
-                        {ratingBlock}
+                        {/* {ratingBlock} */}
+                        <ToggleFeature
+                            feature="isArticleRatingEnabled"
+                            on={<ArticleRating articleId={id} className={cls.rating} />}
+                            off={<Card>{t('Рейтинг статей появится в будущем')}</Card>}
+                        />
                         <ArticleCommentsList articleId={id} />
                     </>
                 )}
