@@ -4,16 +4,6 @@ import svgr from 'vite-plugin-svgr'
 import path from 'path'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-//   resolve: {
-//     alias: [
-//       {find: '@', replacement: ''}
-//     ]
-//   }
-// })
-
 const config = defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
@@ -38,8 +28,27 @@ const config = defineConfig(({ mode }) => {
     return {
         root: srcFrontendDir,
         plugins: [
-            svgr({ exportAsDefault: true }),
             react(),
+            svgr({
+                include: '**/*.svg',
+                svgrOptions: {
+                    exportType: 'default',
+                    icon: true,
+                    plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+                    svgo: true,
+                    svgoConfig: {
+                        plugins: [
+                            {
+                                name: 'convertColors',
+                                params: {
+                                    currentColor: true,
+                                },
+                            },
+                        ],
+                    },
+                },
+            }),
+
             viteStaticCopy({
                 targets: [
                     {
