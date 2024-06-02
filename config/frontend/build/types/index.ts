@@ -10,6 +10,7 @@ export interface BuildPaths {
   socketsPath: string
   apiUrl: string,
   jsonServerUrl: string,
+  clientUrl: string
 }
 
 export interface BuildOptions {

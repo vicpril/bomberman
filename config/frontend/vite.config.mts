@@ -13,6 +13,7 @@ const config = defineConfig(({ mode }) => {
     const jsonServerUrl = process.env.API_JSON_URL || 'http://localhost:3003'
     const socketsUrl = process.env.SOCKETS_URL || 'http://localhost:3002'
     const socketsPath = process.env.SOCKETS_PATH || '/socket.io'
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000'
 
     const isDev = mode === 'development'
 
@@ -75,6 +76,7 @@ const config = defineConfig(({ mode }) => {
             __SOCKETS_URL__: JSON.stringify(socketsUrl),
             __SOCKETS_PATH__: JSON.stringify(socketsPath),
             __PROJECT__: JSON.stringify('frontend'),
+            __CLIENT_URL__: JSON.stringify(clientUrl),
         },
         css: {
             modules: {

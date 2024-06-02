@@ -8,28 +8,34 @@
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
-  min-height: 100vh;
   transition: background-color .2s;
 }
 
-main {
+
+.app-content {
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
 .container {
   @include appContainer;
-
 }
+
 
 header {
   width: 100%;
   border-bottom: $lineWidthM solid var(--primary-color);
 }
 
-.app-content {
+main {
+  flex: 1;
   display: flex;
-  flex-flow: column;
+  justify-content: center;
+}
+
+footer {
+  width: 100%;
 }
 
 *::-webkit-scrollbar {

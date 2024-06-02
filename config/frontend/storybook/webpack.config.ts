@@ -18,6 +18,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
         apiUrl: '',
         jsonServerUrl: '',
         src: srcFrontendDir,
+        clientUrl: '',
     }
 
     config.resolve?.modules?.unshift(paths.src)
@@ -62,6 +63,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
             __API__: JSON.stringify(''),
             __SOCKETS_URL__: JSON.stringify(''),
             __PROJECT__: JSON.stringify('storybook'),
+            __CLIENT_URL__: JSON.stringify(''),
         }),
     )
 

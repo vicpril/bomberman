@@ -7,6 +7,7 @@ import './App.scss'
 import { Loader } from '@/shared/ui/Loader'
 import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+import { Footer } from '@/widgets/Footer'
 
 function App() {
     const { theme } = useTheme()
@@ -28,6 +29,11 @@ function App() {
                         <div className="container">{content}</div>
                     </Suspense>
                 </main>
+                <footer>
+                    <div className="container">
+                        <Footer />
+                    </div>
+                </footer>
             </div>
 
             <div id="modals" />

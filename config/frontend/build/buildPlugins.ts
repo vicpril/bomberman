@@ -25,6 +25,7 @@ export function buildPlugins({
       __SOCKETS_URL__: JSON.stringify(paths.socketsUrl),
       __SOCKETS_PATH__: JSON.stringify(paths.socketsPath),
       __PROJECT__: JSON.stringify(project),
+      __CLIENT_URL__: JSON.stringify(paths.clientUrl),
     }),
     new ReactRefreshWebpackPlugin(),
 
