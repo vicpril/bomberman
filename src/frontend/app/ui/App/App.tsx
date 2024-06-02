@@ -37,6 +37,7 @@ function App() {
             </div>
 
             <div id="modals" />
+            <div id="drawers" />
         </div>
     )
 }

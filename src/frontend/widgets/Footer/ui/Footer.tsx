@@ -20,7 +20,7 @@ const Footer = memo((props: FooterProps) => {
 
     return (
         <div className={classNames(cls.Footer, {}, [className])}>
-            <HStack max gap="16" justify="between">
+            <HStack max gap="16" justify="between" wrap="wrap">
                 <AppLink to="https://t.me/PrilepinVA" target="_blank">
                     <div className="telegram">
                         <HStack gap="8">

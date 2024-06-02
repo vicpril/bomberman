@@ -18,6 +18,8 @@ const height = window.innerHeight - 100
 const DrawerContent = memo((props: DrawerProps) => {
     const { className, children, isOpen, onClose } = props
 
+    const target = document.getElementById('drawers')
+
     const { theme } = useTheme()
 
     const { Gesture, Spring } = useAnimationLibs()
@@ -76,7 +78,7 @@ const DrawerContent = memo((props: DrawerProps) => {
     const display = y.to((py) => (py < height ? 'block' : 'none'))
 
     return (
-        <Portal>
+        <Portal element={target}>
             <div className={classNames(cls.Drawer, {}, [className, theme, 'app_drawer'])}>
                 <Overlay onClick={close} />
                 <Spring.a.div
