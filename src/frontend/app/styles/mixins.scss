@@ -1,6 +1,7 @@
 @mixin appContainer($padding: true) {
   margin: 0 auto;
   max-width: $appMaxWidth;
+  width: 100%;
   position: relative;
 
   @if $padding {

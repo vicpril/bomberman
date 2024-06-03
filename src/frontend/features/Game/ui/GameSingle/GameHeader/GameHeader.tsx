@@ -1,6 +1,6 @@
-import './GameHeader.scss'
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import cls from './GameHeader.module.scss'
 
 type GameHeaderProps = {
     score: number
@@ -11,7 +11,7 @@ export const GameHeader: FC<GameHeaderProps> = ({ score, timer, bombs }) => {
     const { t } = useTranslation()
 
     return (
-        <div className="game-header">
+        <div className={cls.gameHeader}>
             <span className="bombs-group">
                 {t('bombs')}
                 {': '}

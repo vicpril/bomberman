@@ -1,6 +1,6 @@
-import './GameContent.scss'
 import React, { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import cls from './GameContent.module.scss'
 // import { FullScreenHandle } from 'react-full-screen'
 import { GameStatus, gameService, GameMode } from '../../../lib/services/gameService'
 import { Canvas as CanvasComponent } from '../Canvas/Canvas'
@@ -58,8 +58,8 @@ export const GameContent: FC<GameContentProps> = ({ gameStatus, stage }) => {
     // }, [gameStatus, stageText, fullScreenHandle.active])
 
     return (
-        <div className="game-content">
-            <div className="content-wrapper">{content}</div>
+        <div className={cls.gameContent}>
+            <div className={cls.contentWrapper}>{content}</div>
         </div>
     )
 }

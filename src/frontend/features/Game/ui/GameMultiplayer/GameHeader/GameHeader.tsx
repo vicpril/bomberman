@@ -1,6 +1,7 @@
-import './GameHeader.scss'
 import React, { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { classNames } from '@/shared/lib/classNames/classNames'
+import cls from './GameHeader.module.scss'
 import { gameService, GameStatus } from '../../../lib/services/gameService'
 import { useObservable } from '../../../lib/SingleGameCore/hooks/useObservable'
 
@@ -16,21 +17,21 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
     const startingTimer = useObservable(gameService.startingTimer)
 
     const bombsLabel = (
-        <span className="bombs-group">
+        <span className="bombsGroup">
             {t('bombs')}
             {': '}
             {bombs}
         </span>
     )
     const timerLabel = (
-        <span className="timer-group">
+        <span className="timerGroup">
             {t('timer')}
             {': '}
             {timer}
         </span>
     )
     const scoreLabel = (
-        <span className="timer-group">
+        <span className="timerGroup">
             {t('score')}
             {': '}
             {score}
@@ -42,7 +43,7 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
             default:
             case GameStatus.IN_PROGRESS:
                 return (
-                    <div className="game-header">
+                    <div className={cls.gameHeader}>
                         {bombsLabel}
                         {timerLabel}
                         {scoreLabel}
@@ -51,26 +52,26 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
 
             case GameStatus.VICTORY:
                 return (
-                    <div className="game-header">
+                    <div className={cls.gameHeader}>
                         {bombsLabel}
-                        <span className="status victory">{t('victory')}</span>
+                        <span className={classNames(cls.status, {}, [cls.victory])}>{t('victory')}</span>
                         {scoreLabel}
                     </div>
                 )
 
             case GameStatus.DEFEAT:
                 return (
-                    <div className="game-header">
+                    <div className={cls.gameHeader}>
                         {bombsLabel}
-                        <span className="status defeat">{t('defeat')}</span>
+                        <span className={classNames(cls.status, {}, [cls.defeat])}>{t('defeat')}</span>
                         {bombsLabel}
                     </div>
                 )
 
             case GameStatus.WAITING_PLAYER:
                 return (
-                    <div className="game-header">
-                        <span className="bombs-group">
+                    <div className={cls.gameHeader}>
+                        <span className="bombsGroup">
                             {t('waiting-an-opponent')}
                             ...
                         </span>
@@ -78,8 +79,8 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
                 )
             case GameStatus.NOT_STARTED:
                 return (
-                    <div className="game-header">
-                        <span className="bombs-group">
+                    <div className={cls.gameHeader}>
+                        <span className="bombsGroup">
                             {t('game-starts-in')}: {startingTimer?.toString()}
                         </span>
                     </div>

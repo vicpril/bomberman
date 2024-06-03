@@ -1,8 +1,8 @@
-import './GameContent.scss'
 import React, { FC, useMemo, useRef } from 'react'
 // import { FullScreenHandle } from 'react-full-screen'
 import { MapRenderer } from '@game/index'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
+import cls from './GameContent.module.scss'
 import { gameService, GameStatus } from '../../../lib/services/gameService'
 import { CanvasLayer, CanvasHandle } from '../CanvasLayer/CanvasLayer'
 
@@ -67,8 +67,8 @@ export const GameContent: FC<GameContentProps> = ({ gameStatus }) => {
     }, [gameStatus])
 
     return (
-        <div className="game-content">
-            <div className="content-wrapper">{content}</div>
+        <div className={cls.gameContent}>
+            <div className={cls.contentWrapper}>{content}</div>
         </div>
     )
 }

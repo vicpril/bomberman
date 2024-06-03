@@ -1,4 +1,4 @@
-.game-header {
+.gameHeader {
   display: flex;
   justify-content: space-around;
   color: var(--primary-color);
@@ -6,6 +6,7 @@
 
   & span {
     font-size: 32px;
+    line-height: 48px;
 
     &.status {
       &.victory{
