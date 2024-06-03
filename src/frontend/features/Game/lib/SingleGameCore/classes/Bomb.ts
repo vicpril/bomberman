@@ -129,11 +129,11 @@ export class Bomb implements IEntity {
                         return // stop explosion this side
 
                     case EntitiesTypes.WALL_SOFT:
-                        // gameService.increaseScore(5)
-                        // if (gameService.score.get() >= scoreToWin) {
-                        //     BF.winStage()
-                        //     return
-                        // }
+                        gameService.increaseScore(5)
+                        if (gameService.score.get() >= scoreToWin) {
+                            BF.winStage()
+                            return
+                        }
                         return
 
                     case EntitiesTypes.BRICK:

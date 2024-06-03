@@ -1,14 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { Button } from '@/shared/ui/Button'
 
 import {
-    MultiplayerGameHeader,
+    GameHeader,
     MultiplayerGameContent,
     MultiplayerGameFooter,
-    SingleGameHeader,
     SingleGameContent,
     SingleGameFooter,
     useObservable,
@@ -51,16 +50,23 @@ const GamePage: FC = () => {
         </div>
     )
 
+    const onToMultiple = useCallback(() => {
+        gameService.exitGame()
+        startMultiplayerGameHandler()
+    }, [])
+
+    const singleScore = useMemo(() => `${score}/${total}`, [score, total])
+
     const mainScreen =
         gameService.mode.get() === GameMode.SINGLE_PLAYER ? (
             <>
-                <SingleGameHeader score={score} timer={timer} bombs={bombs} total={total} />
-                <SingleGameContent gameStatus={status} stage={stage} />
+                <GameHeader gameStatus={status} score={singleScore} timer={timer} bombs={bombs} />
+                <SingleGameContent gameStatus={status} stage={stage} toMultiple={onToMultiple} />
                 <SingleGameFooter />
             </>
         ) : (
             <>
-                <MultiplayerGameHeader gameStatus={status} score={score} timer={timer} bombs={bombs} />
+                <GameHeader gameStatus={status} score={score} timer={timer} bombs={bombs} />
                 <MultiplayerGameContent gameStatus={status} />
                 <MultiplayerGameFooter gameStatus={status} />
             </>

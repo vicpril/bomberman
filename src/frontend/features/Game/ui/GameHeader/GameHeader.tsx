@@ -2,12 +2,12 @@ import React, { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './GameHeader.module.scss'
-import { gameService, GameStatus } from '../../../lib/services/gameService'
-import { useObservable } from '../../../lib/SingleGameCore/hooks/useObservable'
+import { gameService, GameStatus } from '../../lib/services/gameService'
+import { useObservable } from '../../lib/SingleGameCore/hooks/useObservable'
 
 type GameHeaderProps = {
     gameStatus: GameStatus
-    score?: number
+    score?: number | string
     timer?: number
     bombs?: number
 }
@@ -89,5 +89,10 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameStatus, startingTimer, timer, bombs, score, t])
 
-    return headerComponent
+    return (
+        <>
+            <pre>status: {gameStatus}</pre>
+            {headerComponent}
+        </>
+    )
 }

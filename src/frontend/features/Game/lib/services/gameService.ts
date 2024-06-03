@@ -154,10 +154,10 @@ class GameService {
     stopGame(win = false) {
         this.stopTimer()
         if (win) {
-            this.status.set(GameStatus.STAGE_COMPLETED)
+            this.status.set(GameStatus.VICTORY)
             this.stage.set(this.stage.get() + 1)
         } else {
-            this.status.set(GameStatus.FINISHED)
+            this.status.set(GameStatus.DEFEAT)
         }
     }
 
