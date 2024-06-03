@@ -2,7 +2,28 @@ import { GRID } from '../config'
 
 export const getDrawWalls = () => {
     /**
-     * Brick (soft) wall
+     * Brick
+     */
+    const brickCanvas = document.createElement('canvas')
+    const brickCtx = brickCanvas.getContext('2d') as CanvasRenderingContext2D
+    brickCanvas.width = GRID
+    brickCanvas.height = GRID
+    // color back
+    brickCtx.fillStyle = 'black'
+    brickCtx.fillRect(0, 0, GRID, GRID)
+    // color front
+    brickCtx.fillStyle = '#C47C62'
+    // bricks 1st row
+    brickCtx.fillRect(1, 1, GRID - 2, 20)
+    // bricks 2nd row
+    brickCtx.fillRect(0, 23, 20, 18)
+    brickCtx.fillRect(22, 23, 42, 18)
+    // bricks 3rd row
+    brickCtx.fillRect(0, 43, 42, 20)
+    brickCtx.fillRect(44, 43, 20, 20)
+
+    /**
+     * Soft wall
      */
     const softWallCanvas = document.createElement('canvas')
     const softWallCtx = softWallCanvas.getContext('2d') as CanvasRenderingContext2D
@@ -39,5 +60,5 @@ export const getDrawWalls = () => {
     wallCtx.fillStyle = '#a9a9a9'
     wallCtx.fillRect(2, 2, GRID - 4, GRID - 4)
 
-    return { wallCanvas, softWallCanvas }
+    return { wallCanvas, softWallCanvas, brickCanvas }
 }

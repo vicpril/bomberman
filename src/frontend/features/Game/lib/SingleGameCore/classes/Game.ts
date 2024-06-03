@@ -70,7 +70,7 @@ export class Game {
     }
 
     private renderGame() {
-        const { wallCanvas, softWallCanvas } = getDrawWalls()
+        const { wallCanvas, softWallCanvas, brickCanvas } = getDrawWalls()
 
         for (let row = 0; row < NUM_ROWS; row++) {
             for (let col = 0; col < NUM_COLS; col++) {
@@ -78,6 +78,9 @@ export class Game {
                 switch (cell) {
                     case EntitiesTypes.WALL:
                         this.context.drawImage(wallCanvas, col * GRID, row * GRID)
+                        break
+                    case EntitiesTypes.BRICK:
+                        this.context.drawImage(brickCanvas, col * GRID, row * GRID)
                         break
                     case EntitiesTypes.WALL_SOFT:
                         this.context.drawImage(softWallCanvas, col * GRID, row * GRID)

@@ -1,4 +1,4 @@
-import { SOFT_WALL_PROBABILITY } from '../config'
+import { BRICK_PROBABILITY, SOFT_WALL_PROBABILITY } from '../config'
 import { EntitiesTypes } from '../types/EntitiesTypes'
 import { Bomb } from './Bomb'
 import { Explosion } from './Explosion'
@@ -34,6 +34,8 @@ export class BattleField {
     // Entities on field for handling
     private entities: IEntity[] = []
 
+    private bricks: number = 0
+
     constructor() {
         if (BattleField.instance) {
             return BattleField.instance
@@ -55,7 +57,10 @@ export class BattleField {
             row.forEach((cell, cIdx) => {
                 switch (cell) {
                     case EntitiesTypes.EMPTY:
-                        if (Math.random() < SOFT_WALL_PROBABILITY) {
+                        if (Math.random() < BRICK_PROBABILITY) {
+                            cells[rIdx][cIdx] = EntitiesTypes.BRICK
+                            this.bricks++
+                        } else if (Math.random() < SOFT_WALL_PROBABILITY) {
                             cells[rIdx][cIdx] = EntitiesTypes.WALL_SOFT
                         }
                         break
@@ -76,6 +81,10 @@ export class BattleField {
         })
 
         this.cells = cells
+    }
+
+    getBricksCount() {
+        return this.bricks
     }
 
     getCell(position: Position): EntitiesTypes {

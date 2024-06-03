@@ -24,6 +24,7 @@ const GamePage: FC = () => {
     const stage = useObservable(gameService.stage)
     const status = useObservable(gameService.status)
     const score = useObservable(gameService.score)
+    const total = useObservable(gameService.total)
     const timer = useObservable(gameService.timer)
     const bombs = useObservable(gameService.bombs)
     const { t } = useTranslation('game')
@@ -53,7 +54,7 @@ const GamePage: FC = () => {
     const mainScreen =
         gameService.mode.get() === GameMode.SINGLE_PLAYER ? (
             <>
-                <SingleGameHeader score={score} timer={timer} bombs={bombs} />
+                <SingleGameHeader score={score} timer={timer} bombs={bombs} total={total} />
                 <SingleGameContent gameStatus={status} stage={stage} />
                 <SingleGameFooter />
             </>

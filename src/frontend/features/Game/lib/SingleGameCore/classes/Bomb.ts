@@ -1,4 +1,4 @@
-import { ANIMATION_FRAMES_BOMB, ANIMATION_INTERVAL_BOMB, GRID, SCORE_WIN_PER_STAGE } from '../config'
+import { ANIMATION_FRAMES_BOMB, ANIMATION_INTERVAL_BOMB, GRID } from '../config'
 import { EntitiesTypes } from '../types/EntitiesTypes'
 import { defineDirection, DIRECTIONS, Movements } from '../types/DirectionsType'
 import { IEntity } from '../interfaces/IEntity'
@@ -83,7 +83,8 @@ export class Bomb implements IEntity {
 
         BF.clearCell(this.pos)
 
-        const scoreToWin = SCORE_WIN_PER_STAGE * gameService.stage.get()
+        // const scoreToWin = SCORE_WIN_PER_STAGE * gameService.stage.get()
+        const scoreToWin = BF.getBricksCount()
 
         // create Explosions per each directions
         Object.values(DIRECTIONS).forEach((dir) => {
@@ -128,6 +129,14 @@ export class Bomb implements IEntity {
                         return // stop explosion this side
 
                     case EntitiesTypes.WALL_SOFT:
+                        // gameService.increaseScore(5)
+                        // if (gameService.score.get() >= scoreToWin) {
+                        //     BF.winStage()
+                        //     return
+                        // }
+                        return
+
+                    case EntitiesTypes.BRICK:
                         gameService.increaseScore(1)
                         if (gameService.score.get() >= scoreToWin) {
                             BF.winStage()

@@ -4,10 +4,11 @@ import cls from './GameHeader.module.scss'
 
 type GameHeaderProps = {
     score: number
+    total: number
     timer: number
     bombs: number
 }
-export const GameHeader: FC<GameHeaderProps> = ({ score, timer, bombs }) => {
+export const GameHeader: FC<GameHeaderProps> = ({ score, timer, bombs, total }) => {
     const { t } = useTranslation()
 
     return (
@@ -25,7 +26,7 @@ export const GameHeader: FC<GameHeaderProps> = ({ score, timer, bombs }) => {
             <span className="timer-group">
                 {t('score')}
                 {': '}
-                {score}
+                {score}/{total}
             </span>
         </div>
     )

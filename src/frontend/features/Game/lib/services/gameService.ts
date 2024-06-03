@@ -38,6 +38,8 @@ class GameService {
 
     readonly score = new Observable(0)
 
+    readonly total = new Observable(0)
+
     readonly timer = new Observable(0)
 
     readonly bombs = new Observable(0)
@@ -141,6 +143,10 @@ class GameService {
         }
         setTimeout(() => {
             this.status.set(GameStatus.IN_PROGRESS)
+            setTimeout(() => {
+                this.score.set(0)
+                this.total.set(getBattleField().getBricksCount())
+            }, 0)
             this.startTimer()
         }, 1500)
     }
