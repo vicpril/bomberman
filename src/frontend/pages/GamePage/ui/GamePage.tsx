@@ -1,15 +1,13 @@
-import React, { FC, useCallback, useMemo } from 'react'
+import React, { FC, useCallback, useEffect, useMemo } from 'react'
 
 import { useTranslation } from 'react-i18next'
-import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { Button } from '@/shared/ui/Button'
 
 import {
     GameHeader,
     MultiplayerGameContent,
-    MultiplayerGameFooter,
+    GameFooter,
     SingleGameContent,
-    SingleGameFooter,
     useObservable,
     GameMode,
     gameService,
@@ -28,10 +26,12 @@ const GamePage: FC = () => {
     const bombs = useObservable(gameService.bombs)
     const { t } = useTranslation('game')
 
-    useMountEffect(() => () => {
+    const resetGame = () => {
         gameService.destroyMultiplayerGame()
         gameService.exitGame()
-    })
+    }
+
+    useEffect(resetGame, [])
 
     const startSingleGameHandler = () => {
         gameService.setMode(GameMode.SINGLE_PLAYER)
@@ -57,18 +57,35 @@ const GamePage: FC = () => {
 
     const singleScore = useMemo(() => `${score}/${total}`, [score, total])
 
+    const onPlayAgain = useCallback(
+        (mode: GameMode) => () => {
+            resetGame()
+            if (mode === GameMode.MULTI_PLAYER) startMultiplayerGameHandler()
+            else startSingleGameHandler()
+        },
+        [],
+    )
+
     const mainScreen =
         gameService.mode.get() === GameMode.SINGLE_PLAYER ? (
             <>
                 <GameHeader gameStatus={status} score={singleScore} timer={timer} bombs={bombs} />
                 <SingleGameContent gameStatus={status} stage={stage} toMultiple={onToMultiple} />
-                <SingleGameFooter />
+                <GameFooter
+                    gameStatus={status}
+                    onBackClick={resetGame}
+                    onPlayAgainClick={onPlayAgain(GameMode.SINGLE_PLAYER)}
+                />
             </>
         ) : (
             <>
                 <GameHeader gameStatus={status} score={score} timer={timer} bombs={bombs} />
                 <MultiplayerGameContent gameStatus={status} />
-                <MultiplayerGameFooter gameStatus={status} />
+                <GameFooter
+                    gameStatus={status}
+                    onBackClick={resetGame}
+                    onPlayAgainClick={onPlayAgain(GameMode.MULTI_PLAYER)}
+                />
             </>
         )
 

@@ -8,7 +8,6 @@ import { VStack } from '@/shared/ui/Stack'
 import { ArticleCommentsList } from '@/features/ArticleCommentsList'
 import { ToggleFeature } from '@/shared/lib/features'
 import { ArticleRating } from '@/features/ArticleRating'
-import { Card } from '@/shared/ui/Card'
 import { ArticlesDetailPageHeader } from '../ArticlesDetailPageHeader/ArticlesDetailPageHeader'
 import cls from './ArticlesDetailPage.module.scss'
 
@@ -51,7 +50,7 @@ const ArticlesDetailPage = (props: ArticlesDetailPageProps) => {
                         <ToggleFeature
                             feature="isArticleRatingEnabled"
                             on={<ArticleRating articleId={id} className={cls.rating} />}
-                            off={<Card>{t('Рейтинг статей появится в будущем')}</Card>}
+                            off={<ArticleRating articleId={id} className={cls.rating} />}
                         />
                         <ArticleCommentsList articleId={id} />
                     </>

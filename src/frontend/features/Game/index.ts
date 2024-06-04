@@ -1,7 +1,6 @@
 export { GameHeader } from './ui/GameHeader/GameHeader'
+export { GameFooter } from './ui/GameFooter/GameFooter'
 export { GameContent as MultiplayerGameContent } from './ui/GameMultiplayer/GameContent/GameContent'
-export { GameFooter as MultiplayerGameFooter } from './ui/GameMultiplayer/GameFooter/GameFooter'
 export { GameContent as SingleGameContent } from './ui/GameSingle/GameContent/GameContent'
-export { GameFooter as SingleGameFooter } from './ui/GameSingle/GameFooter/GameFooter'
 export { useObservable } from './lib/SingleGameCore/hooks/useObservable'
 export { GameMode, gameService, GameStatus } from './lib/services/gameService'

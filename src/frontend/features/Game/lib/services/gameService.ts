@@ -168,6 +168,7 @@ class GameService {
         this.stage.set(1)
         this.bombs.set(0)
         this.score.set(0)
+        this.total.set(0)
         this.timer.set(0)
     }
 

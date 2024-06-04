@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import cls from './GameHeader.module.scss'
@@ -89,10 +89,5 @@ export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bomb
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameStatus, startingTimer, timer, bombs, score, t])
 
-    return (
-        <>
-            <pre>status: {gameStatus}</pre>
-            {headerComponent}
-        </>
-    )
+    return headerComponent
 }

@@ -156,6 +156,7 @@ export class BattleField {
         this.cells = []
         this.entities = []
         this.isInitialized = false
+        this.bricks = 0
         BattleField.instance = null
     }
 }
