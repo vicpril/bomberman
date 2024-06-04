@@ -32,5 +32,8 @@
   "Страница не найдена": "Page not found",
   "Тестовый пример": "Test example",
   "Форма авторизации": "Authorization",
-  "Язык": "English"
+  "Язык": "English",
+  "Ваш отзыв": "Feedback",
+  "Закрыть": "Close",
+  "Отправить" : "Send"
 }

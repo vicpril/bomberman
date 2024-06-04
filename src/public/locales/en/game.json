@@ -1,4 +1,18 @@
 {
+  "bombs": "Bombs",
+  "timer": "Timer",
+  "score": "Score",
+  "victory": "Victory",
+  "defeat": "Defeat",
+  "stage": "stage",
+  "continue": "continue",
+  "try_multy": "Try Multiplayer",
+  "Оцените игру": "Rate the game",
+  "waiting-an-opponent": "Waiting an opponen",
+  "game-starts-in": "Game starts in",
+  "play_again": "Play Again",
+  "Игра не поддерживается на мобильных устройствах": "The game is not supported on mobile devices",
   "Мультиплеер": "Multiplayer",
-  "Одиночная игра": "Single player"
+  "Одиночная игра": "Single player",
+  "Пожалуйста зайдите на страницу из браузера на компьютере": "Please visit the page from a browser on your computer"
 }

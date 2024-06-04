@@ -12,7 +12,7 @@ type GameHeaderProps = {
     bombs?: number
 }
 export const GameHeader: FC<GameHeaderProps> = ({ gameStatus, score, timer, bombs }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('game')
 
     const startingTimer = useObservable(gameService.startingTimer)
 

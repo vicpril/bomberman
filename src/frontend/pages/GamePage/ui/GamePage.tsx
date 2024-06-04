@@ -35,7 +35,8 @@ const GamePage: FC = () => {
         [status],
     )
 
-    const { t } = useTranslation('game')
+    // const { t } = useTranslation('game')
+    const { t } = useTranslation(['game'])
 
     const resetGame = () => {
         gameService.destroyMultiplayerGame()

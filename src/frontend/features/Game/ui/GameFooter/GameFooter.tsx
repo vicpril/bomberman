@@ -11,7 +11,7 @@ type GameFooterProps = {
 }
 
 export const GameFooter: FC<GameFooterProps> = ({ gameStatus, onBackClick, onPlayAgainClick }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation(['translation', 'game'])
 
     return (
         <div className="game-footer">
@@ -19,12 +19,12 @@ export const GameFooter: FC<GameFooterProps> = ({ gameStatus, onBackClick, onPla
                 gameStatus === GameStatus.VICTORY ||
                 gameStatus === GameStatus.FINISHED) && (
                 <Button theme={ButtonTheme.Background} size={ButtonSize.L} onClick={onPlayAgainClick}>
-                    {t('play_again')}
+                    {t('play_again', { ns: 'game' })}
                 </Button>
             )}
 
             <Button theme={ButtonTheme.Background} size={ButtonSize.L} onClick={onBackClick}>
-                {t('back')}
+                {t('Назад')}
             </Button>
         </div>
     )

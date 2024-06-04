@@ -15,7 +15,7 @@ type GameContentProps = {
     // fullScreenHandle: FullScreenHandle
 }
 export const GameContent: FC<GameContentProps> = ({ gameStatus, stage, toMultiple }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation('game')
 
     const startGameHandler = (multi = false) => {
         const options = multi ? { mode: GameMode.MULTI_PLAYER } : {}
@@ -37,7 +37,8 @@ export const GameContent: FC<GameContentProps> = ({ gameStatus, stage, toMultipl
                 return <Text text={stageText} />
 
             case GameStatus.IN_PROGRESS:
-                return <CanvasComponent key={Date.now()} />
+                // return <CanvasComponent key={Date.now()} />
+                return <CanvasComponent />
 
             case GameStatus.VICTORY:
             case GameStatus.STAGE_COMPLETED:
@@ -48,7 +49,7 @@ export const GameContent: FC<GameContentProps> = ({ gameStatus, stage, toMultipl
                             {t('continue')}
                         </Button>
                         <Button size={ButtonSize.M} onClick={toMultiple}>
-                            {t('continue-multy')}
+                            {t('try_multy')}
                         </Button>
                     </VStack>
                 )
