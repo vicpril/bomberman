@@ -13,7 +13,7 @@ export interface ArticleRatingProps {
 const ArticleRating = (props: ArticleRatingProps) => {
     const { className, articleId } = props
 
-    const { t } = useTranslation()
+    const { t } = useTranslation('articles')
 
     const userData = useSelector(getUserAuthData)
 

@@ -29,7 +29,7 @@ const reducers: ReducersList = {
 
 export const ArticleCommentsList = memo((props: ArticleCommentsListProps) => {
     const { className, articleId } = props
-    const { t } = useTranslation()
+    const { t } = useTranslation('articles')
 
     const dispatch = useAppDispatch()
 

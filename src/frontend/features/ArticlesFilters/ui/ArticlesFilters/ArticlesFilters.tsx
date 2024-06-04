@@ -45,7 +45,7 @@ const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
     const sort = useSelector(getArticlesFilterSort)
     const type = useSelector(getArticlesFilterType)
 
-    const { t } = useTranslation()
+    const { t } = useTranslation('articles')
 
     const dispatch = useAppDispatch()
 

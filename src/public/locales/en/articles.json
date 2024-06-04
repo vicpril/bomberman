@@ -1,3 +1,20 @@
 {
-  "Статья не найдена": "Article not found"
+  "По возрастанию": "Ascending",
+  "По убыванию": "Descending",
+  "Количеству просмотров": "Views",
+  "Дате создания": "Created at",
+  "Названию": "Title",
+  "Сортировать по": "Sort by",
+  "Поиск": "Search",
+  "Статья не найдена": "Article not found",
+  "Назад к списку": "Back to articles",
+  "Все": "All",
+  "Экономика": "Economics",
+  "Айти": "IT",
+  "Наука": "Science",
+  "Ваша оценка": "Rating",
+  "Оцените статью": "Rate the article",
+  "Комментарии": "Comments",
+  "Рекоммендованные статьи": "Recomended articles",
+  "Ошибка при загрузке списка рекоммендованных статей": "Error loading list of recommended articles"
 }

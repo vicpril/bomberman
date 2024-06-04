@@ -13,7 +13,7 @@ interface ArticlesDetailPageHeaderProps {
 const ArticlesDetailPageHeader = memo((props: ArticlesDetailPageHeaderProps) => {
     const { className } = props
 
-    const { t } = useTranslation()
+    const { t } = useTranslation('articles')
 
     const navigate = useNavigate()
 
