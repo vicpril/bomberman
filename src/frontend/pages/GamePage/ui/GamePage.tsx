@@ -18,6 +18,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Page } from '@/widgets/Page'
 import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
 import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
+import { BrowserView, MobileView } from '@/shared/lib/deviceDetect'
+import { Text, TextTheme } from '@/shared/ui/Text'
 import cls from './GamePage.module.scss'
 
 const GamePage: FC = () => {
@@ -110,15 +112,26 @@ const GamePage: FC = () => {
 
     return (
         <>
-            <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
-                {status === GameStatus.START_SCREEN && startScreen}
-                {status !== GameStatus.START_SCREEN && mainScreen}
-            </Page>
-            <GameRateModal
-                isOpen={isRateModalOpen}
-                onClose={closeRateModal}
-                win={status === GameStatus.VICTORY}
-            />
+            <BrowserView>
+                <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
+                    {status === GameStatus.START_SCREEN && startScreen}
+                    {status !== GameStatus.START_SCREEN && mainScreen}
+                </Page>
+                <GameRateModal
+                    isOpen={isRateModalOpen}
+                    onClose={closeRateModal}
+                    win={status === GameStatus.VICTORY}
+                />
+            </BrowserView>
+            <MobileView>
+                <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
+                    <Text
+                        theme={TextTheme.SECONDARY}
+                        title={t('Игра не поддерживается на мобильных устройствах')}
+                        text={t('Пожалуйста зайдите на страницу из браузера на компьютере')}
+                    />
+                </Page>
+            </MobileView>
         </>
     )
 }
