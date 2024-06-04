@@ -12,9 +12,12 @@ import {
     GameMode,
     gameService,
     GameStatus,
+    GameRateModal,
 } from '@/features/Game'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Page } from '@/widgets/Page'
+import { useMountEffect } from '@/shared/lib/hooks/useMountEffect/useMountEffect'
+import { useFlag } from '@/shared/lib/hooks/useFlag/useFlag'
 import cls from './GamePage.module.scss'
 
 const GamePage: FC = () => {
@@ -24,6 +27,12 @@ const GamePage: FC = () => {
     const total = useObservable(gameService.total)
     const timer = useObservable(gameService.timer)
     const bombs = useObservable(gameService.bombs)
+
+    const isGameFinished = useMemo(
+        () => [GameStatus.FINISHED, GameStatus.DEFEAT, GameStatus.VICTORY].includes(status),
+        [status],
+    )
+
     const { t } = useTranslation('game')
 
     const resetGame = () => {
@@ -31,7 +40,9 @@ const GamePage: FC = () => {
         gameService.exitGame()
     }
 
-    useEffect(resetGame, [])
+    // TODO switch
+    useMountEffect(() => resetGame)
+    // useEffect(resetGame, [])
 
     const startSingleGameHandler = () => {
         gameService.setMode(GameMode.SINGLE_PLAYER)
@@ -66,6 +77,14 @@ const GamePage: FC = () => {
         [],
     )
 
+    const { flag: isRateModalOpen, on: openRateModal, off: closeRateModal } = useFlag(false)
+
+    useEffect(() => {
+        if (gameService.mode.get() === GameMode.MULTI_PLAYER && isGameFinished) {
+            openRateModal()
+        }
+    }, [isGameFinished, openRateModal])
+
     const mainScreen =
         gameService.mode.get() === GameMode.SINGLE_PLAYER ? (
             <>
@@ -90,10 +109,17 @@ const GamePage: FC = () => {
         )
 
     return (
-        <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
-            {status === GameStatus.START_SCREEN && startScreen}
-            {status !== GameStatus.START_SCREEN && mainScreen}
-        </Page>
+        <>
+            <Page className={classNames(cls.GamePage, {}, [])} data-testid="GamePage">
+                {status === GameStatus.START_SCREEN && startScreen}
+                {status !== GameStatus.START_SCREEN && mainScreen}
+            </Page>
+            <GameRateModal
+                isOpen={isRateModalOpen}
+                onClose={closeRateModal}
+                win={status === GameStatus.VICTORY}
+            />
+        </>
     )
 }
 

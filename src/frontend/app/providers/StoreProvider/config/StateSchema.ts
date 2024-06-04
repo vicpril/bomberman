@@ -7,13 +7,14 @@ import { AddCommentFormSchema } from '@/widgets/AddCommentForm'
 import { ArticlesPageSchema } from '@/pages/ArticlesPage'
 import { UISchema } from '@/features/UI'
 import { ArticleFiltersSchema } from '@/features/ArticlesFilters'
-import { rtkApiJson } from '@/shared/api/rtkApi'
+import { rtkApi, rtkApiJson } from '@/shared/api/rtkApi'
 import { ArticleCommentsListSchema } from '@/features/ArticleCommentsList'
 import { RegistrationFormSchema } from '@/features/RegistrationForm'
 
 export interface StateSchema {
     user: UserSchema
     ui: UISchema
+    [rtkApi.reducerPath]: ReturnType<(typeof rtkApi)['reducer']>
     [rtkApiJson.reducerPath]: ReturnType<(typeof rtkApiJson)['reducer']>
 
     // асинхронные

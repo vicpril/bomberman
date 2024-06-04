@@ -4,7 +4,7 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 import { userReducer } from '@/entities/User'
 import { $api, $apiJson } from '@/shared/api/api'
 import { uiReducer } from '@/features/UI'
-import { rtkApiJson } from '@/shared/api/rtkApi'
+import { rtkApi, rtkApiJson } from '@/shared/api/rtkApi'
 import { createReducerManager } from '../lib/reducerManager'
 import type { StateSchema } from './StateSchema'
 import { ThunkExtraArgs } from './types'
@@ -17,7 +17,8 @@ export const createAppStore = (
         ...asyncReducers,
         user: userReducer,
         ui: uiReducer,
-        rtkApi: rtkApiJson.reducer,
+        rtkApi: rtkApi.reducer,
+        rtkApiJson: rtkApiJson.reducer,
     }
 
     const reducerManager = createReducerManager(rootReducers)
@@ -36,7 +37,7 @@ export const createAppStore = (
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }).concat(rtkApiJson.middleware),
+            }).concat([rtkApi.middleware, rtkApiJson.middleware]),
     })
 
     // @ts-ignore

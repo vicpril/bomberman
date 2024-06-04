@@ -4,3 +4,4 @@ export { GameContent as MultiplayerGameContent } from './ui/GameMultiplayer/Game
 export { GameContent as SingleGameContent } from './ui/GameSingle/GameContent/GameContent'
 export { useObservable } from './lib/SingleGameCore/hooks/useObservable'
 export { GameMode, gameService, GameStatus } from './lib/services/gameService'
+export { GameRateModal } from './ui/GameRateModal/GameRateModal'
