@@ -2,6 +2,8 @@ import { memo } from 'react'
 import { Modal } from '@/shared/ui/Modal'
 import { RatingCard } from '@/entities/Rating'
 import { useTranslation } from 'react-i18next'
+import { BrowserView, MobileView } from '@/shared/lib/deviceDetect'
+import { Drawer } from '@/shared/ui/Drawer'
 import { useRateGame } from '../../api/gameRatingApi'
 
 interface GameRateModalProps {
@@ -33,16 +35,29 @@ const GameRateModal = memo((props: GameRateModalProps) => {
         })
     }
 
+    const content = (
+        <RatingCard
+            title={t('Оцените игру')}
+            onAccept={onAcceptHandler}
+            onCancel={onCancelHandler}
+            hasFeedback
+            responsive
+        />
+    )
+
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <RatingCard
-                title={t('Оцените игру')}
-                onAccept={onAcceptHandler}
-                onCancel={onCancelHandler}
-                hasFeedback
-                responsive
-            />
-        </Modal>
+        <>
+            <BrowserView>
+                <Modal isOpen={isOpen} onClose={onClose}>
+                    {content}
+                </Modal>
+            </BrowserView>
+            <MobileView>
+                <Drawer isOpen={isOpen} onClose={onClose}>
+                    {content}
+                </Drawer>
+            </MobileView>
+        </>
     )
 })
 

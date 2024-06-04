@@ -16,6 +16,16 @@
   }
 }
 
+.secondary {
+  .title {
+    color: var(--secondary-color);
+  }
+
+  .text {
+    color: var(--primary-color);
+  }
+}
+
 .error {
   .title {
     color: var(--red-light);

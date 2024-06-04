@@ -22,6 +22,7 @@ import cls from './LoginForm.module.scss'
 export interface LoginFormProps {
     className?: string
     onSuccess?: () => void
+    invertedColor?: boolean
 }
 
 const initialReducers: ReducersList = {
@@ -29,7 +30,7 @@ const initialReducers: ReducersList = {
 }
 
 const LoginForm = (props: LoginFormProps) => {
-    const { className, onSuccess } = props
+    const { className, onSuccess, invertedColor } = props
 
     const { t } = useTranslation()
     const navigate = useNavigate()
@@ -81,7 +82,11 @@ const LoginForm = (props: LoginFormProps) => {
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <div className={classNames(cls.LoginForm, {}, [className])}>
-                <Text className={cls.title} title={t('Форма авторизации')} />
+                <Text
+                    className={cls.title}
+                    title={t('Форма авторизации')}
+                    theme={invertedColor ? TextTheme.SECONDARY : TextTheme.PRIMARY}
+                />
 
                 {error && <Text text={t('Выввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
 
@@ -102,7 +107,7 @@ const LoginForm = (props: LoginFormProps) => {
 
                 <Button
                     className={cls.loginBtn}
-                    theme={ButtonTheme.OutlineInverted}
+                    theme={invertedColor ? ButtonTheme.Outline : ButtonTheme.OutlineInverted}
                     onClick={onSubmitClick}
                     disabled={isLoading}
                 >
