@@ -40,17 +40,7 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
     const { userId, className, initialData, onUpdate, onCancel } = props
 
     const { t } = useTranslation('profile')
-
-    // const valideteErrorsTranslations: Record<ValidateProfileErrors, string> = useMemo(
-    //     () => ({
-    //         [ValidateProfileErrors.NO_DATA]: t('Данные не указаны'),
-    //         [ValidateProfileErrors.INCORRECT_USER_AGE]: t('Некорректный возраст'),
-    //         [ValidateProfileErrors.INCORRECT_USER_COUNTRY]: t('Некорректный регион'),
-    //         [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Имя и Фамилия обязательны'),
-    //         [ValidateProfileErrors.SERVER_ERROR]: t('Ошибка сервера'),
-    //     }),
-    //     [t],
-    // )
+    const { t: dt } = useTranslation()
 
     const { getErrorMessage } = useErrorMessages()
 
@@ -151,14 +141,14 @@ export const ProfileEditForm = memo((props: ProfileEditFormProps) => {
                         size={ButtonSize.M}
                         data-testid="ProfileEditForm.submitBtn"
                     >
-                        {t('Сохранить')}
+                        {dt('Сохранить')}
                     </Button>
                     <Button
                         onClick={onCancelHandler}
                         size={ButtonSize.M}
                         data-testid="ProfileEditForm.cancelBtn"
                     >
-                        {t('Отмена')}
+                        {dt('Отмена')}
                     </Button>
                 </HStack>
                 {isLoading && <Loader className={cls.loader} size={LoaderSize.S} />}

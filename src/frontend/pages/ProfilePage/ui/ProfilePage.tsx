@@ -23,7 +23,8 @@ const initialReducers: ReducersList = {
 }
 
 function ProfilePage() {
-    const { t } = useTranslation('main')
+    const { t } = useTranslation('profile')
+    const { t: dt } = useTranslation()
 
     const navigate = useNavigate()
 
@@ -88,7 +89,7 @@ function ProfilePage() {
                                     theme={ButtonTheme.Clear}
                                     onClick={onBackClick}
                                 >
-                                    {t('Назад')}
+                                    {dt('Назад')}
                                 </Button>
                             </>
                         )

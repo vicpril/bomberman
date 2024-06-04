@@ -2,6 +2,7 @@
   "stranica-profilya": "Profile page",
   "Аватар": "Avatar",
   "Валюта": "Currency",
+  "Выберите валюту": "Choose currency",
   "Возраст": "Age",
   "Данные не указаны": "No profile data",
   "Имя": "Firstname",
@@ -14,6 +15,7 @@
   "Пользователь": "Username",
   "Редактировать": "Edit",
   "Страна": "Country",
+  "Выберите страну": "Choose country",
   "Фамилия": "Lastname",
   "Никнейм": "Username"
 }

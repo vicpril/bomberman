@@ -33,6 +33,7 @@ const initialReducers: ReducersList = {
 export const RegistrationForm = memo((props: RegistrationFormProps) => {
     const { className, onCancel, onUpdate } = props
     const { t } = useTranslation('profile')
+    const { t: dt } = useTranslation()
 
     const valideteErrorsTranslations: Record<ValidateRegistrationErrors, string> = useMemo(
         () => ({
@@ -140,14 +141,14 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                         size={ButtonSize.M}
                         data-testid="RegistrationForm.submitBtn"
                     >
-                        {t('Сохранить')}
+                        {dt('Сохранить')}
                     </Button>
                     <Button
                         onClick={onCancelHandler}
                         size={ButtonSize.M}
                         data-testid="RegistrationForm.cancelBtn"
                     >
-                        {t('Назад')}
+                        {dt('Назад')}
                     </Button>
                 </HStack>
                 {isLoading && <Loader className={cls.loader} size={LoaderSize.S} />}
