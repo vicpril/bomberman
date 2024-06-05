@@ -38,6 +38,7 @@ export default {
     rootDir: '../../',
     globals: {
         __IS_DEV__: true,
+        __CLIENT_URL__: '',
         __API__: '',
         __API_JSON__: '',
         __PROJECT__: 'tests',
