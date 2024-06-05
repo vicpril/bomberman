@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 import { GameRateModal } from './GameRateModal'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -9,6 +10,14 @@ export default {
     args: {
         children: 'GameRateModal',
     },
+    decorators: [
+        (Story) => (
+            <>
+                <Story />
+                <div id="modals" />
+            </>
+        ),
+    ],
 } as ComponentMeta<typeof GameRateModal>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -16,4 +25,7 @@ export default {
 const Template: ComponentStory<typeof GameRateModal> = (args) => <GameRateModal {...args} />
 
 export const Normal = Template.bind({})
-Normal.args = {}
+Normal.args = {
+    isOpen: true,
+}
+Normal.decorators = [StoreDecorator({})]

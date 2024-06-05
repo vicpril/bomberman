@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { BackgroundDecorator } from '@/shared/config/storybook/BackgroundDecorator'
 import { AppLink } from './AppLink'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -25,21 +26,25 @@ Secondary.args = {
     children: 'Link...',
     theme: 'inverted',
 }
+Secondary.decorators = [BackgroundDecorator]
+Secondary.parameters = {
+    background: 'inverted',
+}
 
 export const SizeS = Template.bind({})
-Secondary.args = {
+SizeS.args = {
     children: 'Link...',
     theme: 'primary',
     size: 's',
 }
 export const SizeM = Template.bind({})
-Secondary.args = {
+SizeM.args = {
     children: 'Link...',
     theme: 'primary',
     size: 'm',
 }
 export const SizeL = Template.bind({})
-Secondary.args = {
+SizeL.args = {
     children: 'Link...',
     theme: 'primary',
     size: 'l',

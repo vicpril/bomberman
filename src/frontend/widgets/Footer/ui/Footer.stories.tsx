@@ -4,7 +4,7 @@ import { Footer } from './Footer'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'shared/Footer',
+    title: 'widgets/Footer',
     component: Footer,
     args: {
         children: 'Footer',

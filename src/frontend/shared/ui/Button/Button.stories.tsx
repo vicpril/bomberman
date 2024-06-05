@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { BackgroundDecorator } from '@/shared/config/storybook/BackgroundDecorator'
 import { Button, ButtonSize, ButtonTheme } from './Button'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -25,6 +26,10 @@ export const ClearInverted = Template.bind({})
 ClearInverted.args = {
     theme: ButtonTheme.ClearInverted,
 }
+ClearInverted.decorators = [BackgroundDecorator]
+ClearInverted.parameters = {
+    background: 'inverted',
+}
 
 export const Outline = Template.bind({})
 Outline.args = {
@@ -35,6 +40,10 @@ export const OutlineInverted = Template.bind({})
 OutlineInverted.args = {
     theme: ButtonTheme.OutlineInverted,
 }
+OutlineInverted.decorators = [BackgroundDecorator]
+OutlineInverted.parameters = {
+    background: 'inverted',
+}
 
 export const Background = Template.bind({})
 Background.args = {
@@ -44,6 +53,10 @@ Background.args = {
 export const BackgroundInverted = Template.bind({})
 BackgroundInverted.args = {
     theme: ButtonTheme.BackgroundInverted,
+}
+BackgroundInverted.decorators = [BackgroundDecorator]
+BackgroundInverted.parameters = {
+    background: 'inverted',
 }
 
 export const Squared = Template.bind({})

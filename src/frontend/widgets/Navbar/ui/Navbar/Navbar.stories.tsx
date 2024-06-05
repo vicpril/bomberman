@@ -14,7 +14,6 @@ export default {
                 <div id="Navbars" />
             </>
         ),
-        StoreDecorator({ user: { authData: { id: '1' } } }),
     ],
 } as ComponentMeta<typeof Navbar>
 
@@ -22,5 +21,10 @@ export default {
 // eslint-disable-next-line i18next/no-literal-string
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />
 
-export const Default = Template.bind({})
-Default.args = {}
+export const Auth = Template.bind({})
+Auth.args = {}
+Auth.decorators = [StoreDecorator({ user: { authData: { id: '1' } } })]
+
+export const NotAuth = Template.bind({})
+NotAuth.args = {}
+NotAuth.decorators = [StoreDecorator({ user: { authData: undefined } })]
