@@ -33,6 +33,16 @@ services:
     env_file:
       ./.env
 
+  storybook:
+    container_name: storybook
+    image: ghcr.io/vicpril/bomberman-storybook:latest
+    # environment:
+    #   NODE_ENV: production
+    restart: always
+    tty: true
+    env_file:
+      ./.env
+
 
   sockets:
     container_name: sockets
