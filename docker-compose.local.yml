@@ -52,28 +52,28 @@ services:
 
   nginx:
     container_name: nginx
-    depends_on:
-      - api
-      - json
-      - frontend
-      - sockets
-      - storybook
+    # depends_on:
+      # - api
+      # - json
+      # - frontend
+      # - storybook
+      # - sockets
     restart: always
     build:
       context: .
-      dockerfile: .deploy/nginx.Dockerfile
+      dockerfile: .deploy/nginx.local.Dockerfile
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    # volumes:
+    #   - ./certbot/www:/var/www/certbot/:ro
+    #   - ./certbot/conf/:/etc/nginx/ssl/:ro
 
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
+  #     - ./certbot/conf/:/etc/letsencrypt/:rw
 
   postgres:
     container_name: postgres

@@ -31,6 +31,9 @@ export const MainPageLinks = (props: MainPageLinksProps) => {
     return (
         <VStack gap="32" justify="center" className={classNames(cls.MainPageLinks, {}, [className])}>
             {linkComponents}
+            <AppLink to={`${__CLIENT_URL__}/storybook`} size="l" bombed target="_blank">
+                {t('Storybook')}
+            </AppLink>
         </VStack>
     )
 }

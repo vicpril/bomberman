@@ -54,8 +54,8 @@
     "storybook:build": "build-storybook -c ./config/frontend/storybook",
     "prepare": "husky install",
     "//DEPLOY": "______DEPLOY_____",
-    "deploy": "docker-compose -f ./docker-compose.deploy.yml up -d",
-    "deploy:build": "docker-compose -f ./docker-compose.deploy.yml up -d --build",
+    "deploy": "docker-compose -f ./docker-compose.local.yml up -d",
+    "deploy:build": "docker-compose -f ./docker-compose.local.yml up -d --build",
     "//OTHERS": "______OTHERS_____",
     "generate:slice": "node ./scripts/createSlice/index.js",
     "postinstall": "node ./scripts/clear/clear-cache.js"
