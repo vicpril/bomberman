@@ -79,6 +79,29 @@ jobs:
           push: true
           tags: ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/bomberman-frontend:latest
           
+      - name: "Build and push: storybook"
+        uses: docker/build-push-action@v5
+        env:
+          NODE_ENV: production
+          DATABASE_URL: ${{vars.DATABASE_URL}}
+          POSTGRES_USER: ${{vars.POSTGRES_USER}}
+          POSTGRES_PASSWORD: ${{vars.POSTGRES_PASSWORD}}
+          POSTGRES_DB: ${{vars.POSTGRES_DB}}
+          POSTGRES_HOST: ${{vars.POSTGRES_HOST}}
+          POSTGRES_PORT: ${{vars.POSTGRES_PORT}}
+          PGADMIN_DEFAULT_EMAIL: ${{secrets.PGADMIN_DEFAULT_EMAIL}}
+          PGADMIN_DEFAULT_PASSWORD: ${{secrets.PGADMIN_DEFAULT_PASSWORD}}
+          CLIENT_URL: ${{vars.CLIENT_URL}}
+          API_URL: ${{vars.API_URL}}
+          API_JSON_URL: ${{vars.API_JSON_URL}}
+          SOCKETS_URL: ${{vars.SOCKETS_URL}}
+          SOCKETS_PATH: ${{vars.SOCKETS_PATH}}
+        with:
+          context: .
+          file: .deploy/storybook.Dockerfile
+          push: true
+          tags: ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/bomberman-storybook:latest
+          
       - name: "Build and push: sockets"
         uses: docker/build-push-action@v5
         env:
@@ -145,6 +168,7 @@ jobs:
         script: |
           docker pull ghcr.io/vicpril/bomberman-sockets:latest
           docker pull ghcr.io/vicpril/bomberman-frontend:latest
+          docker pull ghcr.io/vicpril/bomberman-storybook:latest
           docker pull ghcr.io/vicpril/bomberman-api:latest
           docker pull ghcr.io/vicpril/bomberman-json:latest
           docker pull ghcr.io/vicpril/bomberman-nginx:latest

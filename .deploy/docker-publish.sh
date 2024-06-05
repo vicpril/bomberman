@@ -9,7 +9,7 @@ SCRIPTDIR=$(dirname "$SCRIPT")
 BASEDIR="$(dirname "$SCRIPTDIR")"
 
 if [ "$#" -eq 0 ]; then
-  containers=( frontend api sockets json nginx )
+  containers=( frontend api sockets json nginx storybook )
 else
   containers=( "$@" )
 fi
