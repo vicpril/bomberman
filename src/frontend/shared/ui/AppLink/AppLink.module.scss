@@ -41,6 +41,7 @@
       height: $lineWidthS;
       background-color: var(--secondary-color);
       animation: blink 1s forwards infinite;
+      
     }
   }
 
@@ -53,6 +54,11 @@
     @extend %link;
   
     position: relative;
+  }
+
+  
+  &:not(._underline) > .link::after {
+    content: none;
   }
 
   > .bomb {
@@ -111,7 +117,9 @@
       content: none;
     }
   }
+
 }
+
 
 @keyframes blink {
   0% {

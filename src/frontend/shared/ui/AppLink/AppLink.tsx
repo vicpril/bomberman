@@ -14,13 +14,28 @@ interface AppLinkProps extends LinkProps {
     size?: AppLinkSize
     bombed?: boolean
     target?: AnchorHTMLAttributes<HTMLAnchorElement>['target']
+    underline?: boolean
 }
 
 export const AppLink: FC<AppLinkProps> = (props) => {
-    const { className, to, children, theme = 'primary', size = 's', bombed, target, ...otherProps } = props
+    const {
+        className,
+        to,
+        children,
+        theme = 'primary',
+        size = 's',
+        bombed,
+        target,
+        underline = true,
+        ...otherProps
+    } = props
 
     return (
-        <div className={classNames(cls.AppLink, { [cls._bombed]: bombed }, [cls[`_size_${size}`]])}>
+        <div
+            className={classNames(cls.AppLink, { [cls._bombed]: bombed, [cls._underline]: underline }, [
+                cls[`_size_${size}`],
+            ])}
+        >
             <Link
                 to={to}
                 target={target}
