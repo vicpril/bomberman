@@ -5,7 +5,7 @@
     <h1>Bomb Attack (pet)</h1>
     <p style="font-size: 18px; margin-bottom: 0;">Многопользовательская онлайн игра bomberman прямо в браузере</p>
     <p style="font-size: 18px;">Вспомни ощущения из дества!</p>
-    <img src="./docs/photo_2024-06-06_12-01-43.jpg" alt="Bomb Attack (pet)" width="200"/>
+    <img src="./docs/bomb-pano.png" alt="Bomb Attack (pet)" width=""/>
     <div>
         <a href="https://bomb.prilepinva.ru/" target="_blank" style="font-size: 24px;">bomb.prilepinva.ru</a>
     </div>
@@ -197,17 +197,35 @@
 
 Оба сборщика адаптированы под основные фичи приложения.
 
-Вся конфигурация хранится в /config
-- /config/babel - babel
-- /config/build - конфигурация webpack
+Вся конфигурация хранится в `/config`
+- /config/frontend/babel - babel
+- /config/frontend/build - конфигурация webpack
+- /config/frontend/storybook - конфигурация сторибука
 - /config/jest - конфигурация тестовой среды
-- /config/storybook - конфигурация сторибука
+- /config/api - конфигурация webpack сервера API
+- /config/sockets - конфигурация webpack сервера для WebSockets
 
 В папке `scripts` находятся различные скрипты для рефакторинга\упрощения написания кода\генерации отчетов и тд.
 
 ----
 
 ## CI pipeline и pre commit хуки
+
+
+Развертывание приложение организовано с помощью docker-контейнеров и конфигураций совместного использования docker-compose
+
+Контейнеры проекта:
+
+- **frontend** - nginx-сервер для раздачи статики клиентской части приложения
+- **api** - express-сервер для предоставления API
+- **json** - json-сервер для предоставления API
+- **sockets** - express-сервер & sokcet.io для предоставления соединения по WebSockets
+- **postgres** - postgres-контейнер для БД
+- **storybook** - nginx-сервер для раздачи статики story-кейсов клиентского приложения
+- **nginx** - главный nginx-сервер пробрасывания запросов в другие контейнеры
+- **certbot** - certbot-контейнер для выпуска ssl сертификатов
+
+
 
 Конфигурация github actions находится в /.github/workflows.
 В ci прогоняются все виды тестов, сборка проекта и сторибука, линтинг.
@@ -221,57 +239,27 @@
 Взаимодействие с данными осуществляется с помощью redux toolkit.
 По возможности переиспользуемые сущности необходимо нормализовать с помощью EntityAdapter
 
-Запросы на сервер отправляются с помощью [RTK query](/src/shared/api/rtkApi.ts)
+Запросы на сервер отправляются с помощью [RTK query](/src/frontend/shared/api/rtkApi.ts)
 
 Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется
-[DynamicModuleLoader](/src/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
+[DynamicModuleLoader](/src/frontend/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader.tsx)
 
 ----
 
 ### Работа с feature-flags
 
-Разрешено использование feature flags только с помощью хелпера toggleFeature
+Разрешено использование **feature flags** только с помощью хелпера `toggleFeature`
 
 в него передается объект с опциями 
-
+```
 {
    name: название фича-флага, 
    on: функция, которая отработает после Включения фичи 
    of: функция, которая отработает после ВЫключения фичи
 }
-
-Для автоматического удаления фичи использовать скрипт remove-feature.ts,
+```
+Для автоматического удаления фичи использовать скрипт `remove-feature.ts`,
 который принимает 2 аргумента
 1. Название удаляемого фича-флага
 2. Состояние (on\off)
 
-----
-
-
-
-## Сущности (entities)
-
-- [Article](/src/entities/Article)
-- [Comment](/src/entities/Comment)
-- [Counter](/src/entities/Counter)
-- [Country](/src/entities/Country)
-- [Currency](/src/entities/Currency)
-- [Notification](/src/entities/Notification)
-- [Profile](/src/entities/Profile)
-- [Rating](/src/entities/Rating)
-- [User](/src/entities/User)
-
-## Фичи (features)
-
-- [addCommentForm](/src/features/addCommentForm)
-- [articleEditForm](/src/features/articleEditForm)
-- [articleRating](/src/features/articleRating)
-- [articleRecommendationsList](/src/features/articleRecommendationsList)
-- [AuthByUsername](/src/features/AuthByUsername)
-- [avatarDropdown](/src/features/avatarDropdown)
-- [editableProfileCard](/src/features/editableProfileCard)
-- [LangSwitcher](/src/features/LangSwitcher)
-- [notificationButton](/src/features/notificationButton)
-- [profileRating](/src/features/profileRating)
-- [ThemeSwitcher](/src/features/ThemeSwitcher)
-- [UI](/src/features/UI)
