@@ -172,10 +172,7 @@ jobs:
           docker pull ghcr.io/vicpril/bomberman-api:latest
           docker pull ghcr.io/vicpril/bomberman-json:latest
           docker pull ghcr.io/vicpril/bomberman-nginx:latest
-          docker image list
-
-    - name: Image list
-      run: docker image list
+          docker pull ghcr.io/vicpril/portfolio:latest
 
     - name: 'Refresh .env: copy template to remote'
       uses: appleboy/scp-action@v0.1.7
